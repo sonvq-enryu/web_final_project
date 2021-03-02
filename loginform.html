@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <title>Document</title>
+    <link rel='stylesheet' href="./css/loginform.css">
+</head>
+<body>
+    <form action="" class='login-form' id='login-form'>
+        <h1>Login</h1>
+        <div class="txtb">
+            <input type="text">
+            <span data-placeholder="Username"></span>
+        </div>
+
+        <div class="txtb">
+            <input type="password">
+            <span data-placeholder="Password"></span>
+        </div>
+
+        <input type="submit" class="logbtn" value="Login">
+
+        <div class="bottom-text">
+            Don't have account <a href='#' onclick="openForm()">Sign up</a>
+        </div>
+
+
+    </form>
+
+    <form action="" class='signup-form' id='signup-form'>
+        <h1>Sign up</h1>
+        <div class="txtb">
+            <input type="text">
+            <span data-placeholder="First name"></span>
+        </div>
+
+        <div class="txtb">
+            <input type="text">
+            <span data-placeholder="Last name"></span>
+        </div>
+
+        <div class="txtb">
+            <input type="text">
+            <span data-placeholder="Username"></span>
+        </div>
+
+        <div class="txtb">
+            <input type="password">
+            <span data-placeholder="Password"></span>
+        </div>
+
+        <div class='gender'>
+           <label>
+               <input type="radio" name="gender">
+               <span class=male>Male</span>
+           </label>
+           <label>
+            <input type="radio" name="gender">
+            <span class=male>Female</span>
+        </label>
+        </div>
+
+        <div class="nationality-selectbox">
+            <select class="" id="nationality">
+                <option>Country</option>
+                  <option>Vietnam</option>
+                  <option>China</option>
+                  <option>Japan</option>
+                  <option>Laos</option>
+                  <option>Cambodia</option>
+            </select>
+        </div>
+
+        <input type="submit" class="logbtn" value="Sign in">
+        <input type="button" class="logbtn-cancel" value="Cancel" onclick="closeForm()">
+
+    </form>
+
+    
+
+
+    <script>
+        $(".txtb input").on("focus",function(){
+            $(this).addClass("focus");
+        })
+
+        $(".txtb input").on("blur",function(){
+            if($(this).val() == "")
+            $(this).removeClass("focus");
+        })
+
+        function openForm(){
+            document.getElementById("signup-form").style.display = "block";
+        }
+
+        function closeForm(){
+            document.getElementById("signup-form").style.display = "none";
+        }
+    </script>
+</body>
+</html>
