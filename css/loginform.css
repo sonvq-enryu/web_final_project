@@ -1,16 +1,23 @@
-*{
+* {
     margin: 0;
     padding: 0;
     text-decoration: none;
     font-family: montserrat;
 }
 
-body{
+body {
     min-height: 100vh;
     background-image: linear-gradient(120deg, #3498db, #8e44ad);
 }
 
-.login-form{
+
+/* css cho error message*/
+
+.errorMessage {
+    display: none
+}
+
+.login-form {
     width: 360px;
     background: #f1f1f1;
     height: 580px;
@@ -19,21 +26,21 @@ body{
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
 
-.login-form h1{
+.login-form h1 {
     text-align: center;
     margin-bottom: 60px;
 }
 
-.txtb{
+.txtb {
     border-bottom: 2px solid #adadad;
     position: relative;
     margin: 30px 0;
 }
 
-.txtb input{
+.txtb input {
     font-size: 15px;
     color: #333;
     border: none;
@@ -44,7 +51,7 @@ body{
     height: 40px;
 }
 
-.txtb span::before{
+.txtb span::before {
     content: attr(data-placeholder);
     position: absolute;
     top: 50%;
@@ -55,29 +62,29 @@ body{
     transition: .5s;
 }
 
-.txtb span::after{
+.txtb span::after {
     content: '';
     position: absolute;
     width: 0%;
     height: 2px;
-    background:linear-gradient(120deg, #3498db, #8e44ad);
+    background: linear-gradient(120deg, #3498db, #8e44ad);
     transition: .5s;
 }
 
-.focus + span::before{
+.focus+span::before {
     top: -5px;
 }
 
-.focus + span::after{
+.focus+span::after {
     width: 100%;
 }
 
-.logbtn{
+.logbtn {
     display: block;
     width: 100%;
     height: 50px;
     border: none;
-    background:linear-gradient(120deg, #3498db, #8e44ad, #3498db);
+    background: linear-gradient(120deg, #3498db, #8e44ad, #3498db);
     background-size: 200%;
     color: #fff;
     outline: none;
@@ -85,17 +92,17 @@ body{
     transition: .5s;
 }
 
-.logbtn:hover{
+.logbtn:hover {
     background-position: right;
 }
 
-.bottom-text{
+.bottom-text {
     margin-top: 60px;
     text-align: center;
     font-size: 13px;
 }
 
-.signup-form{
+.signup-form {
     width: 360px;
     background: #f1f1f1;
     height: 700px;
@@ -104,25 +111,25 @@ body{
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     display: none;
 }
 
-.signup-form h1{
+.signup-form h1 {
     text-align: center;
     margin-bottom: 60px;
 }
 
-.signup-form label{
+.signup-form label {
     position: relative;
     cursor: pointer;
 }
 
-.signup-form .gender label input{
+.signup-form .gender label input {
     display: none;
 }
 
-.signup-form .gender label span{
+.signup-form .gender label span {
     position: relative;
     display: inline-block;
     margin: 20px 0;
@@ -133,30 +140,29 @@ body{
     border-radius: 4px;
     text-align: center;
     vertical-align: middle;
-    line-height: 45px; 
+    line-height: 45px;
 }
 
-.signup-form .gender label input:checked ~ span
-{
-    color:#8e44ad;
-    border: 1px solid  #8e44ad;
+.signup-form .gender label input:checked~span {
+    color: #8e44ad;
+    border: 1px solid #8e44ad;
 }
 
-.signup-form select{
-   background: #f1f1f1;
-   color: #8e44ad;
-   padding: 10px;
-   width: 100%;
-   height: 50px;
-   border: none;
-   font-size: 15px;
-   box-shadow: 0 5px 25x rgba(0,0,0,0.5);
-   -webkit-appearance: button;
-   outline: none;
-   margin-bottom: 20px;
+.signup-form select {
+    background: #f1f1f1;
+    color: #8e44ad;
+    padding: 10px;
+    width: 100%;
+    height: 50px;
+    border: none;
+    font-size: 15px;
+    box-shadow: 0 5px 25x rgba(0, 0, 0, 0.5);
+    -webkit-appearance: button;
+    outline: none;
+    margin-bottom: 20px;
 }
 
-.signup-form select:before{
+.signup-form select:before {
     content: '';
     position: absolute;
     top: 0;
@@ -166,7 +172,7 @@ body{
     background: #3498db;
 }
 
-.signup-form select:hover:before{
+.signup-form select:hover:before {
     background: #8e44ad;
 }
 
@@ -176,104 +182,92 @@ body{
     width: 100%;
     height: 50px;
     border: none;
-    background:#fff;
+    background: #fff;
     background-size: 200%;
     color: red;
-    outline:none;
+    outline: none;
     border: 1px solid red;
     cursor: pointer;
     transition: .5s;
 }
 
 .logbtn-cancel:hover {
-   color: #fff;
-   background: red;
+    color: #fff;
+    background: red;
 }
 
-/* Edit form css */
-.editform {
-    width: 450px;
+
+/*  recover password form css  */
+
+.recover-pwd-form {
+    width: 360px;
+    background: #f1f1f1;
     height: 580px;
-    background-color: #f1f1f1;
-    padding: 20px 20px;
+    padding: 80px 40px;
     border-radius: 10px;
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
 
-.editform h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.editform div.edit-btn {
-    display: inline-block;
-    position: absolute;
-    left: 78%;
-}
-
-.editform div.edit-btn input[type=button] {
-    width: 70px;
-    height: 35px;
-    font-size: 15px;
-    border-style: solid;
-    border-radius: 6px;
-    border-width: 2px;
-    outline: none;
-}
-
-.editform div.username {
-    display: inline-block;
-    font-size: 20px;
-    height: 35px;
-    width: 70px;
-    padding-left: 18px;
-    padding-top: 8px;
-}
-
-.editform .info-txt {
-    margin: 10px 20px 0;
-}
-
-.editform .info-txt label {
-    display: block;
-    height: 15px;
-}
-
-.editform .info-txt input {
-    font-size: 15px;
-    color: #333;
+.recoverbtn {
+    width: 100%;
+    height: 50px;
     border: none;
-    width: 100%;
-    height: 30px;
+    background: linear-gradient(120deg, #3498db, #8e44ad, #3498db);
+    background-size: 200%;
+    color: #fff;
     outline: none;
-    background: none;
-    border-bottom: 2px solid #adadad;
+    cursor: pointer;
+    transition: .5s;
 }
 
-.editform .info-txt #nationality {
+.recoverbtn:hover {
+    background-position: right;
+}
+
+.recover-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.rcv-p {
+    font-weight: bold;
+}
+
+
+/* Change password form css*/
+
+.chg-pwd-form {
+    width: 360px;
     background: #f1f1f1;
-    border-radius: 4px;
-    border-width: 2px;
-    margin-top: 8px;
-    width: 100%;
-    height: 45px;
-    font-size: 15px;
-    box-shadow: 0 5px 25x rgba(0,0,0,0.5);
-    -webkit-appearance: button;
-    outline: none;
+    height: 580px;
+    padding: 80px 40px;
+    border-radius: 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.editform input[type=submit].submit-btn {
-    margin: 10px 20px 0;
-    width: 70px;
-    height: 35px;
-    font-size: 15px;
-    border-style: solid;
-    border-radius: 6px;
-    border-width: 2px;
-    outline: none;
+.changepwd-header {
+    text-align: center;
+    margin-bottom: 60px;
 }
-/* End of editform css */
+
+.changebtn {
+    width: 100%;
+    height: 50px;
+    border: none;
+    background: linear-gradient(120deg, #3498db, #8e44ad, #3498db);
+    background-size: 200%;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.changebtn:hover {
+    background-position: right;
+}
