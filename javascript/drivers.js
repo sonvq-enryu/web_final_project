@@ -168,3 +168,36 @@ function checkchangepwd() {
 function clearError() {
     document.getElementById('errorMessage').innerHTML = "";
 }
+
+
+//  edit infor css
+document.getElementById('e-info-btn').addEventListener('click', (e) => {
+    editformBtn(true);
+});
+
+document.getElementById('s-info-btn').addEventListener('click', (e) => {
+    editformBtn(false);
+});
+
+document.getElementById('c-info-btn').addEventListener('click', (e) => {
+    editformBtn(false);
+});
+
+function editformBtn(condition) {
+    if (condition) {
+        scBtnDisplay = 'block';
+        eBtnDisplay = 'none';
+        readStaus = false;
+    } else {
+        scBtnDisplay = 'none';
+        eBtnDisplay = 'block';
+        readStaus = true;
+    }
+    document.getElementById('user-fn').readOnly = readStaus;
+    document.getElementById('user-ln').readOnly = readStaus;
+    document.getElementById('user-phone').readOnly = readStaus;
+    document.getElementById('nationality').disabled = readStaus;
+    document.getElementById('s-info-btn').style.display = scBtnDisplay;
+    document.getElementById('c-info-btn').style.display = scBtnDisplay;
+    document.getElementById('e-info-btn').style.display = eBtnDisplay;
+}

@@ -6,31 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Document</title>
-    <link rel="stylesheet" href="./css/loginform.css">
+    <link rel="stylesheet" href="./css/css.css">
 </head>
 <body>
-    <form action="" class="editform" id="">
-        <h1>Edit Info</h1>
-        <div class="username">Username</div>
-        <div class="edit-btn">
-            <input type="button" value="Edit" id="edit-btn">
+    <form action="" class="edit-form" id="edit-form" method="POST">
+        <h1>Information</h1>
+        <div class="txtb">
+            <label for="user-email">Email</label>
+            <input id="user-email" type="email" readonly>
+            <span></span>
         </div>
-        <div class="info-txt">
-            <label for="firstname">Firstname</label>
-            <input type="text" name="" id="firstname" readonly>
+        <div class="txtb">
+            <label for="user-fn">Firstname</label>
+            <input id="user-fn" type="email" readonly>
+            <span></span>
         </div>
-        <div class="info-txt">
-            <label for="lastname">Lastname</label>
-            <input type="text" name="" id="lastname" readonly>
+        <div class="txtb">
+            <label for="user-ln">Lastname</label>
+            <input id="user-ln" type="email" readonly>
+            <span></span>
         </div>
-        <div class="info-txt">
-            <label for="phone">Phone</label>
-            <input type="text" name="" id="phone" readonly>
+        <div class="txtb">
+            <label for="user-phone">Phone</label>
+            <input id="user-phone" type="email" readonly>
+            <span></span>
         </div>
-        <div class="info-txt">
-            <label for="nationality">Country</label>
+        <div class="nationality-selectbox">
             <select class="" id="nationality" disabled>
-                <option>Country</option>
+                  <option>Country</option>
                   <option>Vietnam</option>
                   <option>China</option>
                   <option>Japan</option>
@@ -38,9 +41,11 @@
                   <option>Cambodia</option>
             </select>
         </div>
-        <input id="edit-submit-btn" class="submit-btn" type="submit" value="Submit" disabled>
+        <input id="e-info-btn" class="logbtn" type="button" value="Edit">
+        <input id="s-info-btn" class="logbtn d-none" type="button" value="Confirm">
+        <input id="c-info-btn" class="logbtn-cancel d-none" type="button" value="Cancel">
     </form>
 
-    <script src="./javascript/editform.js"></script>
+    <script src="./javascript/drivers.js"></script>
 </body>
 </html>
