@@ -38,6 +38,23 @@ function closeForm() {
     document.getElementById("login-form").style.display = "block";
 }
 
+function checkLoginInput(){
+    let email = document.getElementById('login-email');
+    let pass = document.getElementById('login-password');
+    let error = document.getElementById('login-error-messege');
+    if (email.value == ""){
+        error.innerHTML = "Please enter email";
+        email.focus();
+        return false
+    }
+    else if (pass.value == ""){
+        error.innerHTML = "Please enter password";
+        pass.focus();
+        return false
+    }
+    return true;
+}
+
 function checkchangepwd() {
     let currentpwdFilled = document.getElementById('crtpwd');
     let newpwdFilled = document.getElementById('newpwd');
