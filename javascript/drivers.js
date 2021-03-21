@@ -201,3 +201,5 @@ function editformBtn(condition) {
     document.getElementById('c-info-btn').style.display = scBtnDisplay;
     document.getElementById('e-info-btn').style.display = eBtnDisplay;
 }
+
+document.getElementById('edit-form').addEv
