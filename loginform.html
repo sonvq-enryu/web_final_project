@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
     <title>Document</title>
+
     <link rel='stylesheet' href="./css/loginform.css">
 </head>
+
 <body>
     <form action="" class='login-form' id='login-form'>
         <h1>Login</h1>
@@ -54,11 +57,11 @@
         </div>
 
         <div class='gender'>
-           <label>
+            <label>
                <input type="radio" name="gender">
                <span class=male>Male</span>
            </label>
-           <label>
+            <label>
             <input type="radio" name="gender">
             <span class=male>Female</span>
         </label>
@@ -80,26 +83,27 @@
 
     </form>
 
-    
+
 
 
     <script>
-        $(".txtb input").on("focus",function(){
+        $(".txtb input").on("focus", function() {
             $(this).addClass("focus");
         })
 
-        $(".txtb input").on("blur",function(){
-            if($(this).val() == "")
-            $(this).removeClass("focus");
+        $(".txtb input").on("blur", function() {
+            if ($(this).val() == "")
+                $(this).removeClass("focus");
         })
 
-        function openForm(){
+        function openForm() {
             document.getElementById("signup-form").style.display = "block";
         }
 
-        function closeForm(){
+        function closeForm() {
             document.getElementById("signup-form").style.display = "none";
         }
     </script>
 </body>
+
 </html>
