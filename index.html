@@ -66,10 +66,37 @@
     }
 
     .header {
-        /* background-color: 	#343a40; */
-        margin: 0;
-        padding: 0;
+        height: 55px;
     }
+
+    .header-img > img {
+        padding: 8px 16px;
+    }
+
+    .header-text {
+        padding: 10px 40px;
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .header-text > input[type=search] {
+        width: 75%;
+        font-size: 17px;
+        border: 1px solid grey;
+        float: left;
+        background: #f1f1f1;
+    }
+
+    .header-text > input[type=button] {
+        width: 25%;
+        background: #2196F3;
+        color: white;
+        font-size: 17px;
+        border: 1px solid grey;
+        border-left: none;
+        cursor: pointer;
+    }
+
 
     .card-body h3{
         color:  rgb(80,159,255);
@@ -89,15 +116,15 @@
 
 </style>
 <body>
-    <div class="header">
+    <div class="container-fluid header">
         <div class="row">
-            <div class="col-3">
-                <img src="./image/chplayicon.png" alt="">
+            <div class="header-img">    
+                <img src="./image/googleplayicon.png" alt="">
             </div>
-            <div class="col-9">
+            <div class="col-6">
                 <div class="header-text">
-                    <label for="gsearch">Search Google:</label>
                     <input type="search" id="gsearch" name="gsearch">
+                    <input type="button" value="Search">
                 </div>
             </div>
         </div>
