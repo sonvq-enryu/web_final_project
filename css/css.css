@@ -545,3 +545,15 @@ transform: translate(-50%, -50%); */
 .d-none {
     display: none;
 }
+
+/* End edit form css */
+
+/* Top up moeny css */
+.topup-form {
+    margin: 50px auto;
+    max-width: 360px;
+    background: #f1f1f1;
+    min-height: 500px;
+    padding: 80px 40px;
+    border-radius: 10px;
+}
