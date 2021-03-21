@@ -10,21 +10,22 @@
     <title>Document</title>
 
     <!-- <link rel='stylesheet' href="./css/loginform.css"> -->
+    =======
     <title>SignIn-SignUp</title>
-    <script src="javascript/editform.js"></script>
+
     <link rel='stylesheet' href="./css/css.css">
 </head>
 
 <body>
-    <form onsubmit="return checkLoginInput()" action="#" class='login-form' id='login-form'>
+    <form action="#" class='login-form' id='login-form'>
         <h1>Login</h1>
         <div class="txtb">
-            <input onclick="clearLoginError()" id="login-email" type="email">
+            <input id="login-email" type="email">
             <span data-placeholder="Email"></span>
         </div>
 
         <div class="txtb">
-            <input onclick="clearLoginError()" id="login-password" type="password">
+            <input id="login-password" type="password">
             <span data-placeholder="Password"></span>
         </div>
 
@@ -77,14 +78,7 @@
             <input type="radio" name="gender">
             <span class=male>Female</span>
         </label>
-            <label>
-               <input checked type="radio" name="gender">
-               <span class=male>Male</span>
-           </label>
-            <label>
-                <input type="radio" name="gender">
-                <span class=male>Female</span>
-            </label>
+
         </div>
 
         <div class="nationality-selectbox">
@@ -104,6 +98,8 @@
     </form>
 
 
+
+    <script src="javascript/drivers.js"></script>
 </body>
 
 </html>
