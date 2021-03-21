@@ -5,7 +5,6 @@
     font-family: montserrat;
     /* box-sizing: border-box; */
     /* background-image: linear-gradient(to bottom, rgba(7, 42, 78, 1) 0%, rgba(10, 48, 85, 1) 6%, rgba(19, 66, 106, 1) 15%, rgba(35, 94, 137, 1) 24%, rgba(60, 127, 166, 1) 33%, rgba(80, 146, 178, 1) 39%, rgba(100, 163, 184, 1) 44%, rgba(128, 180, 182, 1) 51%, rgba(151, 192, 177, 1) 56%, rgba(178, 201, 166, 1) 62%, rgba(194, 202, 155, 1) 66%, rgba(213, 199, 137, 1) 71%, rgba(228, 189, 118, 1) 76%, rgba(238, 168, 92, 1) 84%, rgba(240, 150, 75, 1) 92%, rgba(236, 126, 57, 1) 98%, rgba(235, 120, 53, 1) 100%); */
-
 }
 
 body {
@@ -15,10 +14,7 @@ body {
     /* W3C */
 }
 
-<<<<<<< HEAD:css/loginform.css
 
-=======
->>>>>>> 8fc98b7bf0bd42de4243c8fa7615c7af839168e7:css/css.css
 /* css cho error message*/
 
 .errorMessage {
@@ -26,12 +22,9 @@ body {
     margin-bottom: 15px;
 }
 
-<<<<<<< HEAD:css/loginform.css
-=======
+
 /* login - signup-form */
 
-
->>>>>>> 8fc98b7bf0bd42de4243c8fa7615c7af839168e7:css/css.css
 .login-form {
     max-width: 360px;
     background: #f1f1f1;
@@ -124,7 +117,7 @@ body {
     min-height: 800px;
     padding: 80px 40px;
     border-radius: 10px;
-    margin: auto; 
+    margin: auto;
     display: none;
 }
 
@@ -209,18 +202,19 @@ body {
     background: rgb(255, 136, 0);
 }
 
-<<<<<<< HEAD:css/loginform.css
-=======
-#login-error-messege{
+#login-error-messege {
     /* display: none; */
     color: red;
     margin-bottom: 30px;
     text-align: center;
 }
 
+
 /* -------------------------------------------- */
 
+
 /*  recover password form css  */
+
 .recover-pwd-form {
     width: 360px;
     background: #f1f1f1;
@@ -232,6 +226,7 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
 .recoverbtn {
     width: 100%;
     height: 50px;
@@ -243,18 +238,23 @@ body {
     cursor: pointer;
     transition: .5s;
 }
+
 .recoverbtn:hover {
     background-position: right;
 }
+
 .recover-header {
     text-align: center;
     margin-bottom: 60px;
 }
+
 .rcv-p {
     font-weight: bold;
 }
 
+
 /* Change password form css*/
+
 .chg-pwd-form {
     width: 360px;
     background: #f1f1f1;
@@ -266,10 +266,12 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
 .changepwd-header {
     text-align: center;
     margin-bottom: 60px;
 }
+
 .changebtn {
     width: 100%;
     height: 50px;
@@ -281,10 +283,14 @@ body {
     cursor: pointer;
     transition: .5s;
 }
+
 .changebtn:hover {
     background-position: right;
 }
->>>>>>> 8fc98b7bf0bd42de4243c8fa7615c7af839168e7:css/css.css
+
+
+/* >>>>>>>8fc98b7bf0bd42de4243c8fa7615c7af839168e7:css/css.css */
+
 
 /* Edit form css */
 
@@ -413,7 +419,9 @@ body {
     left: 35%;
     top: 19.6%;
 }
-<<<<<<< HEAD:css/loginform.css
+
+
+/* <<<<<<< HEAD:css/loginform.css */
 
 
 /*  recover password form css  */
@@ -493,5 +501,6 @@ body {
 
 
 /* Change password form css*/
-=======
->>>>>>> 8fc98b7bf0bd42de4243c8fa7615c7af839168e7:css/css.css
+
+
+/* =======>>>>>>>8fc98b7bf0bd42de4243c8fa7615c7af839168e7:css/css.css */

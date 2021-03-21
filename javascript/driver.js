@@ -1,4 +1,3 @@
-
 // document.getElementById('edit-btn').addEventListener('click', () => {
 //     let fn = document.getElementById('firstname');
 //     let ln = document.getElementById('lastname');
@@ -18,40 +17,39 @@
 
 // login - signup form
 $(document).ready(function() {
-    $(".txtb input").on("focus",function(){
+    $(".txtb input").on("focus", function() {
         $(this).addClass("focus");
     })
-    
-    $(".txtb input").on("blur",function(){
-        if($(this).val() == "")
-        $(this).removeClass("focus");
+
+    $(".txtb input").on("blur", function() {
+        if ($(this).val() == "")
+            $(this).removeClass("focus");
     })
 
 
-})
+});
 
-function openForm(){
+function openForm() {
     document.getElementById("signup-form").style.display = "block";
     document.getElementById("login-form").style.display = "none";
 }
 
-function closeForm(){
+function closeForm() {
     document.getElementById("signup-form").style.display = "none";
     document.getElementById("login-form").style.display = "block";
 }
 
-function checkLoginInput(){
+function checkLoginInput() {
     let email = document.getElementById('login-email');
     let pass = document.getElementById('login-password');
     let error = document.getElementById('login-error-messege');
 
-    if (email.value == ''){
+    if (email.value == '') {
         email.focus();
         error.innerHTML = "Please enter email";
         error.display = "block";
         return false;
-    }
-    else if (pass.value == ''){
+    } else if (pass.value == '') {
         pass.focus();
         error.innerHTML = "Please enter password";
         error.display = "block";
@@ -61,7 +59,7 @@ function checkLoginInput(){
     return true;
 }
 
-function checkSignupInput(){
+function checkSignupInput() {
     let firstName = document.getElementById('first-name-sign-up');
     let lastName = document.getElementById('last-name-sign-up');
     let email = document.getElementById('email-sign-up');
@@ -74,9 +72,6 @@ function checkSignupInput(){
     return true
 }
 
-function clearLoginError(){
+function clearLoginError() {
     document.getElementById('login-error-messege').innerHTML = "";
 }
-
-
-
