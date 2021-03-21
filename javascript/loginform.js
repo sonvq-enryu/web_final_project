@@ -67,7 +67,7 @@ function checkSignupInput(){
     let email = document.getElementById('email-sign-up');
     let password = document.getElementById('password-sign-up');
     let confirmPassword = document.getElementById('confirm-password-sign-up');
-    let firstName = document.getElementById('irst-name-sign-up');
+    let phone = document.getElementById('irst-name-sign-up');
     let firstName = document.getElementById('irst-name-sign-up');
     let firstName = document.getElementById('irst-name-sign-up');
 

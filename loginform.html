@@ -7,16 +7,9 @@
     <meta name="viewport" content="width=, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-<<<<<<< HEAD
-    <title>Document</title>
-
-    <link rel='stylesheet' href="./css/loginform.css">
-=======
     <title>SignIn-SignUp</title>
     <link rel='stylesheet' href="./css/css.css">
->>>>>>> 8fc98b7bf0bd42de4243c8fa7615c7af839168e7
 </head>
-
 <body>
     <form onsubmit="return checkLoginInput()" action="#" class='login-form' id='login-form'>
         <h1>Login</h1>
@@ -71,7 +64,6 @@
             <span data-placeholder="Phone number"></span>
         </div>
         <div class='gender'>
-<<<<<<< HEAD
             <label>
                <input type="radio" name="gender">
                <span class=male>Male</span>
@@ -80,7 +72,6 @@
             <input type="radio" name="gender">
             <span class=male>Female</span>
         </label>
-=======
            <label>
                <input checked type="radio" name="gender">
                <span class=male>Male</span>
@@ -89,7 +80,6 @@
                 <input type="radio" name="gender">
                 <span class=male>Female</span>
             </label>
->>>>>>> 8fc98b7bf0bd42de4243c8fa7615c7af839168e7
         </div>
 
         <div class="nationality-selectbox">
@@ -107,32 +97,7 @@
         <input type="button" class="logbtn-cancel" value="Cancel" onclick="closeForm()">
 
     </form>
+<script src="./javascript/loginform.js"></script>
 
-<<<<<<< HEAD
-
-
-
-    <script>
-        $(".txtb input").on("focus", function() {
-            $(this).addClass("focus");
-        })
-
-        $(".txtb input").on("blur", function() {
-            if ($(this).val() == "")
-                $(this).removeClass("focus");
-        })
-
-        function openForm() {
-            document.getElementById("signup-form").style.display = "block";
-        }
-
-        function closeForm() {
-            document.getElementById("signup-form").style.display = "none";
-        }
-    </script>
-=======
-<script src="./javascript/driver.js"></script>
->>>>>>> 8fc98b7bf0bd42de4243c8fa7615c7af839168e7
 </body>
-
 </html>

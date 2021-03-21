@@ -15,10 +15,6 @@ body {
     /* W3C */
 }
 
-<<<<<<< HEAD:css/loginform.css
-
-=======
->>>>>>> 8fc98b7bf0bd42de4243c8fa7615c7af839168e7:css/css.css
 /* css cho error message*/
 
 .errorMessage {
@@ -26,12 +22,9 @@ body {
     margin-bottom: 15px;
 }
 
-<<<<<<< HEAD:css/loginform.css
-=======
 /* login - signup-form */
 
 
->>>>>>> 8fc98b7bf0bd42de4243c8fa7615c7af839168e7:css/css.css
 .login-form {
     max-width: 360px;
     background: #f1f1f1;
@@ -209,8 +202,6 @@ body {
     background: rgb(255, 136, 0);
 }
 
-<<<<<<< HEAD:css/loginform.css
-=======
 #login-error-messege{
     /* display: none; */
     color: red;
@@ -284,8 +275,6 @@ body {
 .changebtn:hover {
     background-position: right;
 }
->>>>>>> 8fc98b7bf0bd42de4243c8fa7615c7af839168e7:css/css.css
-
 /* Edit form css */
 
 .editform {
@@ -413,8 +402,6 @@ body {
     left: 35%;
     top: 19.6%;
 }
-<<<<<<< HEAD:css/loginform.css
-
 
 /*  recover password form css  */
 
@@ -493,5 +480,3 @@ body {
 
 
 /* Change password form css*/
-=======
->>>>>>> 8fc98b7bf0bd42de4243c8fa7615c7af839168e7:css/css.css
