@@ -41,19 +41,79 @@ function closeForm() {
 function checkLoginInput(){
     let email = document.getElementById('login-email');
     let pass = document.getElementById('login-password');
-    let error = document.getElementById('login-error-messege');
+    let loginError = document.getElementById('login-error-messege');
     if (email.value == ""){
-        error.innerHTML = "Please enter email";
+        loginError.innerHTML = "Please enter email";
         email.focus();
         return false
     }
     else if (pass.value == ""){
-        error.innerHTML = "Please enter password";
+        loginError.innerHTML = "Please enter password";
         pass.focus();
         return false
     }
     return true;
 }
+
+function clearLoginError(){
+    document.getElementById('login-error-messege').innerHTML = "";
+}
+
+
+function checkSignupInput(){
+    let firstName = document.getElementById('first-name-sign-up');
+    let lastName = document.getElementById('last-name-sign-up');
+    let email = document.getElementById('email-sign-up');
+    let password = document.getElementById('password-sign-up');
+    let confirmPassword = document.getElementById('confirm-password-sign-up');
+    let phoneNumber = document.getElementById('phone-number-sign-up');
+    let signUpError = document.getElementById('signup-error-messege');
+
+    if (firstName.value == ""){
+        signUpError.innerHTML = "Please enter first name";
+        firstName.focus();
+        return false;
+    }
+    else if (lastName.value == ""){
+        signUpError.innerHTML = "Please enter last name";
+        lastName.focus();
+        return false
+    }
+    else if (email.value == ""){
+        signUpError.innerHTML = "Please enter email";
+        email.focus();
+        return false
+    }
+    else if (password.value == ""){
+        signUpError.innerHTML = "Please enter password";
+        password.focus();
+        return false
+    }
+    else if (confirmPassword.value != password.value){
+        signUpError.innerHTML = "Password doesn't match";
+        confirmPassword.focus();
+        return false
+    }
+    else if (phoneNumber.value == ""){
+        signUpError.innerHTML = "Please enter phone number";
+        phoneNumber.focus();
+        return false
+    }
+
+    return true;
+
+
+}
+
+
+function clearSignupError(){
+    document.getElementById('signup-error-messege').innerHTML = "";
+}
+
+
+// --------------------------------
+
+// phan cua Van
 
 function checkchangepwd() {
     let currentpwdFilled = document.getElementById('crtpwd');

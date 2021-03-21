@@ -7,10 +7,8 @@
     <meta name="viewport" content="width=, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-    <title>Document</title>
 
     <!-- <link rel='stylesheet' href="./css/loginform.css"> -->
-    =======
     <title>SignIn-SignUp</title>
 
     <link rel='stylesheet' href="./css/css.css">
@@ -20,12 +18,12 @@
     <form onsubmit="checkLoginInput()" action="#" class='login-form' id='login-form'>
         <h1>Login</h1>
         <div class="txtb">
-            <input id="login-email" type="email">
+            <input onclick="clearLoginError()" id="login-email" type="email">
             <span data-placeholder="Email"></span>
         </div>
 
         <div class="txtb">
-            <input id="login-password" type="password">
+            <input onclick="clearLoginError()" id="login-password" type="password">
             <span data-placeholder="Password"></span>
         </div>
 
@@ -40,45 +38,44 @@
 
     </form>
 
-    <form action="" class='signup-form' id='signup-form'>
+    <form onsubmit="return checkSignupInput()" action="" class='signup-form' id='signup-form'>
         <h1>Sign up</h1>
         <div class="txtb">
-            <input id="first-name-sign-up" type="text">
+            <input onclick="clearSignupError()" id="first-name-sign-up" type="text">
             <span data-placeholder="First name"></span>
         </div>
 
         <div class="txtb">
-            <input id="last-name-sign-up" type="text">
+            <input onclick="clearSignupError()" id="last-name-sign-up" type="text">
             <span data-placeholder="Last name"></span>
         </div>
 
         <div class="txtb">
-            <input id="email-sign-up" type="email">
+            <input onclick="clearSignupError()" id="email-sign-up" type="email">
             <span data-placeholder="Email"></span>
         </div>
 
         <div class="txtb">
-            <input id="password-sign-up" type="password">
+            <input onclick="clearSignupError()" id="password-sign-up" type="password">
             <span data-placeholder="Password"></span>
         </div>
         <div class="txtb">
-            <input id="confirm-password-sign-up" type="password">
+            <input onclick="clearSignupError()" id="confirm-password-sign-up" type="password">
             <span data-placeholder="Confirm Password"></span>
         </div>
         <div class="txtb">
-            <input id="Phone-number" type="text">
+            <input onclick="clearSignupError()" id="phone-number-sign-up" type="text">
             <span data-placeholder="Phone number"></span>
         </div>
         <div class='gender'>
             <label>
-                <input type="radio" name="gender">
+                <input checked type="radio" name="gender">
                 <span class=male>Male</span>
-                </label>
+            </label>
             <label>
-            <input type="radio" name="gender">
-            <span class=male>Female</span>
-        </label>
-
+                <input type="radio" name="gender">
+                <span class=male>Female</span>
+            </label>
         </div>
 
         <div class="nationality-selectbox">
@@ -91,6 +88,8 @@
                   <option>Cambodia</option>
             </select>
         </div>
+
+        <p id="signup-error-messege"></p>
 
         <input type="submit" class="logbtn" value="Sign in">
         <input type="button" class="logbtn-cancel" value="Cancel" onclick="closeForm()">
