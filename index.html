@@ -11,175 +11,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/css.css">
     <title>Index</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        /* body {
-            height: 200vh;
-        } */
-
-        .header {
-            background-color: #eee;
-            display: flex;
-            height: 60px;
-            border-bottom: 1px solid lightgray;
-        }
-
-        .header-img {
-            margin: 10px 25px;
-        }
-
-        .header-img > img {
-            width: 190px;
-            height: 40px;
-        }
-
-        .header-box {
-            display: flex;
-            flex-wrap: nowrap;
-            margin-top: 15px;
-            margin-bottom: 15px;
-            width: 650px;
-            min-width: 500px;
-        }
-
-        .header-box > input[type=text] {
-            width: 90%;
-            font-size: 17px;
-            background: #f1f1f1;
-            outline: none;
-            padding-left: 5px;
-        }
-
-        .header-box > button[type=submit] {
-            width: 62px;
-            flex-grow: 1;
-            background: #2196F3;
-            color: white;
-            font-size: 17px;
-            border: none;
-            outline: none;
-            cursor: pointer; 
-        }
-
-        .header-user {
-            flex-grow: 1;
-            width: auto;
-            min-width: 50px;
-            margin: 12px 18px 12px 18px;
-            display: flex;
-            flex-direction: row-reverse;
-        }
-
-        @media only screen and (max-width: 1200px) {
-            .header-box {
-                width: 450px;
-                min-width: 400px;
-            }
-        }
-
-        .fs-36 {
-            font-size: 36px;
-        }
-
-        .select-navbar {
-            overflow: hidden;
-            height: 48px;
-            background: #fff;
-        }
-
-        .select-navbar > .nav-element {
-            float: left;
-        }
-
-        .nav-element > a {
-            display: block;
-            text-decoration: none;
-            height: 48px;
-            text-align: center;
-            padding: 12px 16px 12px 16px;
-            color: #000;
-        }
-
-        .nav-element > a:hover {
-            background-color: #555;
-            color: white;
-        }
-
-        .nav-element.f-e > a {
-            width: 200px;
-            background-color: #689f38;
-            font-size: 18px;
-            color: white;
-            margin-right: 40px;
-            /* z-index: 984; */
-        }
-
-        .nav-element.f-e > a:hover {
-            color: white;
-        }
-
-        .sticky-navbar {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            z-index: 1;
-        }
-
-        .sticky-sidebar {
-            position: sticky;
-            top: 48px;
-        }
-
-        .flex-container {
-            height: 100%;
-            display: flex;
-            flex-wrap: nowrap;
-        }
-
-        .flex-container > .sidebar {
-            min-width: 200px;
-            max-height: 160px;
-            height: 160px;
-            border: 1px solid #d9d9d9;
-            box-shadow: 0 1px 6px rgb(0 0 0 / 10%);
-        }
-
-        .sidebar > ul.menu {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            background-color: #f1f1f1;
-        }
-
-        .sidebar > ul.menu li a {
-            height: 40px;
-            display: block;
-            color: #000;
-            padding: 8px 25px;
-            text-decoration: none;
-        }
-
-        ul.menu li a:hover {
-            background-color: #d6d6d6;
-        }
-
-
-        .flex-container > .content {
-            background-color: #eee;
-            flex-grow: 1;
-            padding-left: 40px;
-        }        
-
-
-
-    </style>
 </head>
-<body>
+<body class="index">
     <div id="header" class="header">
         <div class="header-img">
             <img src="./image/googleplayicon.png" alt="">
@@ -221,24 +56,234 @@
             </ul>
         </div>
         <div class="content">
-            <!-- <div class="application-box">
-                <div class="col-9">
-                    <div class="row">
-                        <div class='item col-md-4 col-lg-3'>
+            <div class="application-box">
+                <div class="col popular">
+                    <h2 class="font-header">Popular Games</h2>
+                    <div class="row-1">
+                        <div class='item'>
                             <div class='card-header'>
-                                <div class='item-banner'><img src="./image/genshin.png"></div>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
                             </div>
                             <div class='card-body'>
                                 <h3>Game 1</h3>
                                 <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
                             </div>
-                            <div class='card-footer'>
-                                4.5<span class="fa fa-star checked"></span>
+                        </div> 
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
                             </div>
                         </div> 
                     </div>
                 </div>
-            </div> -->
+                <div class="col recommend">
+                    <h2 class="font-header">Recommend Games</h2>
+                    <div class="row-1">
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+
+                <div class="col recommend">
+                    <h2 class="font-header">Recommend Games</h2>
+                    <div class="row-1">
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                        <div class='item'>
+                            <div class='card-header'>
+                                <div class='item-banner'><img class='banner-source' src="./image/genshin.png"></div>
+                            </div>
+                            <div class='card-body'>
+                                <h3>Game 1</h3>
+                                <p>X Coporation</p>
+                                <p class='rating'>4.5<span class="fa fa-star checked"></span></p>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
