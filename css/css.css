@@ -650,8 +650,10 @@ ul.menu li a:hover {
     margin: 8px;
 }
 
+
 .dropdown-bar{
     display: inline-block;
+    width: 178px;
 }
 /* **********************************************************
                         END OF INDEX HTML 

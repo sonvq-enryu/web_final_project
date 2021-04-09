@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="./css/css.css">
     <title>Index</title>
 </head>
-<body class="index">
+
+<body onresize="resize()" class="index">
     <div id="header" class="header">
         <div class="header-img">
             <img src="./image/googleplayicon.png" alt="">
@@ -33,11 +34,23 @@
         <div class="nav-element f-e">
             <a href="#app">Apps</a>
         </div>
-        <div class="nav-element">
+        <div class="nav-element" onclick="abc()">
             <a class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 Categories
             </a>
             <div class="dropdown-menu">
+                <div class="dropdown-bar">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div> 
+                <div class="dropdown-bar">
+                    <strong style="font-weight: bold;" class="dropdown-item">Category</strong>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>          
                 <div class="dropdown-bar">
                     <strong style="font-weight: bold;" class="dropdown-item">Category</strong>
                     <div class="dropdown-divider"></div>
@@ -46,12 +59,20 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
                 <div class="dropdown-bar">
+                    <strong style="font-weight: bold;" class="dropdown-item">Category</strong>
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Action</a>
                     <a class="dropdown-item" href="#">Another action</a>
                     <a class="dropdown-item" href="#">Something else here</a>
-                </div>      
+                </div>
+                <div class="dropdown-bar">
+                    <strong style="font-weight: bold;" class="dropdown-item">Category</strong>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
             </div>
-        
         </div>
         <div class="nav-element">
             <a href="#home">Home</a>
@@ -316,6 +337,20 @@
                 navbar.classList.remove('sticky-navbar');
                 sidebar.classList.remove('sticky-sidebar');
             }
+        }
+        function resize(){
+            screenWidth = window.outerWidth;
+            screenHeight = window.outerHeight;
+            // console.log(screenWidth);
+            // console.log(screenHeight);
+        }
+
+        function abc(){
+            let dropdown_bar = document.getElementsByClassName('dropdown-bar');
+            let dropdown_menu = document.getElementsByClassName('dropdown-menu')[0];
+            let width = 178 * dropdown_bar.length;
+            width = width+5*dropdown_bar.length+"px";
+            dropdown_menu.style.width = width;
         }
     </script>
 </body>
