@@ -18,7 +18,9 @@
 <body onresize="resize()" class="index">
     <div id="header" class="header">
         <div class="header-img">
-            <img src="./image/googleplayicon.png" alt="">
+            <a class="header-img-a" href="index.php">
+                <img src="./image/googleplayicon.png" alt="">
+            </a>       
         </div>
         <div class="header-box">
             <input type="text" id="search-box" name="search-box" placeholder="Search">
@@ -341,8 +343,6 @@
         function resize(){
             screenWidth = window.outerWidth;
             screenHeight = window.outerHeight;
-            // console.log(screenWidth);
-            // console.log(screenHeight);
         }
 
         function abc(){
