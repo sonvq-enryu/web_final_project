@@ -27,9 +27,22 @@
             <button type="submit"><i class="fa fa-search"></i></button>
         </div>
         <div class="header-user">
-            <span class="material-icons fs-36">
-                account_circle
-            </span>
+            <!-- <button class="user-btn">
+                <i class="material-icons fs-36">account_circle</i>
+            </button> -->
+            <div class="user-dropdown">
+                <!-- <button type="button" class="user-btn material-icons fs-36">
+                    account_circle
+                </button> -->
+                <button onclick="ClickUserIcon()" class="user-btn">
+                    <i class="material-icons fs-36">account_circle</i>
+                </button>
+                <div id="user-dropdown" class="user-dropdown-content">
+                    <a href="./editinfo.html">Account</a>
+                    <a href="./chg-password.html">Change Password</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
         </div>
     </div>
     <div id="navbar" class="select-navbar">
@@ -352,6 +365,23 @@
             width = width+5*dropdown_bar.length+"px";
             dropdown_menu.style.width = width;
         }
+
+        function ClickUserIcon() {
+            document.getElementById("user-dropdown").classList.toggle("show-user-dropdown");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.material-icons.fs-36')) {
+                let dropdowns = document.getElementsByClassName("user-dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    let openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show-user-dropdown')) {
+                        openDropdown.classList.remove('show-user-dropdown');
+                    }
+                }
+            }
+        }
+
     </script>
 </body>
 </html>
