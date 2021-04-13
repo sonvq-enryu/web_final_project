@@ -252,7 +252,7 @@ document.querySelector("body.index").addEventListener('click', (e) => {
             }
         }
     }
-}); 
+});
 
 
 /* **********************************************************
