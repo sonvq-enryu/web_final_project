@@ -499,20 +499,9 @@ transform: translate(-50%, -50%); */
     flex-grow: 1;
     width: auto;
     min-width: 50px;
-    margin: 12px 18px 12px 18px;
+    margin: 8px 18px 8px 18px;
     display: flex;
     flex-direction: row-reverse;
-}
-
-.user-btn {
-    background-color: #eee;
-    outline: none;
-    border: none;
-    cursor: pointer;
-}
-
-.user-btn:focus {
-    outline: none;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -667,7 +656,7 @@ ul.menu li a:hover {
     width: 178px;
 }
 
-.user-dropdown {
+/* .user-dropdown {
     position: relative;
     display: inline-block;
 }
@@ -691,9 +680,88 @@ ul.menu li a:hover {
     display: block;
 }
 
-.dropdown a:hover {background-color: #ddd;}
+.dropdown a:hover {background-color: #ddd;} */
+
+.header-user .user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.header-user .user-dropdown .user-profile {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    outline: none;
+}
+
+.header-user .user-dropdown .user-profile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-dropdown-content {
+    display: none;
+    margin-top: 8px;
+    width: 200px;
+    position: absolute;
+    left: auto;
+    right: 0;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    border-radius: 15px;
+    transition: 0.5s;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.header-user .user-dropdown .user-dropdown-content h3 {
+    border-bottom: 1px solid black;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    padding: 20px 0;
+    font-weight: 500;
+    color: #555;
+    line-height: 1.2em;
+}
+
+.header-user .user-dropdown .user-dropdown-content h3 span {
+    font-size: 14px;
+    color: #cecece;
+    font-weight: 400;
+}
+
+.header-user .user-dropdown .user-dropdown-content ul li {
+    list-style: none;
+    padding: 5px 20px;
+    display: flex;
+    align-items: center;
+}
+
+.header-user .user-dropdown .user-dropdown-content ul li img {
+    max-width: 20px;
+    margin-right: 10px;
+    opacity: 0.5;
+}
+
+.header-user .user-dropdown .user-dropdown-content ul li a {
+    display: inline-block;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: 0.5s;
+}
+
+.header-user .user-dropdown .user-dropdown-content ul li a:hover {
+    color: #ff5d94;
+}
 
 .show-user-dropdown {display: block;}
+
 
 /* **********************************************************
                         END OF INDEX HTML 

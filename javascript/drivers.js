@@ -171,17 +171,17 @@ function clearError() {
 
 
 //  edit infor css
-document.getElementById('e-info-btn').addEventListener('click', (e) => {
-    editformBtn(true);
-});
+// document.getElementById('e-info-btn').addEventListener('click', (e) => {
+//     editformBtn(true);
+// });
 
-document.getElementById('s-info-btn').addEventListener('click', (e) => {
-    editformBtn(false);
-});
+// document.getElementById('s-info-btn').addEventListener('click', (e) => {
+//     editformBtn(false);
+// });
 
-document.getElementById('c-info-btn').addEventListener('click', (e) => {
-    editformBtn(false);
-});
+// document.getElementById('c-info-btn').addEventListener('click', (e) => {
+//     editformBtn(false);
+// });
 
 function editformBtn(condition) {
     if (condition) {
@@ -239,11 +239,11 @@ function reponsiveCategories(){
 //Phần của Sơn
 
 function ClickUserIcon() {
-    document.getElementById("user-dropdown").classList.toggle("show-user-dropdown");
+    document.getElementById("user-dropdown-content").classList.toggle('show-user-dropdown');
 }
 
-window.onclick = function(event) {
-    if (!event.target.matches('.material-icons.fs-36')) {
+document.querySelector("body.index").addEventListener('click', (e) => {
+    if (!e.target.matches('img.user-img')) {
         let dropdowns = document.getElementsByClassName("user-dropdown-content");
         for (let i = 0; i < dropdowns.length; i++) {
             let openDropdown = dropdowns[i];
@@ -252,7 +252,7 @@ window.onclick = function(event) {
             }
         }
     }
-}
+}); 
 
 
 /* **********************************************************

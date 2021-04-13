@@ -26,14 +26,8 @@
             <input type="text" id="search-box" name="search-box" placeholder="Search">
             <button type="submit"><i class="fa fa-search"></i></button>
         </div>
-        <div class="header-user">
-            <!-- <button class="user-btn">
-                <i class="material-icons fs-36">account_circle</i>
-            </button> -->
+        <!-- <div class="header-user">
             <div class="user-dropdown">
-                <!-- <button type="button" class="user-btn material-icons fs-36">
-                    account_circle
-                </button> -->
                 <button onclick="ClickUserIcon()" class="user-btn">
                     <i class="material-icons fs-36">account_circle</i>
                 </button>
@@ -41,6 +35,23 @@
                     <a href="./editinfo.html">Account</a>
                     <a href="./chg-password.html">Change Password</a>
                     <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div> -->
+        <div class="header-user">
+            <div onclick="ClickUserIcon()" class="user-dropdown">
+                <div class="user-profile">
+                    <img class="user-img" src="./image/smuge_the_cat.jpg">
+                </div>
+                <div id="user-dropdown-content" class="user-dropdown-content">
+                    <h3>Name<br><span>Email</span></h3>
+                    <ul>
+                        <li><img src="./image/user.svg"><a href="#">My Profile</a></li>
+                        <li><img src="./image/edit.svg"><a href="#">Edit Profile</a></li>
+                        <li><img src="./image/envelope.svg"><a href="#">Inbox</a></li>
+                        <li><img src="./image/settings.svg"><a href="#">Setting</a></li>
+                        <li><img src="./image/log-out.svg"><a href="#">Logout</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -341,46 +352,5 @@
     </div>
 
     <script src="javascript/drivers.js"></script>
-        <!-- // window.onscroll = function() {
-        //     let navbar = document.getElementById('navbar');
-        //     let headerHeight = document.getElementById('header').offsetHeight;
-        //     let sidebar = document.getElementById('sidebar');
-        //     if (window.pageYOffset >= headerHeight) {
-        //         navbar.classList.add('sticky-navbar');
-        //         sidebar.classList.add('sticky-sidebar');
-        //     } else {
-        //         navbar.classList.remove('sticky-navbar');
-        //         sidebar.classList.remove('sticky-sidebar');
-        //     }
-        // }
-        // function resize(){
-        //     screenWidth = window.outerWidth;
-        //     screenHeight = window.outerHeight;
-        // }
-
-        // function reponsiveCategories(){
-        //     let dropdown_bar = document.getElementsByClassName('dropdown-bar');
-        //     let dropdown_menu = document.getElementsByClassName('dropdown-menu')[0];
-        //     let width = 178 * dropdown_bar.length;
-        //     width = width+5*dropdown_bar.length+"px";
-        //     dropdown_menu.style.width = width;
-        // }
-
-        // function ClickUserIcon() {
-        //     document.getElementById("user-dropdown").classList.toggle("show-user-dropdown");
-        // }
-
-        // window.onclick = function(event) {
-        //     if (!event.target.matches('.material-icons.fs-36')) {
-        //         let dropdowns = document.getElementsByClassName("user-dropdown-content");
-        //         for (let i = 0; i < dropdowns.length; i++) {
-        //             let openDropdown = dropdowns[i];
-        //             if (openDropdown.classList.contains('show-user-dropdown')) {
-        //                 openDropdown.classList.remove('show-user-dropdown');
-        //             }
-        //         }
-        //     }
-        // } -->
-
 </body>
 </html>
