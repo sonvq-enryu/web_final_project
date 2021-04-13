@@ -202,4 +202,59 @@ function editformBtn(condition) {
     document.getElementById('e-info-btn').style.display = eBtnDisplay;
 }
 
-document.getElementById('edit-form').addEv
+// document.getElementById('edit-form').addEv
+
+
+/* **********************************************************
+                        INDEX  
+*********************************************************/
+
+//Phần của Tuấn
+window.onscroll = function() {
+    let navbar = document.getElementById('navbar');
+    let headerHeight = document.getElementById('header').offsetHeight;
+    let sidebar = document.getElementById('sidebar');
+    if (window.pageYOffset >= headerHeight) {
+        navbar.classList.add('sticky-navbar');
+        sidebar.classList.add('sticky-sidebar');
+    } else {
+        navbar.classList.remove('sticky-navbar');
+        sidebar.classList.remove('sticky-sidebar');
+    }
+}
+function resize(){
+    screenWidth = window.outerWidth;
+    screenHeight = window.outerHeight;
+}
+
+function reponsiveCategories(){
+    let dropdown_bar = document.getElementsByClassName('dropdown-bar');
+    let dropdown_menu = document.getElementsByClassName('dropdown-menu')[0];
+    let width = 178 * dropdown_bar.length;
+    width = width+5*dropdown_bar.length+"px";
+    dropdown_menu.style.width = width;
+}
+
+
+//Phần của Sơn
+
+function ClickUserIcon() {
+    document.getElementById("user-dropdown").classList.toggle("show-user-dropdown");
+}
+
+window.onclick = function(event) {
+    if (!event.target.matches('.material-icons.fs-36')) {
+        let dropdowns = document.getElementsByClassName("user-dropdown-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+            let openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show-user-dropdown')) {
+                openDropdown.classList.remove('show-user-dropdown');
+            }
+        }
+    }
+}
+
+
+/* **********************************************************
+                        END OF INDEX 
+*********************************************************/

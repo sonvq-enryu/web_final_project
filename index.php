@@ -49,7 +49,7 @@
         <div class="nav-element f-e">
             <a href="#app">Apps</a>
         </div>
-        <div class="nav-element" onclick="abc()">
+        <div class="nav-element" onclick="reponsiveCategories()">
             <a class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 Categories
             </a>
@@ -340,48 +340,47 @@
         </div>
     </div>
 
-    <script>
-        window.onscroll = function() {
-            let navbar = document.getElementById('navbar');
-            let headerHeight = document.getElementById('header').offsetHeight;
-            let sidebar = document.getElementById('sidebar');
-            if (window.pageYOffset >= headerHeight) {
-                navbar.classList.add('sticky-navbar');
-                sidebar.classList.add('sticky-sidebar');
-            } else {
-                navbar.classList.remove('sticky-navbar');
-                sidebar.classList.remove('sticky-sidebar');
-            }
-        }
-        function resize(){
-            screenWidth = window.outerWidth;
-            screenHeight = window.outerHeight;
-        }
+    <script src="javascript/drivers.js"></script>
+        <!-- // window.onscroll = function() {
+        //     let navbar = document.getElementById('navbar');
+        //     let headerHeight = document.getElementById('header').offsetHeight;
+        //     let sidebar = document.getElementById('sidebar');
+        //     if (window.pageYOffset >= headerHeight) {
+        //         navbar.classList.add('sticky-navbar');
+        //         sidebar.classList.add('sticky-sidebar');
+        //     } else {
+        //         navbar.classList.remove('sticky-navbar');
+        //         sidebar.classList.remove('sticky-sidebar');
+        //     }
+        // }
+        // function resize(){
+        //     screenWidth = window.outerWidth;
+        //     screenHeight = window.outerHeight;
+        // }
 
-        function abc(){
-            let dropdown_bar = document.getElementsByClassName('dropdown-bar');
-            let dropdown_menu = document.getElementsByClassName('dropdown-menu')[0];
-            let width = 178 * dropdown_bar.length;
-            width = width+5*dropdown_bar.length+"px";
-            dropdown_menu.style.width = width;
-        }
+        // function reponsiveCategories(){
+        //     let dropdown_bar = document.getElementsByClassName('dropdown-bar');
+        //     let dropdown_menu = document.getElementsByClassName('dropdown-menu')[0];
+        //     let width = 178 * dropdown_bar.length;
+        //     width = width+5*dropdown_bar.length+"px";
+        //     dropdown_menu.style.width = width;
+        // }
 
-        function ClickUserIcon() {
-            document.getElementById("user-dropdown").classList.toggle("show-user-dropdown");
-        }
+        // function ClickUserIcon() {
+        //     document.getElementById("user-dropdown").classList.toggle("show-user-dropdown");
+        // }
 
-        window.onclick = function(event) {
-            if (!event.target.matches('.material-icons.fs-36')) {
-                let dropdowns = document.getElementsByClassName("user-dropdown-content");
-                for (let i = 0; i < dropdowns.length; i++) {
-                    let openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show-user-dropdown')) {
-                        openDropdown.classList.remove('show-user-dropdown');
-                    }
-                }
-            }
-        }
+        // window.onclick = function(event) {
+        //     if (!event.target.matches('.material-icons.fs-36')) {
+        //         let dropdowns = document.getElementsByClassName("user-dropdown-content");
+        //         for (let i = 0; i < dropdowns.length; i++) {
+        //             let openDropdown = dropdowns[i];
+        //             if (openDropdown.classList.contains('show-user-dropdown')) {
+        //                 openDropdown.classList.remove('show-user-dropdown');
+        //             }
+        //         }
+        //     }
+        // } -->
 
-    </script>
 </body>
 </html>
