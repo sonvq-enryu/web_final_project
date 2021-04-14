@@ -513,6 +513,139 @@
                             4.5<span class="fa fa-star checked"></span></p>
                         </div>
                     </div>
+                    <div class="info-row">
+                    <h2>Popular Apps</h2>
+                    <div>
+                        <button>See more</button>
+                    </div>
+                </div>
+                <div class="apps-row">
+                    <div class="app-card">
+                        <div class="app-img">
+                            <a href="#GameX"><img src="./image/smuge_the_cat.jpg" /></a>
+                        </div>
+                        <div class="app-name">
+                            <a href="#GameX">Game X</a>
+                        </div>
+                        <div class="app-coop">
+                            <a href="#X-Cooporation">X Cooporation</a>
+                        </div>
+                        <div class="rating">
+                            4.5<span class="fa fa-star checked"></span></p>
+                        </div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-img">
+                            <a href="#GameX"><img src="./image/smuge_the_cat.jpg" /></a>
+                        </div>
+                        <div class="app-name">
+                            <a href="#GameX">Game X</a>
+                        </div>
+                        <div class="app-coop">
+                            <a href="#X-Cooporation">X Cooporation</a>
+                        </div>
+                        <div class="rating">
+                            4.5<span class="fa fa-star checked"></span></p>
+                        </div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-img">
+                            <a href="#GameX"><img src="./image/smuge_the_cat.jpg" /></a>
+                        </div>
+                        <div class="app-name">
+                            <a href="#GameX">Game X</a>
+                        </div>
+                        <div class="app-coop">
+                            <a href="#X-Cooporation">X Cooporation</a>
+                        </div>
+                        <div class="rating">
+                            4.5<span class="fa fa-star checked"></span></p>
+                        </div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-img">
+                            <a href="#GameX"><img src="./image/smuge_the_cat.jpg" /></a>
+                        </div>
+                        <div class="app-name">
+                            <a href="#GameX">Game X</a>
+                        </div>
+                        <div class="app-coop">
+                            <a href="#X-Cooporation">X Cooporation</a>
+                        </div>
+                        <div class="rating">
+                            4.5<span class="fa fa-star checked"></span></p>
+                        </div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-img">
+                            <a href="#GameX"><img src="./image/smuge_the_cat.jpg" /></a>
+                        </div>
+                        <div class="app-name">
+                            <a href="#GameX">Game X</a>
+                        </div>
+                        <div class="app-coop">
+                            <a href="#X-Cooporation">X Cooporation</a>
+                        </div>
+                        <div class="rating">
+                            4.5<span class="fa fa-star checked"></span></p>
+                        </div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-img">
+                            <a href="#GameX"><img src="./image/smuge_the_cat.jpg" /></a>
+                        </div>
+                        <div class="app-name">
+                            <a href="#GameX">Game X</a>
+                        </div>
+                        <div class="app-coop">
+                            <a href="#X-Cooporation">X Cooporation</a>
+                        </div>
+                        <div class="rating">
+                            4.5<span class="fa fa-star checked"></span></p>
+                        </div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-img">
+                            <a href="#GameX"><img src="./image/smuge_the_cat.jpg" /></a>
+                        </div>
+                        <div class="app-name">
+                            <a href="#GameX">Game X</a>
+                        </div>
+                        <div class="app-coop">
+                            <a href="#X-Cooporation">X Cooporation</a>
+                        </div>
+                        <div class="rating">
+                            4.5<span class="fa fa-star checked"></span></p>
+                        </div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-img">
+                            <a href="#GameX"><img src="./image/smuge_the_cat.jpg" /></a>
+                        </div>
+                        <div class="app-name">
+                            <a href="#GameX">Game X</a>
+                        </div>
+                        <div class="app-coop">
+                            <a href="#X-Cooporation">X Cooporation</a>
+                        </div>
+                        <div class="rating">
+                            4.5<span class="fa fa-star checked"></span></p>
+                        </div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-img">
+                            <a href="#GameX"><img src="./image/smuge_the_cat.jpg" /></a>
+                        </div>
+                        <div class="app-name">
+                            <a href="#GameX">Game X</a>
+                        </div>
+                        <div class="app-coop">
+                            <a href="#X-Cooporation">X Cooporation</a>
+                        </div>
+                        <div class="rating">
+                            4.5<span class="fa fa-star checked"></span></p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- <div class="application-box">
