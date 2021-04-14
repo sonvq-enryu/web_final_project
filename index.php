@@ -111,7 +111,7 @@
                 <div class="info-row">
                     <h2>Popular Apps</h2>
                     <div>
-                        <button>More</button>
+                        <button>See more</button>
                     </div>
                 </div>
                 <div class="apps-row">
@@ -247,7 +247,7 @@
                 <div class="info-row">
                     <h2>Recommend Apps</h2>
                     <div>
-                        <button>More</button>
+                        <button>See more</button>
                     </div>
                 </div>
                 <div class="apps-row">
@@ -383,7 +383,7 @@
                 <div class="info-row">
                     <h2>Popular Apps</h2>
                     <div>
-                        <button>More</button>
+                        <button>See more</button>
                     </div>
                 </div>
                 <div class="apps-row">

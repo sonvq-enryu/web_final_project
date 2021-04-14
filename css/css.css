@@ -505,17 +505,12 @@ transform: translate(-50%, -50%); */
     flex-direction: row-reverse;
 }
 
-@media only screen and (max-width: 1200px) {
+/* @media only screen and (max-width: 1200px) {
     .header-box {
         width: 450px;
         min-width: 450px;
     }
-
-    .row {
-        width: 450px;
-        min-width: 400px;
-    }
-}
+} */
 
 .fs-40 {
     font-size: 40px;
@@ -770,6 +765,10 @@ ul.menu li a:hover {
     cursor: pointer;
 }
 
+.apps-menu .info-row div button:hover {
+    background-color: #41691f;;
+}
+
 .apps-menu .apps-row {
     min-width: 850px;
     margin-top: 12px;
@@ -780,7 +779,7 @@ ul.menu li a:hover {
     margin-right: 10px;
     display: inline-block;
     width: 160px;
-    height: 245px;
+    height: 260px;
     background-color: #ffffff;
     border-radius: 2px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
@@ -814,6 +813,7 @@ ul.menu li a:hover {
 }
 
 .apps-row .app-card .app-name a {
+    margin-top: 10px;
     color: #464646;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -824,10 +824,10 @@ ul.menu li a:hover {
 }
 
 .apps-row .app-card .app-coop {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 250;
     line-height: 24px;
-    margin-left: 10%;
+    margin-left: 16px;
     max-height: 24px;
 }
 
@@ -842,7 +842,7 @@ ul.menu li a:hover {
 
 .apps-row .app-card .rating {
     font-size: 16px;
-    margin-left: 10%;
+    margin-left: 16px;
     margin-top: 7px;
 }
 
