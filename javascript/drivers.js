@@ -235,6 +235,11 @@ function reponsiveCategories(){
     dropdown_menu.style.width = width;
 }
 
+function displayCreator(){
+    let creator = document.querySelector('.creator');
+    creator.style.display = 'block';
+}
+
 
 //Phần của Sơn
 

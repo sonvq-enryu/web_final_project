@@ -20,15 +20,16 @@ body {
     margin-bottom: 15px;
 }
 /* login - signup-form */
-/* login - signup-form */
 
 .login-form {
+    /* margin: 30px auto; */
     max-width: 360px;
     background: #f1f1f1;
     min-height: 580px;
     padding: 80px 40px;
     border-radius: 10px;
     margin: auto;
+    margin-top: 60px;
     /* position: absolute;
 left: 50%;
 top: 50%;
@@ -750,12 +751,12 @@ ul.menu li a:hover {
     display: inline-block;
 }
 
-.apps-menu .info-row div button {
+.apps-menu .info-row div a {
     position: relative;
     left: 870px;
     margin-left: 32px;
-    width: 80px;
-    height: 32px;
+    /* width: 80px;
+    height: 32px; */
     background-color: #689f38;
     color: white;
     line-height: 30px;
@@ -765,7 +766,7 @@ ul.menu li a:hover {
     cursor: pointer;
 }
 
-.apps-menu .info-row div button:hover {
+.apps-menu .info-row div a:hover {
     background-color: #41691f;;
 }
 
@@ -851,7 +852,7 @@ ul.menu li a:hover {
 }
 
 @media only screen and (max-width: 1815px) {
-    .apps-menu .info-row div button {
+    .apps-menu .info-row div a {
         left: 695px;
     }
     .apps-menu .apps-row .app-card:nth-last-child(1) {
@@ -860,7 +861,7 @@ ul.menu li a:hover {
 }
 
 @media only screen and (max-width: 1642px) {
-    .apps-menu .info-row div button {
+    .apps-menu .info-row div a {
         left: 523px;
     }
     .apps-menu .apps-row .app-card:nth-last-child(2) {
@@ -869,7 +870,7 @@ ul.menu li a:hover {
 }
 
 @media only screen and (max-width: 1468px) {
-    .apps-menu .info-row div button {
+    .apps-menu .info-row div a {
         left: 348px;
     }
     .apps-menu .apps-row .app-card:nth-last-child(3) {
@@ -880,7 +881,7 @@ ul.menu li a:hover {
 
 
 @media only screen and (max-width: 1294px) {
-    .apps-menu .info-row div button {
+    .apps-menu .info-row div a {
         left: 175px;
     }
     .apps-menu .apps-row .app-card:nth-last-child(4) {
@@ -889,13 +890,27 @@ ul.menu li a:hover {
 }
 
 @media only screen and (max-width: 1120px) {
-    .apps-menu .info-row div button {
+    .apps-menu .info-row div a {
         left: 0px;
     }
     .apps-menu .apps-row .app-card:nth-last-child(5) {
         display: none;
     }
 }
+
+.creator{
+    display: none;
+    list-style-type: circle;
+    margin-left: 20px;
+    text-decoration: none;
+    /* color:  */
+}
+
+.creator:hover{
+    text-decoration: none;
+    color: red;
+}
+
 
 /* **********************************************************
                         END OF INDEX HTML 
