@@ -262,7 +262,7 @@
                             <a href="#X-Cooporation">X Cooporation</a>
                         </div>
                         <div class="rating">
-                            4.5<span class="fa fa-star checked"></span></p>
+                            4.5<span class="fa fa-star checked"></span>
                         </div>
                     </div>
                     <div class="app-card">
