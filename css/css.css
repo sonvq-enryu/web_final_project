@@ -650,6 +650,7 @@ ul.menu li a:hover {
 .dropdown-bar{
     display: inline-block;
     width: 178px;
+    float: left;
 }
 
 .header-user .user-dropdown {
@@ -928,6 +929,7 @@ ul.menu li a:hover {
     margin: 35px auto 20px auto;
     /* box-shadow: rgba(10, 48, 85, 1); */
 }
+
 
 /* **********************************************************
                         END OF INDEX HTML 
