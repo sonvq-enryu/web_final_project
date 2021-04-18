@@ -521,11 +521,12 @@ transform: translate(-50%, -50%); */
     overflow: hidden;
     height: 48px;
     background: #fff;
+    min-width: 800px;
     z-index: 1;
 }
 
 .select-navbar > .nav-element {
-    float: left;
+    float: left ;
 }
 
 .nav-element > a {
@@ -728,9 +729,6 @@ ul.menu li a:hover {
     color: red;
 }
 
-.show-user-dropdown {display: block;}
-
-
 .apps-menu {
     display: block;
 }
@@ -911,6 +909,25 @@ ul.menu li a:hover {
     color: red;
 }
 
+.iframe-app {
+    display: none;
+    border: none;
+    box-shadow: 1px;
+    width: 720px;
+    height: 1000px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
+    /* overflow-y: hidden; */
+}
+
+.show {
+    display: block;
+}
+
+.application-box {
+    width: 1000px;
+    margin: 35px auto 20px auto;
+    /* box-shadow: rgba(10, 48, 85, 1); */
+}
 
 /* **********************************************************
                         END OF INDEX HTML 

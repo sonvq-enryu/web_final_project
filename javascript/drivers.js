@@ -244,7 +244,7 @@ function displayCreator(){
 //Phần của Sơn
 
 function ClickUserIcon() {
-    document.getElementById("user-dropdown-content").classList.toggle('show-user-dropdown');
+    document.getElementById("user-dropdown-content").classList.toggle('show');
 }
 
 document.querySelector("body.index").addEventListener('click', (e) => {
@@ -252,8 +252,8 @@ document.querySelector("body.index").addEventListener('click', (e) => {
         let dropdowns = document.getElementsByClassName("user-dropdown-content");
         for (let i = 0; i < dropdowns.length; i++) {
             let openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show-user-dropdown')) {
-                openDropdown.classList.remove('show-user-dropdown');
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
             }
         }
     }

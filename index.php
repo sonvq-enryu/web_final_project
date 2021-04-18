@@ -122,6 +122,9 @@
             </ul>
         </div>
         <div class="content">
+            <div class="application-box">
+                <iframe class="iframe-app" src="application.html"></iframe>
+            </div>
             <div class="apps-menu">
                 <div class="info-row">
                     <h2>Popular Apps</h2>
@@ -697,7 +700,15 @@
         </div>
     </div>
     
-
+    <script>
+        document.querySelector('.app-name > a').addEventListener('click', () => {
+            listAppmenu = document.getElementsByClassName('apps-menu');
+            for (let appmenu of listAppmenu) {
+                appmenu.style.display = 'none';
+            }
+            document.querySelector('.iframe-app').classList.toggle('show');
+        });
+    </script>
     <script src="javascript/drivers.js"></script>
 </body>
 </html>
