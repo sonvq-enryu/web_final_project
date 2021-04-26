@@ -43,99 +43,7 @@
 
 ?>
 <body onresize="resize()" class="index">
-    <div id="header" class="header">
-        <div class="header-img">
-            <a href="index.php">
-                <img src="./image/googleplayicon.png" alt="" />
-            </a>
-        </div>
-        <div class="header-box">
-            <input type="text" id="search-box" name="search-box" placeholder="Search">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </div>
-        <div class="header-user">
-            <div onclick="ClickUserIcon()" class="user-dropdown">
-                <div class="user-profile">
-                    <img class="user-img" src="./image/smuge_the_cat.jpg">
-                </div>
-                <div id="user-dropdown-content" class="user-dropdown-content">
-                    <h3>Name<br><span>Email</span></h3>
-                    <ul>
-                        <li><img src="./image/user.svg"><a href="#">My Profile</a></li>
-                        <li><img src="./image/edit.svg"><a href="#">Edit Profile</a></li>
-                        <li><img src="./image/envelope.svg"><a href="#">Inbox</a></li>
-                        <li><img src="./image/settings.svg"><a href="#">Setting</a></li>
-                        <li><img src="./image/log-out.svg"><a href="#">Logout</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="navbar" class="select-navbar">
-        <div class="nav-element f-e">
-            <a href="#app">Apps</a>
-        </div>
-        <div class="nav-element" onclick="reponsiveCategories()">
-            <a class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Categories
-            </a>
-            <div class="dropdown-menu">
-                <!-- <div class="dropdown-bar">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>  -->
-                <div class="dropdown-bar">
-                    <strong style="font-weight: bold;" class="dropdown-item">Rated</strong>
-                    <div class="dropdown-divider"></div>
-                    <?php
-                        foreach($content[1] as $item){
-                            ?>
-                                <a class="dropdown-item" href="#"><?= $item ?></a>
-                            <?php
-                        }
-                    ?>
-                    <!-- <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a> -->
-                </div>          
-                <div class="dropdown-bar">
-                    <strong style="font-weight: bold;" class="dropdown-item">Category</strong>
-                    <div class="dropdown-divider"></div>
-                    <?php
-                        foreach($content[0] as $item){
-                            ?>
-                                <a class="dropdown-item" href="#"><?= $item ?></a>
-                            <?php
-                        }
-                    ?>
-                    </div>
-                <!-- <div class="dropdown-bar">
-                    <strong style="font-weight: bold;" class="dropdown-item">Category</strong>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-                <div class="dropdown-bar">
-                    <strong style="font-weight: bold;" class="dropdown-item">Category</strong>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div> -->
-            </div>
-        </div>
-        <div class="nav-element">
-            <a href="#home">Home</a>
-        </div>
-        <div class="nav-element">
-            <a href="#top">Top charts</a>
-        </div>
-        <div class="nav-element">
-            <a href="#new">New release</a>
-        </div>
-    </div>
+    <?php include 'index-template.php';?>
     <div class="flex-container">
         <div id="sidebar" class="sidebar">
             <ul class="menu">
@@ -153,7 +61,7 @@
                 <div class="info-row">
                     <h2>Popular Apps</h2>
                     <div>
-                        <a class='btn btn-success' href="#">See more</a>
+                        <a class='btn btn-success' href="seemore.php">See more</a>
                     </div>
                 </div>
                 <div class="apps-row">
@@ -183,7 +91,7 @@
                 <div class="info-row">
                     <h2>Recommend Apps</h2>
                     <div>
-                    <a class='btn btn-success' href="#">See more</a>
+                    <a class='btn btn-success' href="seemore.php">See more</a>
                     </div>
                 </div>
                 <div class="apps-row">
@@ -213,7 +121,7 @@
                 <div class="info-row">
                     <h2>Lastest Apps</h2>
                     <div>
-                        <a class='btn btn-success' href="#">See more</a>
+                        <a class='btn btn-success' href="seemore.php">See more</a>
                     </div>
                 </div>
                 <div class="apps-row">
@@ -243,7 +151,7 @@
                 <div class="info-row">
                     <h2>Popular Apps</h2>
                     <div>
-                        <a class='btn btn-success' href="#">See more</a>
+                        <a class='btn btn-success' href="seemore.php">See more</a>
                     </div>
                 </div>
                 <div class="apps-row">
