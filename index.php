@@ -19,17 +19,17 @@
 <?php
     require_once 'db.php';
 
-    $popular_app = get_popular_apps();
+    $popular_app = get_popular_top_apps();
     if($popular_app['code']!=0){
         die($popular_app['error']);
     }
 
-    $recommend_app = get_recommend_apps();
+    $recommend_app = get_recommend_top_apps();
     if($recommend_app['code']!=0){
         die($recommend_app['error']);
     }
 
-    $lastest_app = get_lastest_apps();
+    $lastest_app = get_lastest_top_apps();
     if($lastest_app['code']!=0){
         die($lastest_app['error']);
     }
@@ -54,9 +54,9 @@
             </ul>
         </div>
         <div class="content">
-            <div class="application-box">
+            <!-- <div class="application-box">
                 <iframe class="iframe-app" src="application.html"></iframe>
-            </div>
+            </div> -->
             <div class="apps-menu">
                 <div class="info-row">
                     <h2>Popular Apps</h2>
@@ -70,7 +70,7 @@
                             ?>
                                 <div class="app-card">
                                     <div class="app-img">
-                                        <a href="#GameX"><img src="<?= $item['image'] ?>" /></a>
+                                        <a href="application.php"><img src="<?= $item['image'] ?>" /></a>
                                     </div>
                                     <div class="app-name">
                                         <a href="#GameX"><?= $item['name'] ?></a>
@@ -303,6 +303,6 @@
             document.querySelector('.iframe-app').classList.toggle('show');
         });
     </script>
-    <script src="javascript/drivers.js"></script>
 </body>
+<script src="javascript/drivers.js"></script>
 </html>
