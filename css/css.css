@@ -472,9 +472,13 @@ transform: translate(-50%, -50%); */
     display: flex;
     flex-wrap: nowrap;
     margin-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 0;
     width: 600px;
     min-width: 600px;
+}
+
+#suggestions{
+    width: 90%;
 }
 
 .header-box > input[type=text] {
@@ -650,7 +654,6 @@ ul.menu li a:hover {
 .dropdown-bar{
     display: inline-block;
     width: 178px;
-    float: left;
 }
 
 .header-user .user-dropdown {

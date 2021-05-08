@@ -1,4 +1,6 @@
 <?php
+     require_once 'db.php';
+     $app = get_all_apps();
     ?>
     <div id="header" class="header">
         <div class="header-img">
@@ -6,10 +8,19 @@
                 <img src="./image/googleplayicon.png" alt="" />
             </a>
         </div>
-        <div class="header-box">
-            <input type="text" id="search-box" name="search-box" placeholder="Search">
-            <button type="submit"><i class="fa fa-search"></i></button>
+        <div class="header-search">
+            <div class="header-box">
+                <input oninput="suggest(this.value)" type="text" id="search-box" name="search-box" placeholder="Search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </div>
+            <ul id="suggestions"  class="list-group my-0">
+                <!-- <li class="list-group-item">Vietnam</li>
+                <li class="list-group-item">Lao</li>
+                <li class="list-group-item">Cambodia</li>
+                <li class="list-group-item">Singapore</li> -->
+            </ul>
         </div>
+        
         <div class="header-user">
             <div onclick="ClickUserIcon()" class="user-dropdown">
                 <div class="user-profile">
