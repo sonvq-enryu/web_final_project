@@ -286,7 +286,7 @@ function suggest(value){
  }
 
  function sendRequest(keyword){
-    let param = 'keyword='+encodeURIComponent(keyword)+'<?=$inputString;?>';
+    let param = 'keyword='+encodeURIComponent(keyword);
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'search.php', true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -297,10 +297,11 @@ function suggest(value){
              console.log(response);
              if (response.code === 0){
                 let data = response.data;
+                // console.log(data)
                 data.forEach(element => {
                       const a = document.createElement('a');
-                      a.href = element;
-                      a.innerHTML = element;
+                      a.href = "application.php?id="+element['id'];
+                      a.innerHTML = element['name'];
                       const li = document.createElement('li');
                       li.className = 'list-group-item';
                       li.appendChild(a)

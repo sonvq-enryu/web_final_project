@@ -1,6 +1,4 @@
 <?php
-     require_once 'db.php';
-     $app = get_all_apps();
     ?>
     <div id="header" class="header">
         <div class="header-img">
