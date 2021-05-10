@@ -76,7 +76,7 @@
                                         <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
                                     </div>
                                     <div class="app-coop">
-                                        <a href="#X-Cooporation"><?= $item['developer'] ?></a>
+                                        <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
                                     </div>
                                     <div class="rating">
                                     <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
@@ -106,7 +106,7 @@
                                         <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
                                     </div>
                                     <div class="app-coop">
-                                        <a href="#X-Cooporation"><?= $item['developer'] ?></a>
+                                        <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
                                     </div>
                                     <div class="rating">
                                     <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
@@ -136,7 +136,7 @@
                                         <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
                                     </div>
                                     <div class="app-coop">
-                                        <a href="#X-Cooporation"><?= $item['developer'] ?></a>
+                                        <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
                                     </div>
                                     <div class="rating">
                                     <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>

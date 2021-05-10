@@ -36,6 +36,14 @@
             }
         }
     }
+
+    if(isset($_GET['dev'])){
+        $dev = $_GET['dev'];
+        $app = get_dev_apps($dev);
+        if($app['code']!=0){
+            die($app['error']);
+        }
+    }
     
     $content = get_content();
     if($content['code']!=0){
@@ -55,20 +63,20 @@
                 <li><a href="#about">About</a></li>
             </ul>
         </div>
-        <div class='content'>
+        <div class='content seemore'>
             <div class="apps-row">
                 <?php
                     foreach($app['data'] as $item){
                         ?>
                             <div class="app-card">
                                 <div class="app-img">
-                                    <a href="#GameX"><img src="<?= $item['image'] ?>" /></a>
+                                    <a href="application.php?id=<?= $item['id'] ?>"><img src="<?= $item['image'] ?>" /></a>
                                 </div>
                                 <div class="app-name">
-                                    <a href="#GameX"><?= $item['name'] ?></a>
+                                    <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
                                 </div>
                                 <div class="app-coop">
-                                    <a href="#X-Cooporation"><?= $item['developer'] ?></a>
+                                    <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
                                 </div>
                                 <div class="rating">
                                 <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
