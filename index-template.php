@@ -52,7 +52,7 @@
                     <?php
                         foreach($content[1] as $item){
                             ?>
-                                <a class="dropdown-item" href="#"><?= $item ?></a>
+                                <a class="dropdown-item" href="seemore.php?rated=<?= $item ?>"><?= $item ?></a>
                             <?php
                         }
                     ?>
@@ -63,7 +63,7 @@
                     <?php
                         foreach($content[0] as $item){
                             ?>
-                                <a class="dropdown-item" href="#"><?= $item ?></a>
+                                <a class="dropdown-item" href="seemore.php?cate=<?= $item ?>"><?= $item ?></a>
                             <?php
                         }
                     ?>
@@ -71,7 +71,7 @@
             </div>
         </div>
         <div class="nav-element">
-            <a href="#home">Home</a>
+            <a href="index.php">Home</a>
         </div>
         <div class="nav-element">
             <a href="#top">Top charts</a>

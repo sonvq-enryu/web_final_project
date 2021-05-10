@@ -10,7 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./css/css.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
 <?php
@@ -44,6 +44,45 @@
             die($app['error']);
         }
     }
+
+    if(isset($_GET['cate'])){
+        $cate = $_GET['cate'];
+        $apps = get_all_apps();
+
+        $result = array();
+        if($apps['code']!=0){
+            die($apps['error']);
+        }
+
+        foreach($apps['data'] as $item){
+            if (strpos($item['content'],$cate) !== false){
+                $result[] = $item;
+            }
+        }
+
+        $app = array();
+        $app['data'] = $result;
+    }
+
+    if(isset($_GET['rated'])){
+        $rated = $_GET['rated'];
+        $rated = rtrim($rated," ")."+";
+        $apps = get_all_apps();
+
+        $result = array();
+        if($apps['code']!=0){
+            die($apps['error']);
+        }
+
+        foreach($apps['data'] as $item){
+            if (strpos($item['content'],$rated) !== false){
+                $result[] = $item;
+            }
+        }
+
+        $app = array();
+        $app['data'] = $result;
+    }
     
     $content = get_content();
     if($content['code']!=0){
@@ -57,9 +96,9 @@
     <div class="flex-container">
         <div id="sidebar" class="sidebar">
             <ul class="menu">
-                <li><a href="#home">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="footer.php">Contact</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
         </div>

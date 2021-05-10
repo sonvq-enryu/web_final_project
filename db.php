@@ -13,6 +13,24 @@
     function get_all_apps(){
         $conn = open_database();
 
+        $sql = "SELECT * FROM aplication";
+        $stm = $conn->prepare($sql);
+        if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
+        $result = $stm->get_result();
+        $data = array();
+
+        if($result->num_rows == 0) return array('code' => 2, 'error' => "Don't have any app");
+
+        while ($item = $result->fetch_assoc()){
+            $data[] = $item;
+        }
+
+        return array('code'=>0, 'data'=>$data);
+    }
+
+    function get_all_idandname_apps(){
+        $conn = open_database();
+
         $sql = "SELECT id,name FROM aplication";
         $stm = $conn->prepare($sql);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
