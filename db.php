@@ -218,7 +218,30 @@
         return array('code'=>0, 'data'=>$data);
     }
 
+    function login($user, $pwd) {
+        $query = "select * from account where email = ?";
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param('s', $user);
+
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "Cannot execute");
+        }
+
+        $result = $stm->get_result();
+        if ($result->num_rows == 0) {
+            return array("code" => 2, "message" => "Username not exist");
+        }
+
+        $row = $result->fetch_assoc();
+        $hashed_pwd = $row['password'];
+
+        if (!password_verify($pwd, $hashed_pwd)) {
+            return array("code" => 3, "message" => "password not matching");
+        }
 
 
-
+        return array("code" => 0, "message" => "login successful", "data" => $row);
+    }
 ?>

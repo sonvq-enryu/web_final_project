@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>Index</title>
     <style>
-        
 
         .recommend-app .apps-menu .info-row div a{
             position:relative;
