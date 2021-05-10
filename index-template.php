@@ -6,10 +6,19 @@
                 <img src="./image/googleplayicon.png" alt="" />
             </a>
         </div>
-        <div class="header-box">
-            <input type="text" id="search-box" name="search-box" placeholder="Search">
-            <button type="submit"><i class="fa fa-search"></i></button>
+        <div class="header-search">
+            <div class="header-box">
+                <input oninput="suggest(this.value)" type="text" id="search-box" name="search-box" placeholder="Search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </div>
+            <ul id="suggestions"  class="list-group my-0">
+                <!-- <li class="list-group-item">Vietnam</li>
+                <li class="list-group-item">Lao</li>
+                <li class="list-group-item">Cambodia</li>
+                <li class="list-group-item">Singapore</li> -->
+            </ul>
         </div>
+        
         <div class="header-user">
             <div onclick="ClickUserIcon()" class="user-dropdown">
                 <div class="user-profile">
@@ -43,7 +52,7 @@
                     <?php
                         foreach($content[1] as $item){
                             ?>
-                                <a class="dropdown-item" href="#"><?= $item ?></a>
+                                <a class="dropdown-item" href="seemore.php?rated=<?= $item ?>"><?= $item ?></a>
                             <?php
                         }
                     ?>
@@ -54,7 +63,7 @@
                     <?php
                         foreach($content[0] as $item){
                             ?>
-                                <a class="dropdown-item" href="#"><?= $item ?></a>
+                                <a class="dropdown-item" href="seemore.php?cate=<?= $item ?>"><?= $item ?></a>
                             <?php
                         }
                     ?>
@@ -62,7 +71,7 @@
             </div>
         </div>
         <div class="nav-element">
-            <a href="#home">Home</a>
+            <a href="index.php">Home</a>
         </div>
         <div class="nav-element">
             <a href="#top">Top charts</a>

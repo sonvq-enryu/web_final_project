@@ -262,3 +262,61 @@ document.querySelector("body.index").addEventListener('click', (e) => {
 /* **********************************************************
                         END OF INDEX 
 *********************************************************/
+
+
+
+// ------------------------------------------------------------
+
+
+
+/* **********************************************************
+                        SEARCH
+*********************************************************/
+
+let suggestions = document.getElementById('suggestions');
+
+function suggest(value){
+    suggestions.innerHTML = '';
+    if (value.length < 2){
+          return
+    }
+    sendRequest(value);
+ }
+
+ function sendRequest(keyword){
+    let param = 'keyword='+encodeURIComponent(keyword);
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'search.php', true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.addEventListener('load', e => {
+          if (xhr.readyState === 4 && xhr.status === 200){
+             let response = xhr.responseText;
+             response= JSON.parse(response);
+             console.log(response);
+             if (response.code === 0){
+                let data = response.data;
+                // console.log(data)
+                data.forEach(element => {
+                      const a = document.createElement('a');
+                      a.href = "application.php?id="+element['id'];
+                      a.innerHTML = element['name'];
+                      const li = document.createElement('li');
+                      li.className = 'list-group-item';
+                      li.appendChild(a)
+                      // li.innerHTML = element;
+                      suggestions.appendChild(li);
+                });
+             }
+
+          }
+    });
+    xhr.send(param);
+    // console.log(xhr);
+ }
+
+
+
+
+/* **********************************************************
+                        END OF SEARCH
+*********************************************************/

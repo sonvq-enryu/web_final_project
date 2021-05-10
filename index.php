@@ -13,7 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./css/css.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Index</title>
     <style>
 
@@ -50,9 +50,9 @@
     <div class="flex-container">
         <div id="sidebar" class="sidebar">
             <ul class="menu">
-                <li><a href="#home">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="footer.php">Contact</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
         </div>
@@ -64,7 +64,7 @@
                 <div class="info-row">
                     <h2>Popular Apps</h2>
                     <div>
-                        <a class='btn btn-success' href="seemore.php">See more</a>
+                        <a class='btn btn-success' href="seemore.php?id=1">See more</a>
                     </div>
                 </div>
                 <div class="apps-row">
@@ -73,13 +73,13 @@
                             ?>
                                 <div class="app-card">
                                     <div class="app-img">
-                                        <a href="application.php"><img src="<?= $item['image'] ?>" /></a>
+                                        <a href="application.php?id=<?= $item['id'] ?>"><img src="<?= $item['image'] ?>" /></a>
                                     </div>
                                     <div class="app-name">
-                                        <a href="#GameX"><?= $item['name'] ?></a>
+                                        <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
                                     </div>
                                     <div class="app-coop">
-                                        <a href="#X-Cooporation"><?= $item['developer'] ?></a>
+                                        <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
                                     </div>
                                     <div class="rating">
                                     <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
@@ -94,7 +94,7 @@
                 <div class="info-row">
                     <h2>Recommend Apps</h2>
                     <div>
-                    <a class='btn btn-success' href="seemore.php">See more</a>
+                    <a class='btn btn-success' href="seemore.php?id=2">See more</a>
                     </div>
                 </div>
                 <div class="apps-row">
@@ -103,13 +103,13 @@
                             ?>
                                 <div class="app-card">
                                     <div class="app-img">
-                                        <a href="#GameX"><img src="<?= $item['image'] ?>" /></a>
+                                        <a href="application.php?id=<?= $item['id'] ?>"><img src="<?= $item['image'] ?>" /></a>
                                     </div>
                                     <div class="app-name">
-                                        <a href="#GameX"><?= $item['name'] ?></a>
+                                        <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
                                     </div>
                                     <div class="app-coop">
-                                        <a href="#X-Cooporation"><?= $item['developer'] ?></a>
+                                        <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
                                     </div>
                                     <div class="rating">
                                     <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
@@ -124,7 +124,7 @@
                 <div class="info-row">
                     <h2>Lastest Apps</h2>
                     <div>
-                        <a class='btn btn-success' href="seemore.php">See more</a>
+                        <a class='btn btn-success' href="seemore.php?id=3">See more</a>
                     </div>
                 </div>
                 <div class="apps-row">
@@ -133,13 +133,13 @@
                             ?>
                                 <div class="app-card">
                                     <div class="app-img">
-                                        <a href="#GameX"><img src="<?= $item['image'] ?>" /></a>
+                                        <a href="application.php?id=<?= $item['id'] ?>"><img src="<?= $item['image'] ?>" /></a>
                                     </div>
                                     <div class="app-name">
-                                        <a href="#GameX"><?= $item['name'] ?></a>
+                                        <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
                                     </div>
                                     <div class="app-coop">
-                                        <a href="#X-Cooporation"><?= $item['developer'] ?></a>
+                                        <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
                                     </div>
                                     <div class="rating">
                                     <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
@@ -150,150 +150,8 @@
                     ?>
                 </div>
             </div>
-            <div class="apps-menu">
-                <div class="info-row">
-                    <h2>Popular Apps</h2>
-                    <div>
-                        <a class='btn btn-success' href="seemore.php">See more</a>
-                    </div>
-                </div>
-                <div class="apps-row">
-                    <div class="app-card">
-                        <div class="app-img">
-                            <a href="#GameX"><img src="./image/smuge_the_cat.jpg" /></a>
-                        </div>
-                        <div class="app-name">
-                            <a href="#GameX">Game X</a>
-                        </div>
-                        <div class="app-coop">
-                            <a href="#X-Cooporation">X Cooporation</a>
-                        </div>
-                        <div class="rating">
-                            4.5<span class="fa fa-star checked"></span></p>
-                        </div>
-                    </div>
-                    <div class="app-card">
-                        <div class="app-img">
-                            <a href="#GameX"><img src="./image/smuge_the_cat.jpg" /></a>
-                        </div>
-                        <div class="app-name">
-                            <a href="#GameX">Game X</a>
-                        </div>
-                        <div class="app-coop">
-                            <a href="#X-Cooporation">X Cooporation</a>
-                        </div>
-                        <div class="rating">
-                            4.5<span class="fa fa-star checked"></span></p>
-                        </div>
-                    </div>
-                    <div class="app-card">
-                        <div class="app-img">
-                            <a href="#GameX"><img src="./image/smuge_the_cat.jpg" /></a>
-                        </div>
-                        <div class="app-name">
-                            <a href="#GameX">Game X</a>
-                        </div>
-                        <div class="app-coop">
-                            <a href="#X-Cooporation">X Cooporation</a>
-                        </div>
-                        <div class="rating">
-                            4.5<span class="fa fa-star checked"></span></p>
-                        </div>
-                    </div>
-                    <div class="app-card">
-                        <div class="app-img">
-                            <a href="#GameX"><img src="./image/smuge_the_cat.jpg" /></a>
-                        </div>
-                        <div class="app-name">
-                            <a href="#GameX">Game X</a>
-                        </div>
-                        <div class="app-coop">
-                            <a href="#X-Cooporation">X Cooporation</a>
-                        </div>
-                        <div class="rating">
-                            4.5<span class="fa fa-star checked"></span></p>
-                        </div>
-                    </div>
-                    <div class="app-card">
-                        <div class="app-img">
-                            <a href="#GameX"><img src="./image/smuge_the_cat.jpg" /></a>
-                        </div>
-                        <div class="app-name">
-                            <a href="#GameX">Game X</a>
-                        </div>
-                        <div class="app-coop">
-                            <a href="#X-Cooporation">X Cooporation</a>
-                        </div>
-                        <div class="rating">
-                            4.5<span class="fa fa-star checked"></span></p>
-                        </div>
-                    </div>
-                    <div class="app-card">
-                        <div class="app-img">
-                            <a href="#GameX"><img src="./image/smuge_the_cat.jpg" /></a>
-                        </div>
-                        <div class="app-name">
-                            <a href="#GameX">Game X</a>
-                        </div>
-                        <div class="app-coop">
-                            <a href="#X-Cooporation">X Cooporation</a>
-                        </div>
-                        <div class="rating">
-                            4.5<span class="fa fa-star checked"></span></p>
-                        </div>
-                    </div>
-                    <div class="app-card">
-                        <div class="app-img">
-                            <a href="#GameX"><img src="./image/smuge_the_cat.jpg" /></a>
-                        </div>
-                        <div class="app-name">
-                            <a href="#GameX">Game X</a>
-                        </div>
-                        <div class="app-coop">
-                            <a href="#X-Cooporation">X Cooporation</a>
-                        </div>
-                        <div class="rating">
-                            4.5<span class="fa fa-star checked"></span></p>
-                        </div>
-                    </div>
-                    <div class="app-card">
-                        <div class="app-img">
-                            <a href="#GameX"><img src="./image/smuge_the_cat.jpg" /></a>
-                        </div>
-                        <div class="app-name">
-                            <a href="#GameX">Game X</a>
-                        </div>
-                        <div class="app-coop">
-                            <a href="#X-Cooporation">X Cooporation</a>
-                        </div>
-                        <div class="rating">
-                            4.5<span class="fa fa-star checked"></span></p>
-                        </div>
-                    </div>
-                    <div class="app-card">
-                        <div class="app-img">
-                            <a href="#GameX"><img src="./image/smuge_the_cat.jpg" /></a>
-                        </div>
-                        <div class="app-name">
-                            <a href="#GameX">Game X</a>
-                        </div>
-                        <div class="app-coop">
-                            <a href="#X-Cooporation">X Cooporation</a>
-                        </div>
-                        <div class="rating">
-                            4.5<span class="fa fa-star checked"></span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer">
-                <p class="create-location" onmouseover="displayCreator()">©2021 TDTU</p>
-                <ul class="creator">
-                    <a href="https://www.facebook.com/lnmt1702/"><li>Lê Nguyễn Minh Tuấn - 51800950</li></a>
-                    <a href="https://www.facebook.com/van.huytu.7"><li>Từ Huy Vạn - 51800263</li></a>
-                    <a href="https://www.facebook.com/voquocson.arch"><li>Võ Quốc Sơn - 51800922</li></a>
-                </ul>
-            </div>
+            
+            <?php include 'footer.php';?>
         </div>
     </div>
     
