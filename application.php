@@ -23,6 +23,7 @@
             background-color: #ffffff;
             overflow-y: hidden;
             overflow-x: hidden;
+            min-width: 720px;
         }
 
         .app-page-header {
