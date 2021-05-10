@@ -309,6 +309,11 @@ function sendRequest(keyword) {
     // console.log(xhr);
 }
 
+function search() {
+    // document.queryCommandValue('.header-box > input[type=text]')
+    let keyword = document.getElementById('search-box').value;
+    window.location.replace('seemore.php?keyword=' + encodeURIComponent(keyword));
+}
 
 
 

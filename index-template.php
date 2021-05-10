@@ -12,7 +12,7 @@
         <div class="header-search">
             <div class="header-box">
                 <input oninput="suggest(this.value)" type="text" id="search-box" name="search-box" placeholder="Search">
-                <button type="submit"><i class="fa fa-search"></i></button>
+                <button onclick="search()" type="submit"><i class="fa fa-search"></i></button>
             </div>
             <ul id="suggestions"  class="list-group my-0">
                 <!-- <li class="list-group-item">Vietnam</li>

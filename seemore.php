@@ -92,6 +92,15 @@
         $app = array();
         $app['data'] = $result;
     }
+
+    if (isset($_GET['keyword'])) {
+        $keyword = $_GET['keyword'];
+        $app = search($keyword);
+        
+        if ($app['code'] != 0) {
+            $message = 'Không tìm thấy';
+        }
+    }
     
     $content = get_content();
     if($content['code']!=0){
@@ -114,6 +123,9 @@
         <div class='content seemore'>
             <div class="apps-row">
                 <?php
+                    if (isset($message)) {
+                        echo "<p>Không tìm thấy ứng dụng</p>";
+                    }
                     foreach($app['data'] as $item){
                         ?>
                             <div class="app-card">
