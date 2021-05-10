@@ -21,6 +21,9 @@ SET time_zone = "+00:00";
 -- Cơ sở dữ liệu: `googleplay`
 --
 
+CREATE DATABASE IF NOT EXISTS `googleplay` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `googleplay`;
+
 -- --------------------------------------------------------
 
 --
