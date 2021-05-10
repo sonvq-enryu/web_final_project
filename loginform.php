@@ -4,7 +4,7 @@
         header("Location: index.php");
         exit();
     }
-    print_r($_SESSION);
+    // print_r($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="en">

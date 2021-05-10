@@ -1,6 +1,3 @@
-<?php
-    session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -155,15 +152,6 @@
         </div>
     </div>
     
-    <script>
-        document.querySelector('.app-name > a').addEventListener('click', () => {
-            listAppmenu = document.getElementsByClassName('apps-menu');
-            for (let appmenu of listAppmenu) {
-                appmenu.style.display = 'none';
-            }
-            document.querySelector('.iframe-app').classList.toggle('show');
-        });
-    </script>
 </body>
 <script src="main.js"></script>
 </html>

@@ -1,4 +1,7 @@
 <?php
+    session_start();
+?>
+<?php
     ?>
     <div id="header" class="header">
         <div class="header-img">
@@ -20,21 +23,37 @@
         </div>
         
         <div class="header-user">
-            <div onclick="ClickUserIcon()" class="user-dropdown">
-                <div class="user-profile">
-                    <img class="user-img" src="./image/smuge_the_cat.jpg">
-                </div>
-                <div id="user-dropdown-content" class="user-dropdown-content">
-                    <h3>Name<br><span>Email</span></h3>
-                    <ul>
-                        <li><img src="./image/user.svg"><a href="#">My Profile</a></li>
-                        <li><img src="./image/edit.svg"><a href="#">Edit Profile</a></li>
-                        <li><img src="./image/envelope.svg"><a href="#">Inbox</a></li>
-                        <li><img src="./image/settings.svg"><a href="#">Setting</a></li>
-                        <li><img src="./image/log-out.svg"><a href="logout.php">Logout</a></li>
-                    </ul>
-                </div>
-            </div>
+            <?php
+                if(isset($_SESSION['username']) && isset($_SESSION['fullname'])){
+                    $username = $_SESSION['username'];
+                    $fullname = $_SESSION['fullname'];
+                    ?>
+                    <div onclick="ClickUserIcon()" class="user-dropdown">
+                        <div class="user-profile">
+                            <img class="user-img" src="./image/smuge_the_cat.jpg">
+                        </div>
+                        <div id="user-dropdown-content" class="user-dropdown-content">
+                            <h3><?=$fullname?><br><span><?=$username?></span></h3>
+                            <ul>
+                                <li><img src="./image/user.svg"><a href="#">My Profile</a></li>
+                                <li><img src="./image/edit.svg"><a href="#">Edit Profile</a></li>
+                                <li><img src="./image/envelope.svg"><a href="#">Inbox</a></li>
+                                <li><img src="./image/settings.svg"><a href="#">Setting</a></li>
+                                <li><img src="./image/log-out.svg"><a href="logout.php">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <?php
+                }
+                else{
+                    ?>
+                        <div class="login-signup">
+                            <a class="btn btn-outline-secondary" href="loginform.php">Login</a>
+                        </div>
+                    <?php
+                }
+                
+            ?>
         </div>
     </div>
     <div id="navbar" class="select-navbar">
