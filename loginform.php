@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if (isset($_SESSION['username'])) {
+        header("Location: index.php");
+        exit();
+    }
+    print_r($_SESSION);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -11,35 +19,62 @@
     <meta name="viewport" content="width=, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-    <script src="javascript/drivers.js"></script>
+    <script src="main.js"></script>
 
     <title>SignIn-SignUp</title>
 
-    <link rel='stylesheet' href="./css/css.css">
+    <link rel='stylesheet' href="style.css">
 </head>
 
 <body>
-    <form onsubmit="checkLoginInput()" action="#" class='login-form' id='login-form'>
+<?php
+    require_once('db.php');
+    if (isset($_POST['email']) && isset($_POST['password'])) {
+        $result = login($_POST['email'], $_POST['password']);
+        echo "$result";
+        if ($result['code'] == 0) {
+            $_SESSION['username'] = $_POST['email'];
+            $_SESSION['fullname'] = $result['data']['firstname'] .' '. $result['data']['lastname'];
+
+            header('Location: index.php');
+            exit();
+        }
+        else if ($result['code'] == 1) {
+            $msg = "Đã có lỗi xảy ra";
+        }
+        else if ($result['code'] == 2) {
+            $msg = 'Username không tồn tại';
+        }
+        else if ($result['code'] == 3) {
+            $msg = 'Mật khẩu không đúng';
+        }
+    }
+?>
+    <form onsubmit="checkLoginInput()" action="" class='login-form' id='login-form' method="POST">
         <h1>Login</h1>
         <div class="txtb">
-            <input onclick="clearLoginError()" id="login-email" type="email">
+            <input onclick="clearLoginError()" id="login-email" type="email" name="email">
             <span data-placeholder="Email"></span>
         </div>
 
         <div class="txtb">
-            <input onclick="clearLoginError()" id="login-password" type="password">
+            <input onclick="clearLoginError()" id="login-password" type="password" name="password">
             <span data-placeholder="Password"></span>
         </div>
 
-        <p id="login-error-messege"></p>
+        <p id="login-error-messege">
+            <?php
+                if (isset($msg)) {
+                    echo "$msg";
+                }
+            ?>
+        </p>
 
         <input type="submit" class="logbtn" value="Login">
 
         <div class="bottom-text">
             Don't have account <a href='#' onclick="openForm()">Sign up</a>
         </div>
-
-
     </form>
 
     <form onsubmit="return checkSignupInput()" action="" class='signup-form' id='signup-form'>
@@ -102,7 +137,7 @@
 
 
 
-    <script src="javascript/drivers.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

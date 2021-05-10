@@ -31,7 +31,7 @@
                         <li><img src="./image/edit.svg"><a href="#">Edit Profile</a></li>
                         <li><img src="./image/envelope.svg"><a href="#">Inbox</a></li>
                         <li><img src="./image/settings.svg"><a href="#">Setting</a></li>
-                        <li><img src="./image/log-out.svg"><a href="#">Logout</a></li>
+                        <li><img src="./image/log-out.svg"><a href="logout.php">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -39,7 +39,7 @@
     </div>
     <div id="navbar" class="select-navbar">
         <div class="nav-element f-e">
-            <a href="#app">Apps</a>
+            <a href="seemore.php">Apps</a>
         </div>
         <div class="nav-element" onclick="reponsiveCategories()">
             <a class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -52,7 +52,7 @@
                     <?php
                         foreach($content[1] as $item){
                             ?>
-                                <a class="dropdown-item" href="#"><?= $item ?></a>
+                                <a class="dropdown-item" href="seemore.php?rated=<?= $item ?>"><?= $item ?></a>
                             <?php
                         }
                     ?>
@@ -63,7 +63,7 @@
                     <?php
                         foreach($content[0] as $item){
                             ?>
-                                <a class="dropdown-item" href="#"><?= $item ?></a>
+                                <a class="dropdown-item" href="seemore.php?cate=<?= $item ?>"><?= $item ?></a>
                             <?php
                         }
                     ?>
@@ -71,7 +71,7 @@
             </div>
         </div>
         <div class="nav-element">
-            <a href="#home">Home</a>
+            <a href="index.php">Home</a>
         </div>
         <div class="nav-element">
             <a href="#top">Top charts</a>

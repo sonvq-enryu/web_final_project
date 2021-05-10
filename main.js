@@ -95,8 +95,6 @@ function checkSignupInput() {
     }
 
     return true;
-
-
 }
 
 

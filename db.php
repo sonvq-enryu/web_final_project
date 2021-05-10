@@ -13,8 +13,47 @@
     function get_all_apps(){
         $conn = open_database();
 
+        $sql = "SELECT * FROM aplication";
+        $stm = $conn->prepare($sql);
+        if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
+        $result = $stm->get_result();
+        $data = array();
+
+        if($result->num_rows == 0) return array('code' => 2, 'error' => "Don't have any app");
+
+        while ($item = $result->fetch_assoc()){
+            $data[] = $item;
+        }
+
+        return array('code'=>0, 'data'=>$data);
+    }
+
+    function get_all_idandname_apps(){
+        $conn = open_database();
+
         $sql = "SELECT id,name FROM aplication";
         $stm = $conn->prepare($sql);
+        if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
+        $result = $stm->get_result();
+        $data = array();
+
+        if($result->num_rows == 0) return array('code' => 2, 'error' => "Don't have any app");
+
+        while ($item = $result->fetch_assoc()){
+            $data[] = $item;
+        }
+
+        return array('code'=>0, 'data'=>$data);
+    }
+
+
+    // DEVELOPER APPS
+
+    function get_dev_apps($dev){
+        $conn = open_database();
+        $sql = "SELECT * FROM aplication WHERE developer = ?";
+        $stm = $conn->prepare($sql);
+        $stm->bind_param("s",$dev);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
         $data = array();
@@ -179,7 +218,30 @@
         return array('code'=>0, 'data'=>$data);
     }
 
+    function login($user, $pwd) {
+        $query = "select * from account where email = ?";
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param('s', $user);
+
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "Cannot execute");
+        }
+
+        $result = $stm->get_result();
+        if ($result->num_rows == 0) {
+            return array("code" => 2, "message" => "Username not exist");
+        }
+
+        $row = $result->fetch_assoc();
+        $hashed_pwd = $row['password'];
+
+        if (!password_verify($pwd, $hashed_pwd)) {
+            return array("code" => 3, "message" => "password not matching");
+        }
 
 
-
+        return array("code" => 0, "message" => "login successful", "data" => $row);
+    }
 ?>

@@ -1,6 +1,6 @@
 <?php
     require_once 'db.php';
-    $app = get_all_apps();
+    $app = get_all_idandname_apps();
     $result = array();
     if(isset($_POST['keyword'])){
         $keyword = strtolower($_POST['keyword']);

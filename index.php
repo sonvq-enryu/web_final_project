@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./css/css.css">
+    <link rel="stylesheet" href="style.css">
     <title>Index</title>
     <style>
 
@@ -47,9 +50,9 @@
     <div class="flex-container">
         <div id="sidebar" class="sidebar">
             <ul class="menu">
-                <li><a href="#home">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="footer.php">Contact</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
         </div>
@@ -61,7 +64,7 @@
                 <div class="info-row">
                     <h2>Popular Apps</h2>
                     <div>
-                        <a class='btn btn-success' href="seemore.php">See more</a>
+                        <a class='btn btn-success' href="seemore.php?id=1">See more</a>
                     </div>
                 </div>
                 <div class="apps-row">
@@ -76,7 +79,7 @@
                                         <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
                                     </div>
                                     <div class="app-coop">
-                                        <a href="#X-Cooporation"><?= $item['developer'] ?></a>
+                                        <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
                                     </div>
                                     <div class="rating">
                                     <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
@@ -91,7 +94,7 @@
                 <div class="info-row">
                     <h2>Recommend Apps</h2>
                     <div>
-                    <a class='btn btn-success' href="seemore.php">See more</a>
+                    <a class='btn btn-success' href="seemore.php?id=2">See more</a>
                     </div>
                 </div>
                 <div class="apps-row">
@@ -106,7 +109,7 @@
                                         <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
                                     </div>
                                     <div class="app-coop">
-                                        <a href="#X-Cooporation"><?= $item['developer'] ?></a>
+                                        <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
                                     </div>
                                     <div class="rating">
                                     <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
@@ -121,7 +124,7 @@
                 <div class="info-row">
                     <h2>Lastest Apps</h2>
                     <div>
-                        <a class='btn btn-success' href="seemore.php">See more</a>
+                        <a class='btn btn-success' href="seemore.php?id=3">See more</a>
                     </div>
                 </div>
                 <div class="apps-row">
@@ -136,7 +139,7 @@
                                         <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
                                     </div>
                                     <div class="app-coop">
-                                        <a href="#X-Cooporation"><?= $item['developer'] ?></a>
+                                        <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
                                     </div>
                                     <div class="rating">
                                     <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
@@ -162,5 +165,5 @@
         });
     </script>
 </body>
-<script src="javascript/drivers.js"></script>
+<script src="main.js"></script>
 </html>

@@ -10,32 +10,93 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./css/css.css">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <?php
     require_once 'db.php';
 
-    $popular_app = get_popular_apps();
-    if($popular_app['code']!=0){
-        die($popular_app['error']);
+    $app = array();
+
+    $app =  get_all_apps();
+    if($app['code']!=0){
+        die($app['error']);
     }
 
-    $recommend_app = get_recommend_apps();
-    if($recommend_app['code']!=0){
-        die($recommend_app['error']);
+
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        if($id == 1){
+            $app = get_popular_apps();
+            if($app['code']!=0){
+                die($app['error']);
+            }
+        }
+        if($id == 2){
+            $app = get_recommend_apps();
+            if($app['code']!=0){
+                die($app['error']);
+            }
+        }
+        if($id == 3){
+            $app = get_lastest_apps();
+            if($app['code']!=0){
+                die($app['error']);
+            }
+        }
     }
 
-    $lastest_app = get_lastest_apps();
-    if($lastest_app['code']!=0){
-        die($lastest_app['error']);
+    if(isset($_GET['dev'])){
+        $dev = $_GET['dev'];
+        $app = get_dev_apps($dev);
+        if($app['code']!=0){
+            die($app['error']);
+        }
     }
 
+    if(isset($_GET['cate'])){
+        $cate = $_GET['cate'];
+        $apps = get_all_apps();
+
+        $result = array();
+        if($apps['code']!=0){
+            die($apps['error']);
+        }
+
+        foreach($apps['data'] as $item){
+            if (strpos($item['content'],$cate) !== false){
+                $result[] = $item;
+            }
+        }
+
+        $app = array();
+        $app['data'] = $result;
+    }
+
+    if(isset($_GET['rated'])){
+        $rated = $_GET['rated'];
+        $rated = rtrim($rated," ")."+";
+        $apps = get_all_apps();
+
+        $result = array();
+        if($apps['code']!=0){
+            die($apps['error']);
+        }
+
+        foreach($apps['data'] as $item){
+            if (strpos($item['content'],$rated) !== false){
+                $result[] = $item;
+            }
+        }
+
+        $app = array();
+        $app['data'] = $result;
+    }
+    
     $content = get_content();
     if($content['code']!=0){
         die($content['error']);
     }
-
     $content = $content['data'];
 
 ?>
@@ -44,26 +105,26 @@
     <div class="flex-container">
         <div id="sidebar" class="sidebar">
             <ul class="menu">
-                <li><a href="#home">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="footer.php">Contact</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
         </div>
-        <div class='content'>
+        <div class='content seemore'>
             <div class="apps-row">
                 <?php
-                    foreach($recommend_app['data'] as $item){
+                    foreach($app['data'] as $item){
                         ?>
                             <div class="app-card">
                                 <div class="app-img">
-                                    <a href="#GameX"><img src="<?= $item['image'] ?>" /></a>
+                                    <a href="application.php?id=<?= $item['id'] ?>"><img src="<?= $item['image'] ?>" /></a>
                                 </div>
                                 <div class="app-name">
-                                    <a href="#GameX"><?= $item['name'] ?></a>
+                                    <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
                                 </div>
                                 <div class="app-coop">
-                                    <a href="#X-Cooporation"><?= $item['developer'] ?></a>
+                                    <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
                                 </div>
                                 <div class="rating">
                                 <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
@@ -76,5 +137,5 @@
         </div>
     </div>
 </body>
-<script src="javascript/drivers.js"></script>
+<script src="main.js"></script>
 </html>
