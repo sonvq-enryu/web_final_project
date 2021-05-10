@@ -15,6 +15,15 @@
     <style>
         
 
+        .recommend-app .apps-menu .info-row div a{
+            position:relative;
+            left: 0;
+        }
+
+        .recommend-app .apps-menu .apps-row{
+            /* min-width: 670px; */
+        }
+
     </style>
 </head>
 <?php
@@ -189,8 +198,143 @@
                     <?php
                 ?>
         </div>
-        
+        <div class="recommend-app">
+            <div class="apps-menu">
+                <div class="info-row">
+                    <h2>Similar</h2>
+                    <div>
+                    <a class='btn btn-success' href="seemore.php?id=2">See more</a>
+                    </div>
+                </div>
+                <div class="apps-row">
+                    <div class="app-card">
+                        <div class="app-img">
+                            <a href="#"><img src="./image/smuge_the_cat.jpg" /></a>
+                        </div>
+                        <div class="app-name">
+                            <a href="#">Tuấn</a>
+                        </div>
+                        <div class="app-coop">
+                            <a href="#">X</a>
+                        </div>
+                        <div class="rating">
+                        4.6<span class="fa fa-star checked"></span></p>
+                        </div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-img">
+                            <a href="#"><img src="./image/smuge_the_cat.jpg" /></a>
+                        </div>
+                        <div class="app-name">
+                            <a href="#">Tuấn</a>
+                        </div>
+                        <div class="app-coop">
+                            <a href="#">X</a>
+                        </div>
+                        <div class="rating">
+                        4.6<span class="fa fa-star checked"></span></p>
+                        </div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-img">
+                            <a href="#"><img src="./image/smuge_the_cat.jpg" /></a>
+                        </div>
+                        <div class="app-name">
+                            <a href="#">Tuấn</a>
+                        </div>
+                        <div class="app-coop">
+                            <a href="#">X</a>
+                        </div>
+                        <div class="rating">
+                        4.6<span class="fa fa-star checked"></span></p>
+                        </div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-img">
+                            <a href="#"><img src="./image/smuge_the_cat.jpg" /></a>
+                        </div>
+                        <div class="app-name">
+                            <a href="#">Tuấn</a>
+                        </div>
+                        <div class="app-coop">
+                            <a href="#">X</a>
+                        </div>
+                        <div class="rating">
+                        4.6<span class="fa fa-star checked"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="apps-menu">
+                <div class="info-row">
+                    <h2>Similar</h2>
+                    <div>
+                    <a class='btn btn-success' href="seemore.php?id=2">See more</a>
+                    </div>
+                </div>
+                <div class="apps-row">
+                    <div class="app-card">
+                        <div class="app-img">
+                            <a href="#"><img src="./image/smuge_the_cat.jpg" /></a>
+                        </div>
+                        <div class="app-name">
+                            <a href="#">Tuấn</a>
+                        </div>
+                        <div class="app-coop">
+                            <a href="#">X</a>
+                        </div>
+                        <div class="rating">
+                        4.6<span class="fa fa-star checked"></span></p>
+                        </div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-img">
+                            <a href="#"><img src="./image/smuge_the_cat.jpg" /></a>
+                        </div>
+                        <div class="app-name">
+                            <a href="#">Tuấn</a>
+                        </div>
+                        <div class="app-coop">
+                            <a href="#">X</a>
+                        </div>
+                        <div class="rating">
+                        4.6<span class="fa fa-star checked"></span></p>
+                        </div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-img">
+                            <a href="#"><img src="./image/smuge_the_cat.jpg" /></a>
+                        </div>
+                        <div class="app-name">
+                            <a href="#">Tuấn</a>
+                        </div>
+                        <div class="app-coop">
+                            <a href="#">X</a>
+                        </div>
+                        <div class="rating">
+                        4.6<span class="fa fa-star checked"></span></p>
+                        </div>
+                    </div>
+                    <div class="app-card">
+                        <div class="app-img">
+                            <a href="#"><img src="./image/smuge_the_cat.jpg" /></a>
+                        </div>
+                        <div class="app-name">
+                            <a href="#">Tuấn</a>
+                        </div>
+                        <div class="app-coop">
+                            <a href="#">X</a>
+                        </div>
+                        <div class="rating">
+                        4.6<span class="fa fa-star checked"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
     </div>
+    
 </body>
 <script src="javascript/drivers.js"></script>
 </html>

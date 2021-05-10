@@ -39,7 +39,7 @@
     </div>
     <div id="navbar" class="select-navbar">
         <div class="nav-element f-e">
-            <a href="#app">Apps</a>
+            <a href="seemore.php">Apps</a>
         </div>
         <div class="nav-element" onclick="reponsiveCategories()">
             <a class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

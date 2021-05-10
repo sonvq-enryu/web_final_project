@@ -15,6 +15,15 @@
 </head>
 <?php
     require_once 'db.php';
+
+    $app = array();
+
+    $app =  get_all_apps();
+    if($app['code']!=0){
+        die($app['error']);
+    }
+
+
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         if($id == 1){

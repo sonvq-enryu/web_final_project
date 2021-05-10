@@ -861,6 +861,13 @@ ul.menu li a:hover {
     .apps-menu .apps-row .app-card:nth-last-child(1) {
         display: none;
     }
+
+    .recommend-app .apps-menu .info-row div a {
+        left: 0;
+    }
+    .recommend-app .apps-menu .apps-row .app-card:nth-last-child(1) {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 1642px) {
@@ -870,6 +877,12 @@ ul.menu li a:hover {
     .apps-menu .apps-row .app-card:nth-last-child(2) {
         display: none;
     }
+    .recommend-app .apps-menu .info-row div a {
+        left: -100px;
+    }
+    .recommend-app .apps-menu .apps-row .app-card:nth-last-child(2) {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 1468px) {
@@ -877,6 +890,12 @@ ul.menu li a:hover {
         left: 348px;
     }
     .apps-menu .apps-row .app-card:nth-last-child(3) {
+        display: none;
+    }
+    .recommend-app .apps-menu .info-row div a {
+        left: -200px;
+    }
+    .recommend-app .apps-menu .apps-row .app-card:nth-last-child(3) {
         display: none;
     }
 }
@@ -890,6 +909,12 @@ ul.menu li a:hover {
     .apps-menu .apps-row .app-card:nth-last-child(4) {
         display: none;
     }
+    .recommend-app .apps-menu .info-row div a {
+        left: -300px;
+    }
+    .recommend-app .apps-menu .apps-row .app-card:nth-last-child(4) {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 1120px) {
@@ -897,6 +922,12 @@ ul.menu li a:hover {
         left: 0px;
     }
     .apps-menu .apps-row .app-card:nth-last-child(5) {
+        display: none;
+    }
+    .recommend-app .apps-menu .info-row div a {
+        left: -400px;
+    }
+    .recommend-app .apps-menu .apps-row .app-card:nth-last-child(5) {
         display: none;
     }
 }
@@ -945,6 +976,10 @@ ul.menu li a:hover {
 *********************************************************/
 body {
     box-sizing: border-box;
+}
+
+.index {
+    background-color: #f1f1f1;
 }
 
 .index .container {
