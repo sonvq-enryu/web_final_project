@@ -244,4 +244,52 @@
 
         return array("code" => 0, "message" => "login successful", "data" => $row);
     }
+
+    function search($keyword) {
+        $keyword = '%'. $keyword .'%';
+        
+        $query = 'select * from aplication where name like ?';
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param('s', $keyword);
+
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "Cannot execute");
+        }
+        else {
+            $result = $stm->get_result();
+            if ($result->num_rows == 0) {
+                return array("code" => 2, "message" => "Not found");
+            }
+            else {
+                $rows = array();
+                for ($i=0; $i<$result->num_rows; ++$i) {
+                    $rows[] = $result->fetch_assoc();
+                }
+                return array("code" => 0, "data" => $rows);
+            }
+        }
+    }
+
+    function get_user_info($email) {
+        $query = 'select * from account where email = ?';
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param('s', $email);
+
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "Cannot execute command");
+        }
+
+        $result = $stm->get_result();
+        if ($result->num_rows > 0) {
+            // return array("code" => 0, "data" => $result->fetch_assoc());
+            $data = $result->fetch_assoc();
+        } 
+
+        return array("code" => 0, "data" => $data);
+    }
+
 ?>

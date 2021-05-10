@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
     session_start();
-
-    if ($_SESSION['id '])
-    
+    if (!isset($_SESSION['user'])) {
+        header("Location: loginform.php");
+        exit();
+    }
+    require_once('db.php');
+    $data = get_user_info($_SESSION['email']);
 ?>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +23,7 @@
         <div class="txtb">
             <label for="user-email">Email</label>
             <input id="user-email" type="email" readonly>
-            <span></span>
+            <span><? $data['email'] ?></span>
         </div>
         <div class="txtb">
             <label for="user-fn">Firstname</label>
