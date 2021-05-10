@@ -15,27 +15,32 @@
 </head>
 <?php
     require_once 'db.php';
-
-    $popular_app = get_popular_apps();
-    if($popular_app['code']!=0){
-        die($popular_app['error']);
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        if($id == 1){
+            $app = get_popular_apps();
+            if($app['code']!=0){
+                die($app['error']);
+            }
+        }
+        if($id == 2){
+            $app = get_recommend_apps();
+            if($app['code']!=0){
+                die($app['error']);
+            }
+        }
+        if($id == 3){
+            $app = get_lastest_apps();
+            if($app['code']!=0){
+                die($app['error']);
+            }
+        }
     }
-
-    $recommend_app = get_recommend_apps();
-    if($recommend_app['code']!=0){
-        die($recommend_app['error']);
-    }
-
-    $lastest_app = get_lastest_apps();
-    if($lastest_app['code']!=0){
-        die($lastest_app['error']);
-    }
-
+    
     $content = get_content();
     if($content['code']!=0){
         die($content['error']);
     }
-
     $content = $content['data'];
 
 ?>
@@ -53,7 +58,7 @@
         <div class='content'>
             <div class="apps-row">
                 <?php
-                    foreach($recommend_app['data'] as $item){
+                    foreach($app['data'] as $item){
                         ?>
                             <div class="app-card">
                                 <div class="app-img">

@@ -61,7 +61,7 @@
                 <div class="info-row">
                     <h2>Popular Apps</h2>
                     <div>
-                        <a class='btn btn-success' href="seemore.php">See more</a>
+                        <a class='btn btn-success' href="seemore.php?id=1">See more</a>
                     </div>
                 </div>
                 <div class="apps-row">
@@ -91,7 +91,7 @@
                 <div class="info-row">
                     <h2>Recommend Apps</h2>
                     <div>
-                    <a class='btn btn-success' href="seemore.php">See more</a>
+                    <a class='btn btn-success' href="seemore.php?id=2">See more</a>
                     </div>
                 </div>
                 <div class="apps-row">
@@ -121,7 +121,7 @@
                 <div class="info-row">
                     <h2>Lastest Apps</h2>
                     <div>
-                        <a class='btn btn-success' href="seemore.php">See more</a>
+                        <a class='btn btn-success' href="seemore.php?id=3">See more</a>
                     </div>
                 </div>
                 <div class="apps-row">
