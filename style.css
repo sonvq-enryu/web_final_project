@@ -1227,6 +1227,20 @@ body {
     }
 }
 
+.developer-apps{
+    height: 100%;
+    width: 200px;
+    margin-left: 50px
+}
+
+.developer-apps .apps-row{
+    padding: 8px;
+}
+.developer-apps .apps-row .app-card{
+    margin-bottom: 8px;
+}
+
+
 /* **********************************************************
                        END OF APPLICATION 
 *********************************************************/

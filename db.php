@@ -67,24 +67,6 @@
         return array('code'=>0, 'data'=>$data);
     }
 
-    function get_4_dev_apps($dev){
-        $conn = open_database();
-        $sql = "SELECT * FROM aplication WHERE developer = ? LIMIT 4";
-        $stm = $conn->prepare($sql);
-        $stm->bind_param("s",$dev);
-        if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
-        $result = $stm->get_result();
-        $data = array();
-
-        if($result->num_rows == 0) return array('code' => 2, 'error' => "Don't have any app");
-
-        while ($item = $result->fetch_assoc()){
-            $data[] = $item;
-        }
-
-        return array('code'=>0, 'data'=>$data);
-    }
-
 
 
     // POPULAR APPS

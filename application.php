@@ -31,8 +31,38 @@
         if(!$stm->execute()) die("Can't find app");
         $result = $stm->get_result();
         $item_app = $result->fetch_assoc();
+        $dev_apps = get_dev_apps($item_app['developer']);
 
-        $dev_app = get_4_dev_apps($item_app['developer']);
+        // SPLIT CONTENT
+        $similar = preg_split("/\+/", $item_app['content']);
+        $similar[0] = $similar[0].'+';
+        // foreach($data as $item){
+        //     $item = preg_replace('/^ /', '', $item);
+        //     if (preg_match('/Rated/', $item)){
+        //         $rate[] = $item;
+        //     }
+        //     else{
+        //         $cate[] = $item;
+        //     }
+        // }
+        //
+
+        if($dev_apps['code']!=0){
+            die($dev_apps['error']);
+        }
+
+        $dev_app = array();
+        $count = 0;
+        foreach($dev_apps['data'] as $item){
+            if($item['id'] != $id){
+                $count += 1;
+                $dev_app[] = $item;
+            }
+            if($count == 3){
+                break;
+            }
+        }
+
         $apps = get_all_apps();
 
         $result = array();
@@ -75,6 +105,42 @@
                 <li><a href="#about">About</a></li>
             </ul>
         </div>
+        <?php
+        if(count($dev_app) != 0){
+            ?>
+            <div class="my-3 developer-apps">
+                <div class="apps-menu">
+                    <div class="info-row">
+                        <h3>Same developer</h3>
+                    </div>
+                    <div class="apps-row">
+                        <?php
+                            foreach($dev_app as $item){
+                                ?>
+                                    <div class="app-card">
+                                        <div class="app-img">
+                                            <a href="application.php?id=<?= $item['id'] ?>"><img src="<?= $item['image'] ?>" /></a>
+                                        </div>
+                                        <div class="app-name">
+                                            <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
+                                        </div>
+                                        <div class="app-coop">
+                                            <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
+                                        </div>
+                                        <div class="rating">
+                                        <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
+                                        </div>
+                                    </div>
+                                <?php
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+        ?>
+
         <div class="my-3 container">
             <div class="app-page-header">
                 <?php
@@ -227,7 +293,15 @@
                 <div class="info-row">
                     <h2>Similar</h2>
                     <div>
-                    <a class='btn btn-success' href="seemore.php?id=2">See more</a>
+                    <?php
+                        $link = "seemore.php?Rated=".$similar[0];
+                        if($similar[1]){
+                            $link = $link."&cate=".$similar[1];
+                        }
+                        ?>
+                            <a class='btn btn-success' href="<?= $link ?>">See more</a>
+                        <?php
+                    ?>
                     </div>
                 </div>
                 <div class="apps-row">
@@ -257,7 +331,7 @@
                 <div class="info-row">
                     <h2>Maybe you might like</h2>
                     <div>
-                    <a class='btn btn-success' href="seemore.php?id=2">See more</a>
+                    <a class='btn btn-success' href="seemore.php">See more</a>
                     </div>
                 </div>
                 <div class="apps-row">
