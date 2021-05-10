@@ -38,16 +38,15 @@ function closeForm() {
     document.getElementById("login-form").style.display = "block";
 }
 
-function checkLoginInput(){
+function checkLoginInput() {
     let email = document.getElementById('login-email');
     let pass = document.getElementById('login-password');
     let loginError = document.getElementById('login-error-messege');
-    if (email.value == ""){
+    if (email.value == "") {
         loginError.innerHTML = "Please enter email";
         email.focus();
         return false
-    }
-    else if (pass.value == ""){
+    } else if (pass.value == "") {
         loginError.innerHTML = "Please enter password";
         pass.focus();
         return false
@@ -55,12 +54,12 @@ function checkLoginInput(){
     return true;
 }
 
-function clearLoginError(){
+function clearLoginError() {
     document.getElementById('login-error-messege').innerHTML = "";
 }
 
 
-function checkSignupInput(){
+function checkSignupInput() {
     let firstName = document.getElementById('first-name-sign-up');
     let lastName = document.getElementById('last-name-sign-up');
     let email = document.getElementById('email-sign-up');
@@ -69,32 +68,27 @@ function checkSignupInput(){
     let phoneNumber = document.getElementById('phone-number-sign-up');
     let signUpError = document.getElementById('signup-error-messege');
 
-    if (firstName.value == ""){
+    if (firstName.value == "") {
         signUpError.innerHTML = "Please enter first name";
         firstName.focus();
         return false;
-    }
-    else if (lastName.value == ""){
+    } else if (lastName.value == "") {
         signUpError.innerHTML = "Please enter last name";
         lastName.focus();
         return false
-    }
-    else if (email.value == ""){
+    } else if (email.value == "") {
         signUpError.innerHTML = "Please enter email";
         email.focus();
         return false
-    }
-    else if (password.value == ""){
+    } else if (password.value == "") {
         signUpError.innerHTML = "Please enter password";
         password.focus();
         return false
-    }
-    else if (confirmPassword.value != password.value){
+    } else if (confirmPassword.value != password.value) {
         signUpError.innerHTML = "Password doesn't match";
         confirmPassword.focus();
         return false
-    }
-    else if (phoneNumber.value == ""){
+    } else if (phoneNumber.value == "") {
         signUpError.innerHTML = "Please enter phone number";
         phoneNumber.focus();
         return false
@@ -106,7 +100,7 @@ function checkSignupInput(){
 }
 
 
-function clearSignupError(){
+function clearSignupError() {
     document.getElementById('signup-error-messege').innerHTML = "";
 }
 
@@ -222,20 +216,21 @@ window.onscroll = function() {
         sidebar.classList.remove('sticky-sidebar');
     }
 }
-function resize(){
+
+function resize() {
     screenWidth = window.outerWidth;
     screenHeight = window.outerHeight;
 }
 
-function reponsiveCategories(){
+function reponsiveCategories() {
     let dropdown_bar = document.getElementsByClassName('dropdown-bar');
     let dropdown_menu = document.getElementsByClassName('dropdown-menu')[0];
     let width = 178 * dropdown_bar.length;
-    width = width+5*dropdown_bar.length+"px";
+    width = width + 5 * dropdown_bar.length + "px";
     dropdown_menu.style.width = width;
 }
 
-function displayCreator(){
+function displayCreator() {
     let creator = document.querySelector('.creator');
     creator.style.display = 'block';
 }
@@ -277,48 +272,73 @@ document.querySelector("body.index").addEventListener('click', (e) => {
 
 let suggestions = document.getElementById('suggestions');
 
-function suggest(value){
+function suggest(value) {
     suggestions.innerHTML = '';
-    if (value.length < 2){
-          return
+    if (value.length < 2) {
+        return
     }
     sendRequest(value);
- }
+}
 
- function sendRequest(keyword){
-    let param = 'keyword='+encodeURIComponent(keyword);
+function sendRequest(keyword) {
+    let param = 'keyword=' + encodeURIComponent(keyword);
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'search.php', true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.addEventListener('load', e => {
-          if (xhr.readyState === 4 && xhr.status === 200){
-             let response = xhr.responseText;
-             response= JSON.parse(response);
-             console.log(response);
-             if (response.code === 0){
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            let response = xhr.responseText;
+            response = JSON.parse(response);
+            console.log(response);
+            if (response.code === 0) {
                 let data = response.data;
                 // console.log(data)
                 data.forEach(element => {
-                      const a = document.createElement('a');
-                      a.href = "application.php?id="+element['id'];
-                      a.innerHTML = element['name'];
-                      const li = document.createElement('li');
-                      li.className = 'list-group-item';
-                      li.appendChild(a)
-                      // li.innerHTML = element;
-                      suggestions.appendChild(li);
+                    const a = document.createElement('a');
+                    a.href = "application.php?id=" + element['id'];
+                    a.innerHTML = element['name'];
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item';
+                    li.appendChild(a)
+                        // li.innerHTML = element;
+                    suggestions.appendChild(li);
                 });
-             }
+            }
 
-          }
+        }
     });
     xhr.send(param);
     // console.log(xhr);
- }
+}
 
 
 
 
 /* **********************************************************
                         END OF SEARCH
+*********************************************************/
+/* **********************************************************
+                        LIMIT FILE UPLOAD SIZE
+*********************************************************/
+function Filevalidation() {
+    const fi = document.getElementById('apk');
+    // Check if any file is selected.
+    if (fi.files.length > 0) {
+        for (const i = 0; i <= fi.files.length - 1; i++) {
+
+            const fsize = fi.files.item(i).size;
+            const file = Math.round((fsize / 1024));
+            // The size of the file.
+            if (file >= 104857600) {
+                alert(
+                    "File too Big, please select a file less than 4mb");
+            } else {
+                document.getElementById('size').innerHTML = '<b>' +
+                    file + '</b> KB';
+            }
+        }
+    }
+}
+/* **********************************************************
+                        END OF LIMIT FILE UPLOAD SIZE
 *********************************************************/
