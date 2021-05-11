@@ -739,15 +739,15 @@ ul.menu li a:hover {
     color: red;
 }
 
-.apps-menu {
+.flex-container .content .apps-menu {
     display: block;
 }
 
-.apps-menu .info-row {
+.flex-container .content .apps-menu .info-row {
     margin-top: 20px;
 }
 
-.apps-menu .info-row h2 {
+.flex-container .content .apps-menu .info-row h2 {
     display: inline-block;
     width: 565px;
     font-size: 28px;
@@ -755,11 +755,11 @@ ul.menu li a:hover {
     line-height: 39px;
 }
 
-.apps-menu .info-row div {
+.flex-container .content .apps-menu .info-row div {
     display: inline-block;
 }
 
-.apps-menu .info-row div a {
+.flex-container .content .apps-menu .info-row div a {
     position: relative;
     left: 870px;
     margin-left: 32px;
@@ -774,11 +774,11 @@ ul.menu li a:hover {
     cursor: pointer;
 }
 
-.apps-menu .info-row div a:hover {
+.flex-container .content .apps-menu .info-row div a:hover {
     background-color: #41691f;;
 }
 
-.apps-menu .apps-row {
+.flex-container .content .apps-menu .apps-row {
     min-width: 850px;
     margin-top: 12px;
     margin-bottom: 12px;
@@ -860,47 +860,29 @@ ul.menu li a:hover {
 }
 
 @media only screen and (max-width: 1815px) {
-    .apps-menu .info-row div a {
+    .flex-container .content .apps-menu .info-row div a {
         left: 695px;
     }
-    .apps-menu .apps-row .app-card:nth-last-child(1) {
+    .flex-container .content .apps-menu .apps-row .app-card:nth-last-child(1) {
         display: none;
     }
 
-    .recommend-app .apps-menu .info-row div a {
-        left: 0;
-    }
-    .recommend-app .apps-menu .apps-row .app-card:nth-last-child(1) {
-        display: none;
-    }
 }
 
 @media only screen and (max-width: 1642px) {
-    .apps-menu .info-row div a {
+    .flex-container .content .apps-menu .info-row div a {
         left: 523px;
     }
-    .apps-menu .apps-row .app-card:nth-last-child(2) {
-        display: none;
-    }
-    .recommend-app .apps-menu .info-row div a {
-        left: -100px;
-    }
-    .recommend-app .apps-menu .apps-row .app-card:nth-last-child(2) {
+    .flex-container .content .apps-menu .apps-row .app-card:nth-last-child(2) {
         display: none;
     }
 }
 
 @media only screen and (max-width: 1468px) {
-    .apps-menu .info-row div a {
+    .flex-container .content .apps-menu .info-row div a {
         left: 348px;
     }
-    .apps-menu .apps-row .app-card:nth-last-child(3) {
-        display: none;
-    }
-    .recommend-app .apps-menu .info-row div a {
-        left: -200px;
-    }
-    .recommend-app .apps-menu .apps-row .app-card:nth-last-child(3) {
+    .flex-container .content .apps-menu .apps-row .app-card:nth-last-child(3) {
         display: none;
     }
 }
@@ -908,31 +890,19 @@ ul.menu li a:hover {
 
 
 @media only screen and (max-width: 1294px) {
-    .apps-menu .info-row div a {
+    .flex-container .content .apps-menu .info-row div a {
         left: 175px;
     }
-    .apps-menu .apps-row .app-card:nth-last-child(4) {
-        display: none;
-    }
-    .recommend-app .apps-menu .info-row div a {
-        left: -300px;
-    }
-    .recommend-app .apps-menu .apps-row .app-card:nth-last-child(4) {
+    .flex-container .content .apps-menu .apps-row .app-card:nth-last-child(4) {
         display: none;
     }
 }
 
 @media only screen and (max-width: 1120px) {
-    .apps-menu .info-row div a {
+    .flex-container .content .apps-menu .info-row div a {
         left: 0px;
     }
-    .apps-menu .apps-row .app-card:nth-last-child(5) {
-        display: none;
-    }
-    .recommend-app .apps-menu .info-row div a {
-        left: -400px;
-    }
-    .recommend-app .apps-menu .apps-row .app-card:nth-last-child(5) {
+    .flex-container .content .apps-menu .apps-row .app-card:nth-last-child(5) {
         display: none;
     }
 }
@@ -988,6 +958,7 @@ body {
 }
 
 .index .container {
+    min-width: 720px;
     width: 720px;
     height: 100%;
     background-color: #ffffff;
@@ -1194,6 +1165,86 @@ body {
 .review .user-review{
     border-bottom: 1px solid #d6d6d6;
 }
+
+
+.recommend-app .apps-menu{
+
+    margin-bottom: 8px;
+}
+
+.recommend-app .apps-menu .info-row div{
+    display: inline-block;
+    margin-left: 295px
+    
+}
+
+.recommend-app .apps-menu .info-row{
+    margin-bottom: 6px;
+    min-width: 700px;
+    width: 700px;
+}
+
+.recommend-app .apps-menu .info-row div a{
+    position: relative;
+    background-color: #689f38;
+    color: white;
+    line-height: 30px;
+    border-radius: 4px;
+    outline: none;
+    border: 1px;
+    cursor: pointer;
+}
+
+.recommend-app .apps-menu .info-row div a:hover {
+    background-color: #41691f;;
+}
+
+.recommend-app .apps-menu .info-row h2{
+    display: inline-block;
+    width: 300px;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 39px;
+}
+.recommend-app{
+    margin:auto;
+    min-width: 700px;
+    width: 700px;
+    margin-left: 70px;
+}
+
+@media only screen and (max-width: 1815px) {
+    .recommend-app .apps-menu .info-row div{
+        margin-left: 115px
+    }
+    .recommend-app .apps-menu .apps-row .app-card:nth-last-child(1) {
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width: 1642px) {
+    .recommend-app .apps-menu .info-row div{
+        display: none;
+    }
+    .recommend-app .apps-menu .apps-row .app-card:nth-last-child(2) {
+        display: none;
+    }
+}
+
+.developer-apps{
+    height: 100%;
+    width: 200px;
+    margin-left: 50px
+}
+
+.developer-apps .apps-row{
+    padding: 8px;
+}
+.developer-apps .apps-row .app-card{
+    margin-bottom: 8px;
+}
+
 
 /* **********************************************************
                        END OF APPLICATION 

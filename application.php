@@ -12,18 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Index</title>
-    <style>
-
-        .recommend-app .apps-menu .info-row div a{
-            position:relative;
-            left: 0;
-        }
-
-        .recommend-app .apps-menu .apps-row{
-            /* min-width: 670px; */
-        }
-
-    </style>
 </head>
 <?php
     require_once 'db.php';
@@ -43,8 +31,69 @@
         if(!$stm->execute()) die("Can't find app");
         $result = $stm->get_result();
         $item_app = $result->fetch_assoc();
+        $dev_apps = get_dev_apps($item_app['developer']);
+
+        // SPLIT CONTENT
+        $similar = preg_split("/\+/", $item_app['content']);
+        $similar[0] = $similar[0].'+';
+        // foreach($data as $item){
+        //     $item = preg_replace('/^ /', '', $item);
+        //     if (preg_match('/Rated/', $item)){
+        //         $rate[] = $item;
+        //     }
+        //     else{
+        //         $cate[] = $item;
+        //     }
+        // }
+        //
+
+        if($dev_apps['code']!=0){
+            die($dev_apps['error']);
+        }
+
+        $dev_app = array();
+        $count = 0;
+        foreach($dev_apps['data'] as $item){
+            if($item['id'] != $id){
+                $count += 1;
+                $dev_app[] = $item;
+            }
+            if($count == 3){
+                break;
+            }
+        }
+
+        $apps = get_all_apps();
+
+        $result = array();
+        if($apps['code']!=0){
+            die($apps['error']);
+        }
+        $count = 0;
+        foreach($apps['data'] as $item){
+            if (strpos($item['content'],$item_app['content']) !== false && $id != $item['id']){
+                $count += 1;
+                $result[] = $item;
+            }
+            if($count == 4){
+                break;
+            }
+        }
+
+        $similar_app = array();
+        $similar_app['data'] = $result;
+
+        $random_app = array();
+        for($i=0;$i<4;$i++){
+            $random_num = rand(0,175);
+            $random_app[] = $apps['data'][$random_num];
+        }
+
     }
+
+    
 ?>
+
 <body class="index">
     <?php include 'index-template.php';?>
     <div class="content flex-container">
@@ -56,6 +105,42 @@
                 <li><a href="#about">About</a></li>
             </ul>
         </div>
+        <?php
+        if(count($dev_app) != 0){
+            ?>
+            <div class="my-3 developer-apps">
+                <div class="apps-menu">
+                    <div class="info-row">
+                        <h3>Same developer</h3>
+                    </div>
+                    <div class="apps-row">
+                        <?php
+                            foreach($dev_app as $item){
+                                ?>
+                                    <div class="app-card">
+                                        <div class="app-img">
+                                            <a href="application.php?id=<?= $item['id'] ?>"><img src="<?= $item['image'] ?>" /></a>
+                                        </div>
+                                        <div class="app-name">
+                                            <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
+                                        </div>
+                                        <div class="app-coop">
+                                            <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
+                                        </div>
+                                        <div class="rating">
+                                        <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
+                                        </div>
+                                    </div>
+                                <?php
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+        ?>
+
         <div class="my-3 container">
             <div class="app-page-header">
                 <?php
@@ -71,7 +156,13 @@
                         <div class="rating">
                             <div><?= $item_app['stars'] ?></div>
                             <span class="fa fa-star checked"></span>
-                            <button>Download</button>
+                            <?php
+                                if(isset($_SESSION['username']) && isset($_SESSION['fullname'])){
+                                    ?>
+                                        <button>Download</button>
+                                    <?php
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -202,137 +293,74 @@
                 <div class="info-row">
                     <h2>Similar</h2>
                     <div>
-                    <a class='btn btn-success' href="seemore.php?id=2">See more</a>
+                    <?php
+                        $link = "seemore.php?Rated=".$similar[0];
+                        if($similar[1]){
+                            $link = $link."&cate=".$similar[1];
+                        }
+                        ?>
+                            <a class='btn btn-success' href="<?= $link ?>">See more</a>
+                        <?php
+                    ?>
                     </div>
                 </div>
                 <div class="apps-row">
-                    <div class="app-card">
-                        <div class="app-img">
-                            <a href="#"><img src="./image/smuge_the_cat.jpg" /></a>
-                        </div>
-                        <div class="app-name">
-                            <a href="#">Tuấn</a>
-                        </div>
-                        <div class="app-coop">
-                            <a href="#">X</a>
-                        </div>
-                        <div class="rating">
-                        4.6<span class="fa fa-star checked"></span></p>
-                        </div>
-                    </div>
-                    <div class="app-card">
-                        <div class="app-img">
-                            <a href="#"><img src="./image/smuge_the_cat.jpg" /></a>
-                        </div>
-                        <div class="app-name">
-                            <a href="#">Tuấn</a>
-                        </div>
-                        <div class="app-coop">
-                            <a href="#">X</a>
-                        </div>
-                        <div class="rating">
-                        4.6<span class="fa fa-star checked"></span></p>
-                        </div>
-                    </div>
-                    <div class="app-card">
-                        <div class="app-img">
-                            <a href="#"><img src="./image/smuge_the_cat.jpg" /></a>
-                        </div>
-                        <div class="app-name">
-                            <a href="#">Tuấn</a>
-                        </div>
-                        <div class="app-coop">
-                            <a href="#">X</a>
-                        </div>
-                        <div class="rating">
-                        4.6<span class="fa fa-star checked"></span></p>
-                        </div>
-                    </div>
-                    <div class="app-card">
-                        <div class="app-img">
-                            <a href="#"><img src="./image/smuge_the_cat.jpg" /></a>
-                        </div>
-                        <div class="app-name">
-                            <a href="#">Tuấn</a>
-                        </div>
-                        <div class="app-coop">
-                            <a href="#">X</a>
-                        </div>
-                        <div class="rating">
-                        4.6<span class="fa fa-star checked"></span></p>
-                        </div>
-                    </div>
+                    <?php
+                        foreach($similar_app['data']  as $item){
+                            ?>
+                                <div class="app-card">
+                                    <div class="app-img">
+                                        <a href="application.php?id=<?= $item['id'] ?>"><img src="<?= $item['image'] ?>" /></a>
+                                    </div>
+                                    <div class="app-name">
+                                        <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
+                                    </div>
+                                    <div class="app-coop">
+                                        <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
+                                    </div>
+                                    <div class="rating">
+                                    <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
+                                    </div>
+                                </div>
+                            <?php
+                        }
+                    ?>
                 </div>
             </div>
             <div class="apps-menu">
                 <div class="info-row">
-                    <h2>Similar</h2>
+                    <h2>Maybe you might like</h2>
                     <div>
-                    <a class='btn btn-success' href="seemore.php?id=2">See more</a>
+                    <a class='btn btn-success' href="seemore.php">See more</a>
                     </div>
                 </div>
                 <div class="apps-row">
-                    <div class="app-card">
-                        <div class="app-img">
-                            <a href="#"><img src="./image/smuge_the_cat.jpg" /></a>
-                        </div>
-                        <div class="app-name">
-                            <a href="#">Tuấn</a>
-                        </div>
-                        <div class="app-coop">
-                            <a href="#">X</a>
-                        </div>
-                        <div class="rating">
-                        4.6<span class="fa fa-star checked"></span></p>
-                        </div>
-                    </div>
-                    <div class="app-card">
-                        <div class="app-img">
-                            <a href="#"><img src="./image/smuge_the_cat.jpg" /></a>
-                        </div>
-                        <div class="app-name">
-                            <a href="#">Tuấn</a>
-                        </div>
-                        <div class="app-coop">
-                            <a href="#">X</a>
-                        </div>
-                        <div class="rating">
-                        4.6<span class="fa fa-star checked"></span></p>
-                        </div>
-                    </div>
-                    <div class="app-card">
-                        <div class="app-img">
-                            <a href="#"><img src="./image/smuge_the_cat.jpg" /></a>
-                        </div>
-                        <div class="app-name">
-                            <a href="#">Tuấn</a>
-                        </div>
-                        <div class="app-coop">
-                            <a href="#">X</a>
-                        </div>
-                        <div class="rating">
-                        4.6<span class="fa fa-star checked"></span></p>
-                        </div>
-                    </div>
-                    <div class="app-card">
-                        <div class="app-img">
-                            <a href="#"><img src="./image/smuge_the_cat.jpg" /></a>
-                        </div>
-                        <div class="app-name">
-                            <a href="#">Tuấn</a>
-                        </div>
-                        <div class="app-coop">
-                            <a href="#">X</a>
-                        </div>
-                        <div class="rating">
-                        4.6<span class="fa fa-star checked"></span></p>
-                        </div>
-                    </div>
+                <?php
+                        foreach($random_app as $item){
+                            ?>
+                                <div class="app-card">
+                                    <div class="app-img">
+                                        <a href="application.php?id=<?= $item['id'] ?>"><img src="<?= $item['image'] ?>" /></a>
+                                    </div>
+                                    <div class="app-name">
+                                        <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
+                                    </div>
+                                    <div class="app-coop">
+                                        <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
+                                    </div>
+                                    <div class="rating">
+                                    <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
+                                    </div>
+                                </div>
+                            <?php
+                        }
+                    ?>
                 </div>
             </div>
         </div>
-            
     </div>
+    
+   
     
 </body>
 <script src="main.js"></script>
