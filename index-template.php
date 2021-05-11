@@ -35,10 +35,10 @@
                         <div id="user-dropdown-content" class="user-dropdown-content">
                             <h3><?=$fullname?><br><span><?=$username?></span></h3>
                             <ul>
-                                <li><img src="./image/user.svg"><a href="#">My Profile</a></li>
-                                <li><img src="./image/edit.svg"><a href="#">Edit Profile</a></li>
-                                <li><img src="./image/envelope.svg"><a href="#">Inbox</a></li>
-                                <li><img src="./image/settings.svg"><a href="#">Setting</a></li>
+                                <li><img src="./image/user.svg"><a href="editinfo.php">My Profile</a></li>
+                                <li><img src="./image/edit.svg"><a href="editinfo.php">Edit Infomation</a></li>
+                                <!-- <li><img src="./image/envelope.svg"><a href="#">Inbox</a></li> -->
+                                <li><img src="./image/settings.svg"><a href="chg-password.php">Change Password</a></li>
                                 <li><img src="./image/log-out.svg"><a href="logout.php">Logout</a></li>
                             </ul>
                         </div>

@@ -80,30 +80,30 @@
     <form onsubmit="return checkSignupInput()" action="" class='signup-form' id='signup-form'>
         <h1>Sign up</h1>
         <div class="txtb">
-            <input onclick="clearSignupError()" id="first-name-sign-up" type="text">
+            <input onclick="clearSignupError()" id="first-name-sign-up" type="text" name="r-firstname">
             <span data-placeholder="First name"></span>
         </div>
 
         <div class="txtb">
-            <input onclick="clearSignupError()" id="last-name-sign-up" type="text">
+            <input onclick="clearSignupError()" id="last-name-sign-up" type="text" name="r-lastname">
             <span data-placeholder="Last name"></span>
         </div>
 
         <div class="txtb">
-            <input onclick="clearSignupError()" id="email-sign-up" type="email">
+            <input onclick="clearSignupError()" id="email-sign-up" type="email" name="r-email">
             <span data-placeholder="Email"></span>
         </div>
 
         <div class="txtb">
-            <input onclick="clearSignupError()" id="password-sign-up" type="password">
+            <input onclick="clearSignupError()" id="password-sign-up" type="password" name="r-password">
             <span data-placeholder="Password"></span>
         </div>
         <div class="txtb">
-            <input onclick="clearSignupError()" id="confirm-password-sign-up" type="password">
+            <input onclick="clearSignupError()" id="confirm-password-sign-up" type="password" name="r-confirm-password">
             <span data-placeholder="Confirm Password"></span>
         </div>
         <div class="txtb">
-            <input onclick="clearSignupError()" id="phone-number-sign-up" type="text">
+            <input onclick="clearSignupError()" id="phone-number-sign-up" type="text" name="r-phone">
             <span data-placeholder="Phone number"></span>
         </div>
         <div class='gender'>

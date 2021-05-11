@@ -54,7 +54,6 @@
         }
     }
 
-    $app = array();
     if(isset($_GET['cate'])){
         $cate = $_GET['cate'];
         $apps = get_all_apps();

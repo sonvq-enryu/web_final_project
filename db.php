@@ -306,4 +306,85 @@
         return array("code" => 0, "message" => "Update information successful");
     }
 
+    function is_same_password($email, $old_password) {
+        $query = "select password from account where email = ?";
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param('s', $email);
+
+        if (!$stm->execute()) {
+            return false;
+        }
+        
+        $result = $stm->get_result();
+        $row = $result->fetch_assoc();
+        $hashed_pwd = $row['password'];
+
+        if (!password_verify($old_password, $hashed_pwd)) {
+            return false;
+        }
+        return true;
+    }
+
+
+    function change_password($email, $old_password, $new_password) {
+        if (!is_same_password($email, $old_password)) {
+            return array("code" => 2, "message" => "Password not matching"); 
+        }
+
+        $hashed_new_pwd = password_hash($new_password, PASSWORD_DEFAULT);
+
+        $query = "update account set password = ? where email = ?";
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param('ss', $hashed_new_pwd , $email);
+
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "Cannot execute command");
+        }
+
+        return array("code" => 0, "message" => "Change password successful");
+    }
+
+    function is_email_exist($email) {
+        $query = "select email from account where email = ?";
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param('s', $email);
+
+        if (!$stm->execute()) {
+            return true;
+        }
+
+        $result = $stm->get_result();
+        if ($result->num_rows > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+    function register($email, $password, $firstname, $lastname, $phone) {
+        if (is_email_exist($email)) {
+            return array("code" => 2, "message" => "Email existed");
+        }
+
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+
+        $query = "insert into account(firstname, lastname, email, password, phone, admin, activate) values (?,?,?,?,?,?,?)";
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param('sssssi', $firstname, $lastname, $email, $hash, $phone, 0, 1);
+
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "Cannot execute command");
+        }
+
+        return array("code" => 0, "message" => "Register successful, using account to login");
+    }
 ?>
