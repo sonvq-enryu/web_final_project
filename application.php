@@ -24,7 +24,7 @@
 
     if(isset($_GET['id'])) {
         $id = $_GET['id'];
-        $sql = "SELECT * FROM aplication WHERE id = ?";
+        $sql = "SELECT * FROM application WHERE id = ?";
         $conn = open_database();
         $stm = $conn->prepare($sql);
         $stm->bind_param("s",$id);

@@ -31,7 +31,6 @@
     require_once('db.php');
     if (isset($_POST['email']) && isset($_POST['password'])) {
         $result = login($_POST['email'], $_POST['password']);
-        echo "$result";
         if ($result['code'] == 0) {
             $_SESSION['username'] = $_POST['email'];
             $_SESSION['fullname'] = $result['data']['firstname'] .' '. $result['data']['lastname'];

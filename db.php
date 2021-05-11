@@ -13,7 +13,7 @@
     function get_all_apps(){
         $conn = open_database();
 
-        $sql = "SELECT * FROM aplication";
+        $sql = "SELECT * FROM application";
         $stm = $conn->prepare($sql);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
@@ -31,7 +31,7 @@
     function get_all_idandname_apps(){
         $conn = open_database();
 
-        $sql = "SELECT id,name FROM aplication";
+        $sql = "SELECT id,name FROM application";
         $stm = $conn->prepare($sql);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
@@ -51,7 +51,7 @@
 
     function get_dev_apps($dev){
         $conn = open_database();
-        $sql = "SELECT * FROM aplication WHERE developer = ?";
+        $sql = "SELECT * FROM application WHERE developer = ?";
         $stm = $conn->prepare($sql);
         $stm->bind_param("s",$dev);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
@@ -74,7 +74,7 @@
     function get_popular_top_apps(){
         $conn = open_database();
 
-        $sql = "SELECT * FROM aplication ORDER BY install DESC LIMIT 9";
+        $sql = "SELECT * FROM application ORDER BY install DESC LIMIT 9";
         $stm = $conn->prepare($sql);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
@@ -92,7 +92,7 @@
     function get_popular_apps(){
         $conn = open_database();
 
-        $sql = "SELECT * FROM aplication ORDER BY install DESC LIMIT 50";
+        $sql = "SELECT * FROM application ORDER BY install DESC LIMIT 50";
         $stm = $conn->prepare($sql);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
@@ -112,7 +112,7 @@
     function get_recommend_top_apps(){
         $conn = open_database();
 
-        $sql = "SELECT * FROM aplication ORDER BY stars DESC LIMIT 9";
+        $sql = "SELECT * FROM application ORDER BY stars DESC LIMIT 9";
         $stm = $conn->prepare($sql);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
@@ -130,7 +130,7 @@
     function get_recommend_apps(){
         $conn = open_database();
 
-        $sql = "SELECT * FROM aplication ORDER BY stars DESC LIMIT 50";
+        $sql = "SELECT * FROM application ORDER BY stars DESC LIMIT 50";
         $stm = $conn->prepare($sql);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
@@ -150,7 +150,7 @@
     function get_lastest_top_apps(){
         $conn = open_database();
 
-        $sql = "SELECT * FROM aplication ORDER BY updated DESC LIMIT 9";
+        $sql = "SELECT * FROM application ORDER BY updated DESC LIMIT 9";
         $stm = $conn->prepare($sql);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
@@ -168,7 +168,7 @@
     function get_lastest_apps(){
         $conn = open_database();
 
-        $sql = "SELECT * FROM aplication ORDER BY updated DESC LIMIT 50";
+        $sql = "SELECT * FROM application ORDER BY updated DESC LIMIT 50";
         $stm = $conn->prepare($sql);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
@@ -190,7 +190,7 @@
         $content = array();
         $age = array();
 
-        $sql = "select content from aplication";
+        $sql = "select content from application";
         $conn = open_database();
         $stm = $conn->prepare($sql);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
@@ -250,7 +250,7 @@
     function search($keyword) {
         $keyword = '%'. $keyword .'%';
         
-        $query = 'select * from aplication where name like ?';
+        $query = 'select * from application where name like ?';
         $conn = open_database();
 
         $stm = $conn->prepare($query);
