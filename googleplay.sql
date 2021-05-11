@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 10, 2021 lúc 05:49 PM
+-- Thời gian đã tạo: Th5 11, 2021 lúc 06:50 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -31,6 +31,7 @@ USE `googleplay`;
 --
 
 CREATE TABLE `account` (
+  `id` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `firstname` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `lastname` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
@@ -45,16 +46,17 @@ CREATE TABLE `account` (
 -- Đang đổ dữ liệu cho bảng `account`
 --
 
-INSERT INTO `account` (`firstname`, `lastname`, `email`, `password`, `phone`, `admin`, `activated`, `activate_token`) VALUES
-('Lê', 'Nguyễn Minh Tuấn', 'lnmtuan1702@gmail.com', '$2y$10$UA6d8dqFhh5T1WWWNZGeDetmVrMw8rGwndxxQijdKfBdte8z4l9wm', '0901995401', '0', b'1', '');
+INSERT INTO `account` (`id`, `firstname`, `lastname`, `email`, `password`, `phone`, `admin`, `activated`, `activate_token`) VALUES
+('', 'Vo', 'Quoc Son', 'voquocson@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '', '0', b'1', NULL),
+('1', 'Lê', 'Nguyễn Minh Tuấn', 'lnmtuan1702@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '0901995401', '0', b'1', '');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `aplication`
+-- Cấu trúc bảng cho bảng `application`
 --
 
-CREATE TABLE `aplication` (
+CREATE TABLE `application` (
   `id` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `price` int(11) DEFAULT NULL,
@@ -69,10 +71,10 @@ CREATE TABLE `aplication` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `aplication`
+-- Đang đổ dữ liệu cho bảng `application`
 --
 
-INSERT INTO `aplication` (`id`, `name`, `price`, `stars`, `updated`, `size`, `install`, `developer`, `image`, `content`, `description`) VALUES
+INSERT INTO `application` (`id`, `name`, `price`, `stars`, `updated`, `size`, `install`, `developer`, `image`, `content`, `description`) VALUES
 ('A0', 'Ta Là Quan Lão Gia - 100D', 0, 4.4, '1616626800', '27M', 1000000, '100 Game', 'image/app/A0.jpg', 'Rated for 12+\nModerate Violence, Sexual Innuendo', ''),
 ('A1', 'MU: Vượt Thời Đại - Funtap', 0, 4, '1616968800', '98M', 1000000, 'Ambrine Studio', 'image/app/A1.jpg', 'Rated for 12+\nModerate Violence, Horror', ''),
 ('A10', 'Evony: The King\'s Return', 0, 4.3, '1618178400', '74M', 10000000, 'TG Inc.', 'image/app/A10.jpg', 'Rated for 12+\nModerate Violence', ''),
@@ -253,6 +255,30 @@ INSERT INTO `aplication` (`id`, `name`, `price`, `stars`, `updated`, `size`, `in
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `comment_rating`
+--
+
+CREATE TABLE `comment_rating` (
+  `user_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `application_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `rating` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `comment_rating`
+--
+
+INSERT INTO `comment_rating` (`user_id`, `application_id`, `comment`, `rating`) VALUES
+('', 'A51', 'mất thời gian', 1),
+('1', 'A20', 'không hiểu sao tôi lại tải về', 2),
+('1', 'A28', 'game tệ', 4),
+('1', 'A4', 'game như cái đầu buồi vậy', 1),
+('1', 'A51', 'cũng được', 5);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `pending_application`
 --
 
@@ -277,19 +303,40 @@ CREATE TABLE `pending_application` (
 -- Chỉ mục cho bảng `account`
 --
 ALTER TABLE `account`
-  ADD PRIMARY KEY (`email`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `aplication`
+-- Chỉ mục cho bảng `application`
 --
-ALTER TABLE `aplication`
+ALTER TABLE `application`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `comment_rating`
+--
+ALTER TABLE `comment_rating`
+  ADD PRIMARY KEY (`user_id`,`application_id`),
+  ADD KEY `application_id` (`application_id`);
 
 --
 -- Chỉ mục cho bảng `pending_application`
 --
 ALTER TABLE `pending_application`
   ADD PRIMARY KEY (`app_id`);
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `comment_rating`
+--
+ALTER TABLE `comment_rating`
+  ADD CONSTRAINT `comment_rating_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`),
+  ADD CONSTRAINT `comment_rating_ibfk_2` FOREIGN KEY (`application_id`) REFERENCES `application` (`id`),
+  ADD CONSTRAINT `comment_rating_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`),
+  ADD CONSTRAINT `comment_rating_ibfk_4` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`),
+  ADD CONSTRAINT `comment_rating_ibfk_5` FOREIGN KEY (`application_id`) REFERENCES `application` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

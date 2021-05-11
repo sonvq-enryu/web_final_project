@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="style.css">
     <title>Index</title>
 </head>
+<style>
+   
+</style>
 <?php
     require_once 'db.php';
     $content = get_content();
@@ -24,7 +27,7 @@
 
     if(isset($_GET['id'])) {
         $id = $_GET['id'];
-        $sql = "SELECT * FROM aplication WHERE id = ?";
+        $sql = "SELECT * FROM application WHERE id = ?";
         $conn = open_database();
         $stm = $conn->prepare($sql);
         $stm->bind_param("s",$id);
@@ -89,6 +92,10 @@
             $random_app[] = $apps['data'][$random_num];
         }
 
+    }
+
+    if(isset($_POST['rating'])){
+        echo "True";
     }
 
     
@@ -219,70 +226,53 @@
                         </div>
                     </div>
                     <div class="review">
-                        <div class="user-review row">
-                            <div class="user-profile col-2">
-                                <img class="user-img" src="./image/smuge_the_cat.jpg">
-                            </div>
-                            <div class="user-name col-10">
-                                <h6 style="font-weight: bold">Lê Nguyễn Minh Tuấn<h6>
-                                <div class="user-rating">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
+                        <br></br>
+                        <?php
+                            if(isset($_SESSION['fullname'])){
+                                ?><a class="write-review btn btn-outline-secondary" href="#" data-toggle="modal" data-target="#review-section">Write a review</a><?php
+                            }
+                        ?>
+                        <br></br>
+                        <?php
+                        $comment_rating = select_comment_review($item_app['id']);
+                        if($comment_rating['code']!=0) die($comment_rating['error']);
+                        foreach($comment_rating['data'] as $item){
+                            $sql = "SELECT firstname, lastname FROM account WHERE id = ?";
+                            $conn = open_database();
+                            $stm = $conn->prepare($sql);
+                            $stm->bind_param("s",$item['user_id']);
+                            if(!$stm->execute()) die("Can't find user");
+                            $result = $stm->get_result();
+                            $user = $result->fetch_assoc();
+                            $fullname = $user['firstname']." ".$user['lastname'];
+                            ?>
+                            <div class="user-review row">
+                                <div class="user-profile col-2">
+                                    <img class="user-img" src="./image/smuge_the_cat.jpg">
                                 </div>
-                                <p>Tạm</p>
-                            </div>
-                        </div>
-                        <div class="user-review row">
-                            <div class="user-profile col-2">
-                                <img class="user-img" src="./image/smuge_the_cat.jpg">
-                            </div>
-                            <div class="user-name col-10">
-                                <h6 style="font-weight: bold">Lê Nguyễn Minh Tuấn<h6>
-                                <div class="user-rating">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
+                                <div class="user-name col-10">
+                                    <h6 style="font-weight: bold"><?=$fullname?><h6>
+                                    <div class="user-rating">
+                                        <?php
+                                        for($i=0;$i<$item['rating'];$i++){
+                                            ?>
+                                                <span class="fa fa-star checked"></span>
+                                            <?php
+                                        }
+                                        for($i=0;$i<5-$item['rating'];$i++){
+                                            ?>
+                                                <span class="fa fa-star"></span>
+                                            <?php
+                                        }
+                                        ?>
+                                    </div>
+                                    <p><?= $item['comment'] ?></p>
                                 </div>
-                                <p>Như lồn</p>
                             </div>
-                        </div>
-                        <div class="user-review row">
-                            <div class="user-profile col-2">
-                                <img class="user-img" src="./image/smuge_the_cat.jpg">
-                            </div>
-                            <div class="user-name col-10">
-                                <h6 style="font-weight: bold">Lê Nguyễn Minh Tuấn<h6>
-                                <div class="user-rating">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                </div>
-                                <p>Tuyệt vời</p>
-                            </div>
-                        </div>
-                        <div class="user-review row">
-                            <div class="user-profile col-2">
-                                <img class="user-img" src="./image/smuge_the_cat.jpg">
-                            </div>
-                            <div class="user-name col-10">
-                                <h6 style="font-weight: bold">Lê Nguyễn Minh Tuấn<h6>
-                                <div class="user-rating">
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>
-                                </div>
-                                <p>Như cái buồi đầu</p>
-                            </div>
-                        </div>
+                            <?php
+                        }
+                        
+                        ?>
                     </div>
                 </div>
                     <?php
@@ -360,7 +350,68 @@
         </div>
     </div>
     
-   
+<?php
+if(isset($_SESSION['fullname'])){
+    ?>
+        <!-- New file dialog -->
+    <div class="modal fade" id="review-section">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" action="db.php">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Bài đánh giá của <?= $_SESSION['fullname'] ?></h4>
+                    </div>
+                    <div class="modal-body">
+                    <div class="form-group">
+                        <p>Đây là những bài đánh giá công khai và có thể chỉnh sửa. Mọi người có thể xem được ảnh và tên Tài khoản của bạn. Nhà phát triển có thể xem được thông tin về quốc gia và thiết bị của bạn (chẳng hạn như ngôn ngữ, kiểu máy và phiên bản hệ điều hành). Họ cũng có thể dùng những thông tin này để trả lời bạn.</p>
+                    </div>
+                    <div class="form-group row">
+                        <div class="apps-img col-3">
+                            <img  src="<?= $item_app['image'] ?>">
+                            <div><?= $item_app['name'] ?></div>
+                        </div>
+                        <div class="apps-cmt col-9">
+                            <textarea rows="10" name="user-own-review" id="user-own-review" class="form-control" placeholder="Hãy cho người khác biết cảm nhận của bạn về ứng dụng này. Bạn có đề xuất ứng dụng này không và vì sao?"></textarea>
+                            <div class="small-alert">
+                                Phần lớn các bài đánh giá hữu ích đều có từ 100 từ trở lên
+                            </div>
+                            <br></br>
+                            <div id="rating">
+                                <input type="radio" id="star5" name="rating" value="5" />
+                                <label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                            
+                                <input type="radio" id="star4" name="rating" value="4" />
+                                <label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                            
+                                <input type="radio" id="star3" name="rating" value="3" />
+                                <label class = "full" for="star3" title="Meh - 3 stars"></label>
+                            
+                                <input type="radio" id="star2" name="rating" value="2" />
+                                <label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                            
+                                <input type="radio" id="star1" name="rating" value="1" />
+                                <label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                            </div>
+                        </div>
+                    </div>
+                        <p id="error-msg-file-name"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="path" value="application.php?id=<?=$item_app['id']?>">
+                        <input type="hidden" name="user-id" value="<?= $_SESSION['id'] ?>">
+                        <input type="hidden" name="application-id" value="<?=$item_app['id']?>">
+                        <button type="button" class="btn" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-success">Gửi</button>
+                    </div>            
+                </form>
+            </div>
+        </div>
+    </div>
+        <?php
+    }
+    ?>
+    
+ 
     
 </body>
 <script src="main.js"></script>
