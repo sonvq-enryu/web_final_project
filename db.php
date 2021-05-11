@@ -273,7 +273,7 @@
     }
 
     function get_user_info($email) {
-        $query = 'select * from account where email = ?';
+        $query = "select * from account where email = ?";
         $conn = open_database();
 
         $stm = $conn->prepare($query);
@@ -285,11 +285,23 @@
 
         $result = $stm->get_result();
         if ($result->num_rows > 0) {
-            // return array("code" => 0, "data" => $result->fetch_assoc());
-            $data = $result->fetch_assoc();
-        } 
+            return array("code" => 0, "data" => $result->fetch_assoc());
+        }
+    }
 
-        return array("code" => 0, "data" => $data);
+
+    function update_user_info($email, $fname, $lname, $phone) {
+        $query = "update account set firstname = ?, lastname = ?, phone = ? where email = ?";
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param('ssss', $fname, $lname, $phone, $email);
+
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "Cannot execute command");
+        }
+        
+        return array("code" => 0, "message" => "Update information successful");
     }
 
 ?>

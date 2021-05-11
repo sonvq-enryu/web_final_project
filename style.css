@@ -425,6 +425,11 @@ transform: translate(-50%, -50%); */
     display: none;
 }
 
+#update-error-message {
+    text-align: center;
+    color: #fc2727
+}
+
 /* End edit form css */
 
 /* Top up moeny css */

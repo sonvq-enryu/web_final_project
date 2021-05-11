@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +20,7 @@
     </style>
 </head>
 <?php
-    require_once 'db.php';
+    require_once 'db.php'; 
 
     $popular_app = get_popular_top_apps();
     if($popular_app['code']!=0){
@@ -54,9 +57,6 @@
             </ul>
         </div>
         <div class="content">
-            <!-- <div class="application-box">
-                <iframe class="iframe-app" src="application.html"></iframe>
-            </div> -->
             <div class="apps-menu">
                 <div class="info-row">
                     <h2>Popular Apps</h2>

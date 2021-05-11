@@ -1,20 +1,3 @@
-// document.getElementById('edit-btn').addEventListener('click', () => {
-//     let fn = document.getElementById('firstname');
-//     let ln = document.getElementById('lastname');
-//     let phone = document.getElementById('phone');
-//     let nation = document.getElementById('nationality');
-//     let submitBtn = document.getElementById('edit-submit-btn');
-//     if (fn.readOnly) {
-//         fn.readOnly = false;
-//         ln.readOnly = false;
-//         phone.readOnly = false;
-//         nation.disabled = false;
-//         submitBtn.disabled = false;
-//     }
-//     document.getElementById('edit-btn').style.display = 'none';
-// });
-
-
 // login - signup form
 $(document).ready(() => {
     $(".txtb input").on("focus", function() {
@@ -162,19 +145,6 @@ function clearError() {
 }
 
 
-//  edit infor css
-// document.getElementById('e-info-btn').addEventListener('click', (e) => {
-//     editformBtn(true);
-// });
-
-// document.getElementById('s-info-btn').addEventListener('click', (e) => {
-//     editformBtn(false);
-// });
-
-// document.getElementById('c-info-btn').addEventListener('click', (e) => {
-//     editformBtn(false);
-// });
-
 function editformBtn(condition) {
     if (condition) {
         scBtnDisplay = 'block';
@@ -240,17 +210,20 @@ function ClickUserIcon() {
     document.getElementById("user-dropdown-content").classList.toggle('show');
 }
 
-document.querySelector("body.index").addEventListener('click', (e) => {
-    if (!e.target.matches('img.user-img')) {
-        let dropdowns = document.getElementsByClassName("user-dropdown-content");
-        for (let i = 0; i < dropdowns.length; i++) {
-            let openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
+if (window.location.pathname == '/web_final_project/index.php' || window.location.pathname == '/web_final_project/seemore.php') {
+    document.querySelector("body.index").addEventListener('click', (e) => {
+        console.log(e);
+        if (!e.target.matches('img.user-img')) {
+            let dropdowns = document.getElementsByClassName("user-dropdown-content");
+            for (let i = 0; i < dropdowns.length; i++) {
+                let openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
             }
         }
-    }
-});
+    });
+}
 
 
 
