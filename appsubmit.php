@@ -1,3 +1,7 @@
+<?php
+    require_once('dev_func.php');
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -179,7 +183,7 @@
         }
         
         .appsub-label {
-            margin-left: 10px;
+            margin-left: 18%;
         }
         
         .appsub-input:focus {
@@ -201,11 +205,70 @@
             line-height: 26px;
             margin-bottom: 10px;
         }
+        
+        .appsub-radio {
+            margin-left: 20%;
+            transform: scale(2);
+        }
     </style>
 
 </head>
 
 <body>
+<?php
+    $error = '';
+    $appname = '';
+    $desc = '';
+    $price = '';
+    $appcategory = '';
+    $date = date("dmy");
+    $status = '';
+    
+    $developer = 'aaaaa';
+    $message ='';
+    if (isset($_POST['appname']) && isset($_POST['price']) && isset($_POST['desc']) ){
+        $appname = $_POST['appname'];
+        $price = $_POST['price'];
+        $desc = $_POST['desc'];
+        $appcategory = $_POST['appcategory'];
+        $size = (($_FILES['apk']['size']/1024)/1024);
+        $status = 'Draft';
+        if (empty($appname)) {
+            $error = 'Hãy nhập tên ứng dụng';
+        }
+        else if (intval($price) < 0) {
+            $error = 'Giá của sản phẩm không hợp lệ';
+        }
+        else if (intval($price) % 10000 != 0) {
+            $error = 'Giá ứng dụng là bội số của 10,000 đ';
+        }
+        else if (empty($desc)) {
+            $error = 'Hãy nhập mô tả của ứng dụng';
+        }else if (empty($appcategory)) {
+            $error = 'Hãy chọn thể loại của ứng dụng';
+        }
+        else if ($_FILES["icon"]["error"] != UPLOAD_ERR_OK) {
+            $error = 'Vui lòng upload ảnh của sản phẩm';
+        }else if ($_FILES["apk"]["error"] != UPLOAD_ERR_OK) {
+            $error = 'Vui lòng upload apk của ứng dụng';
+        }
+        else {
+            $result = upload_app($developer,$appname,$price,$date,$size, $_FILES['icon']['name'],$appcategory,$desc,$status, $_FILES['apk']['name']);
+            if($result['code'] == 0){
+                $message = 'Add product success';
+                $name = '';
+                $price = '';
+                $desc = '';
+                $appcategory = '';
+                
+            }
+            else{
+                $error = 'An error occured. Please try again later';
+            }
+            
+        }
+    }
+?>
     <div class='dev-console'>
         <div class="dev-console-header">
             <div class="header-img">
@@ -241,51 +304,26 @@
             <div class="dev-console-img">
                 <img src="./image/googleplayconsole.png" alt="" />Google Play Console
             </div>
-            <a class="fa fa-android" href="#"> All applications</a>
+            <a class="fa fa-android" href="developer.html"> All applications</a>
             <a class="fa fa-gamepad" href="#"> Game services</a>
             <a class="fa fa-credit-card"> Order management</a>
             <a class="fa fa-download" href="#"> Download reports</a>
             <a class='fa fa-warning' href="#"> Alerts</a>
             <a class="fa fa-gear" href="#"> Settings</a>
         </div>
-        <!-- <div class="content">
-            <div class="dev-menu">
-                <div class="dev-row">
-                    <h2>Popular Apps</h2>
-                    <div>
-                        <a class='btn btn-success' href="#">CREATE APPLICATION</a>
-                    </div>
-                </div>
-                <div class="dev-row">
-                    <div class="dev-card">
-
-                    </div>
-                </div>
-            </div>
-
-        </div> -->
+        
         <div class="dev-content-app">
             <div class="dev-menu">
                 <div class="dev-row">
                     <h2 class="app-title">Create app</h2>
                     <h3>App details</h3>
-                    <form method="post">
-
-                        <!-- <label class="appsub-label" for="AppName">App Name </label><input class="appsub-input" type="text" id="appname" name="appname"><br><br>
-
-                        <label class="appsub-label" for="description">Description</label> <textarea class="appsub-textarea" name="description"></textarea><br><br>
-
-                        <label class="appsub-label" for="Price">Price </label><input class="appsub-price" type="number" id="price" name="price" placeholder="0"><br><br>
-
-                        <label class="appsub-label" for="appicon">App Icon</label><input name="icon" type="file" class="appsub-input" id="icon" accept="image/gif, image/jpeg, image/png, image/bmp"><br><br>
-
-                        <label class="appsub-label" for="appapk">App Apk</label><input name="apk" type="file" class="appsub-input" id="apk" accept=".zip, .rar"><br><br> -->
+                    <form method="POST" action="" novalidate enctype="multipart/form-data">
                         <label class="appsubmit-label">
                             App Name <input class="appsub-input" type="text" id="appname" name="appname" />
                           </label>
 
                         <label class="appsubmit-label">
-                            Description <textarea class="appsub-textarea" name="description"></textarea>
+                            Description <textarea class="appsub-textarea" name="desc"></textarea>
                           </label>
 
                         <label class="appsubmit-label">
@@ -295,11 +333,39 @@
                         <label class="appsubmit-label">
                             App Icon <input name="icon" type="file" class="appsub-input" id="icon" accept="image/gif, image/jpeg, image/png, image/bmp">
                         </label>
+                        
+                        <label class="appsubmit-label">
+                            Categories
+                            <select class="appsub-input" name="appcategory" id="appcategory">
+                                <option value="Extreme Violence">Extreme Violence</option>
+                                <option value="Fear">Fear</option>
+                                <option value="Gambling">Gambling</option>
+                                <option value="Horror">Horror</option>
+                                <option value="Implied Violence">Implied Violence</option>
+                                <option value="Mild Swearing">Mild Swearing</option>
+                                <option value="Mild Violence">Mild Violence</option>
+                                <option value="Moderate Violence">Moderate Violence</option>
+                                <option value="Nudity">Nudity</option>
+                                <option value="Sex">Sex</option>
+                                <option value="Sexual Innuendo">Sexual Innuendo</option>
+                                <option value="Simulated Gambling">Simulated Gambling</option>
+                                <option value="Strong Violence">Strong Violence</option>
+                                <option value="Varies with device">Varies with device</option>
+                                
+                            </select>
+                        </label>
 
                         <label class="appsubmit-label">
                             App Apk <input name="apk" type="file" class="appsub-input" id="apk" accept=".zip, .rar" onchange="Filevalidation()">
                         </label>
-
+                        <?php
+                            if (!empty($error)) {
+                                echo "<div class='alert alert-danger appsub-input'>$error</div>";
+                            }
+                            if (!empty($message)){
+                                echo "<div class='alert alert-success appsub-input'>$message</div>";
+                            }
+                        ?>
                         <button type="submit" class="devcreatebtn">Submit Application</button>
                     </form>
                 </div>
