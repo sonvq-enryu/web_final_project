@@ -1,3 +1,10 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['username'])) {
+        header("Location: loginform.php");
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +21,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Profile</title>
     <style>
-        .index.container.mt-5 {
+        .container.mt-5 {
             border-radius: 6px;
             min-width: 520px;
             height: 700px;
@@ -102,11 +109,27 @@
         #top-up {
             display: none;
         }
+
+        .alert.alert-danger > p {
+            text-align: center;
+        }
+
     </style>
 </head>
 
-<body>
-    <div class="index container mt-5">
+<body class="profile">
+<?php
+    require_once('db.php');
+
+    $data = get_user_info($_SESSION['username']);
+    if ($data['code'] == 0) {
+        $data = $data['data'];
+    }
+    else {
+        die("error");
+    }
+?>
+    <div class="container mt-5">
         <div class="row">
             <div class="side col-3">
                 <ul>
@@ -132,8 +155,8 @@
                         </div>
                         <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                             <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">Email</h4>
-                                <p class="mb-0">Họ tên</p>
+                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><?= $data['email'] ?></h4>
+                                <p class="mb-0"><?= $data['firstname'] .' '. $data['lastname'] ?></p>
                                 <div class="text-muted"><small>Thay bằng ngày sinh hoặc quốc gia</small></div>
                                 <div class="mt-2">
                                     <button class="btn btn-primary" type="button">
@@ -161,21 +184,21 @@
                     </ul>
                     <div class="row mt-3">
                         <div class="col-md-12">
-                            <form action="">
+                            <form action="" method="POST">
                                 <div class="form-group row">
                                     <div class="col">
                                         <label for="">Firstname</label>
-                                        <input class="form-control" type="text">
+                                        <input class="form-control" type="text" name="firstname" value="<?= $data['firstname'] ?>">
                                     </div>
                                     <div class="col">
                                         <label for="">Lastname</label>
-                                        <input class="form-control" type="text">
+                                        <input class="form-control" type="text" name="lastname" value="<?= $data['lastname'] ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col">
                                         <label for="">Phone</label>
-                                        <input class="form-control" type="text">
+                                        <input class="form-control" type="text" name="phone" value="<?= $data['phone'] ?>">
                                     </div>
                                     <div class="col">
                                         <label for="">National</label>
@@ -201,6 +224,9 @@
                                             Female
                                         </label>
                                     </div>
+                                </div>
+                                <div class="mt-2 alert alert-danger justify-content-center">
+                                    <p></p>
                                 </div>
                                 <div class="row">
                                     <div class="col d-flex justify-content-end">
@@ -260,7 +286,7 @@
                             <div class="col-10 col-sm-10 col-md-10 col-lg-8 col-xl-8">
                                 <div class="form-group">
                                     <label for="current-money">Current money</label>
-                                    <input class="form-control" id="current-money" type="text" disabled>
+                                    <input class="form-control" id="current-money" type="text" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="serial-number">Serial number</label>

@@ -1,10 +1,10 @@
 // login - signup form
 $(document).ready(() => {
-    $(".txtb input").on("focus", function() {
+    $(".txtb input").on("focus", function () {
         $(this).addClass("focus");
     })
 
-    $(".txtb input").on("blur", function() {
+    $(".txtb input").on("blur", function () {
         if ($(this).val() == "")
             $(this).removeClass("focus");
     })
@@ -223,6 +223,19 @@ if (window.location.pathname == '/web_final_project/index.php' || window.locatio
             }
         }
     });
+
+    window.onscroll = function () {
+        let navbar = document.getElementById('navbar');
+        let headerHeight = document.getElementById('header').offsetHeight;
+        let sidebar = document.getElementById('sidebar');
+        if (window.pageYOffset >= headerHeight) {
+            navbar.classList.add('sticky-navbar');
+            sidebar.classList.add('sticky-sidebar');
+        } else {
+            navbar.classList.remove('sticky-navbar');
+            sidebar.classList.remove('sticky-sidebar');
+        }
+    }
 }
 
 
@@ -271,7 +284,7 @@ function sendRequest(keyword) {
                     const li = document.createElement('li');
                     li.className = 'list-group-item';
                     li.appendChild(a)
-                        // li.innerHTML = element;
+                    // li.innerHTML = element;
                     suggestions.appendChild(li);
                 });
             }
@@ -346,8 +359,7 @@ function Filevalidation() {
 
 function profile_show(e) {
     let name = e.innerText;
-    console.log(name);
-    let forms = document.querySelectorAll('.index.container > .row > .col-9 > div');
+    let forms = document.querySelectorAll('.container > .row > .col-9 > div');
     for (let form of forms) {
         if (name == 'Profile' && form.id == 'edit-profile') {
             form.style.display = 'block';
