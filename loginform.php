@@ -33,6 +33,7 @@
         $result = login($_POST['email'], $_POST['password']);
         if ($result['code'] == 0) {
             $_SESSION['username'] = $_POST['email'];
+            $_SESSION['id'] = $result['data']['id'];
             $_SESSION['fullname'] = $result['data']['firstname'] .' '. $result['data']['lastname'];
 
             header('Location: index.php');

@@ -387,4 +387,48 @@
 
         return array("code" => 0, "message" => "Register successful, using account to login");
     }
+
+    function insert_comment_review($user_id, $app_id, $rating, $review){
+        $sql = "INSERT INTO comment_rating(user_id, application_id, comment, rating) values (?,?,?,?)";
+        $conn = open_database();
+
+        $stm = $conn->prepare($sql);
+        $stm->bind_param("sssd",$user_id,$app_id,$review,$rating);
+
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "Cannot execute command");
+        }
+
+        return array("code" => 0, "message" => "Add sucessfully");
+
+    }
+
+    function select_comment_review($app_id){
+        $sql = "SELECT * FROM comment_rating WHERE application_id = ?";
+        $conn = open_database();
+        $stm = $conn->prepare($sql);
+        $stm->bind_param("s", $app_id);
+        if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
+        $result = $stm->get_result();
+        $data = array();
+
+        while ($item = $result->fetch_assoc()){
+            $data[] = $item;
+        }
+
+        return array('code'=>0, 'data'=>$data);
+    }
+
+
+    // REVIEW APP
+    if(isset($_POST['path']) && isset($_POST['application-id']) && isset($_POST['user-id']) && isset($_POST['rating']) && isset($_POST['user-own-review'])){
+        $user_id = $_POST['user-id'];
+        $app_id = $_POST['application-id'];
+        $rating = $_POST['rating'];
+        $review = $_POST['user-own-review'];
+
+        $result = insert_comment_review($user_id, $app_id, $rating, $review);
+        if($result['code']!=0) die($result['message']);
+        else header("Location:".$_POST['path']);
+    }
 ?>
