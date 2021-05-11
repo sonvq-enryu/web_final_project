@@ -172,18 +172,18 @@ function editformBtn(condition) {
 *********************************************************/
 
 //Phần của Tuấn
-window.onscroll = function() {
-    let navbar = document.getElementById('navbar');
-    let headerHeight = document.getElementById('header').offsetHeight;
-    let sidebar = document.getElementById('sidebar');
-    if (window.pageYOffset >= headerHeight) {
-        navbar.classList.add('sticky-navbar');
-        sidebar.classList.add('sticky-sidebar');
-    } else {
-        navbar.classList.remove('sticky-navbar');
-        sidebar.classList.remove('sticky-sidebar');
-    }
-}
+// window.onscroll = function() {
+//     let navbar = document.getElementById('navbar');
+//     let headerHeight = document.getElementById('header').offsetHeight;
+//     let sidebar = document.getElementById('sidebar');
+//     if (window.pageYOffset >= headerHeight) {
+//         navbar.classList.add('sticky-navbar');
+//         sidebar.classList.add('sticky-sidebar');
+//     } else {
+//         navbar.classList.remove('sticky-navbar');
+//         sidebar.classList.remove('sticky-sidebar');
+//     }
+// }
 
 function resize() {
     screenWidth = window.outerWidth;
@@ -343,3 +343,23 @@ function Filevalidation() {
 /* **********************************************************
                         END OF LIMIT FILE UPLOAD SIZE
 *********************************************************/
+
+function profile_show(e) {
+    let name = e.innerText;
+    console.log(name);
+    let forms = document.querySelectorAll('.index.container > .row > .col-9 > div');
+    for (let form of forms) {
+        if (name == 'Profile' && form.id == 'edit-profile') {
+            form.style.display = 'block';
+        }
+        else if (name == 'Password' && form.id == 'chg-password') {
+            form.style.display = 'block';
+        }
+        else if (name == 'Top up' && form.id == 'top-up') {
+            form.style.display = 'block';
+        }
+        else {
+            form.style.display = 'none';
+        }
+    }
+}
