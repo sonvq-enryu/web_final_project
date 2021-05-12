@@ -49,11 +49,11 @@
             $msg = 'Mật khẩu không đúng';
         }
     }
-
-    if (isset($_POST['r-email']) && isset($_POST['r-firstname']) && isset($_POST['r-lastname']) && isset($_POST['r-phone']) && isset($_POST['r-password'])) {
-        $r_result = register($_POST['r-email'], $_POST['r-password'], $_POST['r-firstname'], $_POST['r-lastname'], $_POST['r-phone']);
-
-        if ($result['code'] == 0) {
+    // print_r($_POST);
+    if (isset($_POST['r-email']) && isset($_POST['r-firstname']) && isset($_POST['r-lastname']) && isset($_POST['r-phone']) && isset($_POST['r-password']) && isset($_POST['gender']) && isset($_POST['national'])) {
+        $r_result = register($_POST['r-email'], $_POST['r-password'], $_POST['r-firstname'], $_POST['r-lastname'], $_POST['r-phone'], $_POST['gender'], $_POST['national']);
+        
+        if ($r_result['code'] == 0) {
             $msg = "Signup successful, please login";
         }
         else {
@@ -119,17 +119,17 @@
         </div>
         <div class='gender'>
             <label>
-                <input checked type="radio" name="gender">
-                <span class=male>Male</span>
+                <input checked type="radio" name="gender" value="0">
+                <span class="male">Male</span>
             </label>
             <label>
-                <input type="radio" name="gender">
-                <span class=male>Female</span>
+                <input type="radio" name="gender" value="1">
+                <span class="male">Female</span>
             </label>
         </div>
 
         <div class="nationality-selectbox">
-            <select class="" id="nationality">
+            <select class="" id="nationality" name="national">
                 <option>Country</option>
                 <?php
                     for ($i = 0; $i<count($countries); $i++){

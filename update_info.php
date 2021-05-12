@@ -1,7 +1,6 @@
 <?php
     require_once('db.php');
 
-    $msg = '';
     if (isset($_POST['email']) && isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['phone'])) {
         $email = $_POST['email'];
         $firstname = $_POST['firstname'];

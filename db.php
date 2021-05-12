@@ -1,5 +1,8 @@
 <?php
-    define('HOST','127.0.0.1');
+
+use function PHPSTORM_META\type;
+
+define('HOST','127.0.0.1');
     define('USER','root');
     define('PASS','');
     define('DB','googleplay');
@@ -379,22 +382,23 @@
         return ++$matches[1];
     }
 
-    function register($email, $password, $firstname, $lastname, $phone) {
+    function register($email, $password, $firstname, $lastname, $phone, $gender, $national) {
         if (is_email_exist($email)) {
             return array("code" => 2, "message" => "Email existed");
         }
         
         $last_id = get_last_user_id();
         $last_id = preg_replace_callback( "|(\d+)|", "increment", $last_id);
+        $gender = (int)$gender;
+        $national = (int)$national;
 
         $hash = password_hash($password, PASSWORD_DEFAULT);
-
-        $query = "insert into account(id, firstname, lastname, email, password, phone) values (?,?,?,?,?,?)";
+        
+        $sql = "INSERT INTO account(id, firstname, lastname, email, password, phone, gender, national, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $conn = open_database();
 
-        $stm = $conn->prepare($query);
-        echo "prepare";
-        $stm->bind_param("ssssss", $last_id, $firstname, $lastname, $email, $hash, $phone);
+        $stm = $conn->prepare($sql); 
+        $stm->bind_param("ssssssiii", $last_id, $firstname, $lastname, $email, $hash, $phone, $gender, $national, 2);
 
         if (!$stm->execute()) {
             return array("code" => 1, "message" => "Cannot execute command");
