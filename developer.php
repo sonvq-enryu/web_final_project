@@ -1,3 +1,8 @@
+<?php
+    require_once('dev_func.php');
+    $pending_app = get_uploadapp();
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,147 +20,7 @@
 
 
     <title>Developer console</title>
-    <style>
-        .dev-console-sidebar {
-            height: 100%;
-            width: 220px;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: white;
-            overflow-x: hidden;
-            padding-top: 8px;
-            font-family: "Lato", sans-serif;
-            border-right: 1px solid grey;
-        }
-        
-        .dev-console-sidebar a {
-            padding: 6px 10px 6px 16px;
-            margin-bottom: 10px;
-            text-decoration: none;
-            font-size: 18px;
-            color: black;
-            display: block;
-        }
-        
-        .dev-console-sidebar img {
-            width: 18%;
-            padding-bottom: 15px;
-            margin-left: 5px;
-        }
-        
-        .dev-console-img {
-            margin-top: -5px;
-            border-bottom: 1px solid black;
-        }
-        
-        .dev-console-sidebar a:hover {
-            color: #2d4e78;
-        }
-        
-        @media screen and (max-height: 450px) {
-            .dev-console-sidebar {
-                padding-top: 15px;
-            }
-            .dev-console-sidebar a {
-                font-size: 18px;
-            }
-        }
-        
-        .dev-console-header {
-            background-color: #55717f;
-            display: flex;
-            height: 60px;
-        }
-        
-        .dev-content {
-            height: 1000px;
-            margin-left: 220px;
-            background-color: #d9d9d9;
-            overflow-x: hidden;
-            font-family: "Lato", sans-serif;
-        }
-        
-        .devdropbtn {
-            background-color: #d9d9d9;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            margin: 10px;
-            border-bottom: 1px black solid;
-        }
-        
-        .devdropbtn a {
-            margin-left: 10px;
-            margin-right: 10px;
-            color: black;
-        }
-        /* Dropdown button on hover & focus */
-        
-        .devdropbtn:hover,
-        .devdropbtn:focus {
-            background-color: #55717f;
-        }
-        
-        .dev-filter {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .dev-filter-content {
-            display: none;
-            position: absolute;
-            background-color: #f1f1f1;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-        /* Links inside the dropdown */
-        
-        .dev-filter-content a {
-            color: black;
-            padding: 5px 5px;
-            text-decoration: none;
-            margin: 5px;
-            display: block;
-        }
-        /* Change color of dropdown links on hover */
-        
-        .dev-filter-content a:hover {
-            background-color: #ddd
-        }
-        
-        .dev-filter:hover .dev-filter-content {
-            display: block;
-        }
-        
-        .devcreatebtn {
-            position: relative;
-            left: 45%;
-            margin-top: 20px;
-            background-color: #026cba;
-            color: white;
-            line-height: 30px;
-            border-radius: 2px;
-            outline: none;
-            border: 1px;
-            cursor: pointer;
-        }
-        
-        #dev-console-row {
-            margin: 20px;
-            margin-right: 20px;
-        }
-        
-        #dev-console-row .row {
-            background-color: white;
-            border-bottom: 1px solid black;
-            padding: 10px;
-        }
-        /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-    </style>
-
+    
 </head>
 
 <body>
@@ -194,29 +59,14 @@
             <div class="dev-console-img">
                 <img src="./image/googleplayconsole.png" alt="" />Google Play Console
             </div>
-            <a class="fa fa-android" href="#"> All applications</a>
+            <a class="fa fa-android" href="developer.php"> All applications</a>
             <a class="fa fa-gamepad" href="#"> Game services</a>
             <a class="fa fa-credit-card"> Order management</a>
             <a class="fa fa-download" href="#"> Download reports</a>
             <a class='fa fa-warning' href="#"> Alerts</a>
             <a class="fa fa-gear" href="#"> Settings</a>
         </div>
-        <!-- <div class="content">
-            <div class="dev-menu">
-                <div class="dev-row">
-                    <h2>Popular Apps</h2>
-                    <div>
-                        <a class='btn btn-success' href="#">CREATE APPLICATION</a>
-                    </div>
-                </div>
-                <div class="dev-row">
-                    <div class="dev-card">
 
-                    </div>
-                </div>
-            </div>
-
-        </div> -->
         <div class="dev-content">
             <div class="dev-menu">
                 <div class="dev-row">
@@ -245,7 +95,7 @@
                             <div class="col-sm-2">Status</div>
                             <div class="col-sm-2"></div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-sm-2"><a href="dev_application.html">Test</a></div>
 
                             <div class="col-sm-2">-</div>
@@ -256,14 +106,48 @@
                             <div class="col-sm-2">Draft</div>
                             <div class="col-sm-2">
                                 <a class="fa fa-trash-o"></a>
-
                             </div>
 
-                        </div>
+                        </div> -->
+                        
+                        <div class="row">
+                            <?php
+                                if($pending_app['code']!=0){
+                                    ?>
+                                        <div class="col-sm-2"><a href="dev_application.html">-</a></div>
 
+                                        <div class="col-sm-2">-</div>
+                                        <div class="col-sm-2">
+                                            <a class=''>-</a>
+                                        </div>
+                                        <div class="col-sm-2">-</div>
+                                        <div class="col-sm-2">-</div>
+                                        <div class="col-sm-2">
+                                            <a >-</a>
+                                        </div>
+                                    <?php
+                                }else{
+                                    foreach($pending_app['data'] as $item){
+                                        ?>
+                                             <div class="col-sm-2"><a href="dev_application.php?id=<?= $item['app_id'] ?>"> <?= $item['name'] ?> </a></div>
+                                                <div class="col-sm-2">-</div>
+                                                <div class="col-sm-2">
+                                                    <a class='fa fa-star'> </a>
+                                                </div>
+                                                <div class="col-sm-2"><?= $item['date'] ?></div>
+                                                <div class="col-sm-2"><?= $item['status'] ?></div>
+                                                <div class="col-sm-2">
+                                                    <a class="fa fa-trash-o"></a>
+                                            </div>
+                                        <?php
+                                    }
+                                }   
+                            
+                            ?>
+                        </div>
                     </div>
                     <div>
-                        <a class='devcreatebtn btn btn-success' href="appsubmit.html">CREATE APPLICATION</a>
+                        <a class='devcreatebtn btn btn-success' href="appsubmit.php">CREATE APPLICATION</a>
                     </div>
                 </div>
 

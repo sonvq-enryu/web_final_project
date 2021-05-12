@@ -1,3 +1,11 @@
+<?php
+    require_once('dev_func.php');
+    
+    $id = $_GET['id'];
+        
+    $dev_apps = get_pending_apps($id);
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,157 +23,7 @@
 
 
     <title>Developer console</title>
-    <style>
-        .dev-console-sidebar {
-            height: 100%;
-            width: 220px;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: white;
-            overflow-x: hidden;
-            padding-top: 8px;
-            font-family: "Lato", sans-serif;
-            border-right: 1px solid grey;
-        }
-        
-        .dev-console-sidebar a {
-            padding: 6px 10px 6px 16px;
-            margin-bottom: 10px;
-            text-decoration: none;
-            font-size: 18px;
-            color: black;
-            display: block;
-        }
-        
-        .dev-console-sidebar img {
-            width: 18%;
-            padding-bottom: 15px;
-            margin-left: 5px;
-        }
-        
-        .dev-console-img {
-            margin-top: -5px;
-            border-bottom: 1px solid black;
-        }
-        
-        .dev-console-sidebar a:hover {
-            color: #2d4e78;
-        }
-        
-        @media screen and (max-height: 450px) {
-            .dev-console-sidebar {
-                padding-top: 15px;
-            }
-            .dev-console-sidebar a {
-                font-size: 18px;
-            }
-        }
-        
-        .dev-console-header {
-            background-color: #55717f;
-            display: flex;
-            height: 60px;
-        }
-        
-        .dev-content {
-            height: 1000px;
-            margin-left: 220px;
-            background-color: #d9d9d9;
-            overflow-x: hidden;
-            font-family: "Lato", sans-serif;
-        }
-        
-        .devdropbtn {
-            background-color: #d9d9d9;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            margin: 10px;
-            border-bottom: 1px black solid;
-        }
-        
-        .devdropbtn a {
-            margin-left: 10px;
-            margin-right: 10px;
-            color: black;
-        }
-        /* Dropdown button on hover & focus */
-        
-        .devdropbtn:hover,
-        .devdropbtn:focus {
-            background-color: #55717f;
-        }
-        
-        .dev-filter {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .dev-filter-content {
-            display: none;
-            position: absolute;
-            background-color: #f1f1f1;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-        /* Links inside the dropdown */
-        
-        .dev-filter-content a {
-            color: black;
-            padding: 5px 5px;
-            text-decoration: none;
-            margin: 5px;
-            display: block;
-        }
-        /* Change color of dropdown links on hover */
-        
-        .dev-filter-content a:hover {
-            background-color: #ddd
-        }
-        
-        .dev-filter:hover .dev-filter-content {
-            display: block;
-        }
-        
-        .devcreatebtn {
-            position: relative;
-            left: 45%;
-            margin-top: 20px;
-            background-color: #026cba;
-            color: white;
-            line-height: 30px;
-            border-radius: 2px;
-            outline: none;
-            border: 1px;
-            cursor: pointer;
-        }
-        
-        #dev-console-row {
-            margin: 20px;
-            margin-right: 20px;
-        }
-        
-        #dev-console-row .row {
-            background-color: white;
-            border-bottom: 1px solid black;
-            padding: 10px;
-        }
-        
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-        }
-        
-        td,
-        th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-    </style>
+    
 
 </head>
 
@@ -205,7 +63,7 @@
             <div class="dev-console-img">
                 <img src="./image/googleplayconsole.png" alt="" />Google Play Console
             </div>
-            <a class="fa fa-android" href="developer.html"> All applications</a>
+            <a class="fa fa-android" href="developer.php"> All applications</a>
             <a class="fa fa-gamepad" href="#"> Game services</a>
             <a class="fa fa-credit-card"> Order management</a>
             <a class="fa fa-download" href="#"> Download reports</a>
@@ -215,7 +73,7 @@
 
         <div class="dev-content">
             <div class="content flex-container">
-                <div class="my-3 container">
+                <!-- <div class="my-3 container">
                     <div class="app-page-header">
                         <span>
                             <img src="./image/genshin.png"/>
@@ -305,6 +163,96 @@
 
                     </div>
 
+                </div> -->
+                <div class="my-3 container">
+                    <?php
+                        foreach($dev_apps['data'] as $item){
+                            ?>
+                                <div class="app-page-header">
+                                    <span>
+                                        <img src="<?= $item['image'] ?>" />
+                                    </span>
+                                    <div class="app-page-info">
+                                        <p><?= $item['name'] ?></p>
+                                        <a href="#">
+                                            <?= $item['developer'] ?>
+                                        </a>
+                                        <a href="#category"><?= $item['content'] ?></a>
+                                        <div class="rating">
+                                            rating
+                                            <span class="fa fa-star checked"></span>
+                                            <button>Edit</button>
+                                        </div>
+                                    </div>
+                                    <table class="stattable">
+                                        <tr>
+                                            <td>install</td>
+                                            <td>status</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1000</td>
+                                            <td><?= $item['status'] ?></td>
+                                        </tr>
+                                    </table>
+
+
+                                </div>
+
+                                <div class="app-page-description">
+                                    <p>
+                                    <?= $item['description'] ?>
+
+                                    </p>
+                                </div>
+
+                                <div class="review-rating">
+                                    <div class="rating row">
+                                        <div class="col-4 left-rating">
+                                            <div>REVIEW AND RATING</div>
+                                            <div class="total-rating my-3">
+                                                Overall Rating
+                                                <div>><span class="fa fa-star checked"></span></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-8 rating-chart">
+                                            <div class="row my-2">
+                                                <span class="col-1">1</span>
+                                                <div class="col-11 star star-1">
+                                                    <div class="chart chart-1"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row my-2">
+                                                <span class="col-1">2</span>
+                                                <div class="col-11 star star-2">
+                                                    <div class="chart chart-1"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row my-2">
+                                                <span class="col-1">3</span>
+                                                <div class="col-11 star star-3">
+                                                    <div class="chart chart-1"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row my-2">
+                                                <span class="col-1">4</span>
+                                                <div class="col-11 star star-4">
+                                                    <div class="chart chart-1"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row my-2">
+                                                <span class="col-1">5</span>
+                                                <div class="col-11 star star-5">
+                                                    <div class="chart chart-1"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            <?php
+                        }
+                    ?>
                 </div>
             </div>
         </div>

@@ -22,30 +22,41 @@
 
         return array('code' => 0, 'message' => 'Add successful');
     }
-    function test_upload_app($developer,$appname,$price,$date,$desc,$status){
-        $sql = 'insert into pending_application(developer, name, price, date,  description, status) value (?,?,?,?,?,?)';
+   
+    function get_uploadapp(){
+        $sql = 'select * from pending_application';
 
         $conn = open_database();
         $stm = $conn->prepare($sql);
-
-        $stm->bind_param('ssisss',$developer,$appname,$price,$date,$desc,$status);
         if(!$stm->execute()){
-            return array('code' => 2, 'error' => 'Can not execute command');
+            return array('code' => 2,'error'=> 'Can not execute command');
         }
 
-        return array('code' => 0, 'message' => 'Add successful');
+        $result = $stm->get_result();
+        if ($result->num_rows == 0){
+            return array('code'=> 1, 'error'=> 'No app');
+        }
+        $data = array();
+        while($row = $result->fetch_assoc()){
+            $data[] = $row;
+        }
+        return array('code' => 0,'message'=> 'success','data'=>$data);
     }
-    function test_product($appname,$price,$description){
-        $sql = "insert into account (firstname, lastname, email) values (?,?,?);";
-
-
+    function get_pending_apps($id){
         $conn = open_database();
+        $sql = "select * FROM pending_application WHERE app_id = ?";
         $stm = $conn->prepare($sql);
-        $stm->bind_param('sss',$appname,$price,$description);
+        $stm->bind_param("i",$id);
+        if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
+        $result = $stm->get_result();
+        $data = array();
 
-        if(!$stm->execute()){
-            return array('code' => 2, 'error' => 'Can not execute command');
+        if($result->num_rows == 0) return array('code' => 2, 'error' => "Don't have any app");
+
+        while ($item = $result->fetch_assoc()){
+            $data[] = $item;
         }
-        return array('code' => 0, 'error' => 'Add successful');
+
+        return array('code'=>0, 'data'=>$data);
     }
 ?>
