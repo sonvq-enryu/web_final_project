@@ -1,9 +1,9 @@
 <?php
-    session_start();
-    if (!isset($_SESSION['username'])) {
-        header("Location: loginform.php");
-        exit();
-    }
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: loginform.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,25 +110,27 @@
             display: none;
         }
 
-        .alert.alert-danger > p {
-            text-align: center;
+        #create-cards {
+            display: none;
         }
 
+        .alert.alert-danger>p {
+            text-align: center;
+        }
     </style>
 </head>
 
 <body class="profile">
-<?php
+    <?php
     require_once('db.php');
 
     $data = get_user_info($_SESSION['username']);
     if ($data['code'] == 0) {
         $data = $data['data'];
-    }
-    else {
+    } else {
         die("error");
     }
-?>
+    ?>
     <div class="container mt-5">
         <div class="row">
             <div class="side col-3">
@@ -137,6 +139,7 @@
                     <li><a onclick="profile_show(this)" href="#">Password</a></li>
                     <li><a onclick="profile_show(this)" href="#">Upgrade</a></li>
                     <li><a onclick="profile_show(this)" href="#">Top up</a></li>
+                    <li><a onclick="profile_show(this)" href="#">Create Card</a></li>
                     <li><a href="index.php">Exit</a></li>
                 </ul>
             </div>
@@ -156,7 +159,7 @@
                         <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                             <div class="text-center text-sm-left mb-2 mb-sm-0">
                                 <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><?= $data['email'] ?></h4>
-                                <p class="mb-0"><?= $data['firstname'] .' '. $data['lastname'] ?></p>
+                                <p class="mb-0"><?= $data['firstname'] . ' ' . $data['lastname'] ?></p>
                                 <div class="text-muted"><small>Thay bằng ngày sinh hoặc quốc gia</small></div>
                                 <div class="mt-2">
                                     <button class="btn btn-primary" type="button">
@@ -213,13 +216,13 @@
                                 </div>
                                 <div class="form-check row">
                                     <div class="col">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                        <label class="form-check-label" for="exampleRadios1">
+                                        <input class="form-check-input" type="radio" id="gender-radio" name="gender" value="male" checked>
+                                        <label class="form-check-label" for="gender-radio">
                                             Male
                                         </label>
                                     </div>
                                     <div class="col">
-                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                        <input class="form-check-input" type="radio" id="gender-radio" name="gender" value="female" checked>
                                         <label class="form-check-label" for="exampleRadios1">
                                             Female
                                         </label>
@@ -355,6 +358,43 @@
                 </div>
 
 
+
+                <div id="create-cards">
+                    <div class="profile-header">
+                        <h2>Create Card</h2>
+                    </div>
+                    <ul class="nav nav-tabs mt-3">
+                        <li class="nav-item"><a href="" class="active nav-link">Top up</a></li>
+                    </ul>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <form action="" method="POST">
+                                <div class="form-group row">
+                                    <div class="col">
+                                        <label for="">National</label>
+                                        <!-- <input class="form-control" type="text"> -->
+                                        <select class="form-control">
+                                            <option value="volvo">Volvo</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="opel">Opel</option>
+                                            <option value="audi">Audi</option>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="">National</label>
+                                        <!-- <input class="form-control" type="text"> -->
+                                        <select class="form-control">
+                                            <option value="volvo">Volvo</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="opel">Opel</option>
+                                            <option value="audi">Audi</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
 
             </div>

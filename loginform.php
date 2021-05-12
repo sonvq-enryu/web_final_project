@@ -4,7 +4,7 @@
         header("Location: index.php");
         exit();
     }
-    // print_r($_SESSION);
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,6 +49,17 @@
             $msg = 'Mật khẩu không đúng';
         }
     }
+
+    if (isset($_POST['r-email']) && isset($_POST['r-firstname']) && isset($_POST['r-lastname']) && isset($_POST['r-phone']) && isset($_POST['r-password'])) {
+        $r_result = register($_POST['r-email'], $_POST['r-password'], $_POST['r-firstname'], $_POST['r-lastname'], $_POST['r-phone']);
+
+        if ($result['code'] == 0) {
+            $msg = "Signup successful, please login";
+        }
+        else {
+            $msg = $result['message'];
+        }
+    }
 ?>
     <form onsubmit="checkLoginInput()" action="" class='login-form' id='login-form' method="POST">
         <h1>Login</h1>
@@ -77,7 +88,7 @@
         </div>
     </form>
 
-    <form onsubmit="return checkSignupInput()" action="" class='signup-form' id='signup-form'>
+    <form onsubmit="return checkSignupInput()" action="" class='signup-form' id='signup-form' method="POST">
         <h1>Sign up</h1>
         <div class="txtb">
             <input onclick="clearSignupError()" id="first-name-sign-up" type="text" name="r-firstname">
@@ -128,7 +139,13 @@
             </select>
         </div>
 
-        <p id="signup-error-messege"></p>
+        <p id="signup-error-messege">
+            <?php
+                if (isset($msg)) {
+                    echo $msg;
+                }
+            ?>
+        </p>
 
         <input type="submit" class="logbtn" value="Sign in">
         <input type="button" class="logbtn-cancel" value="Cancel" onclick="closeForm()">

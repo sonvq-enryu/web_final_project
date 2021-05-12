@@ -361,6 +361,8 @@ function profile_show(e) {
     let name = e.innerText;
     let forms = document.querySelectorAll('.container > .row > .col-9 > div');
     for (let form of forms) {
+        console.log(form.id);
+        console.log(name);
         if (name == 'Profile' && form.id == 'edit-profile') {
             form.style.display = 'block';
         }
@@ -368,6 +370,9 @@ function profile_show(e) {
             form.style.display = 'block';
         }
         else if (name == 'Top up' && form.id == 'top-up') {
+            form.style.display = 'block';
+        }
+        else if (name == 'Create Card' && form.id == 'create-cards') {
             form.style.display = 'block';
         }
         else {

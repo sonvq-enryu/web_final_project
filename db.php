@@ -367,19 +367,34 @@
         return false;
     }
 
+    function get_last_user_id() {
+        $query = "SELECT id FROM account ORDER BY id DESC LIMIT 1";
+        $conn = open_database();
+
+        $result = $conn->query($query);
+        return $result->fetch_assoc()['id'];
+    }
+
+    function increment($matches) {
+        return ++$matches[1];
+    }
 
     function register($email, $password, $firstname, $lastname, $phone) {
         if (is_email_exist($email)) {
             return array("code" => 2, "message" => "Email existed");
         }
+        
+        $last_id = get_last_user_id();
+        $last_id = preg_replace_callback( "|(\d+)|", "increment", $last_id);
 
         $hash = password_hash($password, PASSWORD_DEFAULT);
 
-        $query = "insert into account(firstname, lastname, email, password, phone, admin, activate) values (?,?,?,?,?,?,?)";
+        $query = "insert into account(id, firstname, lastname, email, password, phone) values (?,?,?,?,?,?)";
         $conn = open_database();
 
         $stm = $conn->prepare($query);
-        $stm->bind_param('sssssi', $firstname, $lastname, $email, $hash, $phone, 0, 1);
+        echo "prepare";
+        $stm->bind_param("ssssss", $last_id, $firstname, $lastname, $email, $hash, $phone);
 
         if (!$stm->execute()) {
             return array("code" => 1, "message" => "Cannot execute command");
