@@ -293,15 +293,16 @@ define('HOST','127.0.0.1');
     }
 
 
-    function update_user_info($email, $fname, $lname, $phone) {
-        $query = "update account set firstname = ?, lastname = ?, phone = ? where email = ?";
+    function update_user_info($email, $fname, $lname, $phone, $national, $gender) {
+        $query = "update account set firstname = ?, lastname = ?, phone = ?, gender = ?, national = ? where email = ?";
         $conn = open_database();
-
+        $national = (int)$national;
+        $gender = (int)$gender;
         $stm = $conn->prepare($query);
-        $stm->bind_param('ssss', $fname, $lname, $phone, $email);
+        $stm->bind_param('sssiis', $fname, $lname, $phone, $gender, $national, $email);
         
         if (!$stm->execute()) {
-            return array("code" => 1, "message" => "Cannot execute command");
+            return array("code" => 1, "message" => $stm->error);
         }
         
         return array("code" => 0, "message" => "Update information successful");

@@ -414,8 +414,8 @@ function render_profile(firstname, lastname, nationality, gender) {
     let fullname = edit_profile.querySelector('.d-flex p');
     // let role = edit_profile.querySelector('.d-flex .badge'); viet ham rieng update role khi update to dev
     let small_texts = edit_profile.querySelectorAll('.d-flex .text-muted small');
-    // small_texts[0].innerText = gender;
-    // small_texts[1].innerText = nationality;
+    small_texts[0].innerText = nationality;
+    small_texts[1].innerText = gender;
     fullname.innerText = firstname + ' ' + lastname;
 }
 
@@ -424,6 +424,22 @@ function update_user_info() {
     let firstname = form.querySelector('input[name="firstname"]').value;
     let lastname = form.querySelector('input[name="lastname"]').value;
     let phone = form.querySelector('input[name="phone"]').value;
+    
+    let gender = form.querySelector('input[name="gender"]').checked;
+    let national = form.querySelector('select[name="national"]');
+    let gender_text = '';
+    let national_text = '';
+    if (gender) {
+        gender = 0;
+        gender_text = 'Male';
+    }
+    else {
+        gender = 1;
+        gender_text = 'Female';
+    }
+    national_text = national.options[national.selectedIndex].text;
+    national = parseInt(national.options[national.selectedIndex].value);
+
     let error = form.querySelector('div.alert');
     let email = document.querySelector('#usr-email').innerText;
     if (firstname == "") {
@@ -448,7 +464,7 @@ function update_user_info() {
             response = JSON.parse(response);
             if (response['code'] == 0) {
                 successful_edit_form(error, "Update profile successful");
-                render_profile(firstname, lastname, false, false);
+                render_profile(firstname, lastname, gender_text, national_text);
             }
             else {
                 error_edit_form(error, 'Some errors have occurred');
@@ -456,6 +472,7 @@ function update_user_info() {
         }
     });
     let param = "email=" + encodeURIComponent(email) + "&firstname=" + encodeURIComponent(firstname) + "&lastname=" + encodeURIComponent(lastname) + "&phone=" + encodeURIComponent(phone); 
+    param += "&national=" + encodeURIComponent(national) + "&gender=" + encodeURIComponent(gender);
     xhr.send(param);
 }
 

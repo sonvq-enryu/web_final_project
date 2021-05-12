@@ -35,7 +35,7 @@
             $_SESSION['username'] = $_POST['email'];
             $_SESSION['id'] = $result['data']['id'];
             $_SESSION['fullname'] = $result['data']['firstname'] .' '. $result['data']['lastname'];
-
+            $_SESSION['role'] = $result['data']['role'];
             header('Location: index.php');
             exit();
         }

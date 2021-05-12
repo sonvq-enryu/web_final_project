@@ -24,7 +24,7 @@ if (!isset($_SESSION['username'])) {
         .container.mt-5 {
             border-radius: 6px;
             min-width: 520px;
-            height: 700px;
+            height: 800px;
             padding-left: 0px;
             background: white;
         }
@@ -33,7 +33,7 @@ if (!isset($_SESSION['username'])) {
             border-top-left-radius: 6px;
             border-bottom-left-radius: 6px;
             background-color: #7A7A7A;
-            height: 700px;
+            height: 800px;
             list-style-type: none;
             text-align: center;
         }
@@ -99,7 +99,7 @@ if (!isset($_SESSION['username'])) {
         } */
         .my-custom-scrollbar {
             /* position: relative; */
-            height: 200px;
+            height: 300px;
             overflow: auto;
         }
 
@@ -126,14 +126,13 @@ if (!isset($_SESSION['username'])) {
         .li-selected {
             background-color: #1DA8C7;
         }
-
-        
     </style>
 </head>
 
 <body class="profile">
     <?php
     require_once('db.php');
+    $countries = array("Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province of China", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe");
 
     $data = get_user_info($_SESSION['username']);
 
@@ -143,15 +142,6 @@ if (!isset($_SESSION['username'])) {
         die("error");
     }
 
-    // if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['phone'])) {
-    //     $result = update_user_info($_SESSION['username'], $_POST['firstname'], $_POST['lastname'], $_POST['phone']);
-    //     if ($result['code'] == 0 ) {
-    //         $success = "Update your profile successful";
-    //     }
-    //     else {
-    //         $error = $result['message'];
-    //     }
-    // }
     ?>
     <div class="container mt-5">
         <div class="row">
@@ -182,7 +172,15 @@ if (!isset($_SESSION['username'])) {
                             <div class="text-center text-sm-left mb-2 mb-sm-0">
                                 <h4 id="usr-email" class="pt-sm-2 pb-1 mb-0 text-nowrap"><?= $data['email'] ?></h4>
                                 <p class="mb-0"><?= $data['firstname'] . ' ' . $data['lastname'] ?></p>
-                                <div class="text-muted"><small>Male or Female</small></div>
+                                <div class="text-muted"><small>
+                                        <?php
+                                        if ($data['gender'] == 0) {
+                                            echo "Male";
+                                        } else {
+                                            echo "Female";
+                                        }
+                                        ?>
+                                    </small></div>
                                 <div class="mt-2">
                                     <button class="btn btn-primary" type="button">
                                         <i class="fa fa-fw fa-camera"></i>
@@ -191,15 +189,23 @@ if (!isset($_SESSION['username'])) {
                                 </div>
                             </div>
                             <div class="text-center text-sm-right mt-2">
-                                <span class="badge badge-secondary">Administrator</span>
+                                <span class="badge badge-secondary">
+                                    <?php
+                                    if ($_SESSION['role'] == 0) {
+                                        echo "Administrator";
+                                    } else if ($_SESSION['role'] == 1) {
+                                        echo "Developer";
+                                    } else {
+                                        echo "User";
+                                    }
+                                    ?>
+                                </span>
                                 <div class="text-muted">
-                                    <small>National</small>
-                                </div>
-                                <br>
-                                <div>
-                                    <button type="button" class="btn btn-primary mt-3">
-                                        <span>Save change</span>
-                                    </button>
+                                    <small>
+                                        <?php
+                                        echo $countries[$data['national']];
+                                        ?>
+                                    </small>
                                 </div>
                             </div>
                         </div>
@@ -228,23 +234,44 @@ if (!isset($_SESSION['username'])) {
                                     <div class="col">
                                         <label for="">National</label>
                                         <!-- <input class="form-control" type="text"> -->
-                                        <select class="form-control">
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="opel">Opel</option>
-                                            <option value="audi">Audi</option>
+                                        <select name="national" class="form-control">
+                                            <?php
+                                            for ($i = 0; $i < count($countries); $i++) {
+                                                if ($i == $data['national']) {
+                                                    echo "<option value='$i' selected>$countries[$i]</option>";
+                                                }
+                                                else {
+                                                    echo "<option value='$i'>$countries[$i]</option>";
+                                                }
+                                                // echo "<option value='$i'>$countries[$i]</option>";
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-check row">
                                     <div class="col">
-                                        <input class="form-check-input" type="radio" name="gender" value="male">
+                                        <?php
+                                        if ($data['gender'] == 0) {
+                                            echo '<input class="form-check-input" type="radio" name="gender" value="male" checked>';
+                                        } else {
+                                            echo '<input class="form-check-input" type="radio" name="gender" value="male">';
+                                        }
+                                        ?>
+                                        <!-- <input class="form-check-input" type="radio" name="gender" value="male"> -->
                                         <label class="form-check-label" for="gender-radio">
                                             Male
                                         </label>
                                     </div>
                                     <div class="col">
-                                        <input class="form-check-input" type="radio" name="gender" value="female">
+                                        <?php
+                                        if ($data['gender'] == 1) {
+                                            echo '<input class="form-check-input" type="radio" name="gender" value="female" checked>';
+                                        } else {
+                                            echo '<input class="form-check-input" type="radio" name="gender" value="female">';
+                                        }
+                                        ?>
+                                        <!-- <input class="form-check-input" type="radio" name="gender" value="female"> -->
                                         <label class="form-check-label" for="exampleRadios1">
                                             Female
                                         </label>
@@ -420,8 +447,6 @@ if (!isset($_SESSION['username'])) {
                                         <label for="">Valuable</label>
                                         <!-- <input class="form-control" type="text"> -->
                                         <select class="form-control">
-                                            <option value="10">10.000 VND</option>
-                                            <option value="20">20.000 VND</option>
                                             <option value="50">50.000 VND</option>
                                             <option value="100">100.000 VND</option>
                                             <option value="200">200.000 VND</option>
@@ -450,6 +475,7 @@ if (!isset($_SESSION['username'])) {
                                             <th scope="col">#</th>
                                             <th scope="col">Serial number</th>
                                             <th scope="col">Denominations</th>
+                                            <th scope="col">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -457,31 +483,37 @@ if (!isset($_SESSION['username'])) {
                                             <th scope="row">1</th>
                                             <td>Mark</td>
                                             <td>Otto</td>
+                                            <td>Otto</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">2</th>
                                             <td>Jacob</td>
                                             <td>Thornton</td>
+                                            <td>Otto</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">3</th>
                                             <td>Larry</td>
                                             <td>the Bird</td>
+                                            <td>Otto</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">4</th>
                                             <td>Mark</td>
+                                            <td>Otto</td>
                                             <td>Otto</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">5</th>
                                             <td>Jacob</td>
                                             <td>Thornton</td>
+                                            <td>Otto</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">6</th>
                                             <td>Larry</td>
                                             <td>the Bird</td>
+                                            <td>Otto</td>
                                         </tr>
                                     </tbody>
                                 </table>
