@@ -393,7 +393,6 @@
         $conn = open_database();
 
         $stm = $conn->prepare($query);
-        echo "prepare";
         $stm->bind_param("ssssss", $last_id, $firstname, $lastname, $email, $hash, $phone);
 
         if (!$stm->execute()) {
@@ -415,6 +414,21 @@
         }
 
         return array("code" => 0, "message" => "Add sucessfully");
+
+    }
+
+    function update_comment_review($user_id, $app_id, $rating, $review){
+        $sql = "UPDATE comment_rating SET comment = ?, rating = ? WHERE user_id = ? AND application_id = ?";
+        $conn = open_database();
+
+        $stm = $conn->prepare($sql);
+        $stm->bind_param("sdss",$review,$rating,$user_id,$app_id);
+
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "Cannot execute command");
+        }
+
+        return array("code" => 0, "message" => "Update sucessfully");
 
     }
 
@@ -442,7 +456,19 @@
         $rating = $_POST['rating'];
         $review = $_POST['user-own-review'];
 
-        $result = insert_comment_review($user_id, $app_id, $rating, $review);
+        $sql = "SELECT * FROM comment_rating WHERE user_id = ? AND application_id = ?";
+        $conn = open_database();
+        $stm = $conn->prepare($sql);
+        $stm->bind_param("ss",$user_id,$app_id);
+        if(!$stm->execute()) die("Can't find app");
+        $result = $stm->get_result();
+
+        if($result->num_rows != 0){
+            $result = update_comment_review($user_id, $app_id, $rating, $review);
+        }
+        else{
+            $result = insert_comment_review($user_id, $app_id, $rating, $review);
+        }
         if($result['code']!=0) die($result['message']);
         else header("Location:".$_POST['path']);
     }

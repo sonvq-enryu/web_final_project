@@ -94,9 +94,6 @@
 
     }
 
-    if(isset($_POST['rating'])){
-        echo "True";
-    }
 
     
 ?>
@@ -285,7 +282,7 @@
                     <div>
                     <?php
                         $link = "seemore.php?Rated=".$similar[0];
-                        if($similar[1]){
+                        if(isset($similar[1])){
                             $link = $link."&cate=".$similar[1];
                         }
                         ?>
@@ -353,11 +350,10 @@
 <?php
 if(isset($_SESSION['fullname'])){
     ?>
-        <!-- New file dialog -->
     <div class="modal fade" id="review-section">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" action="db.php">
+                <form onchange="checkReviewInput()" method="post" action="db.php">
                     <div class="modal-header">
                         <h4 class="modal-title">Bài đánh giá của <?= $_SESSION['fullname'] ?></h4>
                     </div>
@@ -394,14 +390,13 @@ if(isset($_SESSION['fullname'])){
                             </div>
                         </div>
                     </div>
-                        <p id="error-msg-file-name"></p>
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" name="path" value="application.php?id=<?=$item_app['id']?>">
                         <input type="hidden" name="user-id" value="<?= $_SESSION['id'] ?>">
                         <input type="hidden" name="application-id" value="<?=$item_app['id']?>">
-                        <button type="button" class="btn" data-dismiss="modal">Hủy</button>
-                        <button type="submit" class="btn btn-success">Gửi</button>
+                        <button onclick="restoreDefault()" type="button" class="btn" data-dismiss="modal">Hủy</button>
+                        <button type="submit" id="review-submit" class="btn btn-success" disabled>Gửi</button>
                     </div>            
                 </form>
             </div>

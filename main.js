@@ -301,7 +301,23 @@ function search() {
     window.location.replace('seemore.php?keyword=' + encodeURIComponent(keyword));
 }
 
+/* **********************************************************
+                        REVIEW APP
+*********************************************************/
 
+function checkReviewInput(){
+    let btn = document.querySelector("#review-submit").disabled = false;
+}
+
+function restoreDefault(){
+    document.querySelector("#review-submit").disabled = true;
+    $('#rating input[name=rating]').prop('checked',false);
+    document.querySelector("#user-own-review").value = "";
+}
+
+/* **********************************************************
+                        END REVIEW APP
+*********************************************************/
 
 /* **********************************************************
                         END OF SEARCH

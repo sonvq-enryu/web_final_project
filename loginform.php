@@ -53,11 +53,11 @@
     if (isset($_POST['r-email']) && isset($_POST['r-firstname']) && isset($_POST['r-lastname']) && isset($_POST['r-phone']) && isset($_POST['r-password'])) {
         $r_result = register($_POST['r-email'], $_POST['r-password'], $_POST['r-firstname'], $_POST['r-lastname'], $_POST['r-phone']);
 
-        if ($result['code'] == 0) {
+        if ($r_result['code'] == 0) {
             $msg = "Signup successful, please login";
         }
         else {
-            $msg = $result['message'];
+            $msg = $r_result['message'];
         }
     }
 ?>
