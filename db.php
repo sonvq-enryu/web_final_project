@@ -402,6 +402,8 @@
         return array("code" => 0, "message" => "Register successful, using account to login");
     }
 
+
+    // REVIEW APP
     function insert_comment_review($user_id, $app_id, $rating, $review){
         $sql = "INSERT INTO comment_rating(user_id, application_id, comment, rating) values (?,?,?,?)";
         $conn = open_database();
