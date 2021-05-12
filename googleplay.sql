@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 12, 2021 lúc 06:22 PM
+-- Thời gian đã tạo: Th5 12, 2021 lúc 07:31 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -24,6 +24,7 @@ SET time_zone = "+00:00";
 CREATE DATABASE IF NOT EXISTS `googleplay` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `googleplay`;
 
+
 -- --------------------------------------------------------
 
 --
@@ -37,7 +38,9 @@ CREATE TABLE `account` (
   `email` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
-  `admin` varchar(1) COLLATE utf8_unicode_ci DEFAULT '0',
+  `gender` int(10) NOT NULL,
+  `national` int(200) NOT NULL,
+  `role` int(10) NOT NULL,
   `activated` bit(1) DEFAULT b'0',
   `activate_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -46,9 +49,11 @@ CREATE TABLE `account` (
 -- Đang đổ dữ liệu cho bảng `account`
 --
 
-INSERT INTO `account` (`id`, `firstname`, `lastname`, `email`, `password`, `phone`, `admin`, `activated`, `activate_token`) VALUES
-('1', 'Lê', 'Nguyễn Minh Tuấn', 'lnmtuan1702@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '0901995401', '0', b'1', ''),
-('2', 'Vo', 'Quoc Son', 'voquocson@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '', '0', b'1', NULL);
+INSERT INTO `account` (`id`, `firstname`, `lastname`, `email`, `password`, `phone`, `gender`, `national`, `role`, `activated`, `activate_token`) VALUES
+('1', 'Lê', 'Nguyễn Minh Tuấn', 'lnmtuan1702@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '0901995401', 0, 0, 0, b'1', ''),
+('2', 'Vo', 'Quoc Son', 'voquocson@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '', 0, 0, 0, b'1', NULL),
+('3', 'Huynh', 'Nhu', 'huynhnhu@gmail.com', '$2y$10$BnFA3Dkgj1q0xBlme3GcwukDhqTO8l8V/.BrWktW8sK9boZ3z2UpG', '789', 0, 0, 0, b'0', NULL),
+('4', 'Tran', 'Huyen', 'tkph@gmail.com', '$2y$10$8rSxJT76sHsDRKaAw/xbDO/sBdf.ktxKmNesJxjKf./8GltWI8Q4O', '123456789', 1, 230, 2, b'0', NULL);
 
 -- --------------------------------------------------------
 

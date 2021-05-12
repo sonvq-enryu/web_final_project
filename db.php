@@ -384,19 +384,20 @@ define('HOST','127.0.0.1');
         if (is_email_exist($email)) {
             return array("code" => 2, "message" => "Email existed");
         }
-        
         $last_id = get_last_user_id();
         $last_id = preg_replace_callback( "|(\d+)|", "increment", $last_id);
         $gender = (int)$gender;
         $national = (int)$national;
 
+
         $hash = password_hash($password, PASSWORD_DEFAULT);
         
+        $role_default = 2;
         $sql = "INSERT INTO account(id, firstname, lastname, email, password, phone, gender, national, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $conn = open_database();
 
         $stm = $conn->prepare($sql); 
-        $stm->bind_param("ssssssiii", $last_id, $firstname, $lastname, $email, $hash, $phone, $gender, $national, 2);
+        $stm->bind_param("ssssssiii", $last_id, $firstname, $lastname, $email, $hash, $phone, $gender, $national, $role_default);
 
 
         if (!$stm->execute()) {
