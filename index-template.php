@@ -98,5 +98,9 @@
             <a href="#new">New release</a>
         </div>
     </div>
+
+
+    
+    
     <?php
 ?>

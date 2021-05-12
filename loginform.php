@@ -49,7 +49,7 @@
             $msg = 'Mật khẩu không đúng';
         }
     }
-    // print_r($_POST);
+
     if (isset($_POST['r-email']) && isset($_POST['r-firstname']) && isset($_POST['r-lastname']) && isset($_POST['r-phone']) && isset($_POST['r-password']) && isset($_POST['gender']) && isset($_POST['national'])) {
         $r_result = register($_POST['r-email'], $_POST['r-password'], $_POST['r-firstname'], $_POST['r-lastname'], $_POST['r-phone'], $_POST['gender'], $_POST['national']);
         
@@ -57,7 +57,7 @@
             $msg = "Signup successful, please login";
         }
         else {
-            $msg = $result['message'];
+            $msg = $r_result['message'];
         }
     }
 ?>
