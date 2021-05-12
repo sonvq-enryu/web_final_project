@@ -46,6 +46,10 @@ if (!isset($_SESSION['username'])) {
             border-top-left-radius: 6px;
         }
 
+        .side>ul>li.li-selected:first-child {
+            border-top-left-radius: 6px;
+        }
+
         .side>ul>li:hover {
             background-color: #1DA8C7;
         }
@@ -79,6 +83,7 @@ if (!isset($_SESSION['username'])) {
         }
 
         #edit-profile>.row.mt-3 .mx-auto .d-flex img {
+            border-radius: 3px;
             height: 140px;
             width: 140px;
             max-height: 140px;
@@ -114,9 +119,15 @@ if (!isset($_SESSION['username'])) {
             display: none;
         }
 
-        .alert.alert-danger>p {
+        .alert {
             text-align: center;
         }
+
+        .li-selected {
+            background-color: #1DA8C7;
+        }
+
+        
     </style>
 </head>
 
@@ -125,11 +136,22 @@ if (!isset($_SESSION['username'])) {
     require_once('db.php');
 
     $data = get_user_info($_SESSION['username']);
+
     if ($data['code'] == 0) {
         $data = $data['data'];
     } else {
         die("error");
     }
+
+    // if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['phone'])) {
+    //     $result = update_user_info($_SESSION['username'], $_POST['firstname'], $_POST['lastname'], $_POST['phone']);
+    //     if ($result['code'] == 0 ) {
+    //         $success = "Update your profile successful";
+    //     }
+    //     else {
+    //         $error = $result['message'];
+    //     }
+    // }
     ?>
     <div class="container mt-5">
         <div class="row">
@@ -140,7 +162,7 @@ if (!isset($_SESSION['username'])) {
                     <li><a onclick="profile_show(this)" href="#">Upgrade</a></li>
                     <li><a onclick="profile_show(this)" href="#">Top up</a></li>
                     <li><a onclick="profile_show(this)" href="#">Create Card</a></li>
-                    <li><a href="index.php">Exit</a></li>
+                    <li><a href="index.php">Home Page</a></li>
                 </ul>
             </div>
             <div class="col-9">
@@ -158,9 +180,9 @@ if (!isset($_SESSION['username'])) {
                         </div>
                         <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                             <div class="text-center text-sm-left mb-2 mb-sm-0">
-                                <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><?= $data['email'] ?></h4>
+                                <h4 id="usr-email" class="pt-sm-2 pb-1 mb-0 text-nowrap"><?= $data['email'] ?></h4>
                                 <p class="mb-0"><?= $data['firstname'] . ' ' . $data['lastname'] ?></p>
-                                <div class="text-muted"><small>Thay bằng ngày sinh hoặc quốc gia</small></div>
+                                <div class="text-muted"><small>Male or Female</small></div>
                                 <div class="mt-2">
                                     <button class="btn btn-primary" type="button">
                                         <i class="fa fa-fw fa-camera"></i>
@@ -168,14 +190,14 @@ if (!isset($_SESSION['username'])) {
                                     </button>
                                 </div>
                             </div>
-                            <div class="text-center text-sm-right">
+                            <div class="text-center text-sm-right mt-2">
                                 <span class="badge badge-secondary">Administrator</span>
-                                <br>
-                                <br>
-                                <br>
+                                <div class="text-muted">
+                                    <small>National</small>
+                                </div>
                                 <br>
                                 <div>
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="button" class="btn btn-primary mt-3">
                                         <span>Save change</span>
                                     </button>
                                 </div>
@@ -183,7 +205,7 @@ if (!isset($_SESSION['username'])) {
                         </div>
                     </div>
                     <ul class="nav nav-tabs">
-                        <li class="nav-item"><a href="" class="active nav-link">Profile</a></li>
+                        <li class="nav-item"><a href="#" class="active nav-link">Profile</a></li>
                     </ul>
                     <div class="row mt-3">
                         <div class="col-md-12">
@@ -216,24 +238,28 @@ if (!isset($_SESSION['username'])) {
                                 </div>
                                 <div class="form-check row">
                                     <div class="col">
-                                        <input class="form-check-input" type="radio" id="gender-radio" name="gender" value="male" checked>
+                                        <input class="form-check-input" type="radio" name="gender" value="male">
                                         <label class="form-check-label" for="gender-radio">
                                             Male
                                         </label>
                                     </div>
                                     <div class="col">
-                                        <input class="form-check-input" type="radio" id="gender-radio" name="gender" value="female" checked>
+                                        <input class="form-check-input" type="radio" name="gender" value="female">
                                         <label class="form-check-label" for="exampleRadios1">
                                             Female
                                         </label>
                                     </div>
                                 </div>
-                                <div class="mt-2 alert alert-danger justify-content-center">
-                                    <p></p>
+                                <div class="row mt-2 justify-content-center">
+                                    <div class="col-8">
+                                        <div class="alert d-none">
+
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col d-flex justify-content-end">
-                                        <button class="btn btn-primary" type="submit">Save Changes</button>
+                                        <button onclick="update_user_info()" class="btn btn-primary" type="button">Save Changes</button>
                                     </div>
                                 </div>
                             </form>
@@ -248,28 +274,35 @@ if (!isset($_SESSION['username'])) {
                         <h2>Change password</h2>
                     </div>
                     <ul class="nav nav-tabs mt-3">
-                        <li class="nav-item"><a href="" class="active nav-link">Password</a></li>
+                        <li class="nav-item"><a href="#" class="active nav-link">Password</a></li>
                     </ul>
                     <form action="">
                         <div class="row mt-2 justify-content-center">
                             <div class="col-10 col-sm-10 col-md-10 col-lg-8 col-xl-8">
                                 <div class="form-group">
                                     <label for="current-password">Current password</label>
-                                    <input id="current-password" class="form-control" type="text" placeholder="Current Password" name="old-password">
+                                    <input id="current-password" class="form-control" type="password" placeholder="Current Password" name="old-password">
                                 </div>
                                 <div class="form-group">
                                     <label for="new-password">New password</label>
-                                    <input id="new-password" class="form-control" type="text" placeholder="New Password" name="new-password">
+                                    <input id="new-password" class="form-control" type="password" placeholder="New Password" name="new-password">
                                 </div>
                                 <div class="form-group">
                                     <label for="confirm-password">Confirm password</label>
-                                    <input id="confirm-password" class="form-control" type="text" placeholder="Confirm Password" name="confirm-password">
+                                    <input id="confirm-password" class="form-control" type="password" placeholder="Confirm Password" name="confirm-password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2 justify-content-center">
+                            <div class="col-8">
+                                <div class="alert d-none">
+
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-11 col-sm-11 col-md-11 col-lg-10 col-xl-10 d-flex justify-content-end">
-                                <button class="btn btn-primary" type="submit">Save Changes</button>
+                                <button onclick="change_password()" class="btn btn-primary" type="button">Save Changes</button>
                             </div>
                         </div>
                     </form>
@@ -282,7 +315,7 @@ if (!isset($_SESSION['username'])) {
                         <h2>Top Up Money</h2>
                     </div>
                     <ul class="nav nav-tabs mt-3">
-                        <li class="nav-item"><a href="" class="active nav-link">Top up</a></li>
+                        <li class="nav-item"><a href="#" class="active nav-link">Top up</a></li>
                     </ul>
                     <form action="">
                         <div class="row mt-3 justify-content-center">
@@ -302,59 +335,59 @@ if (!isset($_SESSION['username'])) {
                                 <button class="btn btn-primary" type="submit">Confirm</button>
                             </div>
                         </div>
-                        <ul class="nav nav-tabs mt-3">
-                            <li class="nav-item"><a href="" class="active nav-link">Previous Top up</a></li>
-                        </ul>
-                        <div class="row mt-3 justify-content-center">
-                            <div class="col-10">
-                                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    </form>
+                    <ul class="nav nav-tabs mt-3">
+                        <li class="nav-item"><a href="#" class="active nav-link">Previous Top up</a></li>
+                    </ul>
+                    <div class="row mt-3 justify-content-center">
+                        <div class="col-12">
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
-                                    <table class="table table-bordered table-striped mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Serial number</th>
-                                                <th scope="col">Denominations</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>Jacob</td>
-                                                <td>Thornton</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td>Larry</td>
-                                                <td>the Bird</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">4</th>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">5</th>
-                                                <td>Jacob</td>
-                                                <td>Thornton</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">6</th>
-                                                <td>Larry</td>
-                                                <td>the Bird</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <table class="table table-bordered table-striped mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Serial number</th>
+                                            <th scope="col">Denominations</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">6</th>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
-                                </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
 
 
@@ -364,34 +397,96 @@ if (!isset($_SESSION['username'])) {
                         <h2>Create Card</h2>
                     </div>
                     <ul class="nav nav-tabs mt-3">
-                        <li class="nav-item"><a href="" class="active nav-link">Top up</a></li>
+                        <li class="nav-item"><a href="#" class="active nav-link">Top up</a></li>
                     </ul>
                     <div class="row mt-3">
                         <div class="col-md-12">
                             <form action="" method="POST">
                                 <div class="form-group row">
                                     <div class="col">
-                                        <label for="">National</label>
+                                        <label for="">Number of cards</label>
                                         <!-- <input class="form-control" type="text"> -->
                                         <select class="form-control">
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="opel">Opel</option>
-                                            <option value="audi">Audi</option>
+                                            <option value="1">1</option>
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                            <option value="500">500</option>
                                         </select>
                                     </div>
                                     <div class="col">
-                                        <label for="">National</label>
+                                        <label for="">Valuable</label>
                                         <!-- <input class="form-control" type="text"> -->
                                         <select class="form-control">
-                                            <option value="volvo">Volvo</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="opel">Opel</option>
-                                            <option value="audi">Audi</option>
+                                            <option value="10">10.000 VND</option>
+                                            <option value="20">20.000 VND</option>
+                                            <option value="50">50.000 VND</option>
+                                            <option value="100">100.000 VND</option>
+                                            <option value="200">200.000 VND</option>
+                                            <option value="500">500.000 VND</option>
                                         </select>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-12 d-flex justify-content-end">
+                                        <button class="btn btn-primary" type="submit">Confirm</button>
+                                    </div>
+                                </div>
                             </form>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs mt-3">
+                        <li class="nav-item"><a href="#" class="active nav-link">Top up</a></li>
+                    </ul>
+                    <div class="row mt-3 justify-content-center">
+                        <div class="col-12">
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+                                <table class="table table-bordered table-striped mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Serial number</th>
+                                            <th scope="col">Denominations</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">6</th>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
                         </div>
                     </div>
                 </div>
