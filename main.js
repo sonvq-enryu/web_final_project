@@ -357,12 +357,13 @@ function Filevalidation() {
                         END OF LIMIT FILE UPLOAD SIZE
 *********************************************************/
 
+
+/* EDIT INFO */
 function profile_show(e) {
+    color_block(e);
     let name = e.innerText;
     let forms = document.querySelectorAll('.container > .row > .col-9 > div');
     for (let form of forms) {
-        console.log(form.id);
-        console.log(name);
         if (name == 'Profile' && form.id == 'edit-profile') {
             form.style.display = 'block';
         }
@@ -379,4 +380,164 @@ function profile_show(e) {
             form.style.display = 'none';
         }
     }
+    clear_alert();
 }
+
+function color_block(e) {
+    let selected_li = e.parentNode;
+    let lis = document.querySelectorAll(".side > ul > li");
+    for (let li of lis) {
+        li.classList.remove('li-selected');
+    }
+    selected_li.classList.add('li-selected')
+}
+
+function render_profile(firstname, lastname, nationality, gender) {
+    let edit_profile = document.querySelector('#edit-profile');
+
+    let fullname = edit_profile.querySelector('.d-flex p');
+    // let role = edit_profile.querySelector('.d-flex .badge'); viet ham rieng update role khi update to dev
+    let small_texts = edit_profile.querySelectorAll('.d-flex .text-muted small');
+    // small_texts[0].innerText = gender;
+    // small_texts[1].innerText = nationality;
+    fullname.innerText = firstname + ' ' + lastname;
+}
+
+function update_user_info() {
+    let form = document.querySelector('#edit-profile form');
+    let firstname = form.querySelector('input[name="firstname"]').value;
+    let lastname = form.querySelector('input[name="lastname"]').value;
+    let phone = form.querySelector('input[name="phone"]').value;
+    let error = form.querySelector('div.alert');
+    let email = document.querySelector('#usr-email').innerText;
+    if (firstname == "") {
+        error_edit_form(error, 'Please enter your firstname');
+        return false;
+    }
+    if (lastname == "") {
+        error_edit_form(error, 'Please enter your lastname');
+        return false;
+    }
+    if (phone == "") {
+        error_edit_form(error, 'Please enter your phone number');
+        return false;
+    }
+    
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "update_info.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.addEventListener('load', () => {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            let response = xhr.responseText;
+            response = JSON.parse(response);
+            if (response['code'] == 0) {
+                successful_edit_form(error, "Update profile successful");
+                render_profile(firstname, lastname, false, false);
+            }
+            else {
+                error_edit_form(error, 'Some errors have occurred');
+            }
+        }
+    });
+    let param = "email=" + encodeURIComponent(email) + "&firstname=" + encodeURIComponent(firstname) + "&lastname=" + encodeURIComponent(lastname) + "&phone=" + encodeURIComponent(phone); 
+    xhr.send(param);
+}
+
+function error_edit_form(e, text) {
+    e.classList.remove('d-none');
+    e.classList.remove('alert-success');
+    e.classList.add('alert-danger');
+    e.innerText = text;
+}
+
+function successful_edit_form(e, text) {
+    e.classList.remove('d-none');
+    e.classList.remove('alert-danger');
+    e.classList.add('alert-success');
+    e.innerText = text;
+}
+
+function clear_alert() {
+    let alerts = document.querySelectorAll(".alert");
+    for (let alert of alerts) {
+        alert.classList.add('d-none');
+    }
+}
+
+function change_password() {
+    let form = document.querySelector('#chg-password form');
+    let current_password = form.querySelector('#current-password').value;
+    let new_password = form.querySelector('#new-password').value;
+    let confirm_password = form.querySelector("#confirm-password").value;
+    let error = form.querySelector('div.alert');
+    let email = document.querySelector('#usr-email').innerText;
+    if (current_password == '') {
+        error_edit_form(error, 'Please enter your current password');
+        return false;
+    }
+    if (new_password == '') {
+        error_edit_form(error, 'Please enter your new password');
+        return false;
+    }
+
+    if (confirm_password == '') {
+        error_edit_form(error, 'Please enter confirm password');
+        return false;
+    }
+
+    if (current_password == new_password) {
+        error_edit_form(error, 'New password must different from current password');
+        return false;
+    }
+    if (new_password != confirm_password) {
+        error_edit_form(error, 'New password must matching confirm password');
+        return false;
+    }
+    if (new_password.length < 6 || new_password.length > 30) {
+        error_edit_form(error, 'Your password must be between 8 and 30 characters');
+        return false;
+    }
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "change_password.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.addEventListener('load', () => {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            let response = xhr.responseText;
+            response = JSON.parse(response);
+            if (response['code'] == 0) {
+                form.querySelector('#current-password').value = '';
+                form.querySelector('#new-password').value = '';
+                form.querySelector('#confirm-password').value = '';
+                successful_edit_form(error, "Change password successful");
+            }
+            else if (response['code'] == 2) {
+                error_edit_form(error, 'Your current password not match');
+            }
+            else {
+                error_edit_form(error, 'Some errors have occurred');
+            }
+        }
+    });
+    let params = "old-password=" + encodeURIComponent(current_password) + '&new-password=' + encodeURIComponent(new_password) + '&email=' + encodeURIComponent(email);
+    xhr.send(params);
+}
+
+// function load_user_profile() {
+//     let email = document.querySelector('#usr-email').innerText;
+//     let xhr = new XMLHttpRequest();
+//     console.log('co chay');
+//     xhr.addEventListener('load', () => {
+//         if (xhr.readyState === 4 && xhr.status === 200) {
+//             let response = xhr.responseText;
+//             response = JSON.parse(response);
+//             if (response['code'] == 0) {
+//                 render_profile(response['data']);
+//             }
+//         }
+//     });
+//     xhr.open('GET', 'get_user_profile.php?email=' + encodeURIComponent(email), true);
+//     xhr.send();
+// }
+
+
+/* EDIT INFO */

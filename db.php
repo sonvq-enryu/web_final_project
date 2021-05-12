@@ -284,7 +284,7 @@
         if (!$stm->execute()) {
             return array("code" => 1, "message" => "Cannot execute command");
         }
-
+        
         $result = $stm->get_result();
         if ($result->num_rows > 0) {
             return array("code" => 0, "data" => $result->fetch_assoc());
@@ -298,7 +298,7 @@
 
         $stm = $conn->prepare($query);
         $stm->bind_param('ssss', $fname, $lname, $phone, $email);
-
+        
         if (!$stm->execute()) {
             return array("code" => 1, "message" => "Cannot execute command");
         }
