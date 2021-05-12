@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 11, 2021 lúc 06:50 PM
+-- Thời gian đã tạo: Th5 12, 2021 lúc 06:22 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -47,8 +47,8 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id`, `firstname`, `lastname`, `email`, `password`, `phone`, `admin`, `activated`, `activate_token`) VALUES
-('', 'Vo', 'Quoc Son', 'voquocson@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '', '0', b'1', NULL),
-('1', 'Lê', 'Nguyễn Minh Tuấn', 'lnmtuan1702@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '0901995401', '0', b'1', '');
+('1', 'Lê', 'Nguyễn Minh Tuấn', 'lnmtuan1702@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '0901995401', '0', b'1', ''),
+('2', 'Vo', 'Quoc Son', 'voquocson@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '', '0', b'1', NULL);
 
 -- --------------------------------------------------------
 
@@ -270,11 +270,11 @@ CREATE TABLE `comment_rating` (
 --
 
 INSERT INTO `comment_rating` (`user_id`, `application_id`, `comment`, `rating`) VALUES
-('', 'A51', 'mất thời gian', 1),
-('1', 'A20', 'không hiểu sao tôi lại tải về', 2),
+('1', 'A14', '', 1),
 ('1', 'A28', 'game tệ', 4),
 ('1', 'A4', 'game như cái đầu buồi vậy', 1),
-('1', 'A51', 'cũng được', 5);
+('1', 'A51', 'hay lắm', 4),
+('2', 'A51', 'như cái ...........................', 1);
 
 -- --------------------------------------------------------
 
