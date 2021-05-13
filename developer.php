@@ -1,7 +1,13 @@
 <?php
+    session_start();
+    if (!isset($_SESSION['username'])) {
+        header("Location: loginform.php");
+        exit();
+    }
     require_once('dev_func.php');
-    $pending_app = get_uploadapp();
-    
+    $id = $_GET['id'];
+    $pending_app = get_uploadapp($id);
+    $email = $_SESSION['fullname'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,34 +38,49 @@
                 </a>
             </div>
             <div class="header-box">
-                <input type="text" id="search-box" name="search-box" placeholder="Search">
-                <button class="dev-console-button " type="submit"><i class="fa fa-search"></i></button>
+             
 
             </div>
 
             <div class="header-user">
-                <div onclick="ClickUserIcon()" class="user-dropdown">
-                    <div class="user-profile">
-                        <img class="user-img" src="./image/smuge_the_cat.jpg">
-                    </div>
-                    <div id="user-dropdown-content" class="user-dropdown-content">
-                        <h3>Name<br><span>Email</span></h3>
-                        <ul>
-                            <li><img src="./image/user.svg"><a href="#">My Profile</a></li>
-                            <li><img src="./image/edit.svg"><a href="#">Edit Profile</a></li>
-                            <li><img src="./image/envelope.svg"><a href="#">Inbox</a></li>
-                            <li><img src="./image/settings.svg"><a href="#">Setting</a></li>
-                            <li><img src="./image/log-out.svg"><a href="#">Logout</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <?php
+                    if(isset($_SESSION['username']) && isset($_SESSION['fullname'])){
+                        $username = $_SESSION['username'];
+                        $fullname = $_SESSION['fullname'];
+                        ?>
+                        <div onclick="ClickUserIcon()" class="user-dropdown">
+                            <div class="user-profile">
+                                <img class="user-img" src="./image/smuge_the_cat.jpg">
+                            </div>
+                            <div id="user-dropdown-content" class="user-dropdown-content">
+                                <h3><?=$fullname?><br><span><?=$username?></span></h3>
+                                <ul>
+                                    <li><img src="./image/user.svg"><a href="profile.php">My Profile</a></li>
+                                    <li><img src="./image/edit.svg"><a href="profile.php">Edit Infomation</a></li>
+                                    <li><img src="./image/settings.svg"><a href="profile.php">Change Password</a></li>
+                                    <li><img src="./image/log-out.svg"><a href="logout.php">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    else{
+                        ?>
+                            <div class="login-signup">
+                                <a class="btn btn-outline-secondary" href="loginform.php">Login</a>
+                            </div>
+                        <?php
+                    }
+                    
+                ?>
             </div>
         </div>
         <div class="dev-console-sidebar">
             <div class="dev-console-img">
                 <img src="./image/googleplayconsole.png" alt="" />Google Play Console
             </div>
-            <a class="fa fa-android" href="developer.php"> All applications</a>
+            <a class="fa fa-shopping-bag" href="index.php"> Google Play Store</a>
+            <a class="fa fa-android" href="developer.php?id=<?= (string)$id ?>"> All applications</a>
             <a class="fa fa-gamepad" href="#"> Game services</a>
             <a class="fa fa-credit-card"> Order management</a>
             <a class="fa fa-download" href="#"> Download reports</a>
@@ -114,7 +135,7 @@
                             <?php
                                 if($pending_app['code']!=0){
                                     ?>
-                                        <div class="col-sm-2"><a href="dev_application.html">-</a></div>
+                                        <div class="col-sm-2">-</div>
 
                                         <div class="col-sm-2">-</div>
                                         <div class="col-sm-2">
@@ -129,7 +150,7 @@
                                 }else{
                                     foreach($pending_app['data'] as $item){
                                         ?>
-                                             <div class="col-sm-2"><a href="dev_application.php?id=<?= $item['app_id'] ?>"> <?= $item['name'] ?> </a></div>
+                                             <div class="col-sm-2"><a href="dev_application.php?id=<?= (string)$id ?>"> <?= $item['name'] ?> </a></div>
                                                 <div class="col-sm-2">-</div>
                                                 <div class="col-sm-2">
                                                     <a class='fa fa-star'> </a>
@@ -137,7 +158,7 @@
                                                 <div class="col-sm-2"><?= $item['date'] ?></div>
                                                 <div class="col-sm-2"><?= $item['status'] ?></div>
                                                 <div class="col-sm-2">
-                                                    <a class="fa fa-trash-o"></a>
+                                                    <a class="fa fa-trash-o"><button onclick="delete_pend_app(<?= $item['app_id'] ?>)"></button></a>
                                             </div>
                                         <?php
                                     }
@@ -147,7 +168,7 @@
                         </div>
                     </div>
                     <div>
-                        <a class='devcreatebtn btn btn-success' href="appsubmit.php">CREATE APPLICATION</a>
+                        <a class='devcreatebtn btn btn-success' href="appsubmit.php?id=<?=$id?>">CREATE APPLICATION</a>
                     </div>
                 </div>
 

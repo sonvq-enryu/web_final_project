@@ -1,8 +1,12 @@
 <?php
     require_once('dev_func.php');
-    
+    session_start();
+    if (!isset($_SESSION['username'])) {
+        header("Location: loginform.php");
+        exit();
+    }
     $id = $_GET['id'];
-        
+    $id = (string) $id;     
     $dev_apps = get_pending_apps($id);
     
 ?>
@@ -35,34 +39,54 @@
                     <img src="./image/googleplayicon.png" alt="" />
                 </a>
             </div>
+<<<<<<< HEAD
             <div class="header-box">
                 <input type="text" id="search-box" name="search-box" placeholder="Search">
                 <button class="dev-console-button " type="submit"><i class="fa fa-search"></i></button>
             </div>
+=======
+            
+>>>>>>> 9c7f44a7a50582df1cd3bc81aeaa4b124c1239cf
 
             <div class="header-user">
-                <div onclick="ClickUserIcon()" class="user-dropdown">
-                    <div class="user-profile">
-                        <img class="user-img" src="./image/smuge_the_cat.jpg">
-                    </div>
-                    <div id="user-dropdown-content" class="user-dropdown-content">
-                        <h3>Name<br><span>Email</span></h3>
-                        <ul>
-                            <li><img src="./image/user.svg"><a href="#">My Profile</a></li>
-                            <li><img src="./image/edit.svg"><a href="#">Edit Profile</a></li>
-                            <li><img src="./image/envelope.svg"><a href="#">Inbox</a></li>
-                            <li><img src="./image/settings.svg"><a href="#">Setting</a></li>
-                            <li><img src="./image/log-out.svg"><a href="#">Logout</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <?php
+                    if(isset($_SESSION['username']) && isset($_SESSION['fullname'])){
+                        $username = $_SESSION['username'];
+                        $fullname = $_SESSION['fullname'];
+                        ?>
+                        <div onclick="ClickUserIcon()" class="user-dropdown">
+                            <div class="user-profile">
+                                <img class="user-img" src="./image/smuge_the_cat.jpg">
+                            </div>
+                            <div id="user-dropdown-content" class="user-dropdown-content">
+                                <h3><?=$fullname?><br><span><?=$username?></span></h3>
+                                <ul>
+                                    <li><img src="./image/user.svg"><a href="profile.php">My Profile</a></li>
+                                    <li><img src="./image/edit.svg"><a href="profile.php">Edit Infomation</a></li>
+                                    <li><img src="./image/settings.svg"><a href="profile.php">Change Password</a></li>
+                                    <li><img src="./image/log-out.svg"><a href="logout.php">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    else{
+                        ?>
+                            <div class="login-signup">
+                                <a class="btn btn-outline-secondary" href="loginform.php">Login</a>
+                            </div>
+                        <?php
+                    }
+                    
+                ?>
             </div>
         </div>
         <div class="dev-console-sidebar">
             <div class="dev-console-img">
                 <img src="./image/googleplayconsole.png" alt="" />Google Play Console
             </div>
-            <a class="fa fa-android" href="developer.php"> All applications</a>
+            <a class="fa fa-shopping-bag" href="index.php"> Google Play Store</a>
+            <a class="fa fa-android" href="developer.php?id=<?= (string)$id ?>"> All applications</a>
             <a class="fa fa-gamepad" href="#"> Game services</a>
             <a class="fa fa-credit-card"> Order management</a>
             <a class="fa fa-download" href="#"> Download reports</a>
@@ -180,7 +204,7 @@
                                         <div class="rating">
                                             rating
                                             <span class="fa fa-star checked"></span>
-                                            <button>Edit</button>
+                                            <a href="edit_app.php?id=<?=$id ?>"><button>Edit</button></a>
                                         </div>
                                     </div>
                                     <table class="stattable">
