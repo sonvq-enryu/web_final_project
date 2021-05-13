@@ -1,6 +1,12 @@
 <?php
-    require_once('dev_func.php');
 
+    require_once('dev_func.php');
+    session_start();
+    if (!isset($_SESSION['username'])) {
+        header("Location: loginform.php");
+        exit();
+    }
+    $id = $_GET['id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,25 +38,33 @@
     $price = '';
     $appcategory = '';
     $date = date("dmy");
+    $date = (string) $date;
     $status = '';
     
-    $developer = 'aaaaa';
+    $developer = 'Mark Zuckerbergs';
     $message ='';
     if (isset($_POST['appname']) && isset($_POST['price']) && isset($_POST['desc']) ){
         $appname = $_POST['appname'];
         $price = $_POST['price'];
         $desc = $_POST['desc'];
         $appcategory = $_POST['appcategory'];
-        $size = (($_FILES['apk']['size']/1024)/1024);
-        $status = 'Draft';
+
+        $size = (int) (($_FILES['apk']['size']/1024)/1024);
+       
+        $size = $size."M";
+        $status = 'Pending';
+
+        $time = time();
+        $temp = substr($time,6);
+        $temp = "A" .$temp;
+        $app_id =$temp ;
+
+        $icon = 'image/app/'.$_FILES['icon']['name'];
         if (empty($appname)) {
             $error = 'Hãy nhập tên ứng dụng';
         }
         else if (intval($price) < 0) {
             $error = 'Giá của sản phẩm không hợp lệ';
-        }
-        else if (intval($price) % 10000 != 0) {
-            $error = 'Giá ứng dụng là bội số của 10,000 đ';
         }
         else if (empty($desc)) {
             $error = 'Hãy nhập mô tả của ứng dụng';
@@ -63,14 +77,24 @@
             $error = 'Vui lòng upload apk của ứng dụng';
         }
         else {
-            $result = upload_app($developer,$appname,$price,$date,$size, $_FILES['icon']['name'],$appcategory,$desc,$status, $_FILES['apk']['name']);
+
+            $result = upload_app($app_id,$developer,$appname,$price,$date,$size, $icon,$appcategory,$desc,$status, $_FILES['apk']['name']);
             if($result['code'] == 0){
-                $message = 'Add product success';
+                $message = 'Add application success';
                 $name = '';
                 $price = '';
                 $desc = '';
                 $appcategory = '';
-                
+                $image_name = $_FILES['icon']['name'];
+                $fileTempName = $_FILES['icon']['tmp_name'];
+                $fileDestination  = 'image/app/' .$image_name;
+                move_uploaded_file($fileTempName,$fileDestination);
+
+                $apk_name = $_FILES['apk']['name'];
+                $apkTempName = $_FILES['apk']['tmp_name'];
+                $apkDestination  = 'image/apk/' .$apk_name;
+                move_uploaded_file($apkTempName,$apkDestination);
+
             }
             else{
                 $error = 'An error occured. Please try again later';
@@ -86,35 +110,47 @@
                     <img src="./image/googleplayicon.png" alt="" />
                 </a>
             </div>
-            <div class="header-box">
-                <input type="text" id="search-box" name="search-box" placeholder="Search">
-                <button class="dev-console-button " type="submit"><i class="fa fa-search"></i></button>
-
-            </div>
+           
 
             <div class="header-user">
-                <div onclick="ClickUserIcon()" class="user-dropdown">
-                    <div class="user-profile">
-                        <img class="user-img" src="./image/smuge_the_cat.jpg">
-                    </div>
-                    <div id="user-dropdown-content" class="user-dropdown-content">
-                        <h3>Name<br><span>Email</span></h3>
-                        <ul>
-                            <li><img src="./image/user.svg"><a href="#">My Profile</a></li>
-                            <li><img src="./image/edit.svg"><a href="#">Edit Profile</a></li>
-                            <li><img src="./image/envelope.svg"><a href="#">Inbox</a></li>
-                            <li><img src="./image/settings.svg"><a href="#">Setting</a></li>
-                            <li><img src="./image/log-out.svg"><a href="#">Logout</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <?php
+                    if(isset($_SESSION['username']) && isset($_SESSION['fullname'])){
+                        $username = $_SESSION['username'];
+                        $fullname = $_SESSION['fullname'];
+                        ?>
+                        <div onclick="ClickUserIcon()" class="user-dropdown">
+                            <div class="user-profile">
+                                <img class="user-img" src="./image/smuge_the_cat.jpg">
+                            </div>
+                            <div id="user-dropdown-content" class="user-dropdown-content">
+                                <h3><?=$fullname?><br><span><?=$username?></span></h3>
+                                <ul>
+                                    <li><img src="./image/user.svg"><a href="profile.php">My Profile</a></li>
+                                    <li><img src="./image/edit.svg"><a href="profile.php">Edit Infomation</a></li>
+                                    <li><img src="./image/settings.svg"><a href="profile.php">Change Password</a></li>
+                                    <li><img src="./image/log-out.svg"><a href="logout.php">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    else{
+                        ?>
+                            <div class="login-signup">
+                                <a class="btn btn-outline-secondary" href="loginform.php">Login</a>
+                            </div>
+                        <?php
+                    }
+                    
+                ?>
             </div>
         </div>
         <div class="dev-console-sidebar">
             <div class="dev-console-img">
                 <img src="./image/googleplayconsole.png" alt="" />Google Play Console
             </div>
-            <a class="fa fa-android" href="developer.php"> All applications</a>
+            <a class="fa fa-shopping-bag" href="index.php"> Google Play Store</a>
+            <a class="fa fa-android" href="developer.php?id=<?= (string)$id ?>"> All applications</a>
             <a class="fa fa-gamepad" href="#"> Game services</a>
             <a class="fa fa-credit-card"> Order management</a>
             <a class="fa fa-download" href="#"> Download reports</a>
@@ -125,7 +161,7 @@
         <div class="dev-content-app">
             <div class="dev-menu">
                 <div class="dev-row">
-                    <h2 class="app-title">Create app</h2>
+                    <h2 class="app-title">Submit application</h2>
                     <h3>App details</h3>
                     <form method="POST" action="" novalidate enctype="multipart/form-data">
                         <label class="appsubmit-label">
@@ -142,6 +178,7 @@
 
                         <label class="appsubmit-label">
                             App Icon <input name="icon" type="file" class="appsub-input" id="icon" accept="image/gif, image/jpeg, image/png, image/bmp">
+
                         </label>
                         
                         <label class="appsubmit-label">

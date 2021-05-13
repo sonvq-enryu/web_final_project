@@ -50,6 +50,11 @@ if (!isset($_SESSION['username'])) {
                         <li><a onclick="profile_show(this)" href="#">Upgrade</a></li>
                         <?php
                     }
+                    if ($_SESSION['role'] == 1) {
+                        ?>
+                            <li><a  href="developer.php?id=<?= $_SESSION['id'] ?>">Developer Console</a></li>
+                        <?php
+                    }
                     if ($_SESSION['role'] == 0) {
                     ?>
                         <li><a onclick="profile_show(this)" href="#">Create Card</a></li>
