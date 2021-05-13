@@ -38,7 +38,6 @@
             <div class="header-box">
                 <input type="text" id="search-box" name="search-box" placeholder="Search">
                 <button class="dev-console-button " type="submit"><i class="fa fa-search"></i></button>
-
             </div>
 
             <div class="header-user">

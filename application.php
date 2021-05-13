@@ -133,6 +133,29 @@
                                         </div>
                                         <div class="rating">
                                         <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
+                                        <?php
+                                        if(isset($_SESSION['id'])){
+                                            $result = is_downloaded($_SESSION['id'],$item['id']);
+                                            if($result['code']!=0) die($result['message']);
+                                            if($result['status']){
+                                                ?>
+                                                    <p><img src="./image/download.png"></p> 
+                                                <?php
+                                            }
+                                            if($item['price'] !== 0 && !$result['status']){
+                                                ?>
+                                                    <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
+                                                <?php
+                                            }
+                                        }
+                                        else{
+                                            if($item['price'] !== 0){
+                                                ?>
+                                                    <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
+                                                <?php
+                                            }
+                                        } 
+                                        ?>
                                         </div>
                                     </div>
                                 <?php
@@ -161,9 +184,25 @@
                             <div><?= $item_app['stars'] ?></div>
                             <span class="fa fa-star checked"></span>
                             <?php
-                                if(isset($_SESSION['username']) && isset($_SESSION['fullname'])){
+                                if(isset($_SESSION['id'])){
+                                    $result = is_downloaded($_SESSION['id'],$item_app['id']);
+                                    if($result['code']!=0) die($result['message']);
                                     ?>
-                                        <button>Download</button>
+                                        <?php
+                                        if($result['status']){
+                                            ?>
+                                                <a href="<?='download.php?image='.$item_app['image'].'&name='.$item_app['name']?>">Đã được cài đặt</a> 
+                                            <?php 
+                                        }
+                                        else if($item_app['price'] !== 0 && !$result['status']){
+                                            ?>
+                                                <a class="buy-to-download"><?= number_format($item_app['price'], 0, '.', '.') ?> đ</a> 
+                                            <?php   
+                                        }
+                                        else{
+                                            ?><a href="<?='download.php?image='.$item_app['image'].'&name='.$item_app['name'].'&user='.$_SESSION['id'].'&app='.$item_app['id']?>">Download</a><?php
+                                        }
+                                        ?>
                                     <?php
                                 }
                             ?>
@@ -225,8 +264,14 @@
                     <div class="review">
                         <br></br>
                         <?php
-                            if(isset($_SESSION['fullname'])){
-                                ?><a class="write-review btn btn-outline-secondary" href="#" data-toggle="modal" data-target="#review-section">Write a review</a><?php
+                            if(isset($_SESSION['id'])){
+                                $result = is_downloaded($_SESSION['id'],$item_app['id']);
+                                if($result['code']!=0) die($result['message']);
+                                if($result['status']){
+                                    ?>
+                                        <a class="write-review btn btn-outline-secondary" href="#" data-toggle="modal" data-target="#review-section">Write a review</a>
+                                    <?php
+                                }
                             }
                         ?>
                         <br></br>
@@ -307,6 +352,29 @@
                                     </div>
                                     <div class="rating">
                                     <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
+                                    <?php
+                                        if(isset($_SESSION['id'])){
+                                            $result = is_downloaded($_SESSION['id'],$item['id']);
+                                            if($result['code']!=0) die($result['message']);
+                                            if($result['status']){
+                                                ?>
+                                                    <p><img src="./image/download.png"></p> 
+                                                <?php
+                                            }
+                                            if($item['price'] !== 0 && !$result['status']){
+                                                ?>
+                                                    <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
+                                                <?php
+                                            }
+                                        }
+                                        else{
+                                            if($item['price'] !== 0){
+                                                ?>
+                                                    <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
+                                                <?php
+                                            }
+                                        } 
+                                        ?>
                                     </div>
                                 </div>
                             <?php
@@ -337,6 +405,29 @@
                                     </div>
                                     <div class="rating">
                                     <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
+                                    <?php
+                                        if(isset($_SESSION['id'])){
+                                            $result = is_downloaded($_SESSION['id'],$item['id']);
+                                            if($result['code']!=0) die($result['message']);
+                                            if($result['status']){
+                                                ?>
+                                                    <p><img src="./image/download.png"></p> 
+                                                <?php
+                                            }
+                                            if($item['price'] !== 0 && !$result['status']){
+                                                ?>
+                                                    <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
+                                                <?php
+                                            }
+                                        }
+                                        else{
+                                            if($item['price'] !== 0){
+                                                ?>
+                                                    <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
+                                                <?php
+                                            }
+                                        } 
+                                        ?>
                                     </div>
                                 </div>
                             <?php

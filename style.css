@@ -876,6 +876,17 @@ ul.menu li a:hover {
     margin-top: 7px;
 }
 
+.apps-row .app-card .rating span{
+    margin-right: 8px;
+}
+
+.apps-row .app-card .rating p{
+    display: inline-block;
+    float: right;
+    margin-right: 10px;
+    color: #33691e;
+}
+
 .apps-row .app-card .rating span {
     margin-left: 3px;
 }
@@ -1043,22 +1054,24 @@ body {
     width: 20px;
 }
 
-.container .app-page-header .app-page-info .rating button {
+.container .app-page-header .app-page-info .rating a {
     /* position: absolute; */
     left: 600px;
     top: 150px;
     display: inline-block;
     background-color: #689f38;
     color: white;
-    width: 80px;
     height: 40px;
     outline: none;
     border: none;
     border-radius: 2px;
     font-weight: 550;
+    margin-left: 130px;
+    padding: 9px 23px;
+    cursor: pointer;
 }
 
-.container .app-page-header .app-page-info .rating button:hover {
+.container .app-page-header .app-page-info .rating a:hover {
     background-color: #397702;
 }
 
