@@ -20,113 +20,6 @@ if (!isset($_SESSION['username'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Profile</title>
-    <style>
-        .container.mt-5 {
-            border-radius: 6px;
-            min-width: 520px;
-            height: 800px;
-            padding-left: 0px;
-            background: white;
-        }
-
-        .side>ul {
-            border-top-left-radius: 6px;
-            border-bottom-left-radius: 6px;
-            background-color: #7A7A7A;
-            height: 800px;
-            list-style-type: none;
-            text-align: center;
-        }
-
-        .side>ul>li {
-            height: 55px;
-        }
-
-        .side>ul>li:first-child:hover {
-            border-top-left-radius: 6px;
-        }
-
-        .side>ul>li.li-selected:first-child {
-            border-top-left-radius: 6px;
-        }
-
-        .side>ul>li:hover {
-            background-color: #1DA8C7;
-        }
-
-        .side>ul>li>a {
-            font-size: 20px;
-            font-weight: 550;
-            height: 55px;
-            display: block;
-            color: #f2f2f2;
-            padding-top: 12px;
-            text-decoration: none;
-        }
-
-        .profile-header {
-            border-bottom: 1px solid lightgray;
-            margin-top: 10px;
-        }
-
-        .profile-header>h2 {
-            text-align: center;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-        }
-
-        #edit-profile>.row.mt-3 .mx-auto {
-            width: 140px;
-        }
-
-        #edit-profile>.row.mt-3 .mx-auto .d-flex {
-            height: 140px;
-        }
-
-        #edit-profile>.row.mt-3 .mx-auto .d-flex img {
-            border-radius: 3px;
-            height: 140px;
-            width: 140px;
-            max-height: 140px;
-            max-width: 140px;
-        }
-
-        .badge {
-            font-size: 15px;
-        }
-
-        /* #chg-password>form>.row {
-            justify-content: center;
-        } */
-        .my-custom-scrollbar {
-            /* position: relative; */
-            height: 300px;
-            overflow: auto;
-        }
-
-        .table-wrapper-scroll-y {
-            display: block;
-        }
-
-        #chg-password {
-            display: none;
-        }
-
-        #top-up {
-            display: none;
-        }
-
-        #create-cards {
-            display: none;
-        }
-
-        .alert {
-            text-align: center;
-        }
-
-        .li-selected {
-            background-color: #1DA8C7;
-        }
-    </style>
 </head>
 
 <body class="profile">
@@ -135,6 +28,8 @@ if (!isset($_SESSION['username'])) {
     $countries = array("Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province of China", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe");
 
     $data = get_user_info($_SESSION['username']);
+
+    $card_tbody = get_cards()['data'];
 
     if ($data['code'] == 0) {
         $data = $data['data'];
@@ -149,9 +44,24 @@ if (!isset($_SESSION['username'])) {
                 <ul>
                     <li><a onclick="profile_show(this)" href="#">Profile</a></li>
                     <li><a onclick="profile_show(this)" href="#">Password</a></li>
-                    <li><a onclick="profile_show(this)" href="#">Upgrade</a></li>
-                    <li><a onclick="profile_show(this)" href="#">Top up</a></li>
-                    <li><a onclick="profile_show(this)" href="#">Create Card</a></li>
+                    <?php
+                    if ($_SESSION['role'] == 2) {
+                        ?>
+                        <li><a onclick="profile_show(this)" href="#">Upgrade</a></li>
+                        <?php
+                    }
+                    if ($_SESSION['role'] == 0) {
+                    ?>
+                        <li><a onclick="profile_show(this)" href="#">Create Card</a></li>
+                    <?php
+                    }
+                    else {
+                        ?>
+                        <li><a onclick="profile_show(this)" href="#">Top up</a></li>
+                        <?php
+                    }
+                    ?>
+                    <!-- <li><a onclick="profile_show(this)" href="#">Create Card</a></li> -->
                     <li><a href="index.php">Home Page</a></li>
                 </ul>
             </div>
@@ -239,8 +149,7 @@ if (!isset($_SESSION['username'])) {
                                             for ($i = 0; $i < count($countries); $i++) {
                                                 if ($i == $data['national']) {
                                                     echo "<option value='$i' selected>$countries[$i]</option>";
-                                                }
-                                                else {
+                                                } else {
                                                     echo "<option value='$i'>$countries[$i]</option>";
                                                 }
                                                 // echo "<option value='$i'>$countries[$i]</option>";
@@ -349,7 +258,7 @@ if (!isset($_SESSION['username'])) {
                             <div class="col-10 col-sm-10 col-md-10 col-lg-8 col-xl-8">
                                 <div class="form-group">
                                     <label for="current-money">Current money</label>
-                                    <input class="form-control" id="current-money" type="text" readonly>
+                                    <input class="form-control" id="current-money" type="text" value="<?php echo $data['money'] . ' VND' ?>" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="serial-number">Serial number</label>
@@ -357,9 +266,16 @@ if (!isset($_SESSION['username'])) {
                                 </div>
                             </div>
                         </div>
+                        <div class="row mt-2 justify-content-center">
+                            <div class="col-8">
+                                <div class="alert d-none">
+
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-11 col-sm-11 col-md-11 col-lg-10 col-xl-10 d-flex justify-content-end">
-                                <button class="btn btn-primary" type="submit">Confirm</button>
+                                <button onclick="topup_money()" class="btn btn-primary" type="button">Confirm</button>
                             </div>
                         </div>
                     </form>
@@ -418,112 +334,87 @@ if (!isset($_SESSION['username'])) {
                 </div>
 
 
-
-                <div id="create-cards">
-                    <div class="profile-header">
-                        <h2>Create Card</h2>
-                    </div>
-                    <ul class="nav nav-tabs mt-3">
-                        <li class="nav-item"><a href="#" class="active nav-link">Top up</a></li>
-                    </ul>
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <form action="" method="POST">
-                                <div class="form-group row">
-                                    <div class="col">
-                                        <label for="">Number of cards</label>
-                                        <!-- <input class="form-control" type="text"> -->
-                                        <select class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="5">5</option>
-                                            <option value="10">10</option>
-                                            <option value="20">20</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                            <option value="500">500</option>
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <label for="">Valuable</label>
-                                        <!-- <input class="form-control" type="text"> -->
-                                        <select class="form-control">
-                                            <option value="50">50.000 VND</option>
-                                            <option value="100">100.000 VND</option>
-                                            <option value="200">200.000 VND</option>
-                                            <option value="500">500.000 VND</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12 d-flex justify-content-end">
-                                        <button class="btn btn-primary" type="submit">Confirm</button>
-                                    </div>
-                                </div>
-                            </form>
+                <?php
+                if ($_SESSION['role'] == 0) {
+                ?>
+                    <div id="create-cards">
+                        <div class="profile-header">
+                            <h2>Create Card</h2>
                         </div>
-                    </div>
-                    <ul class="nav nav-tabs mt-3">
-                        <li class="nav-item"><a href="#" class="active nav-link">Top up</a></li>
-                    </ul>
-                    <div class="row mt-3 justify-content-center">
-                        <div class="col-12">
-                            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <ul class="nav nav-tabs mt-3">
+                            <li class="nav-item"><a href="#" class="active nav-link">Cards</a></li>
+                        </ul>
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <form action="" method="POST">
+                                    <div class="form-group row">
+                                        <div class="col-12 col-sm">
+                                            <label for="">Number of cards</label>
+                                            <input class="form-control" type="text" name="number">
+                                        </div>
+                                        <div class="col-12 col-sm">
+                                            <label for="">Valuable</label>
+                                            <!-- <input class="form-control" type="text"> -->
+                                            <select class="form-control" name="value">
+                                                <option value="50000">50.000 VND</option>
+                                                <option value="100000">100.000 VND</option>
+                                                <option value="200000">200.000 VND</option>
+                                                <option value="500000">500.000 VND</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2 justify-content-center">
+                                        <div class="col-8">
+                                            <div class="alert d-none">
 
-                                <table class="table table-bordered table-striped mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Serial number</th>
-                                            <th scope="col">Denominations</th>
-                                            <th scope="col">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>Otto</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>Otto</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>Otto</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>Otto</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">5</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>Otto</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">6</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>Otto</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <button onclick="create_cards()" class="btn btn-primary" type="button">Confirm</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <ul class="nav nav-tabs mt-3">
+                            <li class="nav-item"><a href="#" class="active nav-link">Top up</a></li>
+                        </ul>
+                        <div class="row mt-3 justify-content-center">
+                            <div class="col-12">
+                                <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
+                                    <table class="table table-bordered table-striped mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Serial number</th>
+                                                <th scope="col">Denominations</th>
+                                                <th scope="col">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            for ($i = 0; $i < count($card_tbody); ++$i) {
+                                                if ($card_tbody[$i][3] == 0) {
+                                                    $is_used = 'Unused';
+                                                } else {
+                                                    $is_used = 'Used';
+                                                }
+                                                echo '<tr><th scope="row">' . $i + 1 . '</th><td>' . $card_tbody[$i][1] . '</td><td>' . $card_tbody[$i][2] . ' VND</td><td>' . $is_used . '</td></tr>';
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-
+                <?php
+                }
+                ?>
             </div>
         </div>
     </div>

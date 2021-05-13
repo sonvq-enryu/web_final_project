@@ -394,11 +394,12 @@ define('HOST','127.0.0.1');
         $hash = password_hash($password, PASSWORD_DEFAULT);
         
         $role_default = 2;
-        $sql = "INSERT INTO account(id, firstname, lastname, email, password, phone, gender, national, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $money_default = 0;
+        $sql = "INSERT INTO account(id, firstname, lastname, email, password, phone, gender, national, role, money) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $conn = open_database();
 
         $stm = $conn->prepare($sql); 
-        $stm->bind_param("ssssssiii", $last_id, $firstname, $lastname, $email, $hash, $phone, $gender, $national, $role_default);
+        $stm->bind_param("ssssssiiii", $last_id, $firstname, $lastname, $email, $hash, $phone, $gender, $national, $role_default, $money_default);
 
 
         if (!$stm->execute()) {
@@ -480,4 +481,205 @@ define('HOST','127.0.0.1');
         if($result['code']!=0) die($result['message']);
         else header("Location:".$_POST['path']);
     }
+
+    function is_serial_exist($serial_number) {
+        $sql = "select serial from card where serial = ?";
+        $conn = open_database();
+
+        $stm = $conn->prepare($sql);
+        $stm->bind_param('s', $serial_number);
+
+        if (!$stm->execute()) {
+            return true;
+        }
+
+        $result = $stm->get_result();
+        if ($result->num_rows > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    function generate_serial_number() {
+        $chars = array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+        $serial = '';
+        $max = count($chars) - 1;
+        for ($i=0; $i<15; ++$i) {
+            $serial .= $chars[rand(0, $max)];
+        }
+        return $serial;
+    }
+
+    function generate_card($value) {
+        $serial = generate_serial_number();
+
+        if (is_serial_exist($serial)) {
+            return false;
+        }
+
+        $value = (int)$value;
+        $default_status = 0;
+        $query = 'insert into card(serial, value, status) values (?, ?, ?)';
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param("sii", $serial, $value, $default_status);
+
+        if (!$stm->execute()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function get_cards() {
+        $query = "select * from card";
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "Cannot execute command");
+        }
+
+        $result = $stm->get_result();
+        $data = $result->fetch_all();
+        
+        return array("code" => 0, "data" => $data);
+    }
+
+    function is_admin($email) {
+        $query = "select * from account where email = ? and role = 0";
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param("s", $email);
+
+        if (!$stm->execute()) {
+            return false;
+        }
+
+        $result = $stm->get_result();
+        if ($result->num_rows == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    function is_card_used($serial) {
+        $query = "select * from card where serial = ?";
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param("s", $serial);
+
+        if (!$stm->execute()) {
+            return 0;
+        }
+
+        $result = $stm->get_result();
+        $card = $result->fetch_assoc();
+        if ($card['status'] == 1) {
+            return 1;
+        }
+
+        return $card['value'];
+    }
+
+    function make_card_used($serial) {
+        $query = "update card set status = ? where serial = ?";
+        $conn = open_database();
+
+        $used = 1;
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param('is', $used, $serial);
+
+        if (!$stm->execute()) {
+            return false;
+        }
+        return true;
+    }
+
+    function add_history_topup($email, $serial) {
+        $query = "insert into topup values (?, ?)";
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param("ss", $email, $serial);
+
+        if (!$stm->execute()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function get_current_money($email) {
+        $query = 'select money from account where email = ?';
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param("s", $email);
+
+        if (!$stm->execute()) {
+            return -1;
+        }
+
+        $result = $stm->get_result();
+        return $result->fetch_assoc()['money'];
+    }
+
+    function add_user_money($email, $current_money, $value) {
+        $query = "update account set money = ? where email = ?";
+        $conn = open_database();
+    
+        $new_money = $current_money + $value;
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param("is", $new_money, $email);
+
+        if (!$stm->execute()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function request_topup($email, $serial) {
+        if (!is_serial_exist($serial)) {
+            return array("code" => 1, "message" => "This serial not existed");
+        }
+        $value = is_card_used($serial);
+        if ($value == 0) {
+            return array("code" => 2, "message" => "Some error has occurred");
+        }
+        else if ($value == 1) {
+            return array("code" => 3, "message" => "This serial has been used");
+        }
+
+        $current_money = get_current_money($email);
+        if ($current_money == -1) {
+            return array("code" => 2, "message" => "Some error has occurred");
+        }
+
+        $add = add_history_topup($email, $serial);
+        if ($add == false) {
+            return array("code" => 2, "message" => "Some error has occurred");
+        }
+
+        
+        $make = make_card_used($serial);
+        if ($make == false) {
+            return array("code" => 2, "message" => "Some error has occurred");
+        }
+
+        if (add_user_money($email, $current_money, $value)) {
+            return array("code" => 0, "data" => $current_money + $value);
+        }
+        return array("code" => 2, "message" => "Some error has occurred");
+    }
+
+
 ?>

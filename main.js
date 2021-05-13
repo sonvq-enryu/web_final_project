@@ -555,22 +555,135 @@ function change_password() {
     xhr.send(params);
 }
 
-// function load_user_profile() {
-//     let email = document.querySelector('#usr-email').innerText;
-//     let xhr = new XMLHttpRequest();
-//     console.log('co chay');
-//     xhr.addEventListener('load', () => {
-//         if (xhr.readyState === 4 && xhr.status === 200) {
-//             let response = xhr.responseText;
-//             response = JSON.parse(response);
-//             if (response['code'] == 0) {
-//                 render_profile(response['data']);
-//             }
-//         }
-//     });
-//     xhr.open('GET', 'get_user_profile.php?email=' + encodeURIComponent(email), true);
-//     xhr.send();
-// }
+function create_cards() {
+    let form = document.querySelector('#create-cards form');
+    let number_cards = form.querySelector('input[name="number"]');
+    let money = form.querySelector('select[name="value"]');
+    let error = form.querySelector('div.alert');
 
+    money_seleted = money.options[money.selectedIndex].value;
+    if (number_cards.value == '') {
+        error_edit_form(error, 'Please enter number cards you want created');
+        return ;
+    }
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "generate_card.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.addEventListener('load', () => {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            let response = xhr.responseText;
+            response = JSON.parse(response);
+            if (response['code'] == 0) {
+                successful_edit_form(error, "Create successful");
+                get_cards();
+            }
+            else {
+                error_edit_form(error, 'Some errors have occurred. Please try again');
+            }
+        }
+    });
+    let params = "number=" + encodeURIComponent(number_cards.value) + "&value=" + encodeURIComponent(money_seleted);
+    xhr.send(params);
+}
+
+function get_cards() {
+    let email = document.querySelector('#usr-email').innerText;
+    console.log(email);
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "get_all_cards.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.addEventListener('load', () => {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            let response = xhr.responseText;
+            response = JSON.parse(response);
+            if (response['code'] == 0) {
+                console.log(response['data']);
+                render_cards(response['data']);
+            }
+        }
+    });
+    let params = "email=" + encodeURIComponent(email);
+    xhr.send(params);
+}
+
+function render_cards(card_array) {
+    let card_div = document.querySelector('#create-cards');
+    let card_tbody = card_div.querySelector('table tbody');
+    empty_tbody(card_tbody);
+    for (let i=0; i<card_array.length; ++i) {
+        card_tbody.appendChild(create_row_table(i+1, card_array[i]));
+    }
+}
+
+function empty_tbody(tbody) {
+    tbody.innerHTML = '';
+}
+
+function create_row_table(index, row_text) {
+    let tr = document.createElement('tr');
+    let idx = document.createElement('th');
+    idx.setAttribute('scope', 'row');
+    idx.innerText = index;
+    tr.appendChild(idx);
+    for (let i=1; i<4; ++i) {
+        let th = document.createElement('td');
+        if (i == 1) {
+            th.innerText = row_text[i];
+        }
+        else if (i == 2) {
+            th.innerText = String(row_text[i]) + ' VND';
+        }
+        else {
+            if (row_text[i] == 3) {
+                th.innerText = "Used";
+            }
+            else {
+                th.innerText = "Unused"
+            }
+        }
+        tr.appendChild(th);
+    }
+    return tr;
+}
+
+function topup_money() {
+    let form = document.querySelector('#top-up form');
+    let current_money = form.querySelector('#current-money');
+    let email = document.querySelector('#usr-email').innerText;
+    let serial = form.querySelector('input[name="serial"]');
+    let error = form.querySelector('div.alert');
+    if (serial.value == '') {
+        error_edit_form(error, 'Please enter serial number');
+        return ;
+    }
+    if (serial.value.length < 15) {
+        error_edit_form(error, 'Not enough length, serial number has 15 characters');
+        return ;
+    }
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "topup_money.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.addEventListener('load', () => {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            let response = xhr.responseText;
+            response = JSON.parse(response);
+            if (response['code'] == 0) {
+                current_money.value = response['data'] + ' VND';
+                serial.value = "";
+                successful_edit_form(error, "Top up successful");
+            }
+            else {
+                error_edit_form(error, response['message']);
+            }
+        }
+    });
+    let params = "email=" + encodeURIComponent(email) + "&serial=" + encodeURIComponent(serial.value);
+    xhr.send(params);
+}
+
+function render_after_topup() {
+
+}
 
 /* EDIT INFO */

@@ -2,10 +2,10 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 12, 2021 lúc 07:31 PM
--- Phiên bản máy phục vụ: 10.4.18-MariaDB
--- Phiên bản PHP: 8.0.3
+-- Host: localhost
+-- Generation Time: May 13, 2021 at 01:56 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,17 +18,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `googleplay`
+-- Database: `googleplay`
 --
-
 CREATE DATABASE IF NOT EXISTS `googleplay` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `googleplay`;
-
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `account`
+-- Table structure for table `account`
 --
 
 CREATE TABLE `account` (
@@ -41,24 +39,28 @@ CREATE TABLE `account` (
   `gender` int(10) NOT NULL,
   `national` int(200) NOT NULL,
   `role` int(10) NOT NULL,
+  `money` int(15) NOT NULL,
   `activated` bit(1) DEFAULT b'0',
   `activate_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `account`
+-- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`id`, `firstname`, `lastname`, `email`, `password`, `phone`, `gender`, `national`, `role`, `activated`, `activate_token`) VALUES
-('1', 'Lê', 'Nguyễn Minh Tuấn', 'lnmtuan1702@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '0901995401', 0, 0, 0, b'1', ''),
-('2', 'Vo', 'Quoc Son', 'voquocson@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '', 0, 0, 0, b'1', NULL),
-('3', 'Huynh', 'Nhu', 'huynhnhu@gmail.com', '$2y$10$BnFA3Dkgj1q0xBlme3GcwukDhqTO8l8V/.BrWktW8sK9boZ3z2UpG', '789', 0, 0, 0, b'0', NULL),
-('4', 'Tran', 'Huyen', 'tkph@gmail.com', '$2y$10$8rSxJT76sHsDRKaAw/xbDO/sBdf.ktxKmNesJxjKf./8GltWI8Q4O', '123456789', 1, 230, 2, b'0', NULL);
+INSERT INTO `account` (`id`, `firstname`, `lastname`, `email`, `password`, `phone`, `gender`, `national`, `role`, `money`, `activated`, `activate_token`) VALUES
+('1', 'Lê', 'Nguyễn Minh Tuấn', 'lnmtuan1702@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '0901995401', 0, 0, 0, 0, b'1', ''),
+('2', 'Vo', 'Quoc Son', 'voquocson@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '', 0, 0, 0, 0, b'1', NULL),
+('3', 'Huynh', 'Nhu', 'huynhnhu@gmail.com', '$2y$10$BnFA3Dkgj1q0xBlme3GcwukDhqTO8l8V/.BrWktW8sK9boZ3z2UpG', '789', 0, 0, 0, 0, b'0', NULL),
+('4', 'Tran', 'Huyen', 'tkph@gmail.com', '$2y$10$8rSxJT76sHsDRKaAw/xbDO/sBdf.ktxKmNesJxjKf./8GltWI8Q4O', '123456789', 1, 230, 2, 0, b'0', NULL),
+('5', 'Võ', 'Quốc Sơn', 'testlogin@gmail.com', '$2y$10$dWtDMxc4FmDgr1Qtb8XyIeNcbua49JH/ickKm9jAmEwjz7iM.D5q.', '0921231232', 0, 230, 0, 0, b'0', NULL),
+('6', 'Vo', 'Quoc Son', 'testlogin1@gmail.com', '$2y$10$nBXkjyH7GlVc5w8p5A/.2OKosxr1ys8nJmo2IFNC3eoERH7CQE3hq', '0921231242', 1, 230, 1, 0, b'0', NULL),
+('7', 'Vo', 'Quoc Son', 'testlogin2@gmail.com', '$2y$10$hk2ZXJO2.XnObxfmNPaKXu/vkkU0XF81cslpYFzChCTAaeV.ieRMu', '0925372462', 0, 230, 2, 300000, b'0', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `application`
+-- Table structure for table `application`
 --
 
 CREATE TABLE `application` (
@@ -76,7 +78,7 @@ CREATE TABLE `application` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `application`
+-- Dumping data for table `application`
 --
 
 INSERT INTO `application` (`id`, `name`, `price`, `stars`, `updated`, `size`, `install`, `developer`, `image`, `content`, `description`) VALUES
@@ -260,7 +262,32 @@ INSERT INTO `application` (`id`, `name`, `price`, `stars`, `updated`, `size`, `i
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `comment_rating`
+-- Table structure for table `card`
+--
+
+CREATE TABLE `card` (
+  `id` int(10) NOT NULL,
+  `serial` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `value` int(6) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `card`
+--
+
+INSERT INTO `card` (`id`, `serial`, `value`, `status`) VALUES
+(1, 'EJNGHY797H9XIO7', 50000, 1),
+(2, '5JYOTPSCZU2VAYG', 50000, 1),
+(3, 'RZTZKLPSB3GDN7I', 100000, 1),
+(4, 'NEANN3Y76RQAXO1', 100000, 1),
+(5, 'HDGKLZ61GBDGKEU', 200000, 0),
+(6, '6BEVBN9M4EHWDT6', 200000, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment_rating`
 --
 
 CREATE TABLE `comment_rating` (
@@ -271,7 +298,7 @@ CREATE TABLE `comment_rating` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `comment_rating`
+-- Dumping data for table `comment_rating`
 --
 
 INSERT INTO `comment_rating` (`user_id`, `application_id`, `comment`, `rating`) VALUES
@@ -284,7 +311,7 @@ INSERT INTO `comment_rating` (`user_id`, `application_id`, `comment`, `rating`) 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `pending_application`
+-- Table structure for table `pending_application`
 --
 
 CREATE TABLE `pending_application` (
@@ -300,41 +327,87 @@ CREATE TABLE `pending_application` (
   `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Chỉ mục cho các bảng đã đổ
+-- Table structure for table `topup`
+--
+
+CREATE TABLE `topup` (
+  `email` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `serial` varchar(15) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `topup`
+--
+
+INSERT INTO `topup` (`email`, `serial`) VALUES
+('testlogin2@gmail.com', 'EJNGHY797H9XIO7'),
+('testlogin2@gmail.com', '5JYOTPSCZU2VAYG'),
+('testlogin2@gmail.com', 'RZTZKLPSB3GDN7I'),
+('testlogin2@gmail.com', 'NEANN3Y76RQAXO1');
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `account`
+-- Indexes for table `account`
 --
 ALTER TABLE `account`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
--- Chỉ mục cho bảng `application`
+-- Indexes for table `application`
 --
 ALTER TABLE `application`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `comment_rating`
+-- Indexes for table `card`
+--
+ALTER TABLE `card`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `serial` (`serial`);
+
+--
+-- Indexes for table `comment_rating`
 --
 ALTER TABLE `comment_rating`
   ADD PRIMARY KEY (`user_id`,`application_id`),
   ADD KEY `application_id` (`application_id`);
 
 --
--- Chỉ mục cho bảng `pending_application`
+-- Indexes for table `pending_application`
 --
 ALTER TABLE `pending_application`
   ADD PRIMARY KEY (`app_id`);
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Indexes for table `topup`
+--
+ALTER TABLE `topup`
+  ADD KEY `email` (`email`),
+  ADD KEY `serial` (`serial`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `comment_rating`
+-- AUTO_INCREMENT for table `card`
+--
+ALTER TABLE `card`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `comment_rating`
 --
 ALTER TABLE `comment_rating`
   ADD CONSTRAINT `comment_rating_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`),
@@ -342,6 +415,13 @@ ALTER TABLE `comment_rating`
   ADD CONSTRAINT `comment_rating_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`),
   ADD CONSTRAINT `comment_rating_ibfk_4` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`),
   ADD CONSTRAINT `comment_rating_ibfk_5` FOREIGN KEY (`application_id`) REFERENCES `application` (`id`);
+
+--
+-- Constraints for table `topup`
+--
+ALTER TABLE `topup`
+  ADD CONSTRAINT `topup_ibfk_1` FOREIGN KEY (`email`) REFERENCES `account` (`email`),
+  ADD CONSTRAINT `topup_ibfk_2` FOREIGN KEY (`serial`) REFERENCES `card` (`serial`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
