@@ -2,10 +2,10 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 13, 2021 at 01:56 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.5
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th5 13, 2021 lúc 03:16 PM
+-- Phiên bản máy phục vụ: 10.4.18-MariaDB
+-- Phiên bản PHP: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,15 +18,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `googleplay`
+-- Cơ sở dữ liệu: `googleplay`
 --
+
 CREATE DATABASE IF NOT EXISTS `googleplay` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `googleplay`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account`
+-- Cấu trúc bảng cho bảng `account`
 --
 
 CREATE TABLE `account` (
@@ -45,14 +46,14 @@ CREATE TABLE `account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `account`
+-- Đang đổ dữ liệu cho bảng `account`
 --
 
 INSERT INTO `account` (`id`, `firstname`, `lastname`, `email`, `password`, `phone`, `gender`, `national`, `role`, `money`, `activated`, `activate_token`) VALUES
 ('1', 'Lê', 'Nguyễn Minh Tuấn', 'lnmtuan1702@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '0901995401', 0, 0, 0, 0, b'1', ''),
 ('2', 'Vo', 'Quoc Son', 'voquocson@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '', 0, 0, 0, 0, b'1', NULL),
 ('3', 'Huynh', 'Nhu', 'huynhnhu@gmail.com', '$2y$10$BnFA3Dkgj1q0xBlme3GcwukDhqTO8l8V/.BrWktW8sK9boZ3z2UpG', '789', 0, 0, 0, 0, b'0', NULL),
-('4', 'Tran', 'Huyen', 'tkph@gmail.com', '$2y$10$8rSxJT76sHsDRKaAw/xbDO/sBdf.ktxKmNesJxjKf./8GltWI8Q4O', '123456789', 1, 230, 2, 0, b'0', NULL),
+('4', 'Tran', 'Huyen', 'tkph@gmail.com', '$2y$10$8rSxJT76sHsDRKaAw/xbDO/sBdf.ktxKmNesJxjKf./8GltWI8Q4O', '123456789', 1, 230, 2, 200000, b'0', NULL),
 ('5', 'Võ', 'Quốc Sơn', 'testlogin@gmail.com', '$2y$10$dWtDMxc4FmDgr1Qtb8XyIeNcbua49JH/ickKm9jAmEwjz7iM.D5q.', '0921231232', 0, 230, 0, 0, b'0', NULL),
 ('6', 'Vo', 'Quoc Son', 'testlogin1@gmail.com', '$2y$10$nBXkjyH7GlVc5w8p5A/.2OKosxr1ys8nJmo2IFNC3eoERH7CQE3hq', '0921231242', 1, 230, 1, 0, b'0', NULL),
 ('7', 'Vo', 'Quoc Son', 'testlogin2@gmail.com', '$2y$10$hk2ZXJO2.XnObxfmNPaKXu/vkkU0XF81cslpYFzChCTAaeV.ieRMu', '0925372462', 0, 230, 2, 300000, b'0', NULL);
@@ -60,7 +61,7 @@ INSERT INTO `account` (`id`, `firstname`, `lastname`, `email`, `password`, `phon
 -- --------------------------------------------------------
 
 --
--- Table structure for table `application`
+-- Cấu trúc bảng cho bảng `application`
 --
 
 CREATE TABLE `application` (
@@ -78,7 +79,7 @@ CREATE TABLE `application` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `application`
+-- Đang đổ dữ liệu cho bảng `application`
 --
 
 INSERT INTO `application` (`id`, `name`, `price`, `stars`, `updated`, `size`, `install`, `developer`, `image`, `content`, `description`) VALUES
@@ -262,7 +263,7 @@ INSERT INTO `application` (`id`, `name`, `price`, `stars`, `updated`, `size`, `i
 -- --------------------------------------------------------
 
 --
--- Table structure for table `card`
+-- Cấu trúc bảng cho bảng `card`
 --
 
 CREATE TABLE `card` (
@@ -273,7 +274,7 @@ CREATE TABLE `card` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `card`
+-- Đang đổ dữ liệu cho bảng `card`
 --
 
 INSERT INTO `card` (`id`, `serial`, `value`, `status`) VALUES
@@ -281,13 +282,17 @@ INSERT INTO `card` (`id`, `serial`, `value`, `status`) VALUES
 (2, '5JYOTPSCZU2VAYG', 50000, 1),
 (3, 'RZTZKLPSB3GDN7I', 100000, 1),
 (4, 'NEANN3Y76RQAXO1', 100000, 1),
-(5, 'HDGKLZ61GBDGKEU', 200000, 0),
-(6, '6BEVBN9M4EHWDT6', 200000, 0);
+(5, 'HDGKLZ61GBDGKEU', 200000, 1),
+(6, '6BEVBN9M4EHWDT6', 200000, 0),
+(7, 'U08R6O7C92XLDB7', 50000, 0),
+(8, '4ALWAYNT88PN9KY', 50000, 0),
+(9, 'AQUL2M31RXPSV3J', 50000, 0),
+(10, '6V3ZA44DZ9ESBWM', 200000, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comment_rating`
+-- Cấu trúc bảng cho bảng `comment_rating`
 --
 
 CREATE TABLE `comment_rating` (
@@ -298,7 +303,7 @@ CREATE TABLE `comment_rating` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `comment_rating`
+-- Đang đổ dữ liệu cho bảng `comment_rating`
 --
 
 INSERT INTO `comment_rating` (`user_id`, `application_id`, `comment`, `rating`) VALUES
@@ -311,7 +316,7 @@ INSERT INTO `comment_rating` (`user_id`, `application_id`, `comment`, `rating`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pending_application`
+-- Cấu trúc bảng cho bảng `pending_application`
 --
 
 CREATE TABLE `pending_application` (
@@ -319,18 +324,19 @@ CREATE TABLE `pending_application` (
   `developer` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `price` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `size` int(11) NOT NULL,
+  `date` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `size` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `image` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `content` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `file` varchar(1000) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `topup`
+-- Cấu trúc bảng cho bảng `topup`
 --
 
 CREATE TABLE `topup` (
@@ -339,75 +345,76 @@ CREATE TABLE `topup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `topup`
+-- Đang đổ dữ liệu cho bảng `topup`
 --
 
 INSERT INTO `topup` (`email`, `serial`) VALUES
 ('testlogin2@gmail.com', 'EJNGHY797H9XIO7'),
 ('testlogin2@gmail.com', '5JYOTPSCZU2VAYG'),
 ('testlogin2@gmail.com', 'RZTZKLPSB3GDN7I'),
-('testlogin2@gmail.com', 'NEANN3Y76RQAXO1');
+('testlogin2@gmail.com', 'NEANN3Y76RQAXO1'),
+('tkph@gmail.com', 'HDGKLZ61GBDGKEU');
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `account`
+-- Chỉ mục cho bảng `account`
 --
 ALTER TABLE `account`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `application`
+-- Chỉ mục cho bảng `application`
 --
 ALTER TABLE `application`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `card`
+-- Chỉ mục cho bảng `card`
 --
 ALTER TABLE `card`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `serial` (`serial`);
 
 --
--- Indexes for table `comment_rating`
+-- Chỉ mục cho bảng `comment_rating`
 --
 ALTER TABLE `comment_rating`
   ADD PRIMARY KEY (`user_id`,`application_id`),
   ADD KEY `application_id` (`application_id`);
 
 --
--- Indexes for table `pending_application`
+-- Chỉ mục cho bảng `pending_application`
 --
 ALTER TABLE `pending_application`
   ADD PRIMARY KEY (`app_id`);
 
 --
--- Indexes for table `topup`
+-- Chỉ mục cho bảng `topup`
 --
 ALTER TABLE `topup`
   ADD KEY `email` (`email`),
   ADD KEY `serial` (`serial`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `card`
+-- AUTO_INCREMENT cho bảng `card`
 --
 ALTER TABLE `card`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `comment_rating`
+-- Các ràng buộc cho bảng `comment_rating`
 --
 ALTER TABLE `comment_rating`
   ADD CONSTRAINT `comment_rating_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`),
@@ -417,7 +424,7 @@ ALTER TABLE `comment_rating`
   ADD CONSTRAINT `comment_rating_ibfk_5` FOREIGN KEY (`application_id`) REFERENCES `application` (`id`);
 
 --
--- Constraints for table `topup`
+-- Các ràng buộc cho bảng `topup`
 --
 ALTER TABLE `topup`
   ADD CONSTRAINT `topup_ibfk_1` FOREIGN KEY (`email`) REFERENCES `account` (`email`),
