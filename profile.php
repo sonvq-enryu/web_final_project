@@ -353,7 +353,7 @@ if (!isset($_SESSION['username'])) {
                                             <input class="form-control" type="text" name="number">
                                         </div>
                                         <div class="col-12 col-sm">
-                                            <label for="">Valuable</label>
+                                            <label for="">Denominations</label>
                                             <!-- <input class="form-control" type="text"> -->
                                             <select class="form-control" name="value">
                                                 <option value="50000">50.000 VND</option>

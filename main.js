@@ -635,7 +635,7 @@ function create_row_table(index, row_text) {
             th.innerText = String(row_text[i]) + ' VND';
         }
         else {
-            if (row_text[i] == 3) {
+            if (row_text[i] == 1) {
                 th.innerText = "Used";
             }
             else {
@@ -680,10 +680,6 @@ function topup_money() {
     });
     let params = "email=" + encodeURIComponent(email) + "&serial=" + encodeURIComponent(serial.value);
     xhr.send(params);
-}
-
-function render_after_topup() {
-
 }
 
 /* EDIT INFO */
