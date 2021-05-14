@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require_once 'db.php';
 
     if(empty($_SESSION['download_file'])){
         die('Không có nội dung để tải');
@@ -24,8 +25,9 @@
     header('Content-Length: '.filesize($filePath));
     flush();
     readfile($filePath);
+
     if(isset($_GET['user']) && isset($_GET['app']) ){
-        is_downloaded($_GET['user'],$_GET['app']);
+        download($_GET['user'],$_GET['app']);
     }
 
 ?>
