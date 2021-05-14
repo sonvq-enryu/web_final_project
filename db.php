@@ -676,10 +676,50 @@ define('HOST','127.0.0.1');
         }
 
         if (add_user_money($email, $current_money, $value)) {
-            return array("code" => 0, "data" => $current_money + $value);
+            return array("code" => 0, "data" => $current_money + $value, "value" => $value);
         }
         return array("code" => 2, "message" => "Some error has occurred");
     }
 
+    function get_topup_history($email) {
+        $query = "select card.serial, card.value from topup, card where email = ? and card.serial = topup.serial";
+        $conn = open_database();
 
+        $stm = $conn->prepare($query);
+        $stm->bind_param('s', $email);
+
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "cannot execute command");
+        }
+
+        $result = $stm->get_result();
+        if ($result->num_rows == 0) {
+            return array("code" => 2, "message" => "No top up money history");
+        }
+        $data = $result->fetch_all();
+        return array("code" => 0, "data" => $data);
+    }
+
+    function generate_image_name() {
+        $chars = array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+        $serial = '';
+        $max = count($chars) - 1;
+        for ($i=0; $i<10; ++$i) {
+            $serial .= strtolower($chars[rand(0, $max)]);
+        }
+        return $serial;
+    }
+
+    function replace_new_image($email, $img_path) {
+        $query = "update account set image = ? where email = ?";
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param('ss', $img_path, $email);
+
+        if (!$stm->execute()) {
+            return array("code" => 5, "message" => "Cannot execute command");
+        }
+        return array("code" => 0, "message" => "update image successful", "path" => $img_path);
+    }
 ?>

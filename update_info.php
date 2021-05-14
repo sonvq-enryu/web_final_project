@@ -7,7 +7,7 @@
         $lastname = $_POST['lastname'];
         $phone = $_POST['phone'];
         $result = update_user_info($email, $firstname, $lastname, $phone, $_POST['national'], $_POST['gender']);
-        // print_r(json_encode($_POST));
+
     }
 
     print_r(json_encode($result));
