@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if (!isset($_SESSION['username'])) {
+        header("Location: loginform.php");
+        exit();
+    }
     require_once('admin_func.php');
     $pending_app = get_all_pending_apps();
     
@@ -37,27 +42,43 @@
                 </div>
 
                 <div class="header-user">
-                    <div onclick="ClickUserIcon()" class="user-dropdown">
-                        <div class="user-profile">
-                            <img class="user-img" src="./image/smuge_the_cat.jpg">
+                <?php
+                    if(isset($_SESSION['username']) && isset($_SESSION['fullname'])){
+                        $username = $_SESSION['username'];
+                        $fullname = $_SESSION['fullname'];
+                        ?>
+                        <div onclick="ClickUserIcon()" class="user-dropdown">
+                            <div class="user-profile">
+                                <img class="user-img" src="./image/smuge_the_cat.jpg">
+                            </div>
+                            <div id="user-dropdown-content" class="user-dropdown-content">
+                                <h3><?=$fullname?><br><span><?=$username?></span></h3>
+                                <ul>
+                                    <li><img src="./image/user.svg"><a href="profile.php">My Profile</a></li>
+                                    <li><img src="./image/edit.svg"><a href="profile.php">Edit Infomation</a></li>
+                                    <li><img src="./image/settings.svg"><a href="profile.php">Change Password</a></li>
+                                    <li><img src="./image/log-out.svg"><a href="logout.php">Logout</a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <div id="user-dropdown-content" class="user-dropdown-content">
-                            <h3>Name<br><span>Email</span></h3>
-                            <ul>
-                                <li><img src="./image/user.svg"><a href="#">My Profile</a></li>
-                                <li><img src="./image/edit.svg"><a href="#">Edit Profile</a></li>
-                                <li><img src="./image/envelope.svg"><a href="#">Inbox</a></li>
-                                <li><img src="./image/settings.svg"><a href="#">Setting</a></li>
-                                <li><img src="./image/log-out.svg"><a href="#">Logout</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                        <?php
+                    }
+                    else{
+                        ?>
+                            <div class="login-signup">
+                                <a class="btn btn-outline-secondary" href="loginform.php">Login</a>
+                            </div>
+                        <?php
+                    }
+                    
+                ?>
+            </div>
             </div>
             <div class="dev-console-sidebar">
                 <div class="dev-console-img">
                     <img src="./image/admin_icon.png" alt="" />Google Admin
                 </div>
+                <a class="fa fa-shopping-bag" href="index.php"> Google Play Store</a>
                 <a class="fa fa-android" href="admin_check.php"> All applications</a>
                 <a class="fa fa-download" href="#"> Download reports</a>
                 <a class='fa fa-warning' href="#"> Alerts</a>
@@ -138,7 +159,7 @@
                                             <?= $item['status'] ?>
                                         </div>
                                         <div class="col-sm-2">
-                                            <a class="fa fa-trash-o"></a>
+                                            <a href="admin_approve.php?id=<?= $item['app_id'] ?>"><i class='fa fa-edit'></i></a>
                                         </div>
                                         <?php
                                     }

@@ -66,6 +66,11 @@ if (!isset($_SESSION['username'])) {
                         <?php
                     }
                     if ($_SESSION['role'] == 0) {
+                        ?>
+                            <li><a  href="admin_check.php?id=<?= $_SESSION['id'] ?>">Admin Console</a></li>
+                        <?php
+                    }
+                    if ($_SESSION['role'] == 0) {
                     ?>
                         <li><a onclick="profile_show(this)" href="#">Create Card</a></li>
                     <?php

@@ -60,6 +60,7 @@
         $app_id =$temp ;
 
         $icon = 'image/app/'.$_FILES['icon']['name'];
+        $file = 'apk/'.$_FILES['apk']['name'];
         if (empty($appname)) {
             $error = 'Hãy nhập tên ứng dụng';
         }
@@ -78,7 +79,7 @@
         }
         else {
 
-            $result = upload_app($app_id,$developer,$appname,$price,$date,$size, $icon,$appcategory,$desc,$status, $_FILES['apk']['name'],$id);
+            $result = upload_app($app_id,$developer,$appname,$price,$date,$size, $icon,$appcategory,$desc,$status, $file,$id);
             if($result['code'] == 0){
                 $message = 'Add application success';
                 $name = '';
@@ -92,7 +93,7 @@
 
                 $apk_name = $_FILES['apk']['name'];
                 $apkTempName = $_FILES['apk']['tmp_name'];
-                $apkDestination  = 'image/apk/' .$apk_name;
+                $apkDestination  = 'apk/' .$apk_name;
                 move_uploaded_file($apkTempName,$apkDestination);
 
             }
