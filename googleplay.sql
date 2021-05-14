@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 13, 2021 lúc 03:16 PM
+-- Thời gian đã tạo: Th5 14, 2021 lúc 11:36 AM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -83,22 +83,22 @@ CREATE TABLE `application` (
 --
 
 INSERT INTO `application` (`id`, `name`, `price`, `stars`, `updated`, `size`, `install`, `developer`, `image`, `content`, `description`) VALUES
-('A0', 'Ta Là Quan Lão Gia - 100D', 0, 4.4, '1616626800', '27M', 1000000, '100 Game', 'image/app/A0.jpg', 'Rated for 12+\nModerate Violence, Sexual Innuendo', ''),
+('A0', 'Ta Là Quan Lão Gia - 100D', 100000, 4.4, '1616626800', '27M', 1000000, '100 Game', 'image/app/A0.jpg', 'Rated for 12+\nModerate Violence, Sexual Innuendo', ''),
 ('A1', 'MU: Vượt Thời Đại - Funtap', 0, 4, '1616968800', '98M', 1000000, 'Ambrine Studio', 'image/app/A1.jpg', 'Rated for 12+\nModerate Violence, Horror', ''),
 ('A10', 'Evony: The King\'s Return', 0, 4.3, '1618178400', '74M', 10000000, 'TG Inc.', 'image/app/A10.jpg', 'Rated for 12+\nModerate Violence', ''),
 ('A100', 'Eudemon League', 0, 4.3, '1616540400', '47M', 100000, 'JamesSam', 'image/app/A100.jpg', 'Rated for 12+\nModerate Violence', ''),
 ('A101', 'Idle Angels', 0, 4.5, '1618437600', '73M', 500000, 'MUJOY PTE. LTD.', 'image/app/A101.jpg', 'Rated for 16+\nNudity', ''),
-('A102', 'Infinite Galaxy', 0, 4.2, '1618351200', '49M', 1000000, 'Camel Games Limited', 'image/app/A102.jpg', 'Rated for 7+\nMild Violence', ''),
+('A102', 'Infinite Galaxy', 6000, 4.2, '1618351200', '49M', 1000000, 'Camel Games Limited', 'image/app/A102.jpg', 'Rated for 7+\nMild Violence', ''),
 ('A103', 'Gọi Rồng Online-Vũ Trụ Bi Rồng', 0, 4.1, '1617832800', '90M', 100000, 'Pantherap', 'image/app/A103.jpg', 'Rated for 12+\nHorror', ''),
 ('A104', 'War of Destiny', 0, 4.1, '1617832800', '47M', 500000, 'Camel Games Limited', 'image/app/A104.jpg', 'Rated for 12+\nModerate Violence', ''),
 ('A105', 'Piggy Boom-Be the island king', 0, 4.5, '1618524000', '97M', 10000000, 'Aladin Fun', 'image/app/A105.jpg', 'Rated for 3+', ''),
 ('A106', 'Thần Vương Nhất Thế - Game Cày Thế Hệ Mới', 0, 4.5, '1615935600', '51M', 100000, 'NPH VTC Mobile', 'image/app/A106.jpg', 'Rated for 7+\nMild Violence', ''),
 ('A107', 'Brave Dungeon: Immortal Legend', 0, 4.5, '1611702000', '44M', 1000000, 'UnlockGame', 'image/app/A107.jpg', 'Rated for 12+\nMild Swearing', ''),
-('A108', 'KING`s RAID', 0, 4.4, '1617746400', '104M', 5000000, 'Vespa Inc.', 'image/app/A108.jpg', 'Rated for 12+\nModerate Violence, Sexual Innuendo', ''),
+('A108', 'KING`s RAID', 12000, 4.4, '1617746400', '104M', 5000000, 'Vespa Inc.', 'image/app/A108.jpg', 'Rated for 12+\nModerate Violence, Sexual Innuendo', ''),
 ('A109', 'Võ Lâm Truyền Kỳ Mobile - VNG', 0, 3.7, '1616454000', '93M', 1000000, 'VNG Game Publishing', 'image/app/A109.jpg', 'Rated for 3+', ''),
 ('A11', 'Yong Heroes', 0, 4.3, '1616454000', '100M', 1000000, '4399en game', 'image/app/A11.jpg', 'Rated for 12+\nModerate Violence', ''),
 ('A110', 'Cookie Run: Kingdom - Kingdom Builder & Battle RPG', 0, 4.3, '1618524000', '95M', 1000000, 'Devsisters Corporation', 'image/app/A110.jpg', 'Rated for 7+\nMild Violence', ''),
-('A111', 'FIFA Online 4 M by EA SPORTS™', 0, 3.9, '1617919200', '67M', 1000000, 'Garena Mobile Private', 'image/app/A111.jpg', 'Rated for 3+', ''),
+('A111', 'FIFA Online 4 M by EA SPORTS™', 250000, 3.9, '1617919200', '67M', 1000000, 'Garena Mobile Private', 'image/app/A111.jpg', 'Rated for 3+', ''),
 ('A112', 'Texas Hold\'em & Omaha Poker: Pokerist', 0, 4, '1617314400', '139M', 10000000, 'KamaGames', 'image/app/A112.jpg', 'Rated for 18+\nGambling', ''),
 ('A113', 'Tam Quốc Chí Đại Chiến', 0, 3.4, '1615158000', '57M', 10000, 'Flipped Games', 'image/app/A113.jpg', 'Rated for 3+', ''),
 ('A114', 'Call Me Emperor - Alternate World', 0, 4.1, '1614121200', '53M', 1000000, 'Clicktouch Co., Ltd.', 'image/app/A114.jpg', 'Rated for 12+\nModerate Violence, Mild Swearing', ''),
@@ -112,13 +112,13 @@ INSERT INTO `application` (`id`, `name`, `price`, `stars`, `updated`, `size`, `i
 ('A121', 'Klondike Adventures', 0, 4.5, '1617228000', '69M', 10000000, 'VIZOR APPS LTD.', 'image/app/A121.jpg', 'Rated for 7+\nMild Violence', ''),
 ('A122', 'Jackpot World™ - Free Vegas Casino Slots', 0, 4.5, '1615330800', '101M', 5000000, 'SpinX Games Limited', 'image/app/A122.jpg', 'Rated for 18+\nSimulated Gambling', ''),
 ('A123', 'Monsters & Puzzles: Battle of God, New Match 3 RPG', 0, 4.5, '1617228000', '155M', 100000, 'INDIEZ GLOBAL PTE. LTD.', 'image/app/A123.jpg', 'Rated for 7+\nMild Violence', ''),
-('A124', '바람의전쟁: 뇌명천하', 0, 4, '1600812000', '101M', 100000, '4399 KOREA', 'image/app/A124.jpg', 'Rated for 7+\nMild Violence', ''),
+('A124', '바람의전쟁: 뇌명천하', 69000, 4, '1600812000', '101M', 100000, '4399 KOREA', 'image/app/A124.jpg', 'Rated for 7+\nMild Violence', ''),
 ('A125', 'Gold Storm Casino - Asian Fishing Arcade Carnival', 0, 4.2, '1610406000', '70M', 500000, 'XieXing Studio', 'image/app/A125.jpg', 'Rated for 12+\nSimulated Gambling', ''),
 ('A126', 'Sòng Bạc May Mắn - Nổ hũ，Bắn cá，Tố bài', 0, 4.5, '1611702000', '22M', 100000, 'nanshan', 'image/app/A126.jpg', 'Rated for 12+\nSimulated Gambling', ''),
 ('A127', 'Trials of Heroes: Idle RPG', 0, 4.4, '1617314400', '100M', 1000000, 'Jupiter Entertainment', 'image/app/A127.jpg', 'Rated for 12+\nModerate Violence', ''),
 ('A128', 'Đại Hiệp Luyện Công Nào H5', 0, 3.3, '1617832800', '96M', 10000, 'Mcorp Investment & Technology Joint Stock Company', 'image/app/A128.jpg', 'Rated for 16+\nStrong Violence', ''),
 ('A129', 'Archero', 0, 4.4, '1618351200', '79M', 50000000, 'Habby', 'image/app/A129.jpg', 'Rated for 7+\nMild Violence', ''),
-('A13', 'Garena Free Fire MAX', 0, 4.6, '1617919200', '69M', 5000000, 'GARENA INTERNATIONAL I PRIVATE LIMITED', 'image/app/A13.jpg', 'Rated for 12+\nModerate Violence', ''),
+('A13', 'Garena Free Fire MAX', 99000, 4.6, '1617919200', '69M', 5000000, 'GARENA INTERNATIONAL I PRIVATE LIMITED', 'image/app/A13.jpg', 'Rated for 12+\nModerate Violence', ''),
 ('A130', 'Jade Sword', 0, 4.3, '1606172400', '99M', 100000, '4399en game', 'image/app/A130.jpg', 'Rated for 12+\nHorror', ''),
 ('A131', 'Long Vũ 3D - Long Vu 3D', 0, 4.4, '1617746400', '90M', 10000, 'Funtap.vn', 'image/app/A131.jpg', 'Rated for 7+\nMild Violence', ''),
 ('A132', 'X-HERO: Idle Avengers', 0, 4.5, '1618351200', '65M', 1000000, 'Glaciers Game', 'image/app/A132.jpg', 'Rated for 12+\nModerate Violence', ''),
@@ -135,14 +135,14 @@ INSERT INTO `application` (`id`, `name`, `price`, `stars`, `updated`, `size`, `i
 ('A142', 'Battle Night: Cyberpunk-Idle RPG', 0, 4.4, '1618524000', '216M', 1000000, 'FT Games', 'image/app/A142.jpg', 'Rated for 12+\nModerate Violence', ''),
 ('A143', '星城Online', 0, 4.3, '1618351200', '59M', 1000000, '網銀國際 股份有限 公司', 'image/app/A143.jpg', 'Rated for 12+\nSimulated Gambling', ''),
 ('A144', 'FFBE WAR OF THE VISIONS', 0, 3.9, '1615417200', '110M', 1000000, 'SQUARE ENIX Co.,Ltd.', 'image/app/A144.jpg', 'Rated for 12+\nMild Swearing', ''),
-('A145', 'Đảo Kho Báu - Arena Island', 0, 3.9, '1615244400', '50M', 100000, 'Long Nhat', 'image/app/A145.jpg', 'Rated for 7+\nMild Violence', ''),
+('A145', 'Đảo Kho Báu - Arena Island', 899000, 3.9, '1615244400', '50M', 100000, 'Long Nhat', 'image/app/A145.jpg', 'Rated for 7+\nMild Violence', ''),
 ('A146', 'Blockman Go', 0, 4.4, '1618437600', '122M', 50000000, 'Blockman GO Studio', 'image/app/A146.jpg', 'Rated for 7+\nMild Violence', ''),
 ('A147', 'Dungeon & Heroes: 3D RPG', 0, 4.2, '1589925600', '69M', 1000000, 'DroidHen', 'image/app/A147.jpg', 'Rated for 12+\nModerate Violence', ''),
 ('A148', 'Rush Royale - Tower Defense game PvP', 0, 4.6, '1617919200', '70M', 1000000, 'My.com B.V.', 'image/app/A148.jpg', 'Rated for 3+', ''),
 ('A149', 'DDTank Mobile', 0, 3.8, '1593381600', '82M', 1000000, '7road International HK Limited', 'image/app/A149.jpg', 'Rated for 12+\nModerate Violence', ''),
 ('A15', 'MU Đại Thiên Sứ H5', 0, 3.7, '1594504800', '22M', 5000000, 'ASM MOBILE GAME COMPANY', 'image/app/A15.jpg', 'Rated for 16+\nStrong Violence', ''),
 ('A150', 'Art of War 3: PvP RTS modern warfare strategy game', 0, 4.5, '1618437600', '137M', 10000000, 'Gear Games', 'image/app/A150.jpg', 'Rated for 12+\nModerate Violence', ''),
-('A151', 'Tân Thiên Long Mobile', 0, 3.4, '1604962800', '89M', 500000, 'VNG Game Publishing', 'image/app/A151.jpg', 'Rated for 12+\nModerate Violence', ''),
+('A151', 'Tân Thiên Long Mobile', 34000, 3.4, '1604962800', '89M', 500000, 'VNG Game Publishing', 'image/app/A151.jpg', 'Rated for 12+\nModerate Violence', ''),
 ('A152', 'MORTAL KOMBAT: The Ultimate Fighting Game!', 0, 4.2, '1616968800', '69M', 50000000, 'Warner Bros. International Enterprises', 'image/app/A152.jpg', 'Rated for 18+\nExtreme Violence', ''),
 ('A153', 'Mini World: Block Art', 0, 4.3, '1616022000', '95M', 50000000, 'SuperNice Digital Marketing Co., Ltd.', 'image/app/A153.jpg', 'Rated for 7+\nImplied Violence', ''),
 ('A154', 'NagaVip', 0, 4.6, '1611442800', '120M', 50000, 'Cesoyo Studio', 'image/app/A154.jpg', 'Rated for 12+\nSimulated Gambling', ''),
@@ -164,13 +164,13 @@ INSERT INTO `application` (`id`, `name`, `price`, `stars`, `updated`, `size`, `i
 ('A169', 'Fate/Grand Order (English)', 0, 4.5, '1617141600', '71M', 1000000, 'Aniplex Inc.', 'image/app/A169.jpg', 'Rated for 12+\nModerate Violence, Sexual Innuendo', ''),
 ('A17', 'Top War: Battle Game', 0, 4.2, '1618437600', '149M', 10000000, 'Topwar Studio', 'image/app/A17.jpg', 'Rated for 7+\nMild Violence', ''),
 ('A170', 'Asphalt 9: Legends - Epic Car Action Racing Game', 0, 4.5, '1618524000', '96M', 50000000, 'Gameloft SE', 'image/app/A170.jpg', 'Rated for 7+\nMild Violence, Implied Violence', ''),
-('A171', 'Solitaire Grand Harvest - Free Solitaire Tripeaks', 0, 4.6, '1618264800', '159M', 10000000, 'Supertreat - A Playtika Studio', 'image/app/A171.jpg', 'Rated for 3+', ''),
+('A171', 'Solitaire Grand Harvest - Free Solitaire Tripeaks', 79000, 4.6, '1618264800', '159M', 10000000, 'Supertreat - A Playtika Studio', 'image/app/A171.jpg', 'Rated for 3+', ''),
 ('A172', 'Battleship & Puzzles: Warship Empire Match', 0, 4.2, '1615330800', '138M', 10000, 'Skymoons Technology, Inc', 'image/app/A172.jpg', 'Rated for 3+', ''),
 ('A173', 'LifeAfter', 0, 4.1, '1615330800', '75M', 10000000, 'NetEase Games', 'image/app/A173.jpg', 'Rated for 12+\nModerate Violence, Horror', ''),
 ('A174', 'Lightning Link Casino: Best Vegas Casino Slots!', 0, 4.2, '1618351200', '158M', 5000000, 'Product Madness', 'image/app/A174.jpg', 'Rated for 18+\nGambling', ''),
 ('A175', 'Date A Live: Spirit Pledge - Global', 0, 4.4, '1614726000', '92M', 500000, 'Moonwalk Interactive Hong Kong Limited', 'image/app/A175.jpg', 'Rated for 12+\nModerate Violence, Nudity, Sexual Innuendo', ''),
 ('A18', 'Soul Land: Đấu La Đại Lục-Funtap', 0, 4.1, '1607295600', '67M', 1000000, 'Glitter star Studio', 'image/app/A18.jpg', 'Rated for 12+\nModerate Violence', ''),
-('A19', 'Thế Chiến Z', 0, 3.4, '1617832800', '52M', 100000, 'Camel Games Limited', 'image/app/A19.jpg', 'Rated for 12+\nHorror', ''),
+('A19', 'Thế Chiến Z', 50000, 3.4, '1617832800', '52M', 100000, 'Camel Games Limited', 'image/app/A19.jpg', 'Rated for 12+\nHorror', ''),
 ('A2', 'Rise of Kingdoms: Lost Crusade', 0, 4.2, '1618178400', '104M', 10000000, 'LilithGames', 'image/app/A2.jpg', 'Rated for 18+\nSimulated Gambling', ''),
 ('A20', 'Roblox', 0, 4.5, '1618524000', '97M', 100000000, 'Roblox Corporation', 'image/app/A20.jpg', 'Rated for 7+\nMild Violence, Fear', ''),
 ('A21', 'Chiến Thần Kỷ Nguyên - Dragon Impact', 0, 3.8, '1614553200', '98M', 100000, 'NPH VTC Mobile', 'image/app/A21.jpg', 'Rated for 7+\nMild Violence', ''),
@@ -185,7 +185,7 @@ INSERT INTO `application` (`id`, `name`, `price`, `stars`, `updated`, `size`, `i
 ('A3', 'Võ Lâm Truyền Kỳ 1 Mobile', 0, 2.7, '1617573600', '57M', 100000, 'CÔNG TY CỔ PHẦN VNG', 'image/app/A3.jpg', 'Rated for 12+\nModerate Violence', ''),
 ('A30', 'Empires & Puzzles: Epic Match 3', 0, 4.2, '1617055200', '110M', 50000000, 'Small Giant Games', 'image/app/A30.jpg', 'Rated for 7+\nMild Violence', ''),
 ('A31', 'FIFA Soccer', 0, 4.2, '1616367600', '90M', 100000000, 'ELECTRONIC ARTS', 'image/app/A31.jpg', 'Rated for 3+', ''),
-('A32', 'THỢ SĂN CÁ', 0, 4.3, '1618351200', '149M', 1000000, 'TPC mobile', 'image/app/A32.jpg', 'Rated for 12+\nSimulated Gambling', ''),
+('A32', 'THỢ SĂN CÁ', 1000, 4.3, '1618351200', '149M', 1000000, 'TPC mobile', 'image/app/A32.jpg', 'Rated for 12+\nSimulated Gambling', ''),
 ('A33', 'Idle Goddess', 0, 4.6, '1618524000', '75M', 100000, 'FIFUN', 'image/app/A33.jpg', 'Rated for 7+\nMild Violence', ''),
 ('A34', 'AFK Arena', 0, 4.6, '1617660000', '95M', 10000000, 'LilithGames', 'image/app/A34.jpg', 'Rated for 7+\nMild Violence', ''),
 ('A35', 'Castle Clash: Quyết Chiến-Gamota', 0, 4.6, '1618524000', '562M', 1000000, 'IGG.COM', 'image/app/A35.jpg', 'Rated for 7+\nMild Violence', ''),
@@ -210,7 +210,7 @@ INSERT INTO `application` (`id`, `name`, `price`, `stars`, `updated`, `size`, `i
 ('A52', 'Chiến Thần Tam Quốc-Tranh Bá', 0, 3.9, '1618437600', '69M', 500000, 'Heyshell HK Limited', 'image/app/A52.jpg', 'Rated for 7+\nMild Violence', ''),
 ('A53', 'Mobile Legends: Bang Bang VNG', 0, 4, '1618264800', '103M', 10000000, 'VNG Game Publishing', 'image/app/A53.jpg', 'Rated for 12+\nModerate Violence', ''),
 ('A54', 'Call Of Duty: Mobile VN', 0, 4.5, '1615244400', '86M', 1000000, 'VNG Game Publishing', 'image/app/A54.jpg', 'Rated for 16+\nStrong Violence', ''),
-('A55', 'Cực Phẩm Đại Nhân - tthgame', 0, 3.9, '1606258800', '22M', 100000, 'TTH MOBI', 'image/app/A55.jpg', 'Rated for 16+\nNudity', ''),
+('A55', 'Cực Phẩm Đại Nhân - tthgame', 10000, 3.9, '1606258800', '22M', 100000, 'TTH MOBI', 'image/app/A55.jpg', 'Rated for 16+\nNudity', ''),
 ('A56', 'Vĩnh Hằng Kỷ Nguyên-Kỵ Sĩ Rồng thức tỉnh', 0, 3.7, '1616367600', '81M', 1000000, 'ASM MOBILE GAME COMPANY', 'image/app/A56.jpg', 'Rated for 16+\nStrong Violence', ''),
 ('A57', 'FaFaFa™ Gold Casino: Free slot machines', 0, 3.8, '1610406000', '124M', 1000000, 'Product Madness', 'image/app/A57.jpg', 'Rated for 18+\nSimulated Gambling', ''),
 ('A58', 'The King\'s Army:Idle RPG', 0, 3.5, '1611183600', '132M', 100000, 'Merry Realm', 'image/app/A58.jpg', 'Rated for 7+\nMild Violence', ''),
@@ -231,7 +231,7 @@ INSERT INTO `application` (`id`, `name`, `price`, `stars`, `updated`, `size`, `i
 ('A71', 'Ace Defender: War of Dragon Slayer', 0, 4.6, '1618178400', '69M', 500000, 'ACE GAME INTERNATIONAL LIMITED', 'image/app/A71.jpg', 'Rated for 12+\nHorror', ''),
 ('A72', 'Dragon Age: Bóng Đêm Thức Tỉnh', 0, 4.8, '1612306800', '80M', 100000, 'TTH Games', 'image/app/A72.jpg', 'Rated for 12+\nModerate Violence', ''),
 ('A73', 'RAID: Shadow Legends', 0, 4.2, '1617832800', '150M', 10000000, 'Plarium Global Ltd', 'image/app/A73.jpg', 'Rated for 12+\nHorror', ''),
-('A74', 'Tiên Kiếm Tiêu Dao', 0, 3.6, '1614898800', '98M', 50000, 'Dream Asia', 'image/app/A74.jpg', 'Rated for 12+\nModerate Violence, Sexual Innuendo', ''),
+('A74', 'Tiên Kiếm Tiêu Dao', 29000, 3.6, '1614898800', '98M', 50000, 'Dream Asia', 'image/app/A74.jpg', 'Rated for 12+\nModerate Violence, Sexual Innuendo', ''),
 ('A75', 'Three Kingdoms: Art of War', 0, 4.7, '1615849200', '97M', 100000, 'ZBJoy Games', 'image/app/A75.jpg', 'Rated for 7+\nImplied Violence', ''),
 ('A76', 'Top Eleven 2021: Be a Soccer Manager', 0, 4.6, '1617919200', '110M', 50000000, 'Nordeus', 'image/app/A76.jpg', 'Rated for 3+', ''),
 ('A77', 'Mighty Party: Magic Arena', 0, 3.8, '1617919200', '66M', 5000000, 'PANORAMIK GAMES LTD', 'image/app/A77.jpg', 'Rated for 12+\nModerate Violence, Sexual Innuendo', ''),
@@ -316,6 +316,27 @@ INSERT INTO `comment_rating` (`user_id`, `application_id`, `comment`, `rating`) 
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `downloaded_app`
+--
+
+CREATE TABLE `downloaded_app` (
+  `user_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `app_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `downloaded_app`
+--
+
+INSERT INTO `downloaded_app` (`user_id`, `app_id`) VALUES
+('1', 'A0'),
+('1', 'A20'),
+('1', 'A31'),
+('1', 'A51');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `pending_application`
 --
 
@@ -385,6 +406,12 @@ ALTER TABLE `card`
 ALTER TABLE `comment_rating`
   ADD PRIMARY KEY (`user_id`,`application_id`),
   ADD KEY `application_id` (`application_id`);
+
+--
+-- Chỉ mục cho bảng `downloaded_app`
+--
+ALTER TABLE `downloaded_app`
+  ADD PRIMARY KEY (`user_id`,`app_id`);
 
 --
 -- Chỉ mục cho bảng `pending_application`
