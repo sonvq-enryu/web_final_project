@@ -9,13 +9,13 @@
         if ($conn->connect_error) die('Connect error: ' . $conn->connect_error);
         return $conn; 
     }
-    function upload_app($app_id,$developer,$appname,$price,$date,$size,$icon,$appcategory,$desc,$status,$file){
-        $sql = 'insert into pending_application (app_id,developer, name, price, date, size, image, content, description, status, file) value (?,?,?,?,?,?,?,?,?,?,?)';
+    function upload_app($app_id,$developer,$appname,$price,$date,$size,$icon,$appcategory,$desc,$status,$file,$user_id){
+        $sql = 'insert into pending_application (app_id,developer, name, price, date, size, image, content, description, status, file,user_id) value (?,?,?,?,?,?,?,?,?,?,?,?)';
 
         $conn = open_database();
         $stm = $conn->prepare($sql);
 
-        $stm->bind_param('sssisssssss',$app_id,$developer,$appname,$price,$date,$size,$icon,$appcategory,$desc,$status,$file);
+        $stm->bind_param('sssissssssss',$app_id,$developer,$appname,$price,$date,$size,$icon,$appcategory,$desc,$status,$file,$user_id);
         if(!$stm->execute()){
             return array('code' => 2, 'error' => 'Can not execute command');
         }
@@ -46,22 +46,17 @@
     #lấy chi tiết app từ database mà dev up lên
     function get_pending_apps($id){
         
-        $sql = "select * FROM pending_application WHERE user_id = ?";
+        $sql = "select * FROM pending_application WHERE app_id = ?";
 
         $conn = open_database();
         $stm = $conn->prepare($sql);
         $stm->bind_param("s",$id);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
-        $data = array();
+        $row = $result ->fetch_assoc();
+    
 
-        if($result->num_rows == 0) return array('code' => 2, 'error' => "Don't have any app");
-
-        while ($item = $result->fetch_assoc()){
-            $data[] = $item;
-        }
-
-        return array('code'=>0, 'data'=>$data);
+        return $row;
     }
     function edit_pend_app($app_id,$appname,$price,$date,$size,$icon,$appcategory,$desc,$file){
         $sql = "update pending_application set name = ?, price = ?, date= ?, size = ?, image = ?,content = ?, description = ?, file = ? where app_id = ?;";
@@ -89,7 +84,7 @@
         return array('code' => 0, 'message' => 'Add successful');
     }
     function get_app_status($id){
-        $sql = "select status from pending_application where app_id = ?";
+        $sql = "select status from pending_application where user_id = ?";
 
         $conn = open_database();
 
@@ -103,12 +98,12 @@
         return $status;
 
     }
-    function delete_pend_app($id){
+    function delete_pend_app($app_id){
         $sql = "Delete from pending_application where app_id = ?";
 
         $conn = open_database();
         $stm = $conn->prepare($sql);
-        $stm->bind_param('i',$id);
+        $stm->bind_param('s',$app_id);
         if(!$stm->execute()){
             return array('code' => 2, 'error' => 'Can not execute command');
         }

@@ -20,14 +20,7 @@
         
 
         <title>Admin console</title>
-        <style>
-            .admin-console-header {
-                background-color: #4285F4;
-                display: flex;
-                height: 60px;
-            }
-
-        </style>
+        
     </head>
 
     <body>
@@ -78,10 +71,9 @@
                             <button class="devdropbtn  "><a class='fa fa-filter'></a>Filter<a class='fa fa-caret-down'></a></button>
 
                             <div id="devdropdown" class="dev-filter-content">
-                                <a>Date</a>
+                                <a>App Name</a>
                                 <a>Size</a>
-                                <a>Rating</a>
-                                <a>Installs</a>
+                                <a>Price</a>
                             </div>
                         </div>
 
@@ -91,13 +83,12 @@
                     <div class="dev-row">
                         <div class="container-fluid" id="dev-console-row">
                             <div class="row" id="dev-properties-row">
-                                <div class="col-sm-2">
-                                    <a class='fa fa-caret-up'> </a> App name</div>
-                                <div class="col-sm-2"> Active installs</div>
-                                <div class="col-sm-2">Avf.rating/ Total no.</div>
+                                <div class="col-sm-2"></a> App name</div>
+                                <div class="col-sm-2">Price</div>
+                                <div class="col-sm-2">Size</div>
                                 <div class="col-sm-2">Last update</div>
                                 <div class="col-sm-2">Status</div>
-                                <div class="col-sm-2"></div>
+                                <div class="col-sm-2">Edit</div>
                             </div>
                             <!-- <div class="row">
                             <div class="col-sm-2"><a href="dev_application.html">Test</a></div>
@@ -139,9 +130,7 @@
                                             </a>
                                         </div>
                                         <div class="col-sm-2">-</div>
-                                        <div class="col-sm-2">
-                                            <a class='fa fa-star'> </a>
-                                        </div>
+                                        <div class="col-sm-2"><?= $item['size'] ?></div>
                                         <div class="col-sm-2">
                                             <?= $item['date'] ?>
                                         </div>

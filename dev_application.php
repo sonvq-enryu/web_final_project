@@ -5,9 +5,9 @@
         header("Location: loginform.php");
         exit();
     }
-    $id = $_GET['id'];
-    $id = (string) $id;     
-    $dev_apps = get_pending_apps($id);
+    $app_id = $_GET['id'];
+    
+    $item = get_pending_apps($app_id);
     
 ?>
 <!DOCTYPE html>
@@ -27,11 +27,25 @@
 
 
     <title>Developer console</title>
-    
+    <style>
+        
+    </style>
 
 </head>
 
 <body>
+    <?php
+        $error = '';
+        $user_id = $item['user_id'];
+        if (isset($_POST['delete'])){
+            $result = delete_pend_app($app_id);
+            if($result['code'] == 0){
+                header("location:developer.php?id=$user_id");
+            }else{
+                $error = 'Cannot Delete application';
+            }
+        }
+    ?>
     <div class='dev-console'>
         <div class="dev-console-header">
             <div class="header-img">
@@ -39,14 +53,7 @@
                     <img src="./image/googleplayicon.png" alt="" />
                 </a>
             </div>
-<<<<<<< HEAD
-            <div class="header-box">
-                <input type="text" id="search-box" name="search-box" placeholder="Search">
-                <button class="dev-console-button " type="submit"><i class="fa fa-search"></i></button>
-            </div>
-=======
             
->>>>>>> 9c7f44a7a50582df1cd3bc81aeaa4b124c1239cf
 
             <div class="header-user">
                 <?php
@@ -86,7 +93,7 @@
                 <img src="./image/googleplayconsole.png" alt="" />Google Play Console
             </div>
             <a class="fa fa-shopping-bag" href="index.php"> Google Play Store</a>
-            <a class="fa fa-android" href="developer.php?id=<?= (string)$id ?>"> All applications</a>
+            <a class="fa fa-android" href="developer.php?id=<?= $item['user_id'] ?>"> All applications</a>
             <a class="fa fa-gamepad" href="#"> Game services</a>
             <a class="fa fa-credit-card"> Order management</a>
             <a class="fa fa-download" href="#"> Download reports</a>
@@ -96,34 +103,31 @@
 
         <div class="dev-content">
             <div class="content flex-container">
-                <!-- <div class="my-3 container">
+                <div class="my-3 container">
                     <div class="app-page-header">
                         <span>
-                            <img src="./image/genshin.png"/>
+                            <img src="<?= $item['image'] ?>" />
                         </span>
                         <div class="app-page-info">
-                            <p>Genshin Impact 2</p>
-                            <a href="developer.html">
-                                dev name
+                            <p><?= $item['name'] ?></p>
+                            <a href="#">
+                                <?= $item['developer'] ?>
                             </a>
-                            <a href="#category"></a>
-                            <p class="rated">
-                                Category
-                            </p>
+                            <a href="#category"><?= $item['content'] ?></a>
                             <div class="rating">
                                 rating
                                 <span class="fa fa-star checked"></span>
-                                <button>Edit</button>
+                                <a href="edit_app.php?id=<?=$item['app_id'] ?>">Edit</a>
                             </div>
                         </div>
-                        <table>
+                        <table class="stattable">
                             <tr>
-                                <td>install</td>
+                                <td>Price</td>
                                 <td>status</td>
                             </tr>
                             <tr>
-                                <td>1000</td>
-                                <td>Draft</td>
+                                <td><?= $item['price'] ?></td>
+                                <td><?= $item['status'] ?></td>
                             </tr>
                         </table>
 
@@ -132,149 +136,23 @@
 
                     <div class="app-page-description">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum, nulla at tincidunt porta, urna quam tempor urna, in convallis enim tellus eget lorem. Sed facilisis aliquam mauris eu ultricies. Fusce velit augue, tempor sit amet sem pulvinar,
-                            posuere commodo diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent malesuada massa sed nibh consectetur posuere. Nunc at vulputate nisl. Aenean ac pellentesque tortor, sit amet elementum ipsum. Duis tempor
-                            nisl enim, in mollis sapien vulputate aliquet. Nam porttitor quam eget enim bibendum euismod. Fusce at vulputate ante. Nulla ultricies lectus a orci scelerisque, vel dapibus lacus fermentum. Nunc eu gravida quam, vitae sollicitudin
-                            urna. Quisque ac nulla blandit, porta eros sit amet, mattis mauris. Sed id nulla vestibulum, gravida mauris eu, tempor turpis. Donec ut volutpat ipsum. Nulla facilisi.
+                        <?= $item['description'] ?>
 
                         </p>
+                       
                     </div>
-
-                    <div class="review-rating">
-                        <div class="rating row">
-                            <div class="col-4 left-rating">
-                                <div>REVIEW AND RATING</div>
-                                <div class="total-rating my-3">
-                                    Overall Rating
-                                    <div>><span class="fa fa-star checked"></span></div>
-                                </div>
-                            </div>
-
-                            <div class="col-8 rating-chart">
-                                <div class="row my-2">
-                                    <span class="col-1">1</span>
-                                    <div class="col-11 star star-1">
-                                        <div class="chart chart-1"></div>
-                                    </div>
-                                </div>
-                                <div class="row my-2">
-                                    <span class="col-1">2</span>
-                                    <div class="col-11 star star-2">
-                                        <div class="chart chart-1"></div>
-                                    </div>
-                                </div>
-                                <div class="row my-2">
-                                    <span class="col-1">3</span>
-                                    <div class="col-11 star star-3">
-                                        <div class="chart chart-1"></div>
-                                    </div>
-                                </div>
-                                <div class="row my-2">
-                                    <span class="col-1">4</span>
-                                    <div class="col-11 star star-4">
-                                        <div class="chart chart-1"></div>
-                                    </div>
-                                </div>
-                                <div class="row my-2">
-                                    <span class="col-1">5</span>
-                                    <div class="col-11 star star-5">
-                                        <div class="chart chart-1"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div> -->
-                <div class="my-3 container">
+                    
+                    </br><a class="admin_approve_btn" href="edit_app.php?id=<?=$item['app_id'] ?>">Edit</a>
+                    <form method="post">
+                        <input class="admin_deny_btn " type="submit" name="delete" value="Delete"/>
+                    </form>
                     <?php
-                        foreach($dev_apps['data'] as $item){
-                            ?>
-                                <div class="app-page-header">
-                                    <span>
-                                        <img src="<?= $item['image'] ?>" />
-                                    </span>
-                                    <div class="app-page-info">
-                                        <p><?= $item['name'] ?></p>
-                                        <a href="#">
-                                            <?= $item['developer'] ?>
-                                        </a>
-                                        <a href="#category"><?= $item['content'] ?></a>
-                                        <div class="rating">
-                                            rating
-                                            <span class="fa fa-star checked"></span>
-                                            <a href="edit_app.php?id=<?=$id ?>"><button>Edit</button></a>
-                                        </div>
-                                    </div>
-                                    <table class="stattable">
-                                        <tr>
-                                            <td>install</td>
-                                            <td>status</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1000</td>
-                                            <td><?= $item['status'] ?></td>
-                                        </tr>
-                                    </table>
-
-
-                                </div>
-
-                                <div class="app-page-description">
-                                    <p>
-                                    <?= $item['description'] ?>
-
-                                    </p>
-                                </div>
-
-                                <div class="review-rating">
-                                    <div class="rating row">
-                                        <div class="col-4 left-rating">
-                                            <div>REVIEW AND RATING</div>
-                                            <div class="total-rating my-3">
-                                                Overall Rating
-                                                <div>><span class="fa fa-star checked"></span></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-8 rating-chart">
-                                            <div class="row my-2">
-                                                <span class="col-1">1</span>
-                                                <div class="col-11 star star-1">
-                                                    <div class="chart chart-1"></div>
-                                                </div>
-                                            </div>
-                                            <div class="row my-2">
-                                                <span class="col-1">2</span>
-                                                <div class="col-11 star star-2">
-                                                    <div class="chart chart-1"></div>
-                                                </div>
-                                            </div>
-                                            <div class="row my-2">
-                                                <span class="col-1">3</span>
-                                                <div class="col-11 star star-3">
-                                                    <div class="chart chart-1"></div>
-                                                </div>
-                                            </div>
-                                            <div class="row my-2">
-                                                <span class="col-1">4</span>
-                                                <div class="col-11 star star-4">
-                                                    <div class="chart chart-1"></div>
-                                                </div>
-                                            </div>
-                                            <div class="row my-2">
-                                                <span class="col-1">5</span>
-                                                <div class="col-11 star star-5">
-                                                    <div class="chart chart-1"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            <?php
+                        if (!empty($error)) {
+                            echo "<div class='alert alert-danger appsub-input'>$error</div>";
+                            
                         }
+                        
+                           
                     ?>
                 </div>
             </div>
