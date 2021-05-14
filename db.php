@@ -792,6 +792,7 @@ define('HOST','127.0.0.1');
         if (!$stm->execute()) {
             return array("code" => 5, "message" => "Cannot execute command");
         }
+        
         return array("code" => 0, "message" => "update image successful", "path" => $img_path);
     }
 ?>
