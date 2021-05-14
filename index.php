@@ -58,6 +58,25 @@
                 <li><a href="#about">About</a></li>
             </ul>
         </div>
+        <?php
+            $_SESSION['download_file'] = array();
+            $_SESSION['app_id'] = array();
+            $path = __DIR__. '/apk/';
+            $files = scandir($path);
+
+            foreach($files as $f){
+                if(strpos($f,'.')===0){
+                    continue;
+                }
+                // $fileid_appid = array();
+                $uid = uniqid();
+                $filePath = $path.$f;
+                $app_id = explode(".", $f)[0];
+                // $fileid_appid[] = $app_id;
+                $_SESSION['app_id'][$app_id] = $uid;
+                $_SESSION['download_file'][$uid]  = $filePath;
+            }
+        ?>
         <div class="content">
             <div class="apps-menu">
                 <div class="info-row">
@@ -72,10 +91,10 @@
                             ?>
                                 <div class="app-card">
                                     <div class="app-img">
-                                        <a href="application.php?id=<?= $item['id'] ?>"><img src="<?= $item['image'] ?>" /></a>
+                                        <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><img src="<?= $item['image'] ?>" /></a>
                                     </div>
                                     <div class="app-name">
-                                        <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
+                                        <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><?= $item['name'] ?></a>
                                     </div>
                                     <div class="app-coop">
                                         <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
@@ -125,10 +144,10 @@
                             ?>
                                 <div class="app-card">
                                     <div class="app-img">
-                                        <a href="application.php?id=<?= $item['id'] ?>"><img src="<?= $item['image'] ?>" /></a>
+                                        <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><img src="<?= $item['image'] ?>" /></a>
                                     </div>
                                     <div class="app-name">
-                                        <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
+                                        <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><?= $item['name'] ?></a>
                                     </div>
                                     <div class="app-coop">
                                         <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
@@ -178,10 +197,10 @@
                             ?>
                                 <div class="app-card">
                                     <div class="app-img">
-                                        <a href="application.php?id=<?= $item['id'] ?>"><img src="<?= $item['image'] ?>" /></a>
+                                        <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><img src="<?= $item['image'] ?>" /></a>
                                     </div>
                                     <div class="app-name">
-                                        <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
+                                        <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><?= $item['name'] ?></a>
                                     </div>
                                     <div class="app-coop">
                                         <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
@@ -232,10 +251,10 @@
                             ?>
                                 <div class="app-card">
                                     <div class="app-img">
-                                        <a href="application.php?id=<?= $item['id'] ?>"><img src="<?= $item['image'] ?>" /></a>
+                                        <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><img src="<?= $item['image'] ?>" /></a>
                                     </div>
                                     <div class="app-name">
-                                        <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
+                                        <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><?= $item['name'] ?></a>
                                     </div>
                                     <div class="app-coop">
                                         <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>

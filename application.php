@@ -25,6 +25,13 @@
 
     $content = $content['data'];
 
+    if(isset($_GET['fileId'])){
+        $fileID = $_GET['fileId'];
+    }
+    else{
+        die('File ID not found');
+    }
+
     if(isset($_GET['id'])) {
         $id = $_GET['id'];
         $sql = "SELECT * FROM application WHERE id = ?";
@@ -123,10 +130,10 @@
                                 ?>
                                     <div class="app-card">
                                         <div class="app-img">
-                                            <a href="application.php?id=<?= $item['id'] ?>"><img src="<?= $item['image'] ?>" /></a>
+                                            <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><img src="<?= $item['image'] ?>" /></a>
                                         </div>
                                         <div class="app-name">
-                                            <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
+                                            <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><?= $item['name'] ?></a>
                                         </div>
                                         <div class="app-coop">
                                             <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
@@ -191,7 +198,7 @@
                                         <?php
                                         if($result['status']){
                                             ?>
-                                                <a href="<?='download.php?image='.$item_app['image'].'&name='.$item_app['name']?>">Đã được cài đặt</a> 
+                                                <a href="<?='download.php?fileId='. $fileID?>">Đã được cài đặt</a> 
                                             <?php 
                                         }
                                         else if($item_app['price'] !== 0 && !$result['status']){
@@ -200,7 +207,7 @@
                                             <?php   
                                         }
                                         else{
-                                            ?><a href="<?='download.php?image='.$item_app['image'].'&name='.$item_app['name'].'&user='.$_SESSION['id'].'&app='.$item_app['id']?>">Download</a><?php
+                                            ?><a href="<?='download.php?fileId='. $fileID.'&user='.$_SESSION['id'].'&app='.$id?>">Download</a><?php
                                         }
                                         ?>
                                     <?php
@@ -342,10 +349,10 @@
                             ?>
                                 <div class="app-card">
                                     <div class="app-img">
-                                        <a href="application.php?id=<?= $item['id'] ?>"><img src="<?= $item['image'] ?>" /></a>
+                                        <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><img src="<?= $item['image'] ?>" /></a>
                                     </div>
                                     <div class="app-name">
-                                        <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
+                                        <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><?= $item['name'] ?></a>
                                     </div>
                                     <div class="app-coop">
                                         <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
@@ -395,10 +402,10 @@
                             ?>
                                 <div class="app-card">
                                     <div class="app-img">
-                                        <a href="application.php?id=<?= $item['id'] ?>"><img src="<?= $item['image'] ?>" /></a>
+                                        <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><img src="<?= $item['image'] ?>" /></a>
                                     </div>
                                     <div class="app-name">
-                                        <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
+                                        <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><?= $item['name'] ?></a>
                                     </div>
                                     <div class="app-coop">
                                         <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>

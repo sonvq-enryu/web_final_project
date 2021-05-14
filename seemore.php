@@ -136,10 +136,10 @@
                         ?>
                             <div class="app-card">
                                 <div class="app-img">
-                                    <a href="application.php?id=<?= $item['id'] ?>"><img src="<?= $item['image'] ?>" /></a>
+                                    <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><img src="<?= $item['image'] ?>" /></a>
                                 </div>
                                 <div class="app-name">
-                                    <a href="application.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a>
+                                    <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><?= $item['name'] ?></a>
                                 </div>
                                 <div class="app-coop">
                                     <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>

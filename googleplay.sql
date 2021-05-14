@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 14, 2021 lúc 01:22 PM
+-- Thời gian đã tạo: Th5 14, 2021 lúc 04:16 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
 -- Phiên bản PHP: 8.0.3
 
@@ -51,7 +51,7 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id`, `firstname`, `lastname`, `email`, `password`, `phone`, `gender`, `national`, `role`, `money`, `image`, `activated`, `activate_token`) VALUES
-('1', 'Lê', 'Nguyễn Minh Tuấn', 'lnmtuan1702@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '0901995401', 0, 0, 0, 0, './user_img/8e1v9696px0z35cpzexn7b64c8d6a9ceefa256636659226cd0f2.jpg', b'1', ''),
+('1', 'Lê', 'Nguyễn Minh Tuấn', 'lnmtuan1702@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '0901995401', 0, 0, 0, 0, './user_img/3d4z0uf4s2pdgr2t4l8bcat-memes.jpg', b'1', ''),
 ('2', 'Vo', 'Quoc Son', 'voquocson@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '', 0, 0, 0, 0, './user_img/smuge_the_cat.jpg', b'1', NULL),
 ('3', 'Huynh', 'Nhu', 'huynhnhu@gmail.com', '$2y$10$BnFA3Dkgj1q0xBlme3GcwukDhqTO8l8V/.BrWktW8sK9boZ3z2UpG', '789', 0, 0, 0, 0, './user_img/smuge_the_cat.jpg', b'0', NULL),
 ('4', 'Tran', 'Huyen', 'tkph@gmail.com', '$2y$10$8rSxJT76sHsDRKaAw/xbDO/sBdf.ktxKmNesJxjKf./8GltWI8Q4O', '123456789', 1, 230, 2, 200000, './user_img/smuge_the_cat.jpg', b'0', NULL),
@@ -354,7 +354,8 @@ CREATE TABLE `pending_application` (
   `content` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `file` varchar(1000) COLLATE utf8_unicode_ci NOT NULL
+  `file` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `user_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------

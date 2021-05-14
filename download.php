@@ -1,42 +1,28 @@
 <?php
-require_once 'db.php';
-if(isset($_GET['image']) && isset($_GET['name'])){
-    if(isset($_GET['user']) && isset($_GET['app'])){
-        $user_id = $_GET['user'];
-        $app_id = $_GET['app'];
-        $download = download($user_id, $app_id);
-        if($download['code']!=0) die($download['message']);
+    session_start();
+
+    if(empty($_SESSION['download_file'])){
+        die('Không có nội dung để tải');
     }
-    $name = $_GET['name'];
-    $image = $_GET['image'];
-    $files = array('downloaded.docx',$image);
-
-    # create new zip opbject
-    $zip = new ZipArchive();
-
-    # create a temp file & open it
-    $tmp_file = tempnam('.','');
-    $zip->open($tmp_file, ZipArchive::CREATE);
-
-    # loop through each file
-    foreach($files as $file){
-
-        # download file
-        $download_file = file_get_contents($file);
-
-        #add it to the zip
-        $zip->addFromString(basename($file),$download_file);
-
+    if(empty($_GET['fileId'])){
+        die('Link download không hợp lệ');
     }
 
-    # close zip
-    $zip->close();
+    $id = $_GET['fileId'];
+    $filePath = $_SESSION['download_file'][$id];
 
-    # send the file to the browser as a download
-    header('Content-disposition: attachment; filename='.$name.'.zip');
-    header('Content-type: application/zip');
-    readfile($tmp_file);
-}
-else
-echo "App is not defined.";
+    if(!file_exists($filePath)){
+        die('Tập tin không tồn tại');
+    }
+
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Contetnt-Disposition: attachment; filename"'.basename($filePath).'"');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Oragma: public');
+    header('Content-Length: '.filesize($filePath));
+    flush();
+    readfile($filePath);
+
 ?>
