@@ -876,11 +876,11 @@ ul.menu li a:hover {
     margin-top: 7px;
 }
 
-.apps-row .app-card .rating span{
+.apps-row .app-card .rating span {
     margin-right: 8px;
 }
 
-.apps-row .app-card .rating p{
+.apps-row .app-card .rating p {
     display: inline-block;
     float: right;
     margin-right: 10px;
@@ -1713,9 +1713,11 @@ th {
     font-size: 15px;
 }
 
+
 /* #chg-password>form>.row {
     justify-content: center;
 } */
+
 .my-custom-scrollbar {
     /* position: relative; */
     height: 250px;
@@ -1746,6 +1748,59 @@ th {
     background-color: #1DA8C7;
 }
 
+
 /* **********************************************************
                       END PROFILE
+*********************************************************/
+
+
+/* **********************************************************
+                      ADMIN APPLICATION
+*********************************************************/
+
+.admin-console-header {
+    background-color: #4285F4;
+    display: flex;
+    height: 60px;
+}
+
+.admin_approve_btn {
+    margin-left: 10px;
+    margin-bottom: 25px;
+    display: inline-block;
+    background: white;
+    color: #444;
+    width: 150px;
+    height: 25.5px;
+    border-radius: 5px;
+    border: thin solid #888;
+    box-shadow: 1px 1px 1px grey;
+    white-space: nowrap;
+}
+
+.admin_deny_btn {
+    margin-left: 10px;
+    margin-bottom: 25px;
+    display: inline-block;
+    background: white;
+    color: #444;
+    width: 150px;
+    height: 25px;
+    border-radius: 5px;
+    border: thin solid #888;
+    box-shadow: 1px 1px 1px grey;
+    white-space: nowrap;
+}
+
+.admin_approve_btn:hover {
+    cursor: pointer;
+}
+
+.admin_deny_btn:hover {
+    cursor: pointer;
+}
+
+
+/* **********************************************************
+                      END OF ADMIN APPLICATION
 *********************************************************/

@@ -78,7 +78,7 @@
         }
         else {
 
-            $result = upload_app($app_id,$developer,$appname,$price,$date,$size, $icon,$appcategory,$desc,$status, $_FILES['apk']['name']);
+            $result = upload_app($app_id,$developer,$appname,$price,$date,$size, $icon,$appcategory,$desc,$status, $_FILES['apk']['name'],$id);
             if($result['code'] == 0){
                 $message = 'Add application success';
                 $name = '';

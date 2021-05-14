@@ -138,97 +138,6 @@
 
         <div class="dev-content">
             <div class="content flex-container">
-                <!-- <div class="my-3 container">
-                    <div class="app-page-header">
-                        <span>
-                            <img src="./image/genshin.png"/>
-                        </span>
-                        <div class="app-page-info">
-                            <p>Genshin Impact 2</p>
-                            <a href="developer.html">
-                                dev name
-                            </a>
-                            <a href="#category"></a>
-                            <p class="rated">
-                                Category
-                            </p>
-                            <div class="rating">
-                                rating
-                                <span class="fa fa-star checked"></span>
-                                <button>Edit</button>
-                            </div>
-                        </div>
-                        <table>
-                            <tr>
-                                <td>install</td>
-                                <td>status</td>
-                            </tr>
-                            <tr>
-                                <td>1000</td>
-                                <td>Draft</td>
-                            </tr>
-                        </table>
-
-
-                    </div>
-
-                    <div class="app-page-description">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris bibendum, nulla at tincidunt porta, urna quam tempor urna, in convallis enim tellus eget lorem. Sed facilisis aliquam mauris eu ultricies. Fusce velit augue, tempor sit amet sem pulvinar,
-                            posuere commodo diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent malesuada massa sed nibh consectetur posuere. Nunc at vulputate nisl. Aenean ac pellentesque tortor, sit amet elementum ipsum. Duis tempor
-                            nisl enim, in mollis sapien vulputate aliquet. Nam porttitor quam eget enim bibendum euismod. Fusce at vulputate ante. Nulla ultricies lectus a orci scelerisque, vel dapibus lacus fermentum. Nunc eu gravida quam, vitae sollicitudin
-                            urna. Quisque ac nulla blandit, porta eros sit amet, mattis mauris. Sed id nulla vestibulum, gravida mauris eu, tempor turpis. Donec ut volutpat ipsum. Nulla facilisi.
-
-                        </p>
-                    </div>
-
-                    <div class="review-rating">
-                        <div class="rating row">
-                            <div class="col-4 left-rating">
-                                <div>REVIEW AND RATING</div>
-                                <div class="total-rating my-3">
-                                    Overall Rating
-                                    <div>><span class="fa fa-star checked"></span></div>
-                                </div>
-                            </div>
-
-                            <div class="col-8 rating-chart">
-                                <div class="row my-2">
-                                    <span class="col-1">1</span>
-                                    <div class="col-11 star star-1">
-                                        <div class="chart chart-1"></div>
-                                    </div>
-                                </div>
-                                <div class="row my-2">
-                                    <span class="col-1">2</span>
-                                    <div class="col-11 star star-2">
-                                        <div class="chart chart-1"></div>
-                                    </div>
-                                </div>
-                                <div class="row my-2">
-                                    <span class="col-1">3</span>
-                                    <div class="col-11 star star-3">
-                                        <div class="chart chart-1"></div>
-                                    </div>
-                                </div>
-                                <div class="row my-2">
-                                    <span class="col-1">4</span>
-                                    <div class="col-11 star star-4">
-                                        <div class="chart chart-1"></div>
-                                    </div>
-                                </div>
-                                <div class="row my-2">
-                                    <span class="col-1">5</span>
-                                    <div class="col-11 star star-5">
-                                        <div class="chart chart-1"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div> -->
                 <div class="my-3 container">
                     <?php
                         foreach($dev_apps['data'] as $item){
@@ -315,12 +224,12 @@
                                     </div>
                                     
                                     <form method="post" onsubmit="approve_click()">
-                                        <input class="admin_approve_btn fa fa-check" type="submit" name="published" value="Published"  /><br>
+                                        <input class="admin_approve_btn " type="submit" name="published" value="Published"  /><br>
                                         
                                     </form>
                                     <form method="post" onsubmit="deny_click()">
                                        
-                                        <input class="admin_deny_btn fa fa-check" type="submit" name="deny" value="Denied"/>
+                                        <input class="admin_deny_btn " type="submit" name="deny" value="Denied"/>
                                     </form>
                                     
                                   

@@ -1,7 +1,7 @@
 <?php
     require_once('dev_func.php');
     $id = $_GET['id'];
-    $dev_apps = get_pending_apps($id);
+    $item = get_pending_apps($id);
     
 ?>
 <!DOCTYPE html>
@@ -21,7 +21,11 @@
 
 
     <title>Edit application</title>
-  
+    <style>
+       .edit-return-btn{
+            color = white;
+        }
+    </style>
         
 
 </head>
@@ -161,7 +165,8 @@
             <div class="dev-console-img">
                 <img src="./image/googleplayconsole.png" alt="" />Google Play Console
             </div>
-            <a class="fa fa-android" href="developer.php"> All applications</a>
+            <a class="fa fa-shopping-bag" href="index.php"> Google Play Store</a>
+            <a class="fa fa-android" href="developer.php?id=<?= $item['user_id'] ?>"> All applications</a>
             <a class="fa fa-gamepad" href="#"> Game services</a>
             <a class="fa fa-credit-card"> Order management</a>
             <a class="fa fa-download" href="#"> Download reports</a>
@@ -175,64 +180,60 @@
                     <h2 class="app-title">Edit application</h2>
                     <h3>App details</h3>
                     <form method="POST" action="" novalidate enctype="multipart/form-data">
-                        <?php
-                            foreach($dev_apps['data'] as $item){
+                       
+                        <label class="appsubmit-label">
+                            App Name <input class="appsub-input" type="text" id="appname" name="appname" value="<?= $item['name'] ?>" />
+                        </label>
+                        
+                        <label class="appsubmit-label">
+                            Description <textarea class="appsub-textarea" name="desc" value="<?= $item['description'] ?>"></textarea>
+                        </label>
+
+                        <label class="appsubmit-label">
+                            Price <input class="appsub-price" type="number" id="price" name="price" placeholder="0" value="<?= $item['price'] ?>">
+                        </label>
+
+                        <label class="appsubmit-label">
+                            App Icon <input name="icon" type="file" class="appsub-input" id="icon" accept="image/gif, image/jpeg, image/png, image/bmp"  >
+
+                        </label>
+                        
+                        <label class="appsubmit-label">
+                            Categories
+                            <select class="appsub-input" name="appcategory" id="appcategory" >
+                                <option value="Extreme Violence">Extreme Violence</option>
+                                <option value="Fear">Fear</option>
+                                <option value="Gambling">Gambling</option>
+                                <option value="Horror">Horror</option>
+                                <option value="Implied Violence">Implied Violence</option>
+                                <option value="Mild Swearing">Mild Swearing</option>
+                                <option value="Mild Violence">Mild Violence</option>
+                                <option value="Moderate Violence">Moderate Violence</option>
+                                <option value="Nudity">Nudity</option>
+                                <option value="Sex">Sex</option>
+                                <option value="Sexual Innuendo">Sexual Innuendo</option>
+                                <option value="Simulated Gambling">Simulated Gambling</option>
+                                <option value="Strong Violence">Strong Violence</option>
+                                <option value="Varies with device">Varies with device</option>
                                 
-                                ?>
-                                    <label class="appsubmit-label">
-                                        App Name <input class="appsub-input" type="text" id="appname" name="appname" value="<?= $item['name'] ?>" />
-                                    </label>
-                                    
-                                    <label class="appsubmit-label">
-                                        Description <textarea class="appsub-textarea" name="desc" value="<?= $item['description'] ?>"></textarea>
-                                    </label>
+                            </select>
+                        </label>
 
-                                    <label class="appsubmit-label">
-                                        Price <input class="appsub-price" type="number" id="price" name="price" placeholder="0" value="<?= $item['price'] ?>">
-                                    </label>
-
-                                    <label class="appsubmit-label">
-                                        App Icon <input name="icon" type="file" class="appsub-input" id="icon" accept="image/gif, image/jpeg, image/png, image/bmp"  >
-
-                                    </label>
-                                    
-                                    <label class="appsubmit-label">
-                                        Categories
-                                        <select class="appsub-input" name="appcategory" id="appcategory" >
-                                            <option value="Extreme Violence">Extreme Violence</option>
-                                            <option value="Fear">Fear</option>
-                                            <option value="Gambling">Gambling</option>
-                                            <option value="Horror">Horror</option>
-                                            <option value="Implied Violence">Implied Violence</option>
-                                            <option value="Mild Swearing">Mild Swearing</option>
-                                            <option value="Mild Violence">Mild Violence</option>
-                                            <option value="Moderate Violence">Moderate Violence</option>
-                                            <option value="Nudity">Nudity</option>
-                                            <option value="Sex">Sex</option>
-                                            <option value="Sexual Innuendo">Sexual Innuendo</option>
-                                            <option value="Simulated Gambling">Simulated Gambling</option>
-                                            <option value="Strong Violence">Strong Violence</option>
-                                            <option value="Varies with device">Varies with device</option>
-                                            
-                                        </select>
-                                    </label>
-
-                                    <label class="appsubmit-label">
-                                        App Apk <input name="apk" type="file" class="appsub-input" id="apk" accept=".zip, .rar" onchange="Filevalidation()">
-                                    </label>
-                                <?php
-                            }
-                        ?>   
+                        <label class="appsubmit-label">
+                            App Apk <input name="apk" type="file" class="appsub-input" id="apk" accept=".zip, .rar" onchange="Filevalidation()">
+                        </label>
+                            
                         <?php
                             if (!empty($error)) {
                                 echo "<div class='alert alert-danger appsub-input'>$error</div>";
+                               
                             }
                             if (!empty($message)){
                                 echo "<div class='alert alert-success appsub-input'>$message</div>";
                             }
                            
                         ?>
-                        <button type="submit" class="devcreatebtn">Submit Application</button>
+                        <button type="submit" class="devcreatebtn">Edit Application</button>
                     </form>
                 </div>
 
