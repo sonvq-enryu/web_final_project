@@ -302,6 +302,19 @@ function search() {
 }
 
 /* **********************************************************
+                        BUY APP
+*********************************************************/
+
+function buy_app(){
+    
+}
+
+
+/* **********************************************************
+                        END OF BUY APP
+*********************************************************/
+
+/* **********************************************************
                         REVIEW APP
 *********************************************************/
 
@@ -551,6 +564,7 @@ function change_password() {
     let params = "old-password=" + encodeURIComponent(current_password) + '&new-password=' + encodeURIComponent(new_password) + '&email=' + encodeURIComponent(email);
     xhr.send(params);
 }
+
 
 function create_cards() {
     let form = document.querySelector('#create-cards form');

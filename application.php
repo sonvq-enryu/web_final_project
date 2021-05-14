@@ -203,7 +203,7 @@
                                         }
                                         else if($item_app['price'] !== 0 && !$result['status']){
                                             ?>
-                                                <a class="buy-to-download"><?= number_format($item_app['price'], 0, '.', '.') ?> đ</a> 
+                                                <a data-toggle="modal" data-target="#confirm-buy" class="buy-to-download"><?= number_format($item_app['price'], 0, '.', '.') ?> đ</a> 
                                             <?php   
                                         }
                                         else{
@@ -490,9 +490,10 @@ if(isset($_SESSION['fullname'])){
                     </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="hidden" name="path" value="application.php?id=<?=$item_app['id']?>">
+                        <input type="hidden" name="path" value="application.php?id=<?= $item_app['id'] ?>&fileId=<?= $_SESSION['app_id'][$item_app['id']] ?>">
                         <input type="hidden" name="user-id" value="<?= $_SESSION['id'] ?>">
                         <input type="hidden" name="application-id" value="<?=$item_app['id']?>">
+                        <input type="hidden" name="action" value="review-section">
                         <button onclick="restoreDefault()" type="button" class="btn" data-dismiss="modal">Hủy</button>
                         <button type="submit" id="review-submit" class="btn btn-success" disabled>Gửi</button>
                     </div>            
@@ -500,6 +501,38 @@ if(isset($_SESSION['fullname'])){
             </div>
         </div>
     </div>
+        <?php
+
+
+
+        ?>
+            <div class="modal fade" id="confirm-buy">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <form method="post" action="db.php">
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <div class="apps-img col-3">
+                                    <img  src="<?= $item_app['image'] ?>">
+                                </div>
+                                <div class="apps-cmt col-9">
+                                    <h1><?= $item_app['name'] ?></h1>
+                                    <h6><?= $item_app['developer'] ?></h6>
+                                    <p><?= number_format($item_app['price'], 0, '.', '.') ?> đ</p>           
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="hidden" name="action" value="buy-app">
+                            <input type="hidden" name="user-id" value="<?= $_SESSION['id'] ?>">
+                            <input type="hidden" name="application-id" value="<?=$item_app['id']?>">
+                            <input type="hidden" name="path" value="application.php?id=<?= $item_app['id'] ?>&fileId=<?= $_SESSION['app_id'][$item_app['id']] ?>">
+                            <button type="submit" class="btn btn-outline-success">Mua</button>
+                        </div>    
+                    </form>       
+                    </div>
+                </div>
+            </div>
         <?php
     }
     ?>

@@ -1303,7 +1303,7 @@ body {
     font-size: 18px;
 }
 
-.modal-header {
+.modal-header#reivew-section {
     background-color: #689f38;
     color: white;
 }
@@ -1333,6 +1333,11 @@ body {
     margin: 4px 175px !important;
     display: inline-block;
     display: inline;
+}
+
+#confirm-buy p {
+    color: #689f38;
+    font-size: 28px;
 }
 
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);

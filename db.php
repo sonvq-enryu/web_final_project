@@ -530,29 +530,79 @@
         return array('code'=>0, 'data'=>$data);
     }
 
-
-    // REVIEW APP
-    if(isset($_POST['path']) && isset($_POST['application-id']) && isset($_POST['user-id']) && isset($_POST['rating']) && isset($_POST['user-own-review'])){
-        $user_id = $_POST['user-id'];
-        $app_id = $_POST['application-id'];
-        $rating = $_POST['rating'];
-        $review = $_POST['user-own-review'];
-
-        $sql = "SELECT * FROM comment_rating WHERE user_id = ? AND application_id = ?";
+    function buy($user_id, $app_id){
         $conn = open_database();
+        $sql = "SELECT * FROM account WHERE id = ?";
         $stm = $conn->prepare($sql);
-        $stm->bind_param("ss",$user_id,$app_id);
-        if(!$stm->execute()) die("Can't find app");
+        $stm->bind_param("s", $user_id);
+        if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
+        $user = $result->fetch_assoc();
 
-        if($result->num_rows != 0){
-            $result = update_comment_review($user_id, $app_id, $rating, $review);
+        $sql = "SELECT * FROM application WHERE id = ?";
+        $stm = $conn->prepare($sql);
+        $stm->bind_param("s", $app_id);
+        if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
+        $result = $stm->get_result();
+        $app = $result->fetch_assoc();
+
+        if($app['price'] > $user['money']){
+            return array('code'=>2, 'error' => 'Not enough money');
         }
         else{
-            $result = insert_comment_review($user_id, $app_id, $rating, $review);
+            $remain = (int)$user['money'] - $app['price'];
+            $sql = "UPDATE account SET money = ? WHERE id = ?";
+            $stm = $conn->prepare($sql);
+            $stm->bind_param("is", $remain, $user_id);
+            if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
+
+            $sql = "INSERT INTO bought_app values (?,?)";
+            $conn = open_database();
+    
+            $stm = $conn->prepare($sql);
+            $stm->bind_param("ss",$user_id,$app_id);
+    
+            if (!$stm->execute()) {
+                return array("code" => 1, "error" => "Cannot execute command");
+            }
+    
         }
-        if($result['code']!=0) die($result['message']);
-        else header("Location:".$_POST['path']);
+        return array('code'=>0, 'message' => 'Buy Successfully');
+    }
+
+
+    // REVIEW APP
+    if(isset($_POST['action']) && isset($_POST['path']) && isset($_POST['application-id']) && isset($_POST['user-id']) && isset($_POST['rating']) && isset($_POST['user-own-review'])){
+        $action = $_POST['action'];
+        if($action == 'review-section'){
+            $user_id = $_POST['user-id'];
+            $app_id = $_POST['application-id'];
+            $rating = $_POST['rating'];
+            $review = $_POST['user-own-review'];
+    
+            $sql = "SELECT * FROM comment_rating WHERE user_id = ? AND application_id = ?";
+            $conn = open_database();
+            $stm = $conn->prepare($sql);
+            $stm->bind_param("ss",$user_id,$app_id);
+            if(!$stm->execute()) die("Can't find app");
+            $result = $stm->get_result();
+    
+            if($result->num_rows != 0){
+                $result = update_comment_review($user_id, $app_id, $rating, $review);
+            }
+            else{
+                $result = insert_comment_review($user_id, $app_id, $rating, $review);
+            }
+            if($result['code']!=0) die($result['message']);
+            else header("Location:".$_POST['path']);
+        }
+        else if($action == 'buy-app'){
+            $user_id = $_POST['user-id'];
+            $app_id = $_POST['application-id'];
+            $result = buy($user_id,$app_id);
+            if ($result['code']!=0) die($result['error']);
+            else header("Location:".$_POST['path']);
+        }  
     }
 
     function is_serial_exist($serial_number) {

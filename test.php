@@ -1,42 +1,45 @@
 <?php
-define('HOST','127.0.0.1');
-define('USER','root');
-define('PASS','');
-define('DB','googleplay');
-$string = file_get_contents("ggplay3.json");
-$json = json_decode($string, true);
 
-// print_r($json);
+require_once 'db.php';
+buy('1','A171');
+// define('HOST','127.0.0.1');
+// define('USER','root');
+// define('PASS','');
+// define('DB','googleplay');
+// $string = file_get_contents("ggplay3.json");
+// $json = json_decode($string, true);
 
-function open_database(){
-    $conn = new mysqli(HOST, USER, PASS, DB);
-    if ($conn->connect_error) die('Connect error: ' . $conn->connect_error);
-    return $conn;
-}
+// // print_r($json);
 
-$conn = open_database();
+// function open_database(){
+//     $conn = new mysqli(HOST, USER, PASS, DB);
+//     if ($conn->connect_error) die('Connect error: ' . $conn->connect_error);
+//     return $conn;
+// }
 
-foreach($json as $array){
-    echo $array['Updated'];
-    $install = $array['Installs'];
-    $punc = array(",","+");
-    $install = intval(str_replace($punc, "",  $install));
-    $id = "A".$array['#untitled'];
-    $size = $array['Size'];
-    $date = $array['Updated'];
-    $date = strtotime($date); 
-    $date = strval($date);
-    if (!preg_match('/[0-9]+[MG]$/', $size)){
-        $size = '69M';
-    }
-    if ($date == ''){
-        $date = '1616968800';
-    }
-    $sql = "insert into aplication(id,name,price,stars,updated,size,install,developer,image,content) values (?,?,?,?,?,?,?,?,?,?)";
-    $stm = $conn->prepare($sql);
-    $stm->bind_param('ssidssisss',$id, $array['Name'], $array['Price'],  $array['Stars'], $date ,$size, $install, $array['Offered By'], $array['Image'],$array['Content Rating']);
-    $stm->execute();
-}
+// $conn = open_database();
+
+// foreach($json as $array){
+//     echo $array['Updated'];
+//     $install = $array['Installs'];
+//     $punc = array(",","+");
+//     $install = intval(str_replace($punc, "",  $install));
+//     $id = "A".$array['#untitled'];
+//     $size = $array['Size'];
+//     $date = $array['Updated'];
+//     $date = strtotime($date); 
+//     $date = strval($date);
+//     if (!preg_match('/[0-9]+[MG]$/', $size)){
+//         $size = '69M';
+//     }
+//     if ($date == ''){
+//         $date = '1616968800';
+//     }
+//     $sql = "insert into aplication(id,name,price,stars,updated,size,install,developer,image,content) values (?,?,?,?,?,?,?,?,?,?)";
+//     $stm = $conn->prepare($sql);
+//     $stm->bind_param('ssidssisss',$id, $array['Name'], $array['Price'],  $array['Stars'], $date ,$size, $install, $array['Offered By'], $array['Image'],$array['Content Rating']);
+//     $stm->execute();
+// }
 
 // print_r($json);
 // foreach($json as $array){

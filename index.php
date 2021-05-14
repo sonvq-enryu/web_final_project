@@ -68,11 +68,9 @@
                 if(strpos($f,'.')===0){
                     continue;
                 }
-                // $fileid_appid = array();
                 $uid = uniqid();
                 $filePath = $path.$f;
                 $app_id = explode(".", $f)[0];
-                // $fileid_appid[] = $app_id;
                 $_SESSION['app_id'][$app_id] = $uid;
                 $_SESSION['download_file'][$uid]  = $filePath;
             }
