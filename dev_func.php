@@ -72,7 +72,7 @@
     }
 
     function edit_pub_app($app_id,$appname,$price,$date,$size,$icon,$appcategory,$desc){
-        $sql = "update application set name = ?, price = ?, updated= ?, size = ?, image = ?,content = ?, description = ? where id = ?;";
+        $sql = "update application set name = ?, price = ?, updated= ?, size = ?, image = ?,content = ?, description = ? where id = ?";
 
         $conn = open_database();
         $stm = $conn->prepare($sql);
@@ -109,5 +109,25 @@
         }
 
         return array('code' => 0, 'message' => 'delete successful');
+    }
+    function unpublish_app($status,$app_id){
+        $sql = "update application set status = ? where id = ?";
+
+        $conn = open_database();
+        $stm = $conn->prepare($sql);
+        $stm->bind_param('ss',$status,$app_id);
+        if(!$stm->execute()){
+            return array('code' => 2, 'error' => 'Can not execute command');
+        }
+        $sql = "update pending_application set status = ? where app_id = ?";
+
+        $conn = open_database();
+        $stm = $conn->prepare($sql);
+        $stm->bind_param('ss',$status,$app_id);
+        if(!$stm->execute()){
+            return array('code' => 2, 'error' => 'Can not execute command');
+        }
+
+        return array('code' => 0, 'message' => 'Add successful');
     }
 ?>

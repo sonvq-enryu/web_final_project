@@ -846,4 +846,39 @@
         
         return array("code" => 0, "message" => "update image successful", "path" => $img_path);
     }
+
+    function upgrade_to_developer($email, $money, $dev) {
+        $query = 'update account set money = ?, dev = ?, role = ? where email = ?';
+        $conn = open_database();
+
+        $role = 1;
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param("isis", $money, $dev, $role, $email);
+
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "Some error has occured");
+        }
+
+        return array("code" => 0, "message" => "Successful");
+    }
+
+    function is_dev_exist($dev) {
+        $query = 'select * from account where dev = ?';
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param('s', $dev);
+
+        if (!$stm->execute()) {
+            return true;
+        }
+
+        $result = $stm->get_result();
+        if ($result->num_rows > 0) {
+            return true;
+        }
+
+        return false;
+    }
 ?>

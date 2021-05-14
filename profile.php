@@ -36,6 +36,7 @@ if (!isset($_SESSION['username'])) {
     } else {
         die("error");
     }
+    $_SESSION['role'] = $data['role'];
 
     if ($card_tbody['code'] == 0) {
         $card_tbody = $card_tbody['data'];
@@ -46,7 +47,6 @@ if (!isset($_SESSION['username'])) {
     if ($topup_body['code'] == 1) {
         die("error");
     }
-
     ?>
     <div class="container mt-5">
         <div class="row">
@@ -61,8 +61,13 @@ if (!isset($_SESSION['username'])) {
                     <?php
                     }
                     if ($_SESSION['role'] == 1) {
+                    ?>
+                        <li><a href="developer.php?id=<?= $_SESSION['id'] ?>">Developer Console</a></li>
+                    <?php
+                    }
+                    if ($_SESSION['role'] == 0) {
                         ?>
-                            <li><a  href="developer.php?id=<?= $_SESSION['id'] ?>">Developer Console</a></li>
+                            <li><a  href="admin_check.php?id=<?= $_SESSION['id'] ?>">Admin Console</a></li>
                         <?php
                     }
                     if ($_SESSION['role'] == 0) {
@@ -362,13 +367,21 @@ if (!isset($_SESSION['username'])) {
                                 <form action="">
                                     <div class="row mt-2 justify-content-center">
                                         <div class="col-10 col-sm-10 col-md-10 col-lg-8 col-xl-8">
-                                            <div class="form-group">
+                                            <div class="form-group row">
                                                 <label>Your developer name</label>
                                                 <input class="form-control" type="text" placeholder="Your developer name" name="developer-name">
                                             </div>
-                                            <div class="form-group">
-                                                <label></label>
-                                                <input class="form-control" type="text" placeholder="Current Password" name="developer-name">
+                                            <div class="row mt-2 justify-content-center">
+                                                <div class="col-12">
+                                                    <div class="alert d-none">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button onclick="upgrade_to_dev()" class="btn btn-primary" type="button">Confirm</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

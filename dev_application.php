@@ -28,7 +28,20 @@
 
     <title>Developer console</title>
     <style>
-        
+        .dev_edit_btn {
+            margin-left: 10px;
+            margin-bottom: 25px;
+            display: inline-block;
+            background: white;
+            color: #444;
+            width: 150px;
+            height: 25.5px;
+            border-radius: 5px;
+            border: thin solid #888;
+            box-shadow: 1px 1px 1px grey;
+            white-space: nowrap;
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -44,6 +57,11 @@
             }else{
                 $error = 'Cannot Delete application';
             }
+        }
+        if (isset($_POST['unpublished'])){
+            $result = unpublish_app('Unpublished',$app_id);
+            
+            
         }
     ?>
     <div class='dev-console'>
@@ -117,7 +135,7 @@
                             <div class="rating">
                                 rating
                                 <span class="fa fa-star checked"></span>
-                                <a href="edit_app.php?id=<?=$item['app_id'] ?>">Edit</a>
+                               
                             </div>
                         </div>
                         <table class="stattable">
@@ -141,8 +159,14 @@
                         </p>
                        
                     </div>
-                    
-                    </br><a class="admin_approve_btn" href="edit_app.php?id=<?=$item['app_id'] ?>">Edit</a>
+                    <?php
+                        if(strcmp($item['status'],'Unpublished') != 0){
+                            ?>
+                                </br><a class="dev_edit_btn" href="edit_app.php?id=<?=$item['app_id'] ?>">Edit</a>
+                            <?php
+                        }
+                    ?>
+                  
                     <form method="post">
                         <input class="admin_deny_btn " type="submit" name="delete" value="Delete"/>
                     </form>
@@ -151,8 +175,13 @@
                             echo "<div class='alert alert-danger appsub-input'>$error</div>";
                             
                         }
-                        
-                           
+                        if(strcmp($item['status'],'Published') == 0){
+                            ?>
+                                <form method="post">
+                                    <input class="admin_deny_btn " type="submit" name="unpublished" value="Unpublished"/>
+                                </form>
+                            <?php
+                        }   
                     ?>
                 </div>
             </div>

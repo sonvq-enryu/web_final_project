@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if (!isset($_SESSION['username'])) {
+        header("Location: loginform.php");
+        exit();
+    }
     require_once('admin_func.php');
     
     $id = $_GET['id'];
@@ -64,7 +69,7 @@
         }
     </style>
 
-    <title>Developer console</title>
+    <title>Admin console</title>
 
 
 </head>
@@ -86,8 +91,10 @@
             $image = $item['image'];
             $content = $item['content'];
             $description = $item['description'];
+            $file = $item['file'];
+            
         }
-        $result = push_app($app_id,$name,$price,$updated,$size,$developer,$image,$content,$description);
+        $result = push_app($app_id,$name,$price,$updated,$size,$developer,$image,$content,$description,$file,$status);
        
         header("location:admin_approve.php?id=$id");
     }
@@ -107,30 +114,44 @@
             
 
             <div class="header-user">
-                <div onclick="ClickUserIcon()" class="user-dropdown">
-                    <div class="user-profile">
-                        <img class="user-img" src="./image/smuge_the_cat.jpg">
-                    </div>
-                    <div id="user-dropdown-content" class="user-dropdown-content">
-                        <h3>Name<br><span>Email</span></h3>
-                        <ul>
-                            <li><img src="./image/user.svg"><a href="#">My Profile</a></li>
-                            <li><img src="./image/edit.svg"><a href="#">Edit Profile</a></li>
-                            <li><img src="./image/envelope.svg"><a href="#">Inbox</a></li>
-                            <li><img src="./image/settings.svg"><a href="#">Setting</a></li>
-                            <li><img src="./image/log-out.svg"><a href="#">Logout</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <?php
+                    if(isset($_SESSION['username']) && isset($_SESSION['fullname'])){
+                        $username = $_SESSION['username'];
+                        $fullname = $_SESSION['fullname'];
+                        ?>
+                        <div onclick="ClickUserIcon()" class="user-dropdown">
+                            <div class="user-profile">
+                                <img class="user-img" src="./image/smuge_the_cat.jpg">
+                            </div>
+                            <div id="user-dropdown-content" class="user-dropdown-content">
+                                <h3><?=$fullname?><br><span><?=$username?></span></h3>
+                                <ul>
+                                    <li><img src="./image/user.svg"><a href="profile.php">My Profile</a></li>
+                                    <li><img src="./image/edit.svg"><a href="profile.php">Edit Infomation</a></li>
+                                    <li><img src="./image/settings.svg"><a href="profile.php">Change Password</a></li>
+                                    <li><img src="./image/log-out.svg"><a href="logout.php">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    else{
+                        ?>
+                            <div class="login-signup">
+                                <a class="btn btn-outline-secondary" href="loginform.php">Login</a>
+                            </div>
+                        <?php
+                    }
+                    
+                ?>
             </div>
         </div>
         <div class="dev-console-sidebar">
             <div class="dev-console-img">
             <img src="./image/admin_icon.png" alt="" />Google Admin
             </div>
+            <a class="fa fa-shopping-bag" href="index.php"> Google Play Store</a>
             <a class="fa fa-android" href="admin_check.php"> All applications</a>
-            <a class="fa fa-gamepad" href="#"> Game services</a>
-            <a class="fa fa-credit-card"> Order management</a>
             <a class="fa fa-download" href="#"> Download reports</a>
             <a class='fa fa-warning' href="#"> Alerts</a>
             <a class="fa fa-gear" href="#"> Settings</a>
@@ -179,52 +200,10 @@
                                     </p>
                                 </div>
 
-                                <div class="review-rating">
-                                    <div class="rating row">
-                                        <div class="col-4 left-rating">
-                                            <div>REVIEW AND RATING</div>
-                                            <div class="total-rating my-3">
-                                                Overall Rating
-                                                <div>><span class="fa fa-star checked"></span></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-8 rating-chart">
-                                            <div class="row my-2">
-                                                <span class="col-1">1</span>
-                                                <div class="col-11 star star-1">
-                                                    <div class="chart chart-1"></div>
-                                                </div>
-                                            </div>
-                                            <div class="row my-2">
-                                                <span class="col-1">2</span>
-                                                <div class="col-11 star star-2">
-                                                    <div class="chart chart-1"></div>
-                                                </div>
-                                            </div>
-                                            <div class="row my-2">
-                                                <span class="col-1">3</span>
-                                                <div class="col-11 star star-3">
-                                                    <div class="chart chart-1"></div>
-                                                </div>
-                                            </div>
-                                            <div class="row my-2">
-                                                <span class="col-1">4</span>
-                                                <div class="col-11 star star-4">
-                                                    <div class="chart chart-1"></div>
-                                                </div>
-                                            </div>
-                                            <div class="row my-2">
-                                                <span class="col-1">5</span>
-                                                <div class="col-11 star star-5">
-                                                    <div class="chart chart-1"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                
                                     
                                     <form method="post" onsubmit="approve_click()">
-                                        <input class="admin_approve_btn " type="submit" name="published" value="Published"  /><br>
+                                        <br><input class="admin_approve_btn " type="submit" name="published" value="Published"  /><br>
                                         
                                     </form>
                                     <form method="post" onsubmit="deny_click()">

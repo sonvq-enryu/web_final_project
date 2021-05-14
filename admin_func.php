@@ -57,11 +57,11 @@
         
         return array('code' => 0, 'message' => 'App status changed successful');
     }
-    function push_app($app_id,$name,$price,$updated,$size,$developer,$image,$content,$description){
-        $sql = "insert into application (id, name, price, updated, size, developer, image, content, description) value (?,?,?,?,?,?,?,?,?) ";
+    function push_app($app_id,$name,$price,$updated,$size,$developer,$image,$content,$description,$file,$status){
+        $sql = "insert into application (id, name, price, updated, size, developer, image, content, description,file,status) value (?,?,?,?,?,?,?,?,?,?,?) ";
         $conn = open_database();
         $stm = $conn->prepare($sql);
-        $stm->bind_param('ssissssss',$app_id,$name,$price,$updated,$size,$developer,$image,$content,$description);
+        $stm->bind_param('ssissssssss',$app_id,$name,$price,$updated,$size,$developer,$image,$content,$description,$file,$status);
         if(!$stm->execute()){
             return array('code' => 2, 'error' => 'Can not execute command');
         }

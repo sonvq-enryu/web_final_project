@@ -741,6 +741,34 @@ function load_new_img(img_path) {
     img.src = img_path + '?t=' + new Date().getTime();
 }
 
+function upgrade_to_dev() {
+    let form = document.querySelector('#upgrade form');
+    let email = document.querySelector('#usr-email').innerText;
+    let dev_name = form.querySelector('input[name=developer-name]');
+    let error = form.querySelector('div.alert');
+
+    if (dev_name.value == '') {
+        error_edit_form(error, 'Please enter your developer name');
+        return ;
+    }
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "upgrade_dev.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.addEventListener('load', () => {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            let response = xhr.responseText;
+            response = JSON.parse(response);
+            if (response['code'] == 0) {
+                window.location.replace('profile.php');
+            } else {
+                error_edit_form(error, response['message']);
+            }
+        }
+    });
+    let params = "email=" + encodeURIComponent(email) + "&dev=" + encodeURIComponent(dev_name.value);
+    xhr.send(params);
+}
 
 
 /* EDIT INFO */
