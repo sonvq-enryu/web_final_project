@@ -388,7 +388,11 @@ function profile_show(e) {
             form.style.display = 'block';
         } else if (name == 'Create Card' && form.id == 'create-cards') {
             form.style.display = 'block';
-        } else {
+        }
+        else if (name == 'Upgrade' && form.id == 'upgrade') {
+            form.style.display = 'block';
+        }
+         else {
             form.style.display = 'none';
         }
     }
@@ -404,19 +408,20 @@ function color_block(e) {
     selected_li.classList.add('li-selected')
 }
 
-function render_profile(firstname, lastname, nationality, gender) {
+function render_profile(firstname, lastname, gender, nationality) {
     let edit_profile = document.querySelector('#edit-profile');
 
     let fullname = edit_profile.querySelector('.d-flex p');
     // let role = edit_profile.querySelector('.d-flex .badge'); viet ham rieng update role khi update to dev
     let small_texts = edit_profile.querySelectorAll('.d-flex .text-muted small');
+
     small_texts[0].innerText = nationality;
     small_texts[1].innerText = gender;
     fullname.innerText = firstname + ' ' + lastname;
 }
 
 function update_user_info() {
-    let form = document.querySelector('#edit-profile form');
+    let form = document.querySelector('#edit-profile form#chg-profile');
     let firstname = form.querySelector('input[name="firstname"]').value;
     let lastname = form.querySelector('input[name="lastname"]').value;
     let phone = form.querySelector('input[name="phone"]').value;
@@ -641,6 +646,7 @@ function topup_money() {
     let email = document.querySelector('#usr-email').innerText;
     let serial = form.querySelector('input[name="serial"]');
     let error = form.querySelector('div.alert');
+    let topup_tbody = document.querySelector('#top-up table tbody');
     if (serial.value == '') {
         error_edit_form(error, 'Please enter serial number');
         return;
@@ -657,6 +663,7 @@ function topup_money() {
             let response = xhr.responseText;
             response = JSON.parse(response);
             if (response['code'] == 0) {
+                topup_tbody.appendChild(add_new_row(serial.value, response['value']));
                 current_money.value = response['data'] + ' VND';
                 serial.value = "";
                 successful_edit_form(error, "Top up successful");
@@ -669,6 +676,59 @@ function topup_money() {
     xhr.send(params);
 }
 
+function add_new_row(serial, denomination) {
+    let idx = document.querySelectorAll('#top-up table tbody tr').length;
+
+    let tr = document.createElement('tr');
+    let th = document.createElement('th');
+    th.setAttribute('scope', 'row');
+    let s = document.createElement('td');
+    let d = document.createElement('td');
+
+    th.innerText = idx + 1;
+    s.innerText = serial;
+    d.innerText = denomination;
+    tr.appendChild(th);
+    tr.appendChild(s);
+    tr.appendChild(d);
+    return tr;
+}
+
+if (window.location.pathname == '/web_final_project/profile.php') {
+    $(document).ready(function (e) {
+        $("#upload_img_form").on('submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "upload_image.php",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+            }).done(function(response) {
+                let form = document.querySelector('#edit-profile form#chg-profile');
+                let error = form.querySelector('div.alert');
+                response = JSON.parse(response);
+                if (response['code'] == 0) {
+                    load_new_img(response['path']);
+                    successful_edit_form(error, "Change image successful");
+                }
+                else {
+                    error_edit_form(error, response['message']);
+                }
+            })
+        })
+    });
+}
+
+function load_new_img(img_path) {
+    let img = document.querySelector('#edit-profile img');
+    img.src = img_path + '?t=' + new Date().getTime();
+}
+
+
+
+/* EDIT INFO */
 /* EDIT INFO */
 function approve_click() {
     confirm("You are about to approve an submission please confirm your choice");
@@ -677,3 +737,4 @@ function approve_click() {
 function deny_click() {
     confirm("You are about to reject an submission please confirm your choice");
 }
+
