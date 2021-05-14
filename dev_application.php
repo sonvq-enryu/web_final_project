@@ -58,6 +58,11 @@
                 $error = 'Cannot Delete application';
             }
         }
+        if (isset($_POST['unpublished'])){
+            $result = unpublish_app('Unpublished',$app_id);
+            
+            
+        }
     ?>
     <div class='dev-console'>
         <div class="dev-console-header">
@@ -130,7 +135,7 @@
                             <div class="rating">
                                 rating
                                 <span class="fa fa-star checked"></span>
-                                <a href="edit_app.php?id=<?=$item['app_id'] ?>">Edit</a>
+                               
                             </div>
                         </div>
                         <table class="stattable">
@@ -154,8 +159,14 @@
                         </p>
                        
                     </div>
-                    
-                    </br><a class="dev_edit_btn" href="edit_app.php?id=<?=$item['app_id'] ?>">Edit</a>
+                    <?php
+                        if(strcmp($item['status'],'Unpublished') != 0){
+                            ?>
+                                </br><a class="dev_edit_btn" href="edit_app.php?id=<?=$item['app_id'] ?>">Edit</a>
+                            <?php
+                        }
+                    ?>
+                  
                     <form method="post">
                         <input class="admin_deny_btn " type="submit" name="delete" value="Delete"/>
                     </form>
