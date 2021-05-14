@@ -709,6 +709,7 @@ if (window.location.pathname == '/web_final_project/profile.php') {
                 let form = document.querySelector('#edit-profile form#chg-profile');
                 let error = form.querySelector('div.alert');
                 response = JSON.parse(response);
+                console.log(response);
                 if (response['code'] == 0) {
                     load_new_img(response['path']);
                     successful_edit_form(error, "Change image successful");

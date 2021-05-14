@@ -28,7 +28,7 @@
                 $result = replace_new_image($_POST['email'], $img_path);   
             }
             else {
-                $result = array("code" => 3, "message" => "Some error has occurred");
+                $result = array("code" => 3, "message" => "Some error has occurred", "img" => $img_path, "tmp" => $tmp);
             }
         }
         else {

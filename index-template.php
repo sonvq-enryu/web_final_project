@@ -1,5 +1,13 @@
 <?php
     session_start();
+    
+    require_once('db.php');
+    $data = get_user_info($_SESSION['username']);
+    if ($data['code'] == 0) {
+        $img_path = $data['data']['image'];
+    } else {
+        die("error");
+    }
 ?>
 <?php
     ?>
@@ -30,7 +38,13 @@
                     ?>
                     <div onclick="ClickUserIcon()" class="user-dropdown">
                         <div class="user-profile">
-                            <img class="user-img" src="./image/smuge_the_cat.jpg">
+                            <img class="user-img" src="<?php
+                                                if (empty($img_path)) {
+                                                    echo "./image/smuge_the_cat.jpg";
+                                                } else {
+                                                    echo $img_path;
+                                                }
+                                                ?>" alt=""> 
                         </div>
                         <div id="user-dropdown-content" class="user-dropdown-content">
                             <h3><?=$fullname?><br><span><?=$username?></span></h3>
