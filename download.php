@@ -23,6 +23,9 @@
     header('Oragma: public');
     header('Content-Length: '.filesize($filePath));
     flush();
+    if(isset($_GET['user']) && isset($_GET['app']) ){
+        is_downloaded($_GET['user'],$_GET['app']);
+    }
     readfile($filePath);
 
 ?>
