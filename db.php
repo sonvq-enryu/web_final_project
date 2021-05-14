@@ -184,6 +184,44 @@ define('HOST','127.0.0.1');
         return array('code'=>0, 'data'=>$data);
     }
 
+    // PAID APPS
+
+    function get_paid_top_apps(){
+        $conn = open_database();
+
+        $sql = "SELECT * FROM application WHERE price <> 0 ORDER BY install DESC LIMIT 9";
+        $stm = $conn->prepare($sql);
+        if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
+        $result = $stm->get_result();
+        $data = array();
+
+        if($result->num_rows == 0) return array('code' => 2, 'error' => "Don't have any app");
+
+        while ($item = $result->fetch_assoc()){
+            $data[] = $item;
+        }
+
+        return array('code'=>0, 'data'=>$data);
+    }
+
+    function get_paid_apps(){
+        $conn = open_database();
+
+        $sql = "SELECT * FROM application WHERE price <> 0 ORDER BY install DESC LIMIT 50";
+        $stm = $conn->prepare($sql);
+        if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
+        $result = $stm->get_result();
+        $data = array();
+
+        if($result->num_rows == 0) return array('code' => 2, 'error' => "Don't have any app");
+
+        while ($item = $result->fetch_assoc()){
+            $data[] = $item;
+        }
+
+        return array('code'=>0, 'data'=>$data);
+    }
+
 
     // CONTENT
 
@@ -407,6 +445,40 @@ define('HOST','127.0.0.1');
         }
 
         return array("code" => 0, "message" => "Register successful, using account to login");
+    }
+
+    function download($user_id, $app_id){
+        $sql = "INSERT INTO downloaded_app values (?,?)";
+        $conn = open_database();
+
+        $stm = $conn->prepare($sql);
+        $stm->bind_param("ss",$user_id,$app_id);
+
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "Cannot execute command");
+        }
+
+        return array("code" => 0, "message" => "Add sucessfully");
+
+    }
+
+    function is_downloaded($user_id, $app_id){
+        $sql = "SELECT * FROM downloaded_app WHERE user_id = ? AND app_id = ?";
+        $conn = open_database();
+
+        $stm = $conn->prepare($sql); 
+        $stm->bind_param("ss", $user_id, $app_id);
+
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "Cannot execute command");
+        }
+
+        $result = $stm->get_result();
+        if($result->num_rows > 0){
+            return array("code" => 0, "status" => true);
+        }
+
+        return array("code" => 0, "status" => false);
     }
 
 

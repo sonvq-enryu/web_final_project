@@ -1,10 +1,10 @@
 // login - signup form
 $(document).ready(() => {
-    $(".txtb input").on("focus", function () {
+    $(".txtb input").on("focus", function() {
         $(this).addClass("focus");
     })
 
-    $(".txtb input").on("blur", function () {
+    $(".txtb input").on("blur", function() {
         if ($(this).val() == "")
             $(this).removeClass("focus");
     })
@@ -224,7 +224,7 @@ if (window.location.pathname == '/web_final_project/index.php' || window.locatio
         }
     });
 
-    window.onscroll = function () {
+    window.onscroll = function() {
         let navbar = document.getElementById('navbar');
         let headerHeight = document.getElementById('header').offsetHeight;
         let sidebar = document.getElementById('sidebar');
@@ -284,7 +284,7 @@ function sendRequest(keyword) {
                     const li = document.createElement('li');
                     li.className = 'list-group-item';
                     li.appendChild(a)
-                    // li.innerHTML = element;
+                        // li.innerHTML = element;
                     suggestions.appendChild(li);
                 });
             }
@@ -305,13 +305,13 @@ function search() {
                         REVIEW APP
 *********************************************************/
 
-function checkReviewInput(){
+function checkReviewInput() {
     let btn = document.querySelector("#review-submit").disabled = false;
 }
 
-function restoreDefault(){
+function restoreDefault() {
     document.querySelector("#review-submit").disabled = true;
-    $('#rating input[name=rating]').prop('checked',false);
+    $('#rating input[name=rating]').prop('checked', false);
     document.querySelector("#user-own-review").value = "";
 }
 
@@ -382,20 +382,17 @@ function profile_show(e) {
     for (let form of forms) {
         if (name == 'Profile' && form.id == 'edit-profile') {
             form.style.display = 'block';
-        }
-        else if (name == 'Password' && form.id == 'chg-password') {
+        } else if (name == 'Password' && form.id == 'chg-password') {
             form.style.display = 'block';
-        }
-        else if (name == 'Top up' && form.id == 'top-up') {
+        } else if (name == 'Top up' && form.id == 'top-up') {
             form.style.display = 'block';
-        }
-        else if (name == 'Create Card' && form.id == 'create-cards') {
+        } else if (name == 'Create Card' && form.id == 'create-cards') {
             form.style.display = 'block';
         }
         else if (name == 'Upgrade' && form.id == 'upgrade') {
             form.style.display = 'block';
         }
-        else {
+         else {
             form.style.display = 'none';
         }
     }
@@ -428,7 +425,7 @@ function update_user_info() {
     let firstname = form.querySelector('input[name="firstname"]').value;
     let lastname = form.querySelector('input[name="lastname"]').value;
     let phone = form.querySelector('input[name="phone"]').value;
-    
+
     let gender = form.querySelector('input[name="gender"]').checked;
     let national = form.querySelector('select[name="national"]');
     let gender_text = '';
@@ -436,8 +433,7 @@ function update_user_info() {
     if (gender) {
         gender = 0;
         gender_text = 'Male';
-    }
-    else {
+    } else {
         gender = 1;
         gender_text = 'Female';
     }
@@ -458,7 +454,7 @@ function update_user_info() {
         error_edit_form(error, 'Please enter your phone number');
         return false;
     }
-    
+
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "update_info.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -469,13 +465,12 @@ function update_user_info() {
             if (response['code'] == 0) {
                 successful_edit_form(error, "Update profile successful");
                 render_profile(firstname, lastname, gender_text, national_text);
-            }
-            else {
+            } else {
                 error_edit_form(error, 'Some errors have occurred');
             }
         }
     });
-    let param = "email=" + encodeURIComponent(email) + "&firstname=" + encodeURIComponent(firstname) + "&lastname=" + encodeURIComponent(lastname) + "&phone=" + encodeURIComponent(phone); 
+    let param = "email=" + encodeURIComponent(email) + "&firstname=" + encodeURIComponent(firstname) + "&lastname=" + encodeURIComponent(lastname) + "&phone=" + encodeURIComponent(phone);
     param += "&national=" + encodeURIComponent(national) + "&gender=" + encodeURIComponent(gender);
     xhr.send(param);
 }
@@ -546,11 +541,9 @@ function change_password() {
                 form.querySelector('#new-password').value = '';
                 form.querySelector('#confirm-password').value = '';
                 successful_edit_form(error, "Change password successful");
-            }
-            else if (response['code'] == 2) {
+            } else if (response['code'] == 2) {
                 error_edit_form(error, 'Your current password not match');
-            }
-            else {
+            } else {
                 error_edit_form(error, 'Some errors have occurred');
             }
         }
@@ -568,7 +561,7 @@ function create_cards() {
     money_seleted = money.options[money.selectedIndex].value;
     if (number_cards.value == '') {
         error_edit_form(error, 'Please enter number cards you want created');
-        return ;
+        return;
     }
 
     let xhr = new XMLHttpRequest();
@@ -581,8 +574,7 @@ function create_cards() {
             if (response['code'] == 0) {
                 successful_edit_form(error, "Create successful");
                 get_cards();
-            }
-            else {
+            } else {
                 error_edit_form(error, 'Some errors have occurred. Please try again');
             }
         }
@@ -615,8 +607,8 @@ function render_cards(card_array) {
     let card_div = document.querySelector('#create-cards');
     let card_tbody = card_div.querySelector('table tbody');
     empty_tbody(card_tbody);
-    for (let i=0; i<card_array.length; ++i) {
-        card_tbody.appendChild(create_row_table(i+1, card_array[i]));
+    for (let i = 0; i < card_array.length; ++i) {
+        card_tbody.appendChild(create_row_table(i + 1, card_array[i]));
     }
 }
 
@@ -630,19 +622,16 @@ function create_row_table(index, row_text) {
     idx.setAttribute('scope', 'row');
     idx.innerText = index;
     tr.appendChild(idx);
-    for (let i=1; i<4; ++i) {
+    for (let i = 1; i < 4; ++i) {
         let th = document.createElement('td');
         if (i == 1) {
             th.innerText = row_text[i];
-        }
-        else if (i == 2) {
+        } else if (i == 2) {
             th.innerText = String(row_text[i]) + ' VND';
-        }
-        else {
+        } else {
             if (row_text[i] == 1) {
                 th.innerText = "Used";
-            }
-            else {
+            } else {
                 th.innerText = "Unused"
             }
         }
@@ -660,11 +649,11 @@ function topup_money() {
     let topup_tbody = document.querySelector('#top-up table tbody');
     if (serial.value == '') {
         error_edit_form(error, 'Please enter serial number');
-        return ;
+        return;
     }
     if (serial.value.length < 15) {
         error_edit_form(error, 'Not enough length, serial number has 15 characters');
-        return ;
+        return;
     }
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "topup_money.php", true);
@@ -678,8 +667,7 @@ function topup_money() {
                 current_money.value = response['data'] + ' VND';
                 serial.value = "";
                 successful_edit_form(error, "Top up successful");
-            }
-            else {
+            } else {
                 error_edit_form(error, response['message']);
             }
         }
@@ -741,3 +729,12 @@ function load_new_img(img_path) {
 
 
 /* EDIT INFO */
+/* EDIT INFO */
+function approve_click() {
+    confirm("You are about to approve an submission please confirm your choice");
+}
+
+function deny_click() {
+    confirm("You are about to reject an submission please confirm your choice");
+}
+
