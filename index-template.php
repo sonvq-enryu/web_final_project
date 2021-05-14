@@ -2,12 +2,15 @@
     session_start();
     
     require_once('db.php');
-    $data = get_user_info($_SESSION['username']);
-    if ($data['code'] == 0) {
-        $img_path = $data['data']['image'];
-    } else {
-        die("error");
+    if(isset($_SESSION['username'])){
+        $data = get_user_info($_SESSION['username']);
+        if ($data['code'] == 0) {
+            $img_path = $data['data']['image'];
+        } else {
+            die("error");
+        }
     }
+    
 ?>
 <?php
     ?>
