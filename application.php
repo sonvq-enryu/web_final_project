@@ -279,7 +279,7 @@
                         $comment_rating = select_comment_review($item_app['id']);
                         if($comment_rating['code']!=0) die($comment_rating['error']);
                         foreach($comment_rating['data'] as $item){
-                            $sql = "SELECT firstname, lastname FROM account WHERE id = ?";
+                            $sql = "SELECT firstname, lastname, image FROM account WHERE id = ?";
                             $conn = open_database();
                             $stm = $conn->prepare($sql);
                             $stm->bind_param("s",$item['user_id']);
@@ -290,7 +290,7 @@
                             ?>
                             <div class="user-review row">
                                 <div class="user-profile col-2">
-                                    <img class="user-img" src="./image/smuge_the_cat.jpg">
+                                    <img class="user-img" src="<?= $user['image'] ?>">
                                 </div>
                                 <div class="user-name col-10">
                                     <h6 style="font-weight: bold"><?=$fullname?><h6>

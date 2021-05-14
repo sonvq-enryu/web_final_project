@@ -428,16 +428,17 @@ define('HOST','127.0.0.1');
         $gender = (int)$gender;
         $national = (int)$national;
 
-
+        
         $hash = password_hash($password, PASSWORD_DEFAULT);
         
         $role_default = 2;
         $money_default = 0;
-        $sql = "INSERT INTO account(id, firstname, lastname, email, password, phone, gender, national, role, money) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $image_default = "./user_img/smuge_the_cat.jpg";
+        $sql = "INSERT INTO account(id, firstname, lastname, email, password, phone, gender, national, role, money, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $conn = open_database();
 
         $stm = $conn->prepare($sql); 
-        $stm->bind_param("ssssssiiii", $last_id, $firstname, $lastname, $email, $hash, $phone, $gender, $national, $role_default, $money_default);
+        $stm->bind_param("ssssssiiiis", $last_id, $firstname, $lastname, $email, $hash, $phone, $gender, $national, $role_default, $money_default, $image_default);
 
 
         if (!$stm->execute()) {
