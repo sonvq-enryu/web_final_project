@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 14, 2021 lúc 05:33 PM
+-- Thời gian đã tạo: Th5 14, 2021 lúc 08:49 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
--- Phiên bản PHP: 8.0.5
+-- Phiên bản PHP: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,9 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `googleplay`
 --
+
+CREATE DATABASE IF NOT EXISTS `googleplay` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `googleplay`;
 
 -- --------------------------------------------------------
 
@@ -49,10 +52,10 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`id`, `firstname`, `lastname`, `email`, `password`, `phone`, `gender`, `national`, `role`, `money`, `image`, `activated`, `activate_token`, `dev`) VALUES
-('1', 'Lê', 'Nguyễn Minh Tuấn', 'lnmtuan1702@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '0901995401', 0, 0, 0, 0, './user_img/3d4z0uf4s2pdgr2t4l8bcat-memes.jpg', b'1', '', ''),
+('1', 'Lê', 'Nguyễn Minh Tuấn', 'lnmtuan1702@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '0901995401', 0, 0, 0, 99000, './user_img/3d4z0uf4s2pdgr2t4l8bcat-memes.jpg', b'1', '', ''),
 ('2', 'Vo', 'Quoc Son', 'voquocson@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '', 0, 0, 0, 0, './user_img/smuge_the_cat.jpg', b'1', NULL, ''),
 ('3', 'Huynh', 'Nhu', 'huynhnhu@gmail.com', '$2y$10$BnFA3Dkgj1q0xBlme3GcwukDhqTO8l8V/.BrWktW8sK9boZ3z2UpG', '789', 0, 0, 0, 0, './user_img/smuge_the_cat.jpg', b'0', NULL, ''),
-('4', 'Tran', 'Huyen', 'tkph@gmail.com', '$2y$10$8rSxJT76sHsDRKaAw/xbDO/sBdf.ktxKmNesJxjKf./8GltWI8Q4O', '123456789', 1, 230, 2, 200000, './user_img/smuge_the_cat.jpg', b'0', NULL, ''),
+('4', 'Tran', 'Huyen', 'tkph@gmail.com', '$2y$10$8rSxJT76sHsDRKaAw/xbDO/sBdf.ktxKmNesJxjKf./8GltWI8Q4O', '123456789', 2, 230, 2, 1, './user_img/smuge_the_cat.jpg', b'0', NULL, ''),
 ('5', 'Võ', 'Quốc Sơn', 'testlogin@gmail.com', '$2y$10$dWtDMxc4FmDgr1Qtb8XyIeNcbua49JH/ickKm9jAmEwjz7iM.D5q.', '0921231232', 0, 230, 0, 0, './user_img/smuge_the_cat.jpg', b'0', NULL, ''),
 ('6', 'Vo', 'Quoc Son', 'testlogin1@gmail.com', '$2y$10$nBXkjyH7GlVc5w8p5A/.2OKosxr1ys8nJmo2IFNC3eoERH7CQE3hq', '0921231242', 1, 230, 1, 0, './user_img/smuge_the_cat.jpg', b'0', NULL, ''),
 ('7', 'Vo', 'Quoc Son', 'testlogin2@gmail.com', '$2y$10$hk2ZXJO2.XnObxfmNPaKXu/vkkU0XF81cslpYFzChCTAaeV.ieRMu', '0925372462', 0, 230, 2, 300000, './user_img/smuge_the_cat.jpg', b'0', NULL, ''),
@@ -178,7 +181,7 @@ INSERT INTO `application` (`id`, `name`, `price`, `stars`, `updated`, `size`, `i
 ('A21', 'Chiến Thần Kỷ Nguyên - Dragon Impact', 0, 3.8, '1614553200', '98M', 100000, 'NPH VTC Mobile', 'image/app/A21.jpg', 'Rated for 7+\nMild Violence', '', 'apk/A21.zip', ''),
 ('A22', 'Crasher: Origin', 0, 4.2, '1618005600', '100M', 1000000, '4399en game', 'image/app/A22.jpg', 'Rated for 12+\nModerate Violence', '', 'apk/A22.zip', ''),
 ('A23', 'Mobile Legends: Adventure', 0, 4.6, '1618178400', '94M', 10000000, 'Moonton', 'image/app/A23.jpg', 'Rated for 12+\nModerate Violence', '', 'apk/A23.zip', ''),
-('A2358', 'sus 2', 0, NULL, '140521', '8M', NULL, 'Mark Zuckerbergs', 'image/app/amogus2.jpg', 'Mild Swearing', 'sus 2sus 2sus 2sus 2sus 2sus 2sus 2sus 2', '', ''),
+('A2358', 'sus 2', 0, 0, '1616626800', '8M', 0, 'Mark Zuckerbergs', 'image/app/amogus2.jpg', 'Mild Swearing', 'sus 2sus 2sus 2sus 2sus 2sus 2sus 2sus 2', 'apk/A2358.zip', ''),
 ('A24', 'State of Survival:The Walking Dead - Funtap', 0, 4.6, '1618178400', '138M', 500000, 'KingsGroup Holdings', 'image/app/A24.jpg', 'Rated for 7+\nMild Violence', '', 'apk/A24.zip', ''),
 ('A25', 'LMHT: Tốc Chiến', 0, 3.6, '1616886000', '69M', 1000000, 'CÔNG TY CỔ PHẦN VNG', 'image/app/A25.jpg', 'Rated for 12+\nModerate Violence, Sexual Innuendo', '', 'apk/A25.zip', ''),
 ('A26', 'Goddess MUA', 0, 4.4, '1599170400', '98M', 1000000, '4399en game', 'image/app/A26.jpg', 'Rated for 12+\nModerate Violence', '', 'apk/A26.zip', ''),
@@ -216,7 +219,7 @@ INSERT INTO `application` (`id`, `name`, `price`, `stars`, `updated`, `size`, `i
 ('A55', 'Cực Phẩm Đại Nhân - tthgame', 10000, 3.9, '1606258800', '22M', 100000, 'TTH MOBI', 'image/app/A55.jpg', 'Rated for 16+\nNudity', '', 'apk/A55.zip', ''),
 ('A56', 'Vĩnh Hằng Kỷ Nguyên-Kỵ Sĩ Rồng thức tỉnh', 0, 3.7, '1616367600', '81M', 1000000, 'ASM MOBILE GAME COMPANY', 'image/app/A56.jpg', 'Rated for 16+\nStrong Violence', '', 'apk/A56.zip', ''),
 ('A57', 'FaFaFa™ Gold Casino: Free slot machines', 0, 3.8, '1610406000', '124M', 1000000, 'Product Madness', 'image/app/A57.jpg', 'Rated for 18+\nSimulated Gambling', '', 'apk/A57.zip', ''),
-('A5763', 'facebook 3', 0, NULL, '140521', '8M', NULL, 'Mark Zuckerbergs', 'image/app/facebook3.png', 'Gambling', 'facebook 3', 'apk/facebook3.zip', 'Published'),
+('A5763', 'facebook 3', 0, NULL, '140521', '8M', NULL, 'Mark Zuckerbergs', 'image/app/facebook3.png', 'Gambling', 'facebook 3', 'apk/A5763.zip', 'Published'),
 ('A58', 'The King\'s Army:Idle RPG', 0, 3.5, '1611183600', '132M', 100000, 'Merry Realm', 'image/app/A58.jpg', 'Rated for 7+\nMild Violence', '', 'apk/A58.zip', ''),
 ('A59', 'Dragon raja-Long tộc huyễn tưởng', 0, 4.4, '1618437600', '66M', 500000, 'Archosaur Games', 'image/app/A59.jpg', 'Rated for 12+\nModerate Violence', '', 'apk/A59.zip', ''),
 ('A6', 'Garena Liên Quân Mobile', 0, 4.1, '1615935600', '69M', 50000000, 'Garena Mobile Private', 'image/app/A6.jpg', 'Rated for 12+\nModerate Violence, Sexual Innuendo, Horror', '', 'apk/A6.zip', ''),
@@ -267,6 +270,27 @@ INSERT INTO `application` (`id`, `name`, `price`, `stars`, `updated`, `size`, `i
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `bought_app`
+--
+
+CREATE TABLE `bought_app` (
+  `user_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `app_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `bought_app`
+--
+
+INSERT INTO `bought_app` (`user_id`, `app_id`) VALUES
+('[object HT', '[object HT'),
+('1', 'A13'),
+('1', 'A171'),
+('1', 'A32');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `card`
 --
 
@@ -312,10 +336,12 @@ CREATE TABLE `comment_rating` (
 
 INSERT INTO `comment_rating` (`user_id`, `application_id`, `comment`, `rating`) VALUES
 ('1', 'A14', '', 1),
+('1', 'A171', 'hay nhỉ', 4),
 ('1', 'A28', 'game tệ', 4),
 ('1', 'A4', 'game như cái đầu buồi vậy', 1),
 ('1', 'A51', 'hay lắm', 4),
-('2', 'A51', 'như cái ...........................', 1);
+('2', 'A51', 'như cái ...........................', 1),
+('4', 'A51', 'tôi mất quá nhiều thời gian vào trò này', 2);
 
 -- --------------------------------------------------------
 
@@ -334,10 +360,12 @@ CREATE TABLE `downloaded_app` (
 
 INSERT INTO `downloaded_app` (`user_id`, `app_id`) VALUES
 ('1', 'A0'),
+('1', 'A171'),
 ('1', 'A20'),
 ('1', 'A31'),
 ('1', 'A4'),
 ('1', 'A51'),
+('4', 'A51'),
 ('8', 'A51');
 
 -- --------------------------------------------------------
@@ -408,6 +436,12 @@ ALTER TABLE `account`
 --
 ALTER TABLE `application`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `bought_app`
+--
+ALTER TABLE `bought_app`
+  ADD PRIMARY KEY (`user_id`,`app_id`);
 
 --
 -- Chỉ mục cho bảng `card`

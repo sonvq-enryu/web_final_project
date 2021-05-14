@@ -530,6 +530,9 @@
         return array('code'=>0, 'data'=>$data);
     }
 
+
+    // BUY APP
+
     function buy($user_id, $app_id){
         $conn = open_database();
         $sql = "SELECT * FROM account WHERE id = ?";
@@ -557,7 +560,6 @@
             if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
 
             $sql = "INSERT INTO bought_app values (?,?)";
-            $conn = open_database();
     
             $stm = $conn->prepare($sql);
             $stm->bind_param("ss",$user_id,$app_id);
@@ -570,9 +572,28 @@
         return array('code'=>0, 'message' => 'Buy Successfully');
     }
 
+    function is_bought($user_id, $app_id){
+        $sql = "SELECT * FROM bought_app WHERE user_id = ? AND app_id = ?";
+        $conn = open_database();
+
+        $stm = $conn->prepare($sql); 
+        $stm->bind_param("ss", $user_id, $app_id);
+
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "Cannot execute command");
+        }
+
+        $result = $stm->get_result();
+        if($result->num_rows > 0){
+            return array("code" => 0, "status" => true);
+        }
+
+        return array("code" => 0, "status" => false);
+    }
+
 
     // REVIEW APP
-    if(isset($_POST['action']) && isset($_POST['path']) && isset($_POST['application-id']) && isset($_POST['user-id']) && isset($_POST['rating']) && isset($_POST['user-own-review'])){
+    if(isset($_POST['action']) && isset($_POST['path']) && isset($_POST['application-id']) && isset($_POST['user-id'])){
         $action = $_POST['action'];
         if($action == 'review-section'){
             $user_id = $_POST['user-id'];
@@ -596,13 +617,13 @@
             if($result['code']!=0) die($result['message']);
             else header("Location:".$_POST['path']);
         }
-        else if($action == 'buy-app'){
-            $user_id = $_POST['user-id'];
-            $app_id = $_POST['application-id'];
-            $result = buy($user_id,$app_id);
-            if ($result['code']!=0) die($result['error']);
-            else header("Location:".$_POST['path']);
-        }  
+        // else{
+        //     $user_id = $_POST['user-id'];
+        //     $app_id = $_POST['application-id'];
+        //     $result = buy($user_id,$app_id);
+        //     if ($result['code']!=0) die($result['error']);
+        //     else header("Location:".$_POST['path']);
+        // }  
     }
 
     function is_serial_exist($serial_number) {

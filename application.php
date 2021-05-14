@@ -141,27 +141,34 @@
                                         <div class="rating">
                                         <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
                                         <?php
-                                        if(isset($_SESSION['id'])){
-                                            $result = is_downloaded($_SESSION['id'],$item['id']);
-                                            if($result['code']!=0) die($result['message']);
-                                            if($result['status']){
-                                                ?>
-                                                    <p><img src="./image/download.png"></p> 
-                                                <?php
+                                            if(isset($_SESSION['id'])){
+                                                $buy = is_bought($_SESSION['id'],$item['id']);
+                                                $download = is_downloaded($_SESSION['id'],$item['id']);
+                                                if($download['code']!=0) die($result['message']);
+                                                if($buy['code']!=0) die($result['message']);
+                                                if($download['status']){
+                                                    ?>
+                                                        <p><img src="./image/download.png"></p> 
+                                                    <?php
+                                                }
+                                                else if($buy['status']){
+                                                    ?>
+                                                        <p>Đã mua</p> 
+                                                    <?php
+                                                }
+                                                else if($item['price'] !== 0 && !$download['status'] && !$buy['status']){
+                                                    ?>
+                                                        <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
+                                                    <?php
+                                                }
                                             }
-                                            if($item['price'] !== 0 && !$result['status']){
-                                                ?>
-                                                    <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
-                                                <?php
+                                            else{
+                                                if($item['price'] !== 0){
+                                                    ?>
+                                                        <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
+                                                    <?php
+                                                }
                                             }
-                                        }
-                                        else{
-                                            if($item['price'] !== 0){
-                                                ?>
-                                                    <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
-                                                <?php
-                                            }
-                                        } 
                                         ?>
                                         </div>
                                     </div>
@@ -192,16 +199,18 @@
                             <span class="fa fa-star checked"></span>
                             <?php
                                 if(isset($_SESSION['id'])){
-                                    $result = is_downloaded($_SESSION['id'],$item_app['id']);
-                                    if($result['code']!=0) die($result['message']);
+                                    $buy = is_bought($_SESSION['id'],$item_app['id']);
+                                    $download = is_downloaded($_SESSION['id'],$item_app['id']);
+                                    if($download['code']!=0) die($download['message']);
+                                    if($buy['code']!=0) die($result['message']);
                                     ?>
                                         <?php
-                                        if($result['status']){
+                                        if($download['status']){
                                             ?>
                                                 <a href="<?='download.php?fileId='. $fileID?>">Đã được cài đặt</a> 
                                             <?php 
                                         }
-                                        else if($item_app['price'] !== 0 && !$result['status']){
+                                        else if($item_app['price'] !== 0 && !$download['status'] && !$buy['status']){
                                             ?>
                                                 <a data-toggle="modal" data-target="#confirm-buy" class="buy-to-download"><?= number_format($item_app['price'], 0, '.', '.') ?> đ</a> 
                                             <?php   
@@ -360,27 +369,34 @@
                                     <div class="rating">
                                     <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
                                     <?php
-                                        if(isset($_SESSION['id'])){
-                                            $result = is_downloaded($_SESSION['id'],$item['id']);
-                                            if($result['code']!=0) die($result['message']);
-                                            if($result['status']){
-                                                ?>
-                                                    <p><img src="./image/download.png"></p> 
-                                                <?php
+                                            if(isset($_SESSION['id'])){
+                                                $buy = is_bought($_SESSION['id'],$item['id']);
+                                                $download = is_downloaded($_SESSION['id'],$item['id']);
+                                                if($download['code']!=0) die($result['message']);
+                                                if($buy['code']!=0) die($result['message']);
+                                                if($download['status']){
+                                                    ?>
+                                                        <p><img src="./image/download.png"></p> 
+                                                    <?php
+                                                }
+                                                else if($buy['status']){
+                                                    ?>
+                                                        <p>Đã mua</p> 
+                                                    <?php
+                                                }
+                                                else if($item['price'] !== 0 && !$download['status'] && !$buy['status']){
+                                                    ?>
+                                                        <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
+                                                    <?php
+                                                }
                                             }
-                                            if($item['price'] !== 0 && !$result['status']){
-                                                ?>
-                                                    <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
-                                                <?php
+                                            else{
+                                                if($item['price'] !== 0){
+                                                    ?>
+                                                        <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
+                                                    <?php
+                                                }
                                             }
-                                        }
-                                        else{
-                                            if($item['price'] !== 0){
-                                                ?>
-                                                    <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
-                                                <?php
-                                            }
-                                        } 
                                         ?>
                                     </div>
                                 </div>
@@ -413,27 +429,34 @@
                                     <div class="rating">
                                     <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
                                     <?php
-                                        if(isset($_SESSION['id'])){
-                                            $result = is_downloaded($_SESSION['id'],$item['id']);
-                                            if($result['code']!=0) die($result['message']);
-                                            if($result['status']){
-                                                ?>
-                                                    <p><img src="./image/download.png"></p> 
-                                                <?php
+                                            if(isset($_SESSION['id'])){
+                                                $buy = is_bought($_SESSION['id'],$item['id']);
+                                                $download = is_downloaded($_SESSION['id'],$item['id']);
+                                                if($download['code']!=0) die($result['message']);
+                                                if($buy['code']!=0) die($result['message']);
+                                                if($download['status']){
+                                                    ?>
+                                                        <p><img src="./image/download.png"></p> 
+                                                    <?php
+                                                }
+                                                else if($buy['status']){
+                                                    ?>
+                                                        <p>Đã mua</p> 
+                                                    <?php
+                                                }
+                                                else if($item['price'] !== 0 && !$download['status'] && !$buy['status']){
+                                                    ?>
+                                                        <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
+                                                    <?php
+                                                }
                                             }
-                                            if($item['price'] !== 0 && !$result['status']){
-                                                ?>
-                                                    <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
-                                                <?php
+                                            else{
+                                                if($item['price'] !== 0){
+                                                    ?>
+                                                        <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
+                                                    <?php
+                                                }
                                             }
-                                        }
-                                        else{
-                                            if($item['price'] !== 0){
-                                                ?>
-                                                    <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
-                                                <?php
-                                            }
-                                        } 
                                         ?>
                                     </div>
                                 </div>
@@ -509,7 +532,7 @@ if(isset($_SESSION['fullname'])){
             <div class="modal fade" id="confirm-buy">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                    <form method="post" action="db.php">
+                    <form method="post" action="buy_app.php">
                         <div class="modal-body">
                             <div class="form-group row">
                                 <div class="apps-img col-3">
@@ -518,16 +541,17 @@ if(isset($_SESSION['fullname'])){
                                 <div class="apps-cmt col-9">
                                     <h1><?= $item_app['name'] ?></h1>
                                     <h6><?= $item_app['developer'] ?></h6>
-                                    <p><?= number_format($item_app['price'], 0, '.', '.') ?> đ</p>           
+                                    <p><?= number_format($item_app['price'], 0, '.', '.') ?> đ</p>          
                                 </div>
                             </div>
                         </div>
+                        <div class="alert alert-danger w-50 mx-auto d-none"></div>
                         <div class="modal-footer">
-                            <input type="hidden" name="action" value="buy-app">
-                            <input type="hidden" name="user-id" value="<?= $_SESSION['id'] ?>">
-                            <input type="hidden" name="application-id" value="<?=$item_app['id']?>">
-                            <input type="hidden" name="path" value="application.php?id=<?= $item_app['id'] ?>&fileId=<?= $_SESSION['app_id'][$item_app['id']] ?>">
-                            <button type="submit" class="btn btn-outline-success">Mua</button>
+                        <input type="hidden" name="path" value="application.php?id=<?= $item_app['id'] ?>&fileId=<?= $_SESSION['app_id'][$item_app['id']] ?>">
+                        <input type="hidden" name="user-id" value="<?= $_SESSION['id'] ?>">
+                        <input type="hidden" name="application-id" value="<?=$item_app['id']?>">
+                        <input type="hidden" name="action" value="buy-app">
+                        <button onclick="buy_app()" type="button" class="btn btn-outline-success">Mua</button>
                         </div>    
                     </form>       
                     </div>

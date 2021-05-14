@@ -279,7 +279,7 @@ function sendRequest(keyword) {
                 // console.log(data)
                 data.forEach(element => {
                     const a = document.createElement('a');
-                    a.href = "application.php?id=" + element['id'];
+                    a.href = "application.php?id=" + element['id'] + "&fileId=" + element['fileId'];
                     a.innerHTML = element['name'];
                     const li = document.createElement('li');
                     li.className = 'list-group-item';
@@ -306,7 +306,31 @@ function search() {
 *********************************************************/
 
 function buy_app(){
-    
+    let form = document.querySelector('#confirm-buy .modal-dialog  .modal-content form');
+    let error = form.querySelector('div.alert');
+    let path = form.querySelector('input[name=path]').value;
+    let user_id = form.querySelector('input[name=user-id]').value;
+    let app_id = form.querySelector('input[name=application-id]').value;
+
+
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "buy_app.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.addEventListener('load', () => {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            let response = xhr.responseText;
+            response = JSON.parse(response);
+            if (response['code'] == 0) {
+                window.location.replace(path);
+            } else {
+                error_edit_form(error, response['error']);
+            }
+        }
+    });
+    let params = "user_id=" + encodeURIComponent(user_id) + "&app_id=" + encodeURIComponent(app_id);
+    console.log(params);
+    xhr.send(params);
 }
 
 
