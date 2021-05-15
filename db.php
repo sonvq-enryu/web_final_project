@@ -961,4 +961,135 @@
 
         return false;
     }
-?>
+
+    
+    function reset_password($email) {
+        if (!is_email_exist($email)) {
+            return array("code" => 2, "message" => "Email not existed");
+        }
+
+        $default_status = 0;
+        $expire = time() + (3600 *24);
+        $token = md5($email . '+' . random_int(1000, 2000));
+        $query = 'update reset_token set token = ?, expire = ?, status = ? where email = ?';
+
+        $conn = open_database();
+        
+        $stm = $conn->prepare($query);
+        $stm->bind_param("siis", $token, $expire, $default_status, $email);
+
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "Command not execute");
+        }
+
+        if ($stm->affected_rows == 0) {
+            $query = "insert into reset_token(email, token, expire, status) values (?, ?, ?, ?)";
+            $stm = $conn->prepare($query);
+            $stm->bind_param("ssii", $email, $token, $expire, $default_status);
+
+            if (!$stm->execute()) {
+                return array("code" => 1, "message" => "Command not execute");
+            }
+        }
+
+        send_reset_mail($email, $token);
+        return array("code" => 0, "message" => "Send recovery password successful");
+    }
+
+    //Import PHPMailer classes into the global namespace
+    //These must be at the top of your script, not inside a function
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
+
+    //Load Composer's autoloader
+    require 'vendor/autoload.php';
+
+    function send_reset_mail($email, $token) {
+        $mail = new PHPMailer(true);
+
+        try {
+            //Server settings
+            // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+            $mail->isSMTP();                 
+            $mail->CharSet = 'UTF-8';                          //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'exp.critical@gmail.com';                     //SMTP username
+            $mail->Password   = 'mypasswordis192';                               //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+            $mail->Port       = 587;                                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+
+            //Recipients
+            $mail->setFrom('exp.critical@gmail.com', 'Hệ thống quản lý trang web ứng dụng');
+            $mail->addAddress($email, 'Người nhận');     //Add a recipient
+
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = 'Khôi phục mật khẩu';
+            $mail->Body    = "Nhấp vào <a href='http://localhost/web_final_project/recover.php?email=$email&token=$token'>đây</a> để khôi phục mật khẩu của bạn";      
+
+            $mail->send();
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    }
+
+    function to_new_password($email, $password) {
+        $query = 'update account set password = ? where email =?';
+        $conn = open_database();
+
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param("ss", $hash, $email);
+
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "Wrong");
+        }
+
+        return array("code" => 0, "message" => "Reset password successful");
+    }
+
+    function set_token_status($email, $status) {
+        $query = 'update reset_token set status = ? where email = ?';
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param("is", $status, $email);
+
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "Wrong");
+        }
+
+        return array("code" => 0, "message" => "Set token status successful");
+    }
+
+    function is_valid_token($email, $token) {
+        $query = 'select * from reset_token where email = ?';
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param('s', $email);
+
+        if (!$stm->execute()) {
+            return 1;
+        }
+
+        $result = $stm->get_result();
+        $data = $result->fetch_assoc();
+
+        if ($token != $data['token']) {
+            return 2;
+        }
+
+        if ($data['expire'] - time() <= 0) {
+            return 3;
+        }
+
+        if ($data['status'] == 1) {
+            return 4;
+        }
+
+        return 0;
+    }

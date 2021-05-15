@@ -90,51 +90,30 @@ function clearSignupError() {
 
 // phan cua Van
 
-function checkchangepwd() {
-    let currentpwdFilled = document.getElementById('crtpwd');
-    let newpwdFilled = document.getElementById('newpwd');
-    let confirmpwdFilled = document.getElementById('confirmpwd');
-    let error = document.getElementById('errorMessage');
+function checkchangepwd(e) {
+    let error = e.getElementById('errorMessage');
+    let inputs = e.querySelectorAll('input');
 
-    let currentpwd = currentpwdFilled.value;
-    let newpwd = newpwdFilled.value;
-    let confirmpwd = confirmpwdFilled.value;
-
-    if (currentpwd === '') {
-        error.innerHTML = 'Please enter your current password';
-        currentpwdFilled.focus();
-        return false;
-
-    }
-    // else if (currentpwd != dbpwd) {
-    //     error.innerHTML = "Your current password is missing or incorrect; it's required to change the Password."
-    //     currentpwdFilled.focus();
-    //     return false;
-    // } 
-    else if (newpwd === '') {
+    if (inputs[1].value == '') {
         error.innerHTML = 'Please enter your new password';
-        newpwdFilled.focus();
+        inputs[1].focus();
         return false;
-
-    } else if (newpwd.length < 8 || newpwd.length > 30) {
-        error.innerHTML = 'Your password must be between 8 and 30 characters  ';
-        newpwdFilled.focus();
-        return false;
-
     }
-    // else if (currentpwd === newpwd) {
-    //     rror.innerHTML = 'your new password must be different';
-    //     newpwdFilled.focus();
-    //     return false;
-    // } 
-    else if (confirmpwd === '') {
-        error.innerHTML = 'Please confirm your new password';
-        confirmpwdFilled.focus();
+    
+    if (inputs[2].value == '') {
+        error.innerHTML = 'Please enter your confirm password';
+        inputs[2].focus();
         return false;
+    }
 
-    } else if (newpwd != confirmpwd) {
+    if (inputs[1].value.length < 6 || inputs[1].value.length > 30) {
+        error.innerHTML = 'Your password must be between 8 and 30 characters';
+        inputs[1].focus();
+        return false;
+    }
+
+    if (inputs[1].value != inputs[2].value) {
         error.innerHTML = 'Your new password and confirmation password must match';
-        confirmpwdFilled.focus();
         return false;
     }
     return true;
@@ -795,6 +774,15 @@ function upgrade_to_dev() {
     xhr.send(params);
 }
 
+function validate_rcv(e) {
+    let email = e.querySelector('input[name=email]');
+
+    if (email.value == '') {
+        e.querySelector('p.rcv-alert').innerText = 'Please enter your email';
+        return false;
+    }
+    return true;
+}
 
 /* EDIT INFO */
 /* EDIT INFO */

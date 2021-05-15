@@ -1815,7 +1815,10 @@ th {
     cursor: pointer;
 }
 
-
+.rcv-alert {
+    text-align: center;
+    margin-bottom: 15px;
+}
 /* **********************************************************
                       END OF ADMIN APPLICATION
 *********************************************************/
