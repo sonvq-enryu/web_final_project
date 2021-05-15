@@ -207,7 +207,6 @@
                                         
                                     </form>
                                     <form method="post" onsubmit="return confirm('You are about to reject an application please confirm your choice');">
-                                       
                                         <input class="admin_deny_btn " type="submit" name="deny" value="Denied"/>
                                     </form>
                                     

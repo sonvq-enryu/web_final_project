@@ -39,6 +39,7 @@
     $appcategory = '';
     $date = date("dmy");
     $date = (string) $date;
+    $date = strtotime($date);
     $status = '';
     
     $developer = get_dev_name($id);
@@ -181,7 +182,18 @@
                             App Icon <input name="icon" type="file" class="appsub-input" id="icon" accept="image/gif, image/jpeg, image/png, image/bmp">
 
                         </label>
-                        
+                        <label class="appsubmit-label">
+                            App Image 1 <input name="image1" type="file" class="appsub-input" id="image1" accept="image/gif, image/jpeg, image/png, image/bmp">
+
+                        </label>
+                        <label class="appsubmit-label">
+                            App Image 2 <input name="image2" type="file" class="appsub-input" id="image2" accept="image/gif, image/jpeg, image/png, image/bmp">
+
+                        </label>
+                        <label class="appsubmit-label">
+                            App Image 3 <input name="image3" type="file" class="appsub-input" id="image3" accept="image/gif, image/jpeg, image/png, image/bmp">
+
+                        </label>
                         <label class="appsubmit-label">
                             Categories
                             <select class="appsub-input" name="appcategory" id="appcategory">
