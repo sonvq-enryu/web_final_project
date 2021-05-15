@@ -81,7 +81,7 @@
             </a>
             <div class="dropdown-menu">
                 <div class="dropdown-bar">
-                    <strong style="font-weight: bold;" class="dropdown-item">Rated</strong>
+                    <strong class="dropdown-item">Rated</strong>
                     <div class="dropdown-divider"></div>
                     <?php
                         foreach($content[1] as $item){
@@ -92,7 +92,7 @@
                     ?>
                 </div>          
                 <div class="dropdown-bar">
-                    <strong style="font-weight: bold;" class="dropdown-item">Category</strong>
+                    <strong class="dropdown-item">Category</strong>
                     <div class="dropdown-divider"></div>
                     <?php
                         foreach($content[0] as $item){

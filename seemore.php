@@ -147,6 +147,7 @@
             <div class="apps-row">
                 <?php
                     if (isset($message)) {
+                        echo "<br>";
                         echo "<p>Không tìm thấy ứng dụng</p>";
                     }
                     else{

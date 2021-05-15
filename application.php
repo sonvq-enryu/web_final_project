@@ -231,6 +231,37 @@
                         </div>
                     </div>
                 </div>
+                <div id="demo" class="carousel slide" data-ride="carousel">
+
+					  <!-- Indicators -->
+					  <ul class="carousel-indicators">
+					    <li data-target="#demo" data-slide-to="0" class="active"></li>
+					    <li data-target="#demo" data-slide-to="1"></li>
+					    <li data-target="#demo" data-slide-to="2"></li>
+					  </ul>
+
+					  <!-- The slideshow -->
+					  <div class="carousel-inner">
+					    <div class="carousel-item active">
+					      <img src="application/candycrush/candycrush.jpg" width="100%" height="100%" alt="Los Angeles">
+					    </div>
+					    <div class="carousel-item">
+					      <img src="application/candycrush/candycrush2.jpg" width="100%" height="100%" alt="Chicago">
+					    </div>
+					    <div class="carousel-item">
+					      <img src="application/candycrush/candycrush3.jpg" width="100%" height="100%" alt="New York">
+					    </div>
+					  </div>
+
+					  <!-- Left and right controls -->
+					  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+					    <span class="carousel-control-prev-icon"></span>
+					  </a>
+					  <a class="carousel-control-next" href="#demo" data-slide="next">
+					    <span class="carousel-control-next-icon"></span>
+					  </a>
+				</div>
+                <br>
                 <div class="app-page-description">
                     <p>
                         Tụ họp bên nhau mọi lúc bằng ứng dụng giao tiếp đa năng, miễn phí* của chúng tôi, hoàn chỉnh với các tính năng nhắn tin, gọi thoại, gọi video và nhóm chat video không giới hạn. Dễ dàng đồng bộ tin nhắn và danh bạ với điện thoại Android, đồng thời kết nối với mọi người ở mọi nơi.
