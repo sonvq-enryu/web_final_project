@@ -53,7 +53,13 @@
         <div id="sidebar" class="sidebar">
             <ul class="menu">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="#news">News</a></li>
+                <?php
+                    if(isset($_SESSION['id'])){
+                        ?>
+                            <li><a href="seemore.php?user=<?= $_SESSION['id'] ?>">My List</a></li>
+                        <?php
+                    }
+                ?>
                 <li><a href="footer.php">Contact</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
