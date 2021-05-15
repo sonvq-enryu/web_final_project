@@ -327,7 +327,7 @@
         
         $query = 'select * from application where name like ?';
         $conn = open_database();
-
+        
         $stm = $conn->prepare($query);
         $stm->bind_param('s', $keyword);
 
