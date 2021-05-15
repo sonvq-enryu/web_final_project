@@ -1051,10 +1051,11 @@
         return array("code" => 0, "message" => "Reset password successful");
     }
 
-    function set_token_status($email, $status) {
+    function set_token_status($email) {
         $query = 'update reset_token set status = ? where email = ?';
         $conn = open_database();
 
+        $status = 1;
         $stm = $conn->prepare($query);
         $stm->bind_param("is", $status, $email);
 

@@ -2,10 +2,10 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 15, 2021 lúc 07:12 PM
--- Phiên bản máy phục vụ: 10.4.18-MariaDB
--- Phiên bản PHP: 8.0.5
+-- Host: 127.0.0.1
+-- Generation Time: May 15, 2021 at 08:38 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,15 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `googleplay`
+-- Database: `googleplay`
 --
+CREATE DATABASE IF NOT EXISTS `googleplay` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `googleplay`;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `account`
+-- Table structure for table `account`
 --
 
 CREATE TABLE `account` (
@@ -45,7 +47,7 @@ CREATE TABLE `account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `account`
+-- Dumping data for table `account`
 --
 
 INSERT INTO `account` (`id`, `firstname`, `lastname`, `email`, `password`, `phone`, `gender`, `national`, `role`, `money`, `image`, `activated`, `activate_token`, `dev`) VALUES
@@ -56,12 +58,13 @@ INSERT INTO `account` (`id`, `firstname`, `lastname`, `email`, `password`, `phon
 ('5', 'Võ', 'Quốc Sơn', 'testlogin@gmail.com', '$2y$10$dWtDMxc4FmDgr1Qtb8XyIeNcbua49JH/ickKm9jAmEwjz7iM.D5q.', '0921231232', 0, 230, 0, 0, './user_img/smuge_the_cat.jpg', b'0', NULL, ''),
 ('6', 'Vo', 'Quoc Son', 'testlogin1@gmail.com', '$2y$10$nBXkjyH7GlVc5w8p5A/.2OKosxr1ys8nJmo2IFNC3eoERH7CQE3hq', '0921231242', 1, 230, 1, 0, './user_img/smuge_the_cat.jpg', b'0', NULL, ''),
 ('7', 'Vo', 'Quoc Son', 'testlogin2@gmail.com', '$2y$10$hk2ZXJO2.XnObxfmNPaKXu/vkkU0XF81cslpYFzChCTAaeV.ieRMu', '0925372462', 0, 230, 2, 300000, './user_img/smuge_the_cat.jpg', b'0', NULL, ''),
-('8', 'Từ ', 'Huy Vạn', 'tuhuyvan123@gmail.com', '$2y$10$zDC/998P01A1gIM3BQjasOnGowxcZfAnwiQFItFkK1ePuKaWfykES', '0909288174', 0, 230, 1, 0, './user_img/smuge_the_cat.jpg', b'0', NULL, 'Obama Last Name');
+('8', 'Từ ', 'Huy Vạn', 'tuhuyvan123@gmail.com', '$2y$10$zDC/998P01A1gIM3BQjasOnGowxcZfAnwiQFItFkK1ePuKaWfykES', '0909288174', 0, 230, 1, 0, './user_img/smuge_the_cat.jpg', b'0', NULL, 'Obama Last Name'),
+('9', 'Vo', 'Quốc Sơn', 'exp.multiverse@gmail.com', '$2y$10$9L3BTmrt864p8ZPw0YAZs.9DQJb0n1I2U9u/hPYsoEaM3RVMHa4Ii', '0923542384', 0, 230, 2, 0, './user_img/smuge_the_cat.jpg', b'0', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `application`
+-- Table structure for table `application`
 --
 
 CREATE TABLE `application` (
@@ -82,7 +85,7 @@ CREATE TABLE `application` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `application`
+-- Dumping data for table `application`
 --
 
 INSERT INTO `application` (`id`, `name`, `price`, `stars`, `updated`, `size`, `install`, `developer`, `detail`, `image`, `content`, `description`, `file`, `status`) VALUES
@@ -268,7 +271,7 @@ INSERT INTO `application` (`id`, `name`, `price`, `stars`, `updated`, `size`, `i
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `bought_app`
+-- Table structure for table `bought_app`
 --
 
 CREATE TABLE `bought_app` (
@@ -277,7 +280,7 @@ CREATE TABLE `bought_app` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `bought_app`
+-- Dumping data for table `bought_app`
 --
 
 INSERT INTO `bought_app` (`user_id`, `app_id`) VALUES
@@ -289,7 +292,7 @@ INSERT INTO `bought_app` (`user_id`, `app_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `card`
+-- Table structure for table `card`
 --
 
 CREATE TABLE `card` (
@@ -300,7 +303,7 @@ CREATE TABLE `card` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `card`
+-- Dumping data for table `card`
 --
 
 INSERT INTO `card` (`id`, `serial`, `value`, `status`) VALUES
@@ -320,7 +323,7 @@ INSERT INTO `card` (`id`, `serial`, `value`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `comment_rating`
+-- Table structure for table `comment_rating`
 --
 
 CREATE TABLE `comment_rating` (
@@ -332,7 +335,7 @@ CREATE TABLE `comment_rating` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `comment_rating`
+-- Dumping data for table `comment_rating`
 --
 
 INSERT INTO `comment_rating` (`id`, `user_id`, `application_id`, `comment`, `rating`) VALUES
@@ -348,7 +351,7 @@ INSERT INTO `comment_rating` (`id`, `user_id`, `application_id`, `comment`, `rat
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `downloaded_app`
+-- Table structure for table `downloaded_app`
 --
 
 CREATE TABLE `downloaded_app` (
@@ -357,7 +360,7 @@ CREATE TABLE `downloaded_app` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `downloaded_app`
+-- Dumping data for table `downloaded_app`
 --
 
 INSERT INTO `downloaded_app` (`user_id`, `app_id`) VALUES
@@ -374,7 +377,7 @@ INSERT INTO `downloaded_app` (`user_id`, `app_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `pending_application`
+-- Table structure for table `pending_application`
 --
 
 CREATE TABLE `pending_application` (
@@ -395,7 +398,7 @@ CREATE TABLE `pending_application` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `pending_application`
+-- Dumping data for table `pending_application`
 --
 
 INSERT INTO `pending_application` (`app_id`, `developer`, `name`, `price`, `date`, `size`, `image`, `content`, `description`, `status`, `file`, `user_id`, `detail`, `email`) VALUES
@@ -406,7 +409,28 @@ INSERT INTO `pending_application` (`app_id`, `developer`, `name`, `price`, `date
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `topup`
+-- Table structure for table `reset_token`
+--
+
+CREATE TABLE `reset_token` (
+  `id` int(10) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `token` varchar(32) NOT NULL,
+  `expire` int(100) NOT NULL,
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `reset_token`
+--
+
+INSERT INTO `reset_token` (`id`, `email`, `token`, `expire`, `status`) VALUES
+(1, 'exp.multiverse@gmail.com', '59995afa45f1593b7096c4f901098230', 1621190188, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `topup`
 --
 
 CREATE TABLE `topup` (
@@ -415,7 +439,7 @@ CREATE TABLE `topup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `topup`
+-- Dumping data for table `topup`
 --
 
 INSERT INTO `topup` (`email`, `serial`) VALUES
@@ -426,37 +450,37 @@ INSERT INTO `topup` (`email`, `serial`) VALUES
 ('tkph@gmail.com', 'HDGKLZ61GBDGKEU');
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `account`
+-- Indexes for table `account`
 --
 ALTER TABLE `account`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Chỉ mục cho bảng `application`
+-- Indexes for table `application`
 --
 ALTER TABLE `application`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `bought_app`
+-- Indexes for table `bought_app`
 --
 ALTER TABLE `bought_app`
   ADD PRIMARY KEY (`user_id`,`app_id`);
 
 --
--- Chỉ mục cho bảng `card`
+-- Indexes for table `card`
 --
 ALTER TABLE `card`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `serial` (`serial`);
 
 --
--- Chỉ mục cho bảng `comment_rating`
+-- Indexes for table `comment_rating`
 --
 ALTER TABLE `comment_rating`
   ADD PRIMARY KEY (`id`),
@@ -464,46 +488,58 @@ ALTER TABLE `comment_rating`
   ADD KEY `comment_rating_ibfk_5` (`application_id`);
 
 --
--- Chỉ mục cho bảng `downloaded_app`
+-- Indexes for table `downloaded_app`
 --
 ALTER TABLE `downloaded_app`
   ADD PRIMARY KEY (`user_id`,`app_id`);
 
 --
--- Chỉ mục cho bảng `pending_application`
+-- Indexes for table `pending_application`
 --
 ALTER TABLE `pending_application`
   ADD PRIMARY KEY (`app_id`);
 
 --
--- Chỉ mục cho bảng `topup`
+-- Indexes for table `reset_token`
+--
+ALTER TABLE `reset_token`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `topup`
 --
 ALTER TABLE `topup`
   ADD KEY `email` (`email`),
   ADD KEY `serial` (`serial`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `card`
+-- AUTO_INCREMENT for table `card`
 --
 ALTER TABLE `card`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT cho bảng `comment_rating`
+-- AUTO_INCREMENT for table `comment_rating`
 --
 ALTER TABLE `comment_rating`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- AUTO_INCREMENT for table `reset_token`
+--
+ALTER TABLE `reset_token`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `comment_rating`
+-- Constraints for table `comment_rating`
 --
 ALTER TABLE `comment_rating`
   ADD CONSTRAINT `comment_rating_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`),
@@ -513,7 +549,7 @@ ALTER TABLE `comment_rating`
   ADD CONSTRAINT `comment_rating_ibfk_5` FOREIGN KEY (`application_id`) REFERENCES `application` (`id`);
 
 --
--- Các ràng buộc cho bảng `topup`
+-- Constraints for table `topup`
 --
 ALTER TABLE `topup`
   ADD CONSTRAINT `topup_ibfk_1` FOREIGN KEY (`email`) REFERENCES `account` (`email`),
