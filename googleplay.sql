@@ -324,6 +324,7 @@ INSERT INTO `card` (`id`, `serial`, `value`, `status`) VALUES
 --
 
 CREATE TABLE `comment_rating` (
+  `id` int(10)  NOT NULL,
   `user_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `application_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `comment` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
@@ -334,14 +335,14 @@ CREATE TABLE `comment_rating` (
 -- Đang đổ dữ liệu cho bảng `comment_rating`
 --
 
-INSERT INTO `comment_rating` (`user_id`, `application_id`, `comment`, `rating`) VALUES
-('1', 'A14', '', 1),
-('1', 'A171', 'hay nhỉ', 4),
-('1', 'A28', 'game tệ', 4),
-('1', 'A4', 'game như cái đầu buồi vậy', 1),
-('1', 'A51', 'hay lắm', 4),
-('2', 'A51', 'như cái ...........................', 1),
-('4', 'A51', 'tôi mất quá nhiều thời gian vào trò này', 2);
+INSERT INTO `comment_rating` (`id`, `user_id`, `application_id`, `comment`, `rating`) VALUES
+(1, '1', 'A14', '', 1),
+(2, '1', 'A171', 'hay nhỉ', 4),
+(3, '1', 'A28', 'game tệ', 4),
+(4, '1', 'A4', 'game như cái đầu buồi vậy', 1),
+(5, '1', 'A51', 'hay lắm', 4),
+(6, '2', 'A51', 'như cái ...........................', 1),
+(7, '4', 'A51', 'tôi mất quá nhiều thời gian vào trò này', 2);
 
 -- --------------------------------------------------------
 
@@ -454,8 +455,8 @@ ALTER TABLE `card`
 -- Chỉ mục cho bảng `comment_rating`
 --
 ALTER TABLE `comment_rating`
-  ADD PRIMARY KEY (`user_id`,`application_id`),
-  ADD KEY `application_id` (`application_id`);
+  ADD PRIMARY KEY (`id`),
+
 
 --
 -- Chỉ mục cho bảng `downloaded_app`
@@ -486,6 +487,8 @@ ALTER TABLE `topup`
 ALTER TABLE `card`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
+ALTER TABLE `comment_rating`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- Các ràng buộc cho các bảng đã đổ
 --

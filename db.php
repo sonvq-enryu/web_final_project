@@ -222,6 +222,42 @@
         return array('code'=>0, 'data'=>$data);
     }
 
+    function get_user_downloaded_apps($user){
+        $conn = open_database();
+        $sql = "SELECT * FROM application WHERE id in (SELECT app_id FROM downloaded_app where user_id = ?)";
+        $stm = $conn->prepare($sql);
+        $stm->bind_param("s",$user);
+        if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
+        $result = $stm->get_result();
+        $data = array();
+
+        if($result->num_rows == 0) return array('code' => 2, 'error' => "Don't have any app");
+
+        while ($item = $result->fetch_assoc()){
+            $data[] = $item;
+        }
+
+        return array('code'=>0, 'data'=>$data);
+    }
+
+    function get_user_paid_apps($user){
+        $conn = open_database();
+        $sql = "SELECT * FROM application WHERE id in (SELECT app_id FROM bought_app where user_id = ?)";
+        $stm = $conn->prepare($sql);
+        $stm->bind_param("s",$user);
+        if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
+        $result = $stm->get_result();
+        $data = array();
+
+        if($result->num_rows == 0) return array('code' => 2, 'error' => "Don't have any app");
+
+        while ($item = $result->fetch_assoc()){
+            $data[] = $item;
+        }
+
+        return array('code'=>0, 'data'=>$data);
+    }
+
 
     // CONTENT
 

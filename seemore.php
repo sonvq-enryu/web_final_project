@@ -107,6 +107,17 @@
             $message = 'Không tìm thấy';
         }
     }
+
+    if(isset($_GET['user'])){
+        $paid_app = get_user_paid_apps($_GET['user']);
+        if($paid_app['code']==1){
+            die($paid_app['error']);
+        }
+        $downloaded_app = get_user_downloaded_apps($_GET['user']);
+        if($paid_app['code']==1){
+            die($paid_app['error']);
+        }
+    }
     
     $content = get_content();
     if($content['code']!=0){
@@ -121,7 +132,13 @@
         <div id="sidebar" class="sidebar">
             <ul class="menu">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="#news">News</a></li>
+                <?php
+                    if(isset($_SESSION['id'])){
+                        ?>
+                            <li><a href="seemore.php?user=<?= $_SESSION['id'] ?>">My List</a></li>
+                        <?php
+                    }
+                ?>
                 <li><a href="footer.php">Contact</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
@@ -132,54 +149,191 @@
                     if (isset($message)) {
                         echo "<p>Không tìm thấy ứng dụng</p>";
                     }
-                    foreach($app['data'] as $item){
+                    if(isset($_GET['user'])){
                         ?>
-                            <div class="app-card">
-                                <div class="app-img">
-                                    <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><img src="<?= $item['image'] ?>" /></a>
-                                </div>
-                                <div class="app-name">
-                                    <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><?= $item['name'] ?></a>
-                                </div>
-                                <div class="app-coop">
-                                    <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
-                                </div>
-                                <div class="rating">
-                                <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
-                                <?php
-                                            if(isset($_SESSION['id'])){
-                                                $buy = is_bought($_SESSION['id'],$item['id']);
-                                                $download = is_downloaded($_SESSION['id'],$item['id']);
-                                                if($download['code']!=0) die($result['message']);
-                                                if($buy['code']!=0) die($result['message']);
-                                                if($download['status']){
-                                                    ?>
-                                                        <p><img src="./image/download.png"></p> 
-                                                    <?php
-                                                }
-                                                else if($buy['status']){
-                                                    ?>
-                                                        <p>Đã mua</p> 
-                                                    <?php
-                                                }
-                                                else if($item['price'] !== 0 && !$download['status'] && !$buy['status']){
-                                                    ?>
-                                                        <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
-                                                    <?php
-                                                }
-                                            }
-                                            else{
-                                                if($item['price'] !== 0){
-                                                    ?>
-                                                        <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
-                                                    <?php
-                                                }
+                         <?php
+                            if($downloaded_app['code'] == 0){
+                                ?>
+                                <div class="apps-menu">
+                                    <div class="info-row">
+                                        <h2>Downloaded App</h2>
+    
+                                    </div>
+                                    <div class="apps-row">
+                                        <?php
+                                            foreach($downloaded_app['data'] as $item){
+                                                ?>
+                                                    <div class="app-card">
+                                                        <div class="app-img">
+                                                            <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><img src="<?= $item['image'] ?>" /></a>
+                                                        </div>
+                                                        <div class="app-name">
+                                                            <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><?= $item['name'] ?></a>
+                                                        </div>
+                                                        <div class="app-coop">
+                                                            <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
+                                                        </div>
+                                                        <div class="rating">
+                                                            <?= $item['stars'] ?><span class="fa fa-star checked"></span>
+                                                            <?php
+                                                                if(isset($_SESSION['id'])){
+                                                                    $buy = is_bought($_SESSION['id'],$item['id']);
+                                                                    $download = is_downloaded($_SESSION['id'],$item['id']);
+                                                                    if($download['code']!=0) die($result['message']);
+                                                                    if($buy['code']!=0) die($result['message']);
+                                                                    if($download['status']){
+                                                                        ?>
+                                                                            <p><img src="./image/download.png"></p> 
+                                                                        <?php
+                                                                    }
+                                                                    else if($buy['status']){
+                                                                        ?>
+                                                                            <p>Đã mua</p> 
+                                                                        <?php
+                                                                    }
+                                                                    else if($item['price'] !== 0 && !$download['status'] && !$buy['status']){
+                                                                        ?>
+                                                                            <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
+                                                                        <?php
+                                                                    }
+                                                                }
+                                                                else{
+                                                                    if($item['price'] !== 0){
+                                                                        ?>
+                                                                            <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
+                                                                        <?php
+                                                                    }
+                                                                }
+                                                            ?>
+                                                        </div>
+                                                    </div>
+                                                <?php
                                             }
                                         ?>
+                                    </div>
                                 </div>
-                            </div>
+                                <?php
+                            }
+                            
+                            ?>
+                            <?php
+                            if($paid_app['code'] == 0){
+                                ?>
+                                <div class="apps-menu">
+                                    <div class="info-row">
+                                        <h2>Paid App</h2>
+    
+                                    </div>
+                                    <div class="apps-row">
+                                        <?php
+                                            foreach($paid_app['data'] as $item){
+                                                ?>
+                                                    <div class="app-card">
+                                                        <div class="app-img">
+                                                            <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><img src="<?= $item['image'] ?>" /></a>
+                                                        </div>
+                                                        <div class="app-name">
+                                                            <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><?= $item['name'] ?></a>
+                                                        </div>
+                                                        <div class="app-coop">
+                                                            <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
+                                                        </div>
+                                                        <div class="rating">
+                                                            <?= $item['stars'] ?><span class="fa fa-star checked"></span>
+                                                            <?php
+                                                                if(isset($_SESSION['id'])){
+                                                                    $buy = is_bought($_SESSION['id'],$item['id']);
+                                                                    $download = is_downloaded($_SESSION['id'],$item['id']);
+                                                                    if($download['code']!=0) die($result['message']);
+                                                                    if($buy['code']!=0) die($result['message']);
+                                                                    if($download['status']){
+                                                                        ?>
+                                                                            <p><img src="./image/download.png"></p> 
+                                                                        <?php
+                                                                    }
+                                                                    else if($buy['status']){
+                                                                        ?>
+                                                                            <p>Đã mua</p> 
+                                                                        <?php
+                                                                    }
+                                                                    else if($item['price'] !== 0 && !$download['status'] && !$buy['status']){
+                                                                        ?>
+                                                                            <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
+                                                                        <?php
+                                                                    }
+                                                                }
+                                                                else{
+                                                                    if($item['price'] !== 0){
+                                                                        ?>
+                                                                            <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
+                                                                        <?php
+                                                                    }
+                                                                }
+                                                            ?>
+                                                        </div>
+                                                    </div>
+                                                <?php
+                                            }
+                                        ?>
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                            
+                            ?>
                         <?php
                     }
+                    else{
+                        foreach($app['data'] as $item){
+                            ?>
+                                <div class="app-card">
+                                    <div class="app-img">
+                                        <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><img src="<?= $item['image'] ?>" /></a>
+                                    </div>
+                                    <div class="app-name">
+                                        <a href="application.php?id=<?= $item['id'] ?>&fileId=<?= $_SESSION['app_id'][$item['id']] ?>"><?= $item['name'] ?></a>
+                                    </div>
+                                    <div class="app-coop">
+                                        <a href="seemore.php?dev=<?= $item['developer'] ?>"><?= $item['developer'] ?></a>
+                                    </div>
+                                    <div class="rating">
+                                    <?= $item['stars'] ?><span class="fa fa-star checked"></span></p>
+                                    <?php
+                                                if(isset($_SESSION['id'])){
+                                                    $buy = is_bought($_SESSION['id'],$item['id']);
+                                                    $download = is_downloaded($_SESSION['id'],$item['id']);
+                                                    if($download['code']!=0) die($result['message']);
+                                                    if($buy['code']!=0) die($result['message']);
+                                                    if($download['status']){
+                                                        ?>
+                                                            <p><img src="./image/download.png"></p> 
+                                                        <?php
+                                                    }
+                                                    else if($buy['status']){
+                                                        ?>
+                                                            <p>Đã mua</p> 
+                                                        <?php
+                                                    }
+                                                    else if($item['price'] !== 0 && !$download['status'] && !$buy['status']){
+                                                        ?>
+                                                            <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
+                                                        <?php
+                                                    }
+                                                }
+                                                else{
+                                                    if($item['price'] !== 0){
+                                                        ?>
+                                                            <p><?= number_format($item['price'], 0, '.', '.') ?> đ</p> 
+                                                        <?php
+                                                    }
+                                                }
+                                            ?>
+                                    </div>
+                                </div>
+                            <?php
+                        }
+                    }
+                    
                 ?>
             </div>
         </div>
