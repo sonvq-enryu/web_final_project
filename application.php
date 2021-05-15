@@ -231,36 +231,71 @@
                         </div>
                     </div>
                 </div>
-                <div id="demo" class="carousel slide" data-ride="carousel">
+                <?php
+                $path = __DIR__.'/image/detail/'.$item_app['id'];
+                $files = scandir($path);
+                $total_image = count($files)-2;
+                if($total_image != 0){
+                    ?>
+                    <div id="demo" class="carousel slide" data-ride="carousel">
 
-					  <!-- Indicators -->
-					  <ul class="carousel-indicators">
-					    <li data-target="#demo" data-slide-to="0" class="active"></li>
-					    <li data-target="#demo" data-slide-to="1"></li>
-					    <li data-target="#demo" data-slide-to="2"></li>
-					  </ul>
+                        <!-- Indicators -->
+                        <ul class="carousel-indicators">
+                            <?php
+                            for($i=0;$i<$total_image;$i++){
+                                if($i==0){
+                                ?>
+                                    <li data-target="#demo" data-slide-to="<?= $i ?>" class="active"></li>
+                                <?php
+                                }
+                                else{
+                                ?>
+                                    <li data-target="#demo" data-slide-to="<?= $i ?>" ></li>
+                                <?php
+                                }
+                            }
+                            ?>
+                        </ul>
 
-					  <!-- The slideshow -->
-					  <div class="carousel-inner">
-					    <div class="carousel-item active">
-					      <img src="image/detail/A51/candycrush.jpg" width="100%" height="100%" alt="Los Angeles">
-					    </div>
-					    <div class="carousel-item">
-					      <img src="image/detail/A51/candycrush2.jpg" width="100%" height="100%" alt="Chicago">
-					    </div>
-					    <div class="carousel-item">
-					      <img src="image/detail/A51/candycrush3.jpg" width="100%" height="100%" alt="New York">
-					    </div>
-					  </div>
+                        <!-- The slideshow -->
+                        <div class="carousel-inner">
+                            <?php
+                            $count = 0;
+                            foreach($files as $f){
+                                if(strpos($f,'.')===0){
+                                    continue;
+                                }
+                                if($count == 0){
+                                    ?>
+                                        <div class="carousel-item active">
+                                            <img src="image/detail/<?=$item_app['id']?>/<?=$f?>" width="100%" height="100%" alt="">
+                                        </div>
+                                    <?php
+                                }
+                                else{
+                                    ?>
+                                        <div class="carousel-item">
+                                            <img src="image/detail/<?=$item_app['id']?>/<?=$f?>" width="100%" height="100%" alt="">
+                                        </div>
+                                    <?php
+                                }
+                               
+                                $count++;
+                            }
+                            ?>
+                        </div>
 
-					  <!-- Left and right controls -->
-					  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-					    <span class="carousel-control-prev-icon"></span>
-					  </a>
-					  <a class="carousel-control-next" href="#demo" data-slide="next">
-					    <span class="carousel-control-next-icon"></span>
-					  </a>
-				</div>
+                        <!-- Left and right controls -->
+                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#demo" data-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </a>
+                    </div>
+                    <?php
+                }
+                ?>
                 <br>
                 <div class="app-page-description">
                     <p>
