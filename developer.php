@@ -8,6 +8,7 @@
     $id = $_GET['id'];
     $pending_app = get_uploadapp($id);
     $email = $_SESSION['fullname'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,6 +57,7 @@
                     if(isset($_SESSION['username']) && isset($_SESSION['fullname'])){
                         $username = $_SESSION['username'];
                         $fullname = $_SESSION['fullname'];
+                        
                         ?>
                         <div onclick="ClickUserIcon()" class="user-dropdown">
                             <div class="user-profile">
@@ -64,6 +66,7 @@
                             <div id="user-dropdown-content" class="user-dropdown-content">
                                 <h3><?=$fullname?><br><span><?=$username?></span></h3>
                                 <ul>
+                                    
                                     <li><img src="./image/user.svg"><a href="profile.php">My Profile</a></li>
                                     <li><img src="./image/edit.svg"><a href="profile.php">Edit Infomation</a></li>
                                     <li><img src="./image/settings.svg"><a href="profile.php">Change Password</a></li>

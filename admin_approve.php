@@ -202,11 +202,11 @@
 
                                 
                                     
-                                    <form method="post" onsubmit="approve_click()">
+                                    <form method="post" onsubmit="return confirm('You are about to approve an application please confirm your choice');">
                                         <br><input class="admin_approve_btn " type="submit" name="published" value="Published"  /><br>
                                         
                                     </form>
-                                    <form method="post" onsubmit="deny_click()">
+                                    <form method="post" onsubmit="return confirm('You are about to reject an application please confirm your choice');">
                                        
                                         <input class="admin_deny_btn " type="submit" name="deny" value="Denied"/>
                                     </form>

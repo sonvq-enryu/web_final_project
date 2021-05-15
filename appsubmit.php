@@ -41,7 +41,7 @@
     $date = (string) $date;
     $status = '';
     
-    $developer = 'Mark Zuckerbergs';
+    $developer = get_dev_name($id);
     $message ='';
     if (isset($_POST['appname']) && isset($_POST['price']) && isset($_POST['desc']) ){
         $appname = $_POST['appname'];
@@ -60,7 +60,7 @@
         $app_id =$temp ;
 
         $icon = 'image/app/'.$_FILES['icon']['name'];
-        $file = 'apk/'.$_FILES['apk']['name'];
+        $file = 'apk/'.$app_id.'.zip';
         if (empty($appname)) {
             $error = 'Hãy nhập tên ứng dụng';
         }
@@ -91,9 +91,9 @@
                 $fileDestination  = 'image/app/' .$image_name;
                 move_uploaded_file($fileTempName,$fileDestination);
 
-                $apk_name = $_FILES['apk']['name'];
+                $apk_name = $app_id;
                 $apkTempName = $_FILES['apk']['tmp_name'];
-                $apkDestination  = 'apk/' .$apk_name;
+                $apkDestination  = 'apk/' .$apk_name.'.zip';
                 move_uploaded_file($apkTempName,$apkDestination);
 
             }

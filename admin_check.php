@@ -144,24 +144,26 @@
                                     <?php
                                 }else{
                                     foreach($pending_app['data'] as $item){
-                                        ?>
-                                        <div class="col-sm-2">
-                                            <a href="admin_approve.php?id=<?= $item['app_id'] ?>">
-                                                <?= $item['name'] ?>
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-2">-</div>
-                                        <div class="col-sm-2"><?= $item['size'] ?></div>
-                                        <div class="col-sm-2">
-                                            <?= $item['date'] ?>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <?= $item['status'] ?>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <a href="admin_approve.php?id=<?= $item['app_id'] ?>"><i class='fa fa-edit'></i></a>
-                                        </div>
-                                        <?php
+                                        if($item['status'] == 'Pending'){
+                                            ?>
+                                            <div class="col-sm-2">
+                                                <a href="admin_approve.php?id=<?= $item['app_id'] ?>">
+                                                    <?= $item['name'] ?>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-2">-</div>
+                                            <div class="col-sm-2"><?= $item['size'] ?></div>
+                                            <div class="col-sm-2">
+                                                <?= $item['date'] ?>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <?= $item['status'] ?>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <a href="admin_approve.php?id=<?= $item['app_id'] ?>"><i class='fa fa-edit'></i></a>
+                                            </div>
+                                            <?php
+                                        }
                                     }
                                 }   
                             
