@@ -681,6 +681,10 @@ ul.menu li a:hover {
     float: left;
 }
 
+.dropdown-bar strong{
+    font-weight: bold;
+}
+
 .header-user .user-dropdown {
     position: relative;
     display: inline-block;
@@ -1246,6 +1250,7 @@ body {
     min-width: 700px;
     width: 700px;
     margin-left: 70px;
+    margin-top: 30px
 }
 
 @media only screen and (max-width: 1815px) {
@@ -1402,17 +1407,20 @@ body {
 }
 
 
+
+
 /* **********************************************************
                        END OF APPLICATION 
 *********************************************************/
 
-.content.seemore {
-    padding: 20px;
-}
+
 
 .content.seemore .app-card {
     margin: 8px;
 }
+
+
+
 
 
 /* **********************************************************

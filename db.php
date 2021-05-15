@@ -14,8 +14,10 @@
     function get_all_apps(){
         $conn = open_database();
 
-        $sql = "SELECT * FROM application";
+        $sql = "SELECT * FROM application where status = ?";
+        $status = "Published";
         $stm = $conn->prepare($sql);
+        $stm->bind_param('s',$status);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
         $data = array();
@@ -32,8 +34,10 @@
     function get_all_idandname_apps(){
         $conn = open_database();
 
-        $sql = "SELECT id,name FROM application";
+        $sql = "SELECT id,name FROM application where status = ?";
+        $status = "Published";
         $stm = $conn->prepare($sql);
+        $stm->bind_param('s',$status);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
         $data = array();
@@ -52,9 +56,10 @@
 
     function get_dev_apps($dev){
         $conn = open_database();
-        $sql = "SELECT * FROM application WHERE developer = ?";
+        $sql = "SELECT * FROM application WHERE developer = ? and status = ?";
+        $status = "Published";
         $stm = $conn->prepare($sql);
-        $stm->bind_param("s",$dev);
+        $stm->bind_param("ss",$dev,$status);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
         $data = array();
@@ -75,8 +80,10 @@
     function get_popular_top_apps(){
         $conn = open_database();
 
-        $sql = "SELECT * FROM application ORDER BY install DESC LIMIT 9";
+        $sql = "SELECT * FROM application where status = ? ORDER BY install DESC LIMIT 9";
+        $status = "Published";
         $stm = $conn->prepare($sql);
+        $stm->bind_param('s',$status);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
         $data = array();
@@ -93,8 +100,10 @@
     function get_popular_apps(){
         $conn = open_database();
 
-        $sql = "SELECT * FROM application ORDER BY install DESC LIMIT 50";
+        $sql = "SELECT * FROM application where status = ? ORDER BY install DESC LIMIT 50";
+        $status = "Published";
         $stm = $conn->prepare($sql);
+        $stm->bind_param('s',$status);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
         $data = array();
@@ -113,8 +122,10 @@
     function get_recommend_top_apps(){
         $conn = open_database();
 
-        $sql = "SELECT * FROM application ORDER BY stars DESC LIMIT 9";
+        $sql = "SELECT * FROM application where status = ? ORDER BY stars DESC LIMIT 9";
+        $status = "Published";
         $stm = $conn->prepare($sql);
+        $stm->bind_param('s',$status);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
         $data = array();
@@ -131,8 +142,10 @@
     function get_recommend_apps(){
         $conn = open_database();
 
-        $sql = "SELECT * FROM application ORDER BY stars DESC LIMIT 50";
+        $sql = "SELECT * FROM application where status = ? ORDER BY stars DESC LIMIT 50";
+        $status = "Published";
         $stm = $conn->prepare($sql);
+        $stm->bind_param('s',$status);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
         $data = array();
@@ -151,8 +164,10 @@
     function get_lastest_top_apps(){
         $conn = open_database();
 
-        $sql = "SELECT * FROM application ORDER BY updated DESC LIMIT 9";
+        $sql = "SELECT * FROM application where status = ? ORDER BY updated DESC LIMIT 9";
+        $status = "Published";
         $stm = $conn->prepare($sql);
+        $stm->bind_param('s',$status);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
         $data = array();
@@ -169,8 +184,10 @@
     function get_lastest_apps(){
         $conn = open_database();
 
-        $sql = "SELECT * FROM application ORDER BY updated DESC LIMIT 50";
+        $sql = "SELECT * FROM application where status = ? ORDER BY updated DESC LIMIT 50";
+        $status = "Published";
         $stm = $conn->prepare($sql);
+        $stm->bind_param('s',$status);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
         $data = array();
@@ -189,8 +206,10 @@
     function get_paid_top_apps(){
         $conn = open_database();
 
-        $sql = "SELECT * FROM application WHERE price <> 0 ORDER BY install DESC LIMIT 9";
+        $sql = "SELECT * FROM application WHERE price <> 0 and status = ? ORDER BY install DESC LIMIT 9";
+        $status = "Published";
         $stm = $conn->prepare($sql);
+        $stm->bind_param('s',$status);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
         $data = array();
@@ -207,8 +226,10 @@
     function get_paid_apps(){
         $conn = open_database();
 
-        $sql = "SELECT * FROM application WHERE price <> 0 ORDER BY install DESC LIMIT 50";
+        $sql = "SELECT * FROM application WHERE price <> 0 and status = ? ORDER BY install DESC LIMIT 50";
+        $status = "Published";
         $stm = $conn->prepare($sql);
+        $stm->bind_param('s',$status);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
         $data = array();
@@ -265,9 +286,11 @@
         $content = array();
         $age = array();
 
-        $sql = "select content from application";
+        $sql = "select content from application where status = ?";
         $conn = open_database();
+        $status = "Published";
         $stm = $conn->prepare($sql);
+        $stm->bind_param('s',$status);
         if (!$stm->execute()) return array('code'=>1, 'error' => 'Can not execute command');
         $result = $stm->get_result();
         if($result->num_rows == 0) return array('code' => 2, 'error' => "Don't have any content");
@@ -327,7 +350,7 @@
         $status = 'Published';
         $query = 'select * from application where name like ? AND status = ?';
         $conn = open_database();
-
+        
         $stm = $conn->prepare($query);
         $stm->bind_param('ss', $keyword,$status);
 
@@ -551,7 +574,7 @@
     }
 
     function select_comment_review($app_id){
-        $sql = "SELECT * FROM comment_rating WHERE application_id = ?";
+        $sql = "SELECT * FROM comment_rating WHERE application_id = ? ORDER BY id DESC";
         $conn = open_database();
         $stm = $conn->prepare($sql);
         $stm->bind_param("s", $app_id);
