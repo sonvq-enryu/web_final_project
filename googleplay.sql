@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 15, 2021 lúc 06:55 PM
+-- Thời gian đã tạo: Th5 15, 2021 lúc 07:12 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
--- Phiên bản PHP: 8.0.3
+-- Phiên bản PHP: 8.0.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,10 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `googleplay`
 --
-
-CREATE DATABASE IF NOT EXISTS `googleplay` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `googleplay`;
-
 
 -- --------------------------------------------------------
 
@@ -393,17 +389,19 @@ CREATE TABLE `pending_application` (
   `description` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `file` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
-  `user_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL
+  `user_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `detail` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(64) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `pending_application`
 --
 
-INSERT INTO `pending_application` (`app_id`, `developer`, `name`, `price`, `date`, `size`, `image`, `content`, `description`, `status`, `file`, `user_id`) VALUES
-('A3755', 'Obama Last Name', 'fast and speed', 0, '150521', '8M', 'image/app/whatappcar.jpg', 'Moderate Violence', 'fast and speed', 'Published', 'apk/A3755.zip', '8'),
-('A3994', 'Obama Last Name', 'facebook 2', 0, '150521', '8M', 'image/app/facebook2.png', 'Implied Violence', 'facebook 2 facebook 2', 'Unpublished', 'apk/A3994.zip', '8'),
-('A6287', 'Obama Last Name', 'game x', 90000, '150521', '8M', 'image/app/gaming2.jpg', 'Sexual Innuendo', 'game x game x game x game x game x', 'Pending', 'apk/A6287.zip', '8');
+INSERT INTO `pending_application` (`app_id`, `developer`, `name`, `price`, `date`, `size`, `image`, `content`, `description`, `status`, `file`, `user_id`, `detail`, `email`) VALUES
+('A3755', 'Obama Last Name', 'fast and speed', 0, '150521', '8M', 'image/app/whatappcar.jpg', 'Moderate Violence', 'fast and speed', 'Published', 'apk/A3755.zip', '8', '', ''),
+('A3994', 'Obama Last Name', 'facebook 2', 0, '150521', '8M', 'image/app/facebook2.png', 'Implied Violence', 'facebook 2 facebook 2', 'Unpublished', 'apk/A3994.zip', '8', '', ''),
+('A6287', 'Obama Last Name', 'game x', 90000, '150521', '8M', 'image/app/gaming2.jpg', 'Sexual Innuendo', 'game x game x game x game x game x', 'Pending', 'apk/A6287.zip', '8', '', '');
 
 -- --------------------------------------------------------
 
