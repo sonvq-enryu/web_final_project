@@ -43,6 +43,7 @@
     $status = '';
     
     $developer = get_dev_name($id);
+    $email = get_dev_email($id);
     $message ='';
     if (isset($_POST['appname']) && isset($_POST['price']) && isset($_POST['desc']) ){
         $appname = $_POST['appname'];
@@ -82,7 +83,7 @@
         }
         else {
 
-            $result = upload_app($app_id,$developer,$appname,$price,$date,$size, $icon,$appcategory,$desc,$status, $file,$id,$detail);
+            $result = upload_app($app_id,$developer,$appname,$price,$date,$size, $icon,$appcategory,$desc,$status, $file,$id,$detail,$email);
             if($result['code'] == 0){
                 $message = 'Add application success';
                 $name = '';

@@ -93,15 +93,21 @@
             $description = $item['description'];
             $file = $item['file'];
             $detail = $item['detail'];
+            $email = $item['email'];
             
         }
-        $result = push_app($app_id,$name,$price,$updated,$size,$developer,$image,$content,$description,$file,$status,$detail);
+        $result = push_app($app_id,$name,$price,$updated,$size,$developer,$image,$content,$description,$file,$status,$detail,$email);
        
         header("location:admin_approve.php?id=$id");
     }
     if(isset($_POST['deny'])) {
-        $status = 'Deny';
-        $result = edit_app_status($id,$status);
+        foreach($dev_apps['data'] as $item){
+            $status = 'Deny';
+            $email = $item['email'];
+            $result = edit_app_status($id,$status,$email);
+            
+        }
+       
         header("location:admin_approve.php?id=$id");
     }
 ?>
