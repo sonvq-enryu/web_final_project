@@ -140,7 +140,7 @@
                     }
                 ?>
                 <li><a href="footer.php">Contact</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="https://github.com/voquocson/web_final_project">About</a></li>
             </ul>
         </div>
         <div class='content seemore'>
