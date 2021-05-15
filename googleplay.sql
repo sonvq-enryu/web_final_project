@@ -21,6 +21,9 @@ SET time_zone = "+00:00";
 -- Cơ sở dữ liệu: `googleplay`
 --
 
+CREATE DATABASE IF NOT EXISTS `googleplay` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `googleplay`;
+
 -- --------------------------------------------------------
 
 --
@@ -452,7 +455,7 @@ ALTER TABLE `card`
 -- Chỉ mục cho bảng `comment_rating`
 --
 ALTER TABLE `comment_rating`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id`);
 
 
 --
