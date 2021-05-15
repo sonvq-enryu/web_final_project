@@ -1645,6 +1645,10 @@ th {
     padding: 8px;
 }
 
+.list-group-item+.list-group-item{
+    z-index: 1000;
+}
+
 
 /* **********************************************************
                       END DEVELOPER APP SUBMIT 
