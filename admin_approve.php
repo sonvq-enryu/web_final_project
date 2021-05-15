@@ -80,7 +80,7 @@
     $id = (string) $id;
     if(isset($_POST['published'])) {
         $status = 'Published';
-        $published = edit_app_status($id,$status);
+        $published = edit_publish_status($id,$status);
         foreach($dev_apps['data'] as $item){
             $app_id = $item['app_id'];
             $name = $item['name'];

@@ -61,6 +61,17 @@
         send_deny_email($email);
         return array('code' => 0, 'message' => 'App status changed successful');
     }
+    function edit_publish_status($id,$status){
+        $sql = "update pending_application SET status = ?  WHERE app_id = ?";
+        $conn = open_database();
+        $stm = $conn->prepare($sql);
+        $stm->bind_param('ss',$status,$id);
+        if(!$stm->execute()){
+            return array('code' => 2, 'error' => 'Can not execute command');
+        }
+    
+        return array('code' => 0, 'message' => 'App status changed successful');
+    }
     function push_app($app_id,$name,$price,$updated,$size,$developer,$image,$content,$description,$file,$status,$detail,$email){
         $sql = "insert into application (id, name, price, updated, size, developer,detail, image, content, description,file,status) value (?,?,?,?,?,?,?,?,?,?,?,?) ";
         $conn = open_database();
