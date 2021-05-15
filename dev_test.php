@@ -1,7 +1,7 @@
 <?php
-    
-    $id = 5983;
-    
-    $id = $id."M";
-    echo gettype($id);
+    $app_id = 4123;
+    $detail = 'image/detail/'.$app_id;
+    $dir = strval($detail);
+    echo $dir;
+ 
 ?>

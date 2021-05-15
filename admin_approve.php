@@ -92,9 +92,10 @@
             $content = $item['content'];
             $description = $item['description'];
             $file = $item['file'];
+            $detail = $item['detail'];
             
         }
-        $result = push_app($app_id,$name,$price,$updated,$size,$developer,$image,$content,$description,$file,$status);
+        $result = push_app($app_id,$name,$price,$updated,$size,$developer,$image,$content,$description,$file,$status,$detail);
        
         header("location:admin_approve.php?id=$id");
     }
@@ -207,7 +208,6 @@
                                         
                                     </form>
                                     <form method="post" onsubmit="return confirm('You are about to reject an application please confirm your choice');">
-                                       
                                         <input class="admin_deny_btn " type="submit" name="deny" value="Denied"/>
                                     </form>
                                     

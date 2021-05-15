@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 15, 2021 lúc 05:18 PM
+-- Thời gian đã tạo: Th5 15, 2021 lúc 06:15 PM
 -- Phiên bản máy phục vụ: 10.4.18-MariaDB
--- Phiên bản PHP: 8.0.3
+-- Phiên bản PHP: 8.0.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,9 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `googleplay`
 --
-
-CREATE DATABASE IF NOT EXISTS `googleplay` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `googleplay`;
 
 -- --------------------------------------------------------
 
@@ -212,6 +209,7 @@ INSERT INTO `application` (`id`, `name`, `price`, `stars`, `updated`, `size`, `i
 ('A47', 'Dragon King Fishing Online-Arcade Fish Games', 0, 4.4, '1616540400', '92M', 1000000, 'Yue Studio', '', 'image/app/A47.jpg', 'Rated for 3+', '', 'apk/A47.zip', 'Published'),
 ('A48', 'Ta Là Hoàng Thượng - VegaGame', 0, 4.3, '1615935600', '55M', 500000, 'Clicktouch Co., Ltd.', '', 'image/app/A48.jpg', 'Rated for 12+\nModerate Violence', '', 'apk/A48.zip', 'Published'),
 ('A49', 'Honkai Impact 3', 0, 4.3, '1614294000', '209M', 5000000, 'miHoYo Limited', '', 'image/app/A49.jpg', 'Rated for 12+\nSexual Innuendo', '', 'apk/A49.zip', 'Published'),
+('A4950', 'game x', 0, NULL, '1621083921', '8M', NULL, 'Obama Last Name', 'image/detail/A4950', 'image/app/gaming2.jpg', 'Horror', 'game x', 'apk/A4950.zip', 'Unpublished'),
 ('A5', 'Lords Mobile - Gamota', 0, 4.4, '1616968800', '80M', 1000000, 'IGG.COM', '', 'image/app/A5.jpg', 'Rated for 7+\nMild Violence', '', 'apk/A5.zip', 'Published'),
 ('A50', 'Liên Minh Mạo Hiểm', 0, 3.5, '1615244400', '58M', 100000, 'PHOENIX ENTERTAINMENT SERVICE COMPANY LIMITED', '', 'image/app/A50.jpg', 'Rated for 12+\nModerate Violence', '', 'apk/A50.zip', 'Published'),
 ('A51', 'Candy Crush Saga', 0, 4.6, '1617919200', '69M', 1000000000, 'King', '', 'image/app/A51.jpg', 'Rated for 3+', '', 'apk/A51.zip', 'Published'),
@@ -392,17 +390,16 @@ CREATE TABLE `pending_application` (
   `description` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
   `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `file` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
-  `user_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL
+  `user_id` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `detail` varchar(1000) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `pending_application`
 --
 
-INSERT INTO `pending_application` (`app_id`, `developer`, `name`, `price`, `date`, `size`, `image`, `content`, `description`, `status`, `file`, `user_id`) VALUES
-('A3755', 'Obama Last Name', 'fast and speed', 0, '150521', '8M', 'image/app/whatappcar.jpg', 'Moderate Violence', 'fast and speed', 'Published', 'apk/A3755.zip', '8'),
-('A3994', 'Obama Last Name', 'facebook 2', 0, '150521', '8M', 'image/app/facebook2.png', 'Implied Violence', 'facebook 2 facebook 2', 'Unpublished', 'apk/A3994.zip', '8'),
-('A6287', 'Obama Last Name', 'game x', 90000, '150521', '8M', 'image/app/gaming2.jpg', 'Sexual Innuendo', 'game x game x game x game x game x', 'Pending', 'apk/A6287.zip', '8');
+INSERT INTO `pending_application` (`app_id`, `developer`, `name`, `price`, `date`, `size`, `image`, `content`, `description`, `status`, `file`, `user_id`, `detail`) VALUES
+('A4950', 'Obama Last Name', 'game x', 0, '1621083921', '8M', 'image/app/gaming2.jpg', 'Horror', 'game x', 'Unpublished', 'apk/A4950.zip', '8', 'image/detail/A4950');
 
 -- --------------------------------------------------------
 
