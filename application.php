@@ -243,13 +243,13 @@
 					  <!-- The slideshow -->
 					  <div class="carousel-inner">
 					    <div class="carousel-item active">
-					      <img src="application/candycrush/candycrush.jpg" width="100%" height="100%" alt="Los Angeles">
+					      <img src="image/detail/A51/candycrush.jpg" width="100%" height="100%" alt="Los Angeles">
 					    </div>
 					    <div class="carousel-item">
-					      <img src="application/candycrush/candycrush2.jpg" width="100%" height="100%" alt="Chicago">
+					      <img src="image/detail/A51/candycrush2.jpg" width="100%" height="100%" alt="Chicago">
 					    </div>
 					    <div class="carousel-item">
-					      <img src="application/candycrush/candycrush3.jpg" width="100%" height="100%" alt="New York">
+					      <img src="image/detail/A51/candycrush3.jpg" width="100%" height="100%" alt="New York">
 					    </div>
 					  </div>
 
