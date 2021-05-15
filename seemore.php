@@ -149,6 +149,7 @@
                     if (isset($message)) {
                         echo "<p>Không tìm thấy ứng dụng</p>";
                     }
+
                     if(isset($_GET['user'])){
                         ?>
                          <?php
@@ -282,6 +283,7 @@
                             
                             ?>
                         <?php
+
                     }
                     else{
                         foreach($app['data'] as $item){

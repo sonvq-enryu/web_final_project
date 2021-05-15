@@ -324,12 +324,12 @@
 
     function search($keyword) {
         $keyword = '%'. $keyword .'%';
-        
-        $query = 'select * from application where name like ?';
+        $status = 'Published';
+        $query = 'select * from application where name like ? AND status = ?';
         $conn = open_database();
         
         $stm = $conn->prepare($query);
-        $stm->bind_param('s', $keyword);
+        $stm->bind_param('ss', $keyword,$status);
 
         if (!$stm->execute()) {
             return array("code" => 1, "message" => "Cannot execute");

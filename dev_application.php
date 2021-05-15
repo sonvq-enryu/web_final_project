@@ -53,6 +53,14 @@
         if (isset($_POST['delete'])){
             $result = delete_pend_app($app_id);
             if($result['code'] == 0){
+                if($item['status'] == 'Published'){
+                    $result2 = delete_pub_app($app_id);
+                    if($reuslt2['code']==0){
+                        header("location:developer.php?id=$user_id");
+                    }else{
+                        $error = 'Cannot Delete application';
+                    }
+                }
                 header("location:developer.php?id=$user_id");
             }else{
                 $error = 'Cannot Delete application';
@@ -160,7 +168,7 @@
                        
                     </div>
                     <?php
-                        if(strcmp($item['status'],'Unpublished') != 0){
+                        if(strcmp($item['status'],'Deny') != 0){
                             ?>
                                 </br><a class="dev_edit_btn" href="edit_app.php?id=<?=$item['app_id'] ?>">Edit</a>
                             <?php
