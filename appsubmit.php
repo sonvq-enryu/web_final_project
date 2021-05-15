@@ -59,7 +59,9 @@
         $temp = substr($time,6);
         $temp = "A" .$temp;
         $app_id =$temp ;
-
+        mkdir('image/detail/'.$app_id);
+        $detail = 'image/detail/'.$app_id;
+        $dir = strval($detail)."/";
         $icon = 'image/app/'.$_FILES['icon']['name'];
         $file = 'apk/'.$app_id.'.zip';
         if (empty($appname)) {
@@ -80,7 +82,7 @@
         }
         else {
 
-            $result = upload_app($app_id,$developer,$appname,$price,$date,$size, $icon,$appcategory,$desc,$status, $file,$id);
+            $result = upload_app($app_id,$developer,$appname,$price,$date,$size, $icon,$appcategory,$desc,$status, $file,$id,$detail);
             if($result['code'] == 0){
                 $message = 'Add application success';
                 $name = '';
@@ -96,6 +98,21 @@
                 $apkTempName = $_FILES['apk']['tmp_name'];
                 $apkDestination  = 'apk/' .$apk_name.'.zip';
                 move_uploaded_file($apkTempName,$apkDestination);
+
+                $image_name = $_FILES['image1']['name'];
+                $fileTempName = $_FILES['image1']['tmp_name'];
+                $fileDestination  = $dir.$image_name;
+                move_uploaded_file($fileTempName,$fileDestination);
+
+                $image_name = $_FILES['image2']['name'];
+                $fileTempName = $_FILES['image2']['tmp_name'];
+                $fileDestination  = $dir.$image_name;
+                move_uploaded_file($fileTempName,$fileDestination);
+
+                $image_name = $_FILES['image3']['name'];
+                $fileTempName = $_FILES['image3']['tmp_name'];
+                $fileDestination  = $dir.$image_name;
+                move_uploaded_file($fileTempName,$fileDestination);
 
             }
             else{

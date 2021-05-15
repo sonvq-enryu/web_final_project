@@ -1,10 +1,7 @@
 <?php
-   $time = date("dmy");
-   $timestamp = strtotime($time); //1072915200
-
-   // this prints the year in a two digit format
-   // however, as this would start with a "0", it
-   // only prints "4"
-   echo $timestamp;
+    $app_id = 4123;
+    $detail = 'image/detail/'.$app_id;
+    $dir = strval($detail);
+    echo $dir;
  
 ?>

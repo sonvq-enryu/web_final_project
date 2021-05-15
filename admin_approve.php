@@ -92,9 +92,10 @@
             $content = $item['content'];
             $description = $item['description'];
             $file = $item['file'];
+            $detail = $item['detail'];
             
         }
-        $result = push_app($app_id,$name,$price,$updated,$size,$developer,$image,$content,$description,$file,$status);
+        $result = push_app($app_id,$name,$price,$updated,$size,$developer,$image,$content,$description,$file,$status,$detail);
        
         header("location:admin_approve.php?id=$id");
     }
