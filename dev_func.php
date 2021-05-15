@@ -9,13 +9,13 @@
         if ($conn->connect_error) die('Connect error: ' . $conn->connect_error);
         return $conn; 
     }
-    function upload_app($app_id,$developer,$appname,$price,$date,$size,$icon,$appcategory,$desc,$status,$file,$user_id,$detail){
-        $sql = 'insert into pending_application (app_id,developer, name, price, date, size, image, content, description, status, file,user_id,detail) value (?,?,?,?,?,?,?,?,?,?,?,?,?)';
+    function upload_app($app_id,$developer,$appname,$price,$date,$size,$icon,$appcategory,$desc,$status,$file,$user_id,$detail,$email){
+        $sql = 'insert into pending_application (app_id,developer, name, price, date, size, image, content, description, status, file,user_id,detail,email) value (?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
 
         $conn = open_database();
         $stm = $conn->prepare($sql);
 
-        $stm->bind_param('sssisssssssss',$app_id,$developer,$appname,$price,$date,$size,$icon,$appcategory,$desc,$status,$file,$user_id,$detail);
+        $stm->bind_param('sssissssssssss',$app_id,$developer,$appname,$price,$date,$size,$icon,$appcategory,$desc,$status,$file,$user_id,$detail,$email);
         if(!$stm->execute()){
             return array('code' => 2, 'error' => 'Can not execute command');
         }
@@ -147,6 +147,20 @@
         $result = $stm->get_result();
         $row = $result->fetch_assoc();
         $status = $row['dev'];
+        return $status;
+    }
+    function get_dev_email($id){
+        $sql = "select * from account where id = ?";
+
+        $conn = open_database();
+
+        $stm = $conn->prepare($sql);
+        $stm->bind_param('s',$id);
+        
+        $stm->execute();
+        $result = $stm->get_result();
+        $row = $result->fetch_assoc();
+        $status = $row['email'];
         return $status;
     }
     function delete_pub_app($app_id){
