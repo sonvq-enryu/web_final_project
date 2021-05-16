@@ -1094,3 +1094,17 @@
 
         return 0;
     }
+
+    function set_id_img($email, $front_img, $back_img) {
+        $query = 'insert into id_img(email, front, back) values (?, ?, ?)';
+        $conn = open_database();
+
+        $stm = $conn->prepare($query);
+        $stm->bind_param("sss", $email, $front_img, $back_img);
+
+        if (!$stm->execute()) {
+            return array("code" => 1, "message" => "Some error has occured");
+        }
+
+        return array("code" => 0, "message" => "Upload successful");
+    }

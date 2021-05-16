@@ -714,6 +714,7 @@ function add_new_row(serial, denomination) {
 
 if (window.location.pathname == '/web_final_project/profile.php') {
     $(document).ready(function (e) {
+
         $("#upload_img_form").on('submit', function(e) {
             e.preventDefault();
             $.ajax({
@@ -736,7 +737,40 @@ if (window.location.pathname == '/web_final_project/profile.php') {
                     error_edit_form(error, response['message']);
                 }
             })
-        })
+        });
+
+        $('#upgrade form').on('submit', function(e) {
+            e.preventDefault();
+            let form = document.querySelector('#upgrade form');
+            let email = document.querySelector('#usr-email').innerText;
+            let dev_name = form.querySelector('input[name=developer-name]');
+            let error = form.querySelector('div.alert');
+        
+            if (dev_name.value == '') {
+                error_edit_form(error, 'Please enter your developer name');
+                return ;
+            }
+            $.ajax({
+                url: "upgrade_dev.php",
+                type: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+            }).done(function(response) {
+                let form = document.querySelector('#upgrade form');
+                let error = form.querySelector('div.alert');
+                response = JSON.parse(response);
+                console.log(response);
+                if (response['code'] == 0) {
+                    window.location.replace('profile.php');
+                }
+                else {
+                    error_edit_form(error, response['message']);
+                }
+            })
+        });
+
     });
 }
 
@@ -782,6 +816,17 @@ function validate_rcv(e) {
         return false;
     }
     return true;
+}
+
+function preview_img(e) {
+    const [file] = e.files;
+    let span = e.parentNode.querySelector('span');
+    let img = e.parentNode.querySelector('img');
+    if (file) {
+        span.style.display = 'none';
+        img.style.display = 'block';
+        img.src = URL.createObjectURL(file);
+    }
 }
 
 /* EDIT INFO */
