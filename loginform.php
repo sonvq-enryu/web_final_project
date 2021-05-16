@@ -54,7 +54,7 @@
     if (isset($_POST['r-email']) && isset($_POST['r-firstname']) && isset($_POST['r-lastname']) && isset($_POST['r-phone']) && isset($_POST['r-password']) && isset($_POST['gender']) && isset($_POST['national'])) {
         
         $r_result = register($_POST['r-email'], $_POST['r-password'], $_POST['r-firstname'], $_POST['r-lastname'], $_POST['r-phone'], $_POST['gender'], $_POST['national']);
-        
+        print_r($r_result);
         if ($r_result['code'] == 0) {
             $msg = "Signup successful, please login";
         }

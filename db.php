@@ -467,11 +467,18 @@
     }
 
     function get_last_user_id() {
-        $query = "SELECT id FROM account ORDER BY id DESC LIMIT 1";
+        $query = "SELECT id FROM account";
         $conn = open_database();
 
         $result = $conn->query($query);
-        return $result->fetch_assoc()['id'];
+        
+        $max = 0;
+        while ($e = $result->fetch_assoc()['id']) {
+            if ((int)$e > $max) {
+                $max = (int)$e;
+            }
+        }
+        return (string)$max;
     }
 
     function increment($matches) {
@@ -486,8 +493,6 @@
         $last_id = preg_replace_callback( "|(\d+)|", "increment", $last_id);
         $gender = (int)$gender;
         $national = (int)$national;
-
-        
         $hash = password_hash($password, PASSWORD_DEFAULT);
         
         $role_default = 2;
