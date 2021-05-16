@@ -1035,6 +1035,36 @@
         }
     }
 
+    function send_recepit($email, $app_name, $price) {
+        $mail = new PHPMailer(true);
+
+        try {
+            //Server settings
+            // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+            $mail->isSMTP();                 
+            $mail->CharSet = 'UTF-8';                          //Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'castlerealestatead@gmail.com';                     //SMTP username
+            $mail->Password   = 'realestate123';                               //SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+            $mail->Port       = 587;                                    //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+
+            //Recipients
+            $mail->setFrom('castlerealestatead@gmail.com', 'Hệ thống quản lý trang web ứng dụng');
+            $mail->addAddress($email, 'Người nhận');     //Add a recipient
+
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = 'Hóa đơn mua hàng';
+            $mail->Body    = "Bạn vừa thanh toán thành công ".$app_name." với giá ".$price."đ";      
+
+            $mail->send();
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    }
+
     function to_new_password($email, $password) {
         $query = 'update account set password = ? where email =?';
         $conn = open_database();

@@ -34,6 +34,7 @@
         if ($result['code'] == 0) {
             $_SESSION['username'] = $_POST['email'];
             $_SESSION['id'] = $result['data']['id'];
+            $_SESSION['email'] = $result['data']['email'];
             $_SESSION['fullname'] = $result['data']['firstname'] .' '. $result['data']['lastname'];
             $_SESSION['role'] = $result['data']['role'];
             header('Location: index.php');

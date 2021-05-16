@@ -294,6 +294,9 @@ function buy_app(){
     let path = form.querySelector('input[name=path]').value;
     let user_id = form.querySelector('input[name=user-id]').value;
     let app_id = form.querySelector('input[name=application-id]').value;
+    let user_email = form.querySelector('input[name=user-email]').value;
+    let app_price = form.querySelector('input[name=app-price]').value;
+    let app_name = form.querySelector('input[name=app-name]').value;
 
 
 
@@ -303,6 +306,7 @@ function buy_app(){
     xhr.addEventListener('load', () => {
         if (xhr.readyState === 4 && xhr.status === 200) {
             let response = xhr.responseText;
+            console.log(response);
             response = JSON.parse(response);
             if (response['code'] == 0) {
                 window.location.replace(path);
@@ -311,7 +315,7 @@ function buy_app(){
             }
         }
     });
-    let params = "user_id=" + encodeURIComponent(user_id) + "&app_id=" + encodeURIComponent(app_id);
+    let params = "user_id=" + encodeURIComponent(user_id) + "&app_id=" + encodeURIComponent(app_id) + "&app_price=" + encodeURIComponent(app_price) + "&user_email=" + encodeURIComponent(user_email) + "&app_name=" + encodeURIComponent(app_name);
     console.log(params);
     xhr.send(params);
 }

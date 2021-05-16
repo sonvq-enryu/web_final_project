@@ -1,7 +1,8 @@
 <?php
 
 require_once 'db.php';
-buy('1','A171');
+// buy('1','A171');
+send_recepit('lnmtuan1702@gmail.com','Freefire',350);
 // define('HOST','127.0.0.1');
 // define('USER','root');
 // define('PASS','');
