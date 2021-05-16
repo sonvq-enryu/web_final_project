@@ -622,6 +622,9 @@ if(isset($_SESSION['fullname'])){
                         <input type="hidden" name="path" value="application.php?id=<?= $item_app['id'] ?>&fileId=<?= $_SESSION['app_id'][$item_app['id']] ?>">
                         <input type="hidden" name="user-id" value="<?= $_SESSION['id'] ?>">
                         <input type="hidden" name="application-id" value="<?=$item_app['id']?>">
+                        <input type="hidden" name="user-email" value="<?=$_SESSION['email']?>">
+                        <input type="hidden" name="app-price" value="<?=$item_app['price']?>">
+                        <input type="hidden" name="app-name" value="<?=$item_app['name']?>">
                         <input type="hidden" name="action" value="buy-app">
                         <button onclick="buy_app()" type="button" class="btn btn-outline-success">Mua</button>
                         </div>    
