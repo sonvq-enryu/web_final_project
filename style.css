@@ -110,7 +110,13 @@ transform: translate(-50%, -50%); */
 .bottom-text {
     margin-top: 60px;
     text-align: center;
-    font-size: 13px;
+    font-size: 15px;
+}
+
+.forget-text {
+    margin-top: 5px;
+    font-size: 15px;
+    text-align: center;
 }
 
 .signup-form {
