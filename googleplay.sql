@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2021 at 08:38 PM
+-- Generation Time: May 16, 2021 at 11:06 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -52,12 +52,13 @@ CREATE TABLE `account` (
 
 INSERT INTO `account` (`id`, `firstname`, `lastname`, `email`, `password`, `phone`, `gender`, `national`, `role`, `money`, `image`, `activated`, `activate_token`, `dev`) VALUES
 ('1', 'Lê', 'Nguyễn Minh Tuấn', 'lnmtuan1702@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '0901995401', 0, 0, 0, 99000, './user_img/3d4z0uf4s2pdgr2t4l8bcat-memes.jpg', b'1', '', ''),
+('10', 'Võ', 'Quốc Sơn', 'exp.qson@gmail.com', '$2y$10$zxgSZigm3nOQ0d1pm9yf2eIpAVSPuXhHflpO3s1Pa72136sV//.eu', '0925534272', 0, 230, 2, 0, './user_img/smuge_the_cat.jpg', b'0', NULL, NULL),
 ('2', 'Vo', 'Quoc Son', 'voquocson@gmail.com', '$2y$10$3.omeOWYvmzJUgCbM8M9QuhGml0W9RlHfxc06oqXwgIkMl9elm8w2', '', 0, 0, 0, 0, './user_img/smuge_the_cat.jpg', b'1', NULL, ''),
 ('3', 'Huynh', 'Nhu', 'huynhnhu@gmail.com', '$2y$10$BnFA3Dkgj1q0xBlme3GcwukDhqTO8l8V/.BrWktW8sK9boZ3z2UpG', '789', 0, 0, 0, 0, './user_img/smuge_the_cat.jpg', b'0', NULL, ''),
 ('4', 'Tran', 'Huyen', 'tkph@gmail.com', '$2y$10$8rSxJT76sHsDRKaAw/xbDO/sBdf.ktxKmNesJxjKf./8GltWI8Q4O', '123456789', 2, 230, 2, 1, './user_img/smuge_the_cat.jpg', b'0', NULL, ''),
 ('5', 'Võ', 'Quốc Sơn', 'testlogin@gmail.com', '$2y$10$dWtDMxc4FmDgr1Qtb8XyIeNcbua49JH/ickKm9jAmEwjz7iM.D5q.', '0921231232', 0, 230, 0, 0, './user_img/smuge_the_cat.jpg', b'0', NULL, ''),
 ('6', 'Vo', 'Quoc Son', 'testlogin1@gmail.com', '$2y$10$nBXkjyH7GlVc5w8p5A/.2OKosxr1ys8nJmo2IFNC3eoERH7CQE3hq', '0921231242', 1, 230, 1, 0, './user_img/smuge_the_cat.jpg', b'0', NULL, ''),
-('7', 'Vo', 'Quoc Son', 'testlogin2@gmail.com', '$2y$10$hk2ZXJO2.XnObxfmNPaKXu/vkkU0XF81cslpYFzChCTAaeV.ieRMu', '0925372462', 0, 230, 2, 300000, './user_img/smuge_the_cat.jpg', b'0', NULL, ''),
+('7', 'Vo', 'Quoc Son', 'testlogin2@gmail.com', '$2y$10$hk2ZXJO2.XnObxfmNPaKXu/vkkU0XF81cslpYFzChCTAaeV.ieRMu', '0925372462', 0, 230, 1, 2000000, './user_img/smuge_the_cat.jpg', b'0', NULL, 'New Devasdfasdfasdasf'),
 ('8', 'Từ ', 'Huy Vạn', 'tuhuyvan123@gmail.com', '$2y$10$zDC/998P01A1gIM3BQjasOnGowxcZfAnwiQFItFkK1ePuKaWfykES', '0909288174', 0, 230, 1, 0, './user_img/smuge_the_cat.jpg', b'0', NULL, 'Obama Last Name'),
 ('9', 'Vo', 'Quốc Sơn', 'exp.multiverse@gmail.com', '$2y$10$9L3BTmrt864p8ZPw0YAZs.9DQJb0n1I2U9u/hPYsoEaM3RVMHa4Ii', '0923542384', 0, 230, 2, 0, './user_img/smuge_the_cat.jpg', b'0', NULL, NULL);
 
@@ -377,6 +378,26 @@ INSERT INTO `downloaded_app` (`user_id`, `app_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `id_img`
+--
+
+CREATE TABLE `id_img` (
+  `id` int(10) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `front` varchar(1000) NOT NULL,
+  `back` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `id_img`
+--
+
+INSERT INTO `id_img` (`id`, `email`, `front`, `back`) VALUES
+(2, 'testlogin2@gmail.com', './id_card_img/2euhlswbv58e1v9696px0z35cpzexn7b64c8d6a9ceefa256636659226cd0f2.jpg', './id_card_img/6i8atwh0czmuvp981xju7b64c8d6a9ceefa256636659226cd0f2.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pending_application`
 --
 
@@ -494,6 +515,12 @@ ALTER TABLE `downloaded_app`
   ADD PRIMARY KEY (`user_id`,`app_id`);
 
 --
+-- Indexes for table `id_img`
+--
+ALTER TABLE `id_img`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pending_application`
 --
 ALTER TABLE `pending_application`
@@ -527,6 +554,12 @@ ALTER TABLE `card`
 --
 ALTER TABLE `comment_rating`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `id_img`
+--
+ALTER TABLE `id_img`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `reset_token`
