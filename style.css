@@ -110,7 +110,13 @@ transform: translate(-50%, -50%); */
 .bottom-text {
     margin-top: 60px;
     text-align: center;
-    font-size: 13px;
+    font-size: 15px;
+}
+
+.forget-text {
+    margin-top: 5px;
+    font-size: 15px;
+    text-align: center;
 }
 
 .signup-form {
@@ -1759,12 +1765,41 @@ th {
     display: none;
 }
 
+#upgrade {
+    display: none;
+}
+
 .alert {
     text-align: center;
 }
 
 .li-selected {
     background-color: #1DA8C7;
+}
+
+#upgrade form div.mx-auto {
+    width: 300px;
+}
+
+#upgrade form div.mx-auto p {
+    text-align: center;
+}
+
+#upgrade form div.mx-auto div.d-flex {
+    height: 160px;
+    background-color: rgb(233, 236, 239);
+}
+
+#upgrade form div.mx-auto div.d-flex span {
+    color: rgb(166, 168, 170);
+    font: bold 8pt Arial;
+}
+
+#upgrade form div.mx-auto img {
+    border-radius: 4px;
+    display: none;
+    width: 300px;
+    height: 160px;
 }
 
 

@@ -88,6 +88,9 @@
         <div class="bottom-text">
             Don't have account <a href='#' onclick="openForm()">Sign up</a>
         </div>
+        <div class="forget-text">
+            <a href="forget.php">Forget your password ?</a>
+        </div>
     </form>
 
     <form onsubmit="return checkSignupInput()" action="" class='signup-form' id='signup-form' method="POST">

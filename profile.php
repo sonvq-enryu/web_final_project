@@ -66,9 +66,9 @@ if (!isset($_SESSION['username'])) {
                     <?php
                     }
                     if ($_SESSION['role'] == 0) {
-                        ?>
-                            <li><a  href="admin_check.php?id=<?= $_SESSION['id'] ?>">Admin Console</a></li>
-                        <?php
+                    ?>
+                        <li><a href="admin_check.php?id=<?= $_SESSION['id'] ?>">Admin Console</a></li>
+                    <?php
                     }
                     if ($_SESSION['role'] == 0) {
                     ?>
@@ -364,12 +364,35 @@ if (!isset($_SESSION['username'])) {
                         </ul>
                         <div class="row mt-3">
                             <div class="col-md-12">
-                                <form action="">
+                                <form action="" method="POST">
+                                <input type="hidden" name="email" value="<?= $_SESSION['username'] ?>">
                                     <div class="row mt-2 justify-content-center">
                                         <div class="col-10 col-sm-10 col-md-10 col-lg-8 col-xl-8">
                                             <div class="form-group row">
                                                 <label>Your developer name</label>
                                                 <input class="form-control" type="text" placeholder="Your developer name" name="developer-name">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 mb-3">
+                                                    <div class="mx-auto">
+                                                        <p>Front of ID Card</p>
+                                                        <div class="d-flex justify-content-center align-items-center rounded">
+                                                            <span>200x140</span>
+                                                            <img id="front-img" src="#" />
+                                                        </div>
+                                                        <input onchange="preview_img(this)" type="file" name="front-id-img" class="mt-2 align-items-center form-control-file" accept="image/*" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mb-3">
+                                                    <div class="mx-auto">
+                                                        <p>The back of ID Card</p>
+                                                        <div class="d-flex justify-content-center align-items-center rounded">
+                                                            <span>200x140</span>
+                                                            <img id="back-img" src="#" />
+                                                        </div>
+                                                        <input onchange="preview_img(this)" type="file" name="back-id-img" class="mt-2 align-items-center form-control-file" accept="image/*" />
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="row mt-2 justify-content-center">
                                                 <div class="col-12">
@@ -380,7 +403,7 @@ if (!isset($_SESSION['username'])) {
                                             </div>
                                             <div class="row">
                                                 <div class="col-12 d-flex justify-content-end">
-                                                    <button onclick="upgrade_to_dev()" class="btn btn-primary" type="button">Confirm</button>
+                                                    <button class="btn btn-primary" type="submit">Confirm</button>
                                                 </div>
                                             </div>
                                         </div>
