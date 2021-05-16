@@ -473,7 +473,8 @@
         $result = $conn->query($query);
         
         $max = 0;
-        while ($e = $result->fetch_assoc()['id']) {
+        for ($i=0; $i<$result->num_rows; ++$i) {
+            $e = $result->fetch_assoc()['id'];
             if ((int)$e > $max) {
                 $max = (int)$e;
             }
