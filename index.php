@@ -1,3 +1,7 @@
+<?php
+    // Start the session at the very top of the file
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,12 +16,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <title>Index</title>
-    <style>
-
-    </style>
+    <style></style>
 </head>
 <?php
-    require_once 'db.php'; 
+    require_once 'db.php';
 
     $popular_app = get_popular_top_apps();
     if($popular_app['code']!=0){
