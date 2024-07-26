@@ -1,0 +1,30 @@
+version: '2'
+services:
+  php:
+    build: .
+    volumes:
+      - ./:/app
+    working_dir: /.
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.nginx
+    volumes:
+      - ./:/app
+    depends_on:
+      - php
+    ports:
+      - 80:80
+    working_dir: /.
+  mysql:
+    image: mysql:5.7.21
+    volumes:
+      - ./:/app
+      - dbdata:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=googleplay
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_USERNAME=root
+    working_dir: /.
+volumes:
+  dbdata:
