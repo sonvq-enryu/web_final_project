@@ -1,8 +1,8 @@
 <?php
 
-    define('HOST','127.0.0.1');
+    define('HOST','mysql');
     define('USER','root');
-    define('PASS','');
+    define('PASS','root');
     define('DB','googleplay');
 
     function open_database(){
